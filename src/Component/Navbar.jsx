@@ -107,19 +107,21 @@ const Navbar = () => {
             </Link>
             {/* Dropdown */}
             {category.subcategories.length > 0 && (
-              <div className="absolute left-0 mt-[1px] hidden group-hover:block bg-white text-gray-600 rounded shadow-lg space-y-1 py-2">
-                {category.subcategories.map((subcategory, subIndex) => (
-                  <Link
-                    key={subIndex}
-                    to={`/subcategory/${subcategory
-                      .toLowerCase()
-                      .replace(/ & /g, "-")
-                      .replace(/\s+/g, "-")}`} // Generate dynamic subcategory links
-                    className="block px-4 py-1 hover:text-gadBlue whitespace-nowrap" // Added whitespace-nowrap
-                  >
-                    {subcategory}
-                  </Link>
-                ))}
+              <div className="absolute left-0 mt-[1px] hidden group-hover:block bg-white text-gray-600 rounded shadow-lg transition-all duration-200 ease-in-out">
+                <div className="space-y-1 py-2">
+                  {category.subcategories.map((subcategory, subIndex) => (
+                    <Link
+                      key={subIndex}
+                      to={`/subcategory/${subcategory
+                        .toLowerCase()
+                        .replace(/ & /g, "-")
+                        .replace(/\s+/g, "-")}`} // Generate dynamic subcategory links
+                      className="block px-4 py-1 hover:text-gadBlue whitespace-nowrap"
+                    >
+                      {subcategory}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </li>
