@@ -4,31 +4,18 @@ import { FaCaretDown } from "react-icons/fa";
 const categories = [
   {
     name: "Mobile Accessories",
-    link: "/mobile-accessories", // Add the links for routing
+    link: "/mobile-accessories",
     subcategories: [
       "Camera Lens",
       "Charger & Cable",
       "Cables & Converters",
       "Charging Stations",
       "Fast Charger",
-      //   "Audio & Video Cables",
-      //   "Mobile Flashes & Selfie Lights",
-      //   "Holders",
-      //   "Memory Card",
-      //   "Bike Mount",
-      //   "Mobile Phone Holders & Stands",
-      //   "Tripod & Accessories",
-      //   "USB Charging Station",
-      //   "Screwdrivers",
-      //   "Wireless Chargers",
-      //   "Power Bank",
-      //   "Screen Protector",
-      //   "Selfie Stick",
     ],
   },
   {
     name: "Covers & Cases",
-    link: "/covers-and-cases", // Add the links for routing
+    link: "/covers-and-cases",
     subcategories: [
       "Mobile Phone Cases",
       "Earphone Cases",
@@ -61,12 +48,12 @@ const categories = [
   },
   {
     name: "Smart Watches",
-    link: "/smart-watches", // Add the links for routing
+    link: "/smart-watches",
     subcategories: ["Smart Accessories", "Smart Wristbands", "Watch Straps"],
   },
   {
     name: "Lifestyle",
-    link: "/lifestyle", // Add the links for routing
+    link: "/lifestyle",
     subcategories: [
       "Eye Mask",
       "Hair Dryer",
@@ -79,12 +66,12 @@ const categories = [
   },
   {
     name: "Car Accessories",
-    link: "/car-accessories", // Add the links for routing
+    link: "/car-accessories",
     subcategories: ["Car Camera", "Car Charger", "Car Mounts"],
   },
   {
     name: "More",
-    link: "/more", // Add the links for routing
+    link: "/more",
     subcategories: [
       "Computer & Office",
       "Security & Protection",
@@ -109,7 +96,10 @@ const Navbar = () => {
       <ul className="flex space-x-6 justify-center">
         {categories.map((category, index) => (
           <li key={index} className="relative group">
-            <Link to={category.link} className="flex font-medium items-center py-2 hover:text-gadBlue">
+            <Link
+              to={category.link}
+              className="flex font-medium items-center py-2 hover:text-gadBlue"
+            >
               {category.name}
               {category.subcategories.length > 0 && (
                 <FaCaretDown className="ml-1" />
@@ -117,7 +107,7 @@ const Navbar = () => {
             </Link>
             {/* Dropdown */}
             {category.subcategories.length > 0 && (
-              <div className="absolute left-0 mt-[1px] hidden group-hover:block bg-white text-black rounded shadow-lg">
+              <div className="absolute left-0 mt-[1px] hidden group-hover:block bg-white text-gray-600 rounded shadow-lg space-y-1 py-2">
                 {category.subcategories.map((subcategory, subIndex) => (
                   <Link
                     key={subIndex}
@@ -125,7 +115,7 @@ const Navbar = () => {
                       .toLowerCase()
                       .replace(/ & /g, "-")
                       .replace(/\s+/g, "-")}`} // Generate dynamic subcategory links
-                    className="block px-4 py-1 hover:text-gadBlue"
+                    className="block px-4 py-1 hover:text-gadBlue whitespace-nowrap" // Added whitespace-nowrap
                   >
                     {subcategory}
                   </Link>
