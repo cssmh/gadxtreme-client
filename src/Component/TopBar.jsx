@@ -1,4 +1,4 @@
-import logo from "../assets/gada.png";
+import logo from "../assets/logo.png";
 import { FaUser, FaHeart, FaShoppingCart, FaBars } from "react-icons/fa";
 
 const TopBar = () => {
