@@ -10,12 +10,6 @@ This project is a client-side application built using React and Vite. It feature
 ## Table of Contents
 
 - [Features](#features)
-- [Installation](#installation)
-- [Scripts](#scripts)
-- [Dependencies](#dependencies)
-- [Dev Dependencies](#dev-dependencies)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
