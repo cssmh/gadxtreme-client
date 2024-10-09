@@ -9,8 +9,7 @@ const Banner = () => {
 
   return (
     <div className="container mx-auto my-2">
-      {/* Mobile: show swiper with all 4 images */}
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <Swiper
           speed={500}
           grabCursor={true}
@@ -39,13 +38,6 @@ const Banner = () => {
           </SwiperSlide>
           <SwiperSlide>
             <img
-              src={phone_pro}
-              alt="Best Deal Banner"
-              className="w-full h-[242px] object-cover"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
               src={best_mobile}
               alt="Premium"
               className="w-full h-auto object-cover"
@@ -53,8 +45,7 @@ const Banner = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      {/* Desktop: Show swiper with 2/3 width and static banners */}
-      <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="md:col-span-2">
           <Swiper
             speed={500}
