@@ -10,6 +10,7 @@ import {
   FaPlus,
   FaMinus,
 } from "react-icons/fa";
+import useAuth from "../hooks/useAuth";
 
 const categories = [
   {
@@ -65,20 +66,22 @@ const categories = [
 ];
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [openedCategory, setOpenedCategory] = useState(null);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
 
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
   };
 
   const toggleCategory = (categoryName) => {
-    if (openedCategory === categoryName) {
-      setOpenedCategory(null);
-    } else {
-      setOpenedCategory(categoryName);
-    }
+    setOpenedCategory(openedCategory === categoryName ? null : categoryName);
+  };
+
+  const handleLogOut = () => {
+    logOut().then().catch();
   };
 
   return (
@@ -120,7 +123,49 @@ const Navbar = () => {
               className="text-white cursor-pointer text-xl"
               title="Login/Register"
             />
-            <p className="text-white font-semibold">Login/Register</p>
+            {user ? (
+              <div
+                className="relative"
+                onMouseEnter={() => setShowUserDropdown(true)}
+                onMouseLeave={() => setShowUserDropdown(false)}
+              >
+                <p className="text-white font-semibold cursor-pointer">
+                  Hi, {user?.displayName || "Anonymous"}
+                </p>
+                {showUserDropdown && (
+                  <div className="absolute right-0 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
+                    <Link
+                      to="/my-account/dashboard"
+                      className="block px-4 py-1 hover:bg-gray-100"
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      to="/my-account/orders"
+                      className="block px-4 py-1 hover:bg-gray-100"
+                    >
+                      Orders
+                    </Link>
+                    <Link
+                      to="/my-account/wishlist"
+                      className="block px-4 py-1 hover:bg-gray-100"
+                    >
+                      Wishlist
+                    </Link>
+                    <button
+                      onClick={handleLogOut}
+                      className="block px-4 py-1 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link to="/login" className="text-white font-semibold">
+                Login/Register
+              </Link>
+            )}
             <FaHeart
               className="text-white cursor-pointer text-xl"
               title="Wishlist"
@@ -136,6 +181,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
       {/* Drawer for small screens */}
       {isDrawerOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-end bg-black bg-opacity-70">

@@ -5,7 +5,6 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
-  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -40,9 +39,9 @@ const AuthProviders = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
-  const verifyEmail = () => {
-    return sendEmailVerification(auth.currentUser);
-  };
+  // const verifyEmail = () => {
+  //   return sendEmailVerification(auth.currentUser);
+  // };
 
   const logOut = async () => {
     // await clearCookie();
@@ -79,7 +78,6 @@ const AuthProviders = ({ children }) => {
     loading,
     googleLogin,
     resetPassword,
-    verifyEmail,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

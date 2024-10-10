@@ -8,6 +8,9 @@ import MyAccount from "../Component/MyAccount";
 import Dashboard from "../Component/MyAccount/Dashboard";
 import Orders from "../Component/MyAccount/Orders";
 import Wishlist from "../Component/MyAccount/Wishlist";
+import Login from "../Component/Login";
+import Register from "../Component/Register";
+import Policy from "../Component/Policy";
 
 const Route = createBrowserRouter([
   {
@@ -16,6 +19,9 @@ const Route = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/privacy-policy", element: <Policy /> },
       { path: "/category", element: <Category /> },
       { path: "/details", element: <ProductDetails /> },
       {
