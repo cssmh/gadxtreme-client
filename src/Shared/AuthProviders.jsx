@@ -10,8 +10,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updatePassword,
-  updateProfile,
 } from "firebase/auth";
 // import { clearCookie, setToken } from "../../Api/auth";
 
@@ -38,19 +36,8 @@ const AuthProviders = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const profileUpdate = (name, image) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: image,
-    });
-  };
-
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
-  };
-
-  const changePassword = (newPass) => {
-    return updatePassword(auth.currentUser, newPass);
   };
 
   const verifyEmail = () => {
@@ -90,8 +77,6 @@ const AuthProviders = ({ children }) => {
     login,
     logOut,
     loading,
-    profileUpdate,
-    changePassword,
     googleLogin,
     resetPassword,
     verifyEmail,
