@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo2.png";
 import {
   FaUser,
   FaHeart,
@@ -67,7 +67,7 @@ const categories = [
 const Navbar = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
-  const [openedCategory, setOpenedCategory] = useState(null); // For small devices
+  const [openedCategory, setOpenedCategory] = useState(null);
 
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -83,18 +83,18 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 left-0 right-0 z-50">
-      <div className="bg-black p-4 flex items-center justify-between px-4 sm:px-10">
+      <div className="bg-black p-[14px] flex items-center justify-between px-4 sm:px-10">
         {/* Mobile and small screens */}
         <div className="flex items-center justify-between w-full sm:hidden">
           <img src={logo} className="w-44" alt="Logo" />
           <div className="flex items-center space-x-4">
             <FaShoppingCart
-              className="text-white cursor-pointer"
+              className="text-white cursor-pointer text-xl"
               title="Cart"
             />
             <FaBars
               onClick={toggleDrawer}
-              className="text-white cursor-pointer"
+              className="text-white cursor-pointer text-xl"
               title="Menu"
             />
           </div>
@@ -102,8 +102,11 @@ const Navbar = () => {
 
         {/* Medium and larger screens */}
         <div className="hidden sm:flex items-center justify-between w-full">
-          <div className="text-white text-2xl font-bold flex-shrink-0">
-            <img src={logo} className="w-44" alt="Logo" />
+          <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
+            <img src={logo} className="w-48" alt="Logo" />
+          {/* <h1 className="font-port transition-transform duration-300 ease-in-out hover:scale-105">
+            GadXtreme
+          </h1> */}
           </div>
           <div className="flex-grow mx-4">
             <input
@@ -114,20 +117,25 @@ const Navbar = () => {
           </div>
           <div className="flex items-center space-x-4">
             <FaUser
-              className="text-white cursor-pointer"
+              className="text-white cursor-pointer text-xl"
               title="Login/Register"
             />
             <p className="text-white font-semibold">Login/Register</p>
-            <FaHeart className="text-white cursor-pointer" title="Wishlist" />
+            <FaHeart
+              className="text-white cursor-pointer text-xl"
+              title="Wishlist"
+            />
             <FaShoppingCart
-              className="text-white cursor-pointer"
+              className="text-white cursor-pointer text-xl"
               title="Cart"
             />
-            <FaBars className="text-white cursor-pointer" title="Menu" />
+            <FaBars
+              className="text-white cursor-pointer text-xl"
+              title="Menu"
+            />
           </div>
         </div>
       </div>
-
       {/* Drawer for small screens */}
       {isDrawerOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-end bg-black bg-opacity-70">

@@ -24,7 +24,7 @@ const PopularProducts = () => {
     },
     {
       id: 3,
-      name: "Asus Vivobook A125 laptop",
+      name: "Asus Vivobook A125",
       type: "Laptop",
       image:
         "https://i.ibb.co/4FHQWpk/macbook-air-m1-chip-silver-3-500x500.jpg",
@@ -81,7 +81,7 @@ const PopularProducts = () => {
           480: { slidesPerView: 1, spaceBetween: 20 },
           768: { slidesPerView: 2, spaceBetween: 20 },
           1000: { slidesPerView: 3, spaceBetween: 20 },
-          1200: { slidesPerView: 4, spaceBetween: 20 },
+          1200: { slidesPerView: 5, spaceBetween: 20 },
           1400: { slidesPerView: 6, spaceBetween: 20 },
         }}
       >
