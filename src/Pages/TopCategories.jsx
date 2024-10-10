@@ -29,7 +29,7 @@ const categories = [
 
 const TopCategories = () => {
   return (
-    <div className="container mx-auto py-2 md:py-10 px-4">
+    <div className="container mx-auto py-2 md:py-5 px-4">
       <h2 className="text-xl md:text-2xl font-semibold text-center mb-2 md:mb-6">
         Top Categories
       </h2>

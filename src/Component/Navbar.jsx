@@ -16,10 +16,10 @@ const categories = [
     name: "Mobile Accessories",
     link: "/mobile-accessories",
     subcategories: [
-      "Camera Lens",
       "Charger & Cable",
       "Cables & Converters",
       "Fast Charger",
+      "PowerBanks",
     ],
   },
   {
@@ -55,12 +55,12 @@ const categories = [
   {
     name: "Lifestyle",
     link: "/lifestyle",
-    subcategories: ["Eye Mask", "Hair Dryer"],
+    subcategories: [],
   },
   {
     name: "More",
     link: "/more",
-    subcategories: ["Tools", "Watches", "Lifestyle", "Others"],
+    subcategories: ["Smart TV", "Laptops", "Tools", "Others"],
   },
 ];
 
@@ -104,7 +104,7 @@ const Navbar = () => {
         <div className="hidden sm:flex items-center justify-between w-full">
           <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
             <img src={logo} className="w-48" alt="Logo" />
-          {/* <h1 className="font-port transition-transform duration-300 ease-in-out hover:scale-105">
+            {/* <h1 className="font-port transition-transform duration-300 ease-in-out hover:scale-105">
             GadXtreme
           </h1> */}
           </div>

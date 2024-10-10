@@ -58,7 +58,7 @@ const PopularProducts = () => {
   ];
 
   return (
-    <div className="max-w-[1250px] mx-1 md:mx-auto">
+    <div className="max-w-[1250px] mx-1 my-2 md:mx-auto">
       <h1 className="text-center font-bold text-xl text-emerald-600 md:text-2xl pb-3 max-w-md mx-auto">
         Customers Favorites
         <br />
