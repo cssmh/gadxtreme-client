@@ -18,7 +18,7 @@ const categories = [
   "Lifestyle",
 ];
 
-const apiKey = import.meta.env.VITE_imgBbKey; // imgbb key
+const apiKey = import.meta.env.VITE_imgBbKey;
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
@@ -62,7 +62,8 @@ const AddProduct = () => {
   // Function to trigger image selection when a box is clicked
   const handleBoxClick = (index) => {
     setActiveBox(index); // Set the active box index
-    document.getElementById("imageUploadInput").click(); // Trigger the hidden input field
+    document.getElementById("imageUploadInput").click();
+     // Trigger the hidden input field
   };
 
   // Upload image to imgbb
@@ -84,7 +85,7 @@ const AddProduct = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent form submission refresh
+    e.preventDefault();
     setLoading(true);
 
     try {
@@ -94,7 +95,6 @@ const AddProduct = () => {
         return;
       }
 
-      // Upload each image to imgbb and collect URLs
       const uploadedImages = [];
       for (let i = 0; i < selectedImages.length; i++) {
         if (selectedImages[i]) {
@@ -105,18 +105,16 @@ const AddProduct = () => {
         }
       }
 
-      // Update the form data with the image URLs
       const updatedFormData = {
         ...formData,
         images: uploadedImages,
       };
 
-      // Process the form data here (e.g., send to the server)
-      console.log(updatedFormData); // Example: output to console for backend handling
+      console.log(updatedFormData);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
-      setLoading(false); // Stop loading after form submission process is complete
+      setLoading(false);
     }
   };
 
@@ -125,9 +123,8 @@ const AddProduct = () => {
       <h1 className="text-xl md:text-2xl font-normal mb-2 md:mb-4">Add New Product</h1>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5"
       >
-        {/* Product Name */}
         <div>
           <label className="block mb-1 font-semibold" htmlFor="productName">
             Product Name:
@@ -142,8 +139,6 @@ const AddProduct = () => {
             required
           />
         </div>
-
-        {/* Price */}
         <div>
           <label className="block mb-1 font-semibold" htmlFor="price">
             Price (৳):
@@ -158,8 +153,6 @@ const AddProduct = () => {
             required
           />
         </div>
-
-        {/* Discount Price */}
         <div>
           <label className="block mb-1 font-semibold" htmlFor="discountPrice">
             Discount Price (৳):
@@ -173,8 +166,6 @@ const AddProduct = () => {
             className="w-full p-2 border rounded-md"
           />
         </div>
-
-        {/* Stock Status */}
         <div>
           <label className="block mb-1 font-semibold" htmlFor="inStock">
             In Stock:
@@ -189,8 +180,6 @@ const AddProduct = () => {
           />
           <span>{formData.inStock ? "Available" : "Out of Stock"}</span>
         </div>
-
-        {/* Category */}
         <div>
           <label className="block mb-1 font-semibold" htmlFor="category">
             Category:
@@ -211,14 +200,10 @@ const AddProduct = () => {
             ))}
           </select>
         </div>
-
-        {/* Image Upload & Preview */}
         <div className="col-span-2">
           <label className="block mb-1 font-semibold" htmlFor="images">
             Product Images (Max 4):
           </label>
-
-          {/* Hidden file input to trigger by clicking the image boxes */}
           <input
             type="file"
             id="imageUploadInput"
@@ -226,9 +211,7 @@ const AddProduct = () => {
             onChange={handleImageChange}
             accept="image/*"
           />
-
-          {/* Image Preview Boxes */}
-          <div className="w-1/2 grid grid-cols-4 mt-4">
+          <div className="md:w-1/2 grid grid-cols-4 mt-4">
             {selectedImages.map((image, index) => (
               <div
                 key={index}
@@ -250,8 +233,6 @@ const AddProduct = () => {
             ))}
           </div>
         </div>
-
-        {/* Description */}
         <div className="col-span-2">
           <label className="block mb-1 font-semibold" htmlFor="description">
             Product Description:
@@ -266,8 +247,6 @@ const AddProduct = () => {
             required
           />
         </div>
-
-        {/* Submit Button */}
         <div className="col-span-2">
           <button
             type="submit"

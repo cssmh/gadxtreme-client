@@ -28,7 +28,7 @@ const Sidebar = () => {
         <div className="p-6">
           <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
         </div>
-        <nav className="mt-10">
+        <nav>
           <NavLink
             to="/admin-dashboard/add-product"
             className="block py-2.5 px-4 rounded hover:text-gadBlue"

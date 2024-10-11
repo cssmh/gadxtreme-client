@@ -13,6 +13,8 @@ import Register from "../Component/Register";
 import Policy from "../Component/Policy";
 import AdminDashboard from "../Pages/AdminDash.jsx/AdminDashboard";
 import AddProduct from "../Pages/AdminDash.jsx/AddProduct";
+import ManageProducts from "../Pages/AdminDash.jsx/ManageProducts";
+import UpdateProduct from "../Pages/AdminDash.jsx/UpdateProduct";
 
 const Route = createBrowserRouter([
   {
@@ -39,9 +41,14 @@ const Route = createBrowserRouter([
         path: "/admin-dashboard",
         element: <AdminDashboard />,
         children: [
+          { path: "/admin-dashboard/add-product", element: <AddProduct /> },
           {
-            path: "/admin-dashboard/add-product",
-            element: <AddProduct />,
+            path: "/admin-dashboard/manage-products",
+            element: <ManageProducts />,
+          },
+          {
+            path: "/admin-dashboard/update-products",
+            element: <UpdateProduct />,
           },
         ],
       },
