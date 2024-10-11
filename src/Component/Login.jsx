@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [view, setView] = useState(true);
   const { login, googleLogin, resetPassword } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,16 +15,20 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password);
+      toast.success("Login successful!");
     } catch (error) {
-      console.error("Login error:", error);
+      console.log(error);
+      toast.error("Login failed. Please check your credentials.");
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
       await googleLogin();
+      toast.success("Google login successful!");
     } catch (error) {
-      console.error("Google login error:", error);
+      console.log(error);
+      toast.error("Google login failed. Please try again.");
     }
   };
 
@@ -47,7 +54,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
@@ -56,12 +63,18 @@ const Login = () => {
               </label>
               <input
                 id="password"
-                type="password"
+                type={view ? "text" : "password"}
                 required
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <span
+                className="absolute inset-y-0 top-[22px] right-2 flex items-center cursor-pointer"
+                onClick={() => setView(!view)}
+              >
+                {view ? <FaRegEyeSlash /> : <FaRegEye />}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <label className="flex items-center text-sm">

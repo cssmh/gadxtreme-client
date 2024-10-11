@@ -106,7 +106,9 @@ const Navbar = () => {
         {/* Medium and larger screens */}
         <div className="hidden sm:flex items-center justify-between w-full">
           <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
-            <img src={logo} className="w-48" alt="Logo" />
+            <Link to="/">
+              <img src={logo} className="w-48" alt="Logo" />
+            </Link>
             {/* <h1 className="font-port transition-transform duration-300 ease-in-out hover:scale-105">
             GadXtreme
           </h1> */}

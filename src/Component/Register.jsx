@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser } = useAuth();
   const [view, setView] = useState(true);
+  const { createUser, updateProfileInfo } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,8 +15,11 @@ const Register = () => {
     e.preventDefault();
     try {
       await createUser(email, password);
+      await updateProfileInfo(name);
+      toast.success("Registration successful!");
     } catch (error) {
-      console.error("Registration error:", error);
+      console.log(error);
+      toast.error("Registration failed. Please check your credentials.");
     }
   };
 
@@ -24,6 +29,22 @@ const Register = () => {
         <div className="w-full max-w-md">
           <h2 className="text-2xl font-bold text-gray-700">Register</h2>
           <form onSubmit={handleRegister} className="mt-6 space-y-4">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Name *
+              </label>
+              <input
+                id="name"
+                type="text"
+                required
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
             <div>
               <label
                 htmlFor="email"
@@ -40,10 +61,10 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 relative"
+                className="block text-sm font-medium text-gray-700"
               >
                 Password *
               </label>
@@ -56,7 +77,7 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <span
-                className="absolute top-[1px] right-1 cursor-pointer"
+                className="absolute inset-y-0 top-[22px] right-2 flex items-center cursor-pointer"
                 onClick={() => setView(!view)}
               >
                 {view ? <FaRegEyeSlash /> : <FaRegEye />}
