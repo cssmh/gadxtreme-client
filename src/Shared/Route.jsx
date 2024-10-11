@@ -11,6 +11,8 @@ import Wishlist from "../Component/MyAccount/Wishlist";
 import Login from "../Component/Login";
 import Register from "../Component/Register";
 import Policy from "../Component/Policy";
+import AdminDashboard from "../Pages/AdminDash.jsx/AdminDashboard";
+import AddProduct from "../Pages/AdminDash.jsx/AddProduct";
 
 const Route = createBrowserRouter([
   {
@@ -31,6 +33,16 @@ const Route = createBrowserRouter([
           { path: "dashboard", element: <Dashboard /> },
           { path: "orders", element: <Orders /> },
           { path: "wishlist", element: <Wishlist /> },
+        ],
+      },
+      {
+        path: "/admin-dashboard",
+        element: <AdminDashboard />,
+        children: [
+          {
+            path: "/admin-dashboard/add-product",
+            element: <AddProduct />,
+          },
         ],
       },
     ],

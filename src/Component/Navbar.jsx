@@ -16,12 +16,7 @@ const categories = [
   {
     name: "Mobile Accessories",
     link: "/mobile-accessories",
-    subcategories: [
-      "Charger & Cable",
-      "Cables & Converters",
-      "Fast Charger",
-      "PowerBanks",
-    ],
+    subcategories: ["Charger & Cable", "Cables & Converters", "PowerBanks"],
   },
   {
     name: "New Arrival",
@@ -41,11 +36,11 @@ const categories = [
   {
     name: "Speakers",
     link: "/speakers",
-    subcategories: ["Bluetooth Speaker", "Wired Speaker", "Wireless Speaker"],
+    subcategories: ["Bluetooth Speaker", "Wired Speaker"],
   },
   {
-    name: "Charging Accessories",
-    link: "/charging-accessories",
+    name: "Best Seller",
+    link: "/best-seller",
     subcategories: [],
   },
   {
@@ -61,7 +56,7 @@ const categories = [
   {
     name: "More",
     link: "/more",
-    subcategories: ["Smart TV", "Laptops", "Tools", "Others"],
+    subcategories: ["Smart TV", "Laptops", "Others"],
   },
 ];
 
