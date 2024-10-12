@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { postGadget } from "../../Api/gadgets";
+import Swal from "sweetalert2";
 
 const categories = [
   "Earbuds",
@@ -63,7 +65,7 @@ const AddProduct = () => {
   const handleBoxClick = (index) => {
     setActiveBox(index); // Set the active box index
     document.getElementById("imageUploadInput").click();
-     // Trigger the hidden input field
+    // Trigger the hidden input field
   };
 
   // Upload image to imgbb
@@ -109,10 +111,16 @@ const AddProduct = () => {
         ...formData,
         images: uploadedImages,
       };
-
-      console.log(updatedFormData);
+      const res = await postGadget(updatedFormData);
+      console.log(res);
+      Swal.fire({
+        icon: "success",
+        title: "Gadget added successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.log("Error submitting form:", error);
     } finally {
       setLoading(false);
     }
@@ -120,7 +128,9 @@ const AddProduct = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-xl md:text-2xl font-normal mb-2 md:mb-4">Add New Product</h1>
+      <h1 className="text-xl md:text-2xl font-normal mb-2 md:mb-4">
+        Add New Product
+      </h1>
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5"

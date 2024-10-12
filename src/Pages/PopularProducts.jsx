@@ -3,59 +3,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getAllGadget } from "../Api/gadgets";
 
 const PopularProducts = () => {
-  const placeholderProducts = [
-    {
-      id: 1,
-      name: "Wireless Earbuds",
-      type: "Airbus",
-      image: "https://i.ibb.co/RTs9FXm/buds-t100-01-500x500.webp",
-      inStock: true,
-      price: "৳49.99",
-    },
-    {
-      id: 2,
-      name: "Earbuds",
-      type: "Smartphone",
-      image: "https://i.ibb.co/z28ZZf0/2878-41130.jpg",
-      inStock: false,
-      price: "৳699.99",
-    },
-    {
-      id: 3,
-      name: "Asus Vivobook A125",
-      type: "Laptop",
-      image:
-        "https://i.ibb.co/4FHQWpk/macbook-air-m1-chip-silver-3-500x500.jpg",
-      inStock: true,
-      price: "৳90000",
-    },
-    {
-      id: 1,
-      name: "Wireless Earbuds",
-      type: "Airbus",
-      image: "https://i.ibb.co/LCvPxk7/r2350-a-Iot-1-500x500-1.jpg",
-      inStock: true,
-      price: "৳1200",
-    },
-    {
-      id: 2,
-      name: "Smartphone",
-      type: "Smartphone",
-      image: "https://i.ibb.co/RTs9FXm/buds-t100-01-500x500.webp",
-      inStock: false,
-      price: "৳699.99",
-    },
-    {
-      id: 3,
-      name: "Portable Speaker",
-      type: "Speaker",
-      image: "https://i.ibb.co/LCvPxk7/r2350-a-Iot-1-500x500-1.jpg",
-      inStock: true,
-      price: "৳29.99",
-    },
-  ];
+  const { data = [] } = useQuery({
+    queryKey: ["allGadgets"],
+    queryFn: async () => await getAllGadget(),
+  });
+
+  // Function to calculate the discount percentage
+  const calculateDiscount = (price, discountPrice) => {
+    const discount = ((price - discountPrice) / price) * 100;
+    return Math.round(discount);
+  };
 
   return (
     <div className="max-w-[1250px] mx-1 my-2 md:mx-auto">
@@ -78,34 +39,44 @@ const PopularProducts = () => {
         slidesPerView={1}
         spaceBetween={10}
         breakpoints={{
-          480: { slidesPerView: 1, spaceBetween: 20 },
-          768: { slidesPerView: 2, spaceBetween: 20 },
-          1000: { slidesPerView: 3, spaceBetween: 20 },
-          1200: { slidesPerView: 5, spaceBetween: 20 },
-          1400: { slidesPerView: 6, spaceBetween: 20 },
+          480: { slidesPerView: 1, spaceBetween: 10 },
+          768: { slidesPerView: 2, spaceBetween: 10 },
+          1000: { slidesPerView: 3, spaceBetween: 10 },
+          1200: { slidesPerView: 5, spaceBetween: 10 },
+          1400: { slidesPerView: 6, spaceBetween: 10 },
         }}
       >
-        {placeholderProducts.map((product) => (
-          <SwiperSlide key={product.id}>
-            <div className="p-4 bg-white shadow-lg rounded-lg hover:shadow-2xl transition duration-300 ease-in-out">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 object-cover rounded-md"
-              />
-              <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
-              <p className="text-gray-500">{product.type}</p>
-              <p className="text-green-600">
-                {product.inStock ? "In Stock" : "Out of Stock"}
-              </p>
-              <p className="text-lg font-semibold mt-2">{product.price}</p>
-              <Link to={`/product-details/${product.id}`}>
-                <button className="text-white bg-emerald-800 hover:bg-blue-700 transition duration-300 ease-in-out font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4">
-                  View Details
-                </button>
-              </Link>
-            </div>
-          </SwiperSlide>
+        {data?.slice(0, 7).map((product) => (
+          <Link key={product._id} to={`/category/${product._id}`}>
+            <SwiperSlide>
+              <div className="p-4 bg-white shadow-lg rounded-lg hover:shadow-2xl transition duration-300 ease-in-out relative">
+                {/* Discount Badge */}
+                {product.discountPrice && product.price && (
+                  <div className="absolute top-2 left-2 bg-green-500 text-white rounded-full px-2 py-1 text-xs">
+                    -{calculateDiscount(product.price, product.discountPrice)}%
+                  </div>
+                )}
+                {/* Product Image */}
+                <img
+                  src={product.images[0]}
+                  alt={product.productName}
+                  className="w-full md:h-52 object-cover rounded-md"
+                />
+                <h3 className="text-sm mt-3">{product.productName}</h3>
+                <p className="text-green-600">
+                  {product.inStock ? "In Stock" : "Out of Stock"}
+                </p>
+                <div className="text-sm mt-2">
+                  <span className="line-through text-gray-500">
+                    ৳{product.discountPrice}
+                  </span>
+                  <span className="ml-2 text-blue-700 font-medium">
+                    ৳{product.price}
+                  </span>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Link>
         ))}
       </Swiper>
     </div>
