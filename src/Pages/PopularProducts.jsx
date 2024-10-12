@@ -31,8 +31,10 @@ const PopularProducts = () => {
         speed={500}
         grabCursor={true}
         autoplay={{
-          delay: 2000,
+          delay: 1500,
           disableOnInteraction: false,
+          pauseOnMouseEnter: false,
+          waitForTransition: false,
         }}
         modules={[Pagination, Autoplay]}
         className="mySwiper"
@@ -47,8 +49,8 @@ const PopularProducts = () => {
         }}
       >
         {data?.slice(0, 7).map((product) => (
-          <Link key={product._id} to={`/category/${product._id}`}>
-            <SwiperSlide>
+          <SwiperSlide key={product._id}>
+            <Link to={`/details/${product._id}`}>
               <div className="p-4 bg-white shadow-lg rounded-lg hover:shadow-2xl transition duration-300 ease-in-out relative">
                 {/* Discount Badge */}
                 {product.discountPrice && product.price && (
@@ -75,8 +77,8 @@ const PopularProducts = () => {
                   </span>
                 </div>
               </div>
-            </SwiperSlide>
-          </Link>
+            </Link>
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>

@@ -9,3 +9,8 @@ export const getAllGadget = async () => {
   const { data } = await axiosSecure("/api/products");
   return data;
 };
+
+export const getGadget = async (id) => {
+  const { data } = await axiosSecure(`/api/product/${id}`);
+  return data;
+};

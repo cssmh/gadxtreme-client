@@ -15,6 +15,7 @@ import AdminDashboard from "../Pages/AdminDash.jsx/AdminDashboard";
 import AddProduct from "../Pages/AdminDash.jsx/AddProduct";
 import ManageProducts from "../Pages/AdminDash.jsx/ManageProducts";
 import UpdateProduct from "../Pages/AdminDash.jsx/UpdateProduct";
+import { getGadget } from "../Api/gadgets";
 
 const Route = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const Route = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/privacy-policy", element: <Policy /> },
       { path: "/category", element: <Category /> },
-      { path: "/details", element: <ProductDetails /> },
+      {
+        path: "/details/:id",
+        element: <ProductDetails />,
+        loader: async ({ params }) => await getGadget(params.id),
+      },
       {
         path: "/my-account",
         element: <MyAccount />,
