@@ -126,11 +126,23 @@ const AddProduct = () => {
       const updatedFormData = {
         ...formData,
         images: uploadedImages,
-        keyFeatures: formattedKeyFeatures, // Add key features to the form data
+        keyFeatures: formattedKeyFeatures,
       };
 
       const res = await postGadget(updatedFormData);
       console.log(res);
+      setFormData({
+        productName: "",
+        price: "",
+        discountPrice: "",
+        inStock: true,
+        category: "",
+        description: "",
+        images: [],
+        keyFeatures: [],
+      });
+      setSelectedImages([null, null, null, null]);
+      setKeyFeatures(["", "", "", ""]);
       Swal.fire({
         icon: "success",
         title: "Gadget added successfully",

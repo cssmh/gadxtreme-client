@@ -50,7 +50,7 @@ const PopularProducts = () => {
           1400: { slidesPerView: 6, spaceBetween: 10 },
         }}
       >
-        {data?.slice(0, 7).map((product) => (
+        {data?.map((product) => (
           <SwiperSlide key={product._id}>
             <Link to={`/details/${product._id}`}>
               <div className="p-4 bg-white shadow-lg rounded-lg hover:shadow-2xl transition duration-300 ease-in-out relative">

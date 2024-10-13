@@ -3,10 +3,19 @@ import pay from "../assets/pay.png";
 import { useLoaderData } from "react-router-dom";
 
 const ProductDetails = () => {
+  const [totalCart, setTotalCart] = useState(1);
   const gadgetData = useLoaderData(); // Assuming you're using loader data
-  const { productName, price, discountPrice, description, images, inStock } =
-    gadgetData; // Destructure the real data
+  const {
+    productName,
+    price,
+    discountPrice,
+    description,
+    images,
+    inStock,
+    keyFeatures,
+  } = gadgetData;
   const [mainImage, setMainImage] = useState(images[0]);
+  console.log(totalCart);
 
   return (
     <div className="container mx-auto p-4 my-6">
@@ -36,47 +45,63 @@ const ProductDetails = () => {
         {/* Product Details Section */}
         <div className="w-full md:w-1/2 md:pl-8 mt-4 md:mt-0">
           <h1 className="text-xl md:text-3xl font-medium">{productName}</h1>
-          <div className="text-xl mt-2">
-            <span className="line-through text-gray-500">৳{price}</span>
-            <span className="ml-2 text-gadBlue font-semibold">
-              ৳{discountPrice}
-            </span>
-          </div>
-
-          {/* Stock Status */}
           <p
-            className={`mt-4 ${
+            className={`mt-2 ${
               inStock ? "text-green-600" : "text-red-600"
             } font-semibold`}
           >
             {inStock ? "In Stock" : "Out of Stock"}
           </p>
+          {discountPrice ? (
+            <div className="text-xl mt-2">
+              <span className="line-through text-gray-500">৳{price}</span>
+              <span className="ml-2 text-[#2e6bc6] font-semibold">
+                ৳{discountPrice}
+              </span>
+            </div>
+          ) : (
+            <span className="line-through text-gray-500">৳{price}</span>
+          )}
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center mt-6 border rounded-xl">
+              <button
+                onClick={() => setTotalCart(totalCart - 1)}
+                className="px-3 py-1 border-r"
+              >
+                -
+              </button>
+              <span className="mx-2">1</span>
+              <button
+                onClick={() => setTotalCart(totalCart + 1)}
+                className="px-3 py-1 border-l"
+              >
+                +
+              </button>
+            </div>
 
-          {/* Quantity Selector */}
-          <div className="flex items-center mt-4">
-            <span className="mr-2">Quantity:</span>
-            <button className="px-3 py-1 bg-gray-200">-</button>
-            <span className="mx-2">1</span>
-            <button className="px-3 py-1 bg-gray-200">+</button>
+            {/* Add to Cart and Buy Now Buttons */}
+            <div className="flex space-x-2 mt-6">
+              <button className="bg-[#e87f35] text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                Add to Cart
+              </button>
+              <button className="bg-[#5eb237] text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                Buy Now
+              </button>
+            </div>
           </div>
 
-          {/* Add to Cart and Buy Now Buttons */}
-          <div className="flex space-x-4 mt-6">
-            <button className="bg-gadBlue text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-              Add to Cart
-            </button>
-            <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-              Buy Now
-            </button>
-          </div>
-
-          {/* Product Features */}
+          {/* Key Features */}
           <div className="mt-6">
-            <h2 className="text-xl font-semibold">Description</h2>
-            <p className="text-lg leading-7 mt-2">{description}</p>
+            <h2 className="text-xl font-semibold">Key Features</h2>
+            <ul className="list-disc ml-5 mt-2 space-y-2">
+              {keyFeatures &&
+                keyFeatures.map((feature, index) => (
+                  <li key={index} className="text-lg">
+                    {feature}
+                  </li>
+                ))}
+            </ul>
           </div>
-
-          {/* Additional Info */}
           <div className="mt-4 space-y-1">
             <p className="text-sm font-semibold text-red-500">
               GIFT WRAPPING AVAILABLE
