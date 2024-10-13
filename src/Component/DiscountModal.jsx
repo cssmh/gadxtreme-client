@@ -5,15 +5,20 @@ const DiscountModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const modalShown = localStorage.getItem("discountModalShown");
-    if (!modalShown) {
+    const modalLastShown = localStorage.getItem("discountModalLastShown");
+    const currentTime = new Date().getTime();
+    const twelveHours = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+
+    // Check if 3 hours have passed since the modal was last shown
+    if (!modalLastShown || currentTime - modalLastShown > twelveHours) {
       setShowModal(true);
     }
   }, []);
 
   const handleClose = () => {
     setShowModal(false);
-    localStorage.setItem("discountModalShown", "true");
+    const currentTime = new Date().getTime();
+    localStorage.setItem("discountModalLastShown", currentTime.toString()); // Save the current time
   };
 
   return (

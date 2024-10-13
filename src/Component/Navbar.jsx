@@ -80,7 +80,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 left-0 right-0 z-50">
+    <div
+      className={`sticky top-0 left-0 right-0 ${
+        hoveredCategory ? "z-50" : "z-40"
+      }`} // Change z-index dynamically based on hoveredCategory
+    >
       <div className="bg-black p-[14px] flex items-center justify-between px-4 sm:px-10">
         {/* Mobile and small screens */}
         <div className="flex items-center justify-between w-full lg:hidden">
