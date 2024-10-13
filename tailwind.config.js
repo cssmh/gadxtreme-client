@@ -3,9 +3,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        port: ["Sevillana", "cursive"],
-      },
       colors: {
         gadBlue: "#00a9e1",
       },

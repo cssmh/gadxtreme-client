@@ -32,6 +32,7 @@ const AddProduct = () => {
     category: "",
     description: "",
     images: [], // store image URLs to be sent to DB
+    keyFeatures: [], // store key features as an array
   });
 
   const [selectedImages, setSelectedImages] = useState([
@@ -41,6 +42,9 @@ const AddProduct = () => {
     null,
   ]); // For preview (max 4 images)
   const [activeBox, setActiveBox] = useState(null); // Track which box is active for image selection
+
+  // State for key features input boxes
+  const [keyFeatures, setKeyFeatures] = useState(["", "", "", ""]);
 
   // Handle input changes for text fields
   const handleInputChange = (e) => {
@@ -66,6 +70,13 @@ const AddProduct = () => {
     setActiveBox(index); // Set the active box index
     document.getElementById("imageUploadInput").click();
     // Trigger the hidden input field
+  };
+
+  // Handle key features input change
+  const handleKeyFeatureChange = (index, value) => {
+    const updatedFeatures = [...keyFeatures];
+    updatedFeatures[index] = value;
+    setKeyFeatures(updatedFeatures);
   };
 
   // Upload image to imgbb
@@ -107,10 +118,17 @@ const AddProduct = () => {
         }
       }
 
+      // Combine the key features into an array by splitting them by commas
+      const formattedKeyFeatures = keyFeatures
+        .filter((feature) => feature.trim() !== "")
+        .flatMap((feature) => feature.split(",").map((f) => f.trim()));
+
       const updatedFormData = {
         ...formData,
         images: uploadedImages,
+        keyFeatures: formattedKeyFeatures, // Add key features to the form data
       };
+
       const res = await postGadget(updatedFormData);
       console.log(res);
       Swal.fire({
@@ -128,9 +146,7 @@ const AddProduct = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-xl md:text-2xl font-normal mb-2 md:mb-4">
-        Add New Product
-      </h1>
+      <h1 className="text-xl font-normal mb-2 md:mb-4">Add New Product</h1>
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5"
@@ -211,6 +227,21 @@ const AddProduct = () => {
           </select>
         </div>
         <div className="col-span-2">
+          <label className="block mb-1 font-semibold" htmlFor="keyFeatures">
+            Key Features (use comma-separated):
+          </label>
+          {[0, 1].map((index) => (
+            <input
+              key={index}
+              type="text"
+              value={keyFeatures[index]}
+              onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
+              className="w-full mb-2 p-2 border rounded-md"
+              placeholder="Key features"
+            />
+          ))}
+        </div>
+        <div className="col-span-2">
           <label className="block mb-1 font-semibold" htmlFor="images">
             Product Images (Max 4):
           </label>
@@ -232,7 +263,7 @@ const AddProduct = () => {
                   <img
                     src={URL.createObjectURL(image)}
                     alt={`Preview ${index}`}
-                    className="w-full h-full object-cover"
+                    className="object-cover w-full h-full"
                   />
                 ) : (
                   <span className="text-gray-500 text-center">
@@ -255,8 +286,9 @@ const AddProduct = () => {
             rows="5"
             className="w-full p-2 border rounded-md"
             required
-          />
+          ></textarea>
         </div>
+
         <div className="col-span-2">
           <button
             type="submit"

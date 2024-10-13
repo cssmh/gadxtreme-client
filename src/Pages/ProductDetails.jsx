@@ -96,7 +96,11 @@ const ProductDetails = () => {
       {/* Bottom Section: Descriptions and Photos */}
       <div className="mt-12">
         <h2 className="text-2xl mb-4">Description</h2>
-        <img src={images[2]} alt="image" className="w-full rounded-lg mb-4" />
+        <img
+          src={images[1] || images[0]}
+          alt="image"
+          className="w-full h-[350px] object-cover rounded-lg mb-4"
+        />
         {description}
       </div>
     </div>

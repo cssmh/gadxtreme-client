@@ -5,7 +5,7 @@ const AdminDashboard = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="flex-1 min-h-screen p-3 md:p-5 bg-gray-100">
+      <div className="flex-1 min-h-screen p-3 md:p-5">
         <Outlet />
       </div>
     </div>

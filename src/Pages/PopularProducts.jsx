@@ -28,13 +28,15 @@ const PopularProducts = () => {
         </span>
       </h1>
       <Swiper
-        speed={500}
+        data-aos="fade-up"
+        data-aos-delay="600"
+        speed={1000}
         grabCursor={true}
         autoplay={{
           delay: 1500,
           disableOnInteraction: false,
-          pauseOnMouseEnter: false,
-          waitForTransition: false,
+          // pauseOnMouseEnter: false,
+          // waitForTransition: false,
         }}
         modules={[Pagination, Autoplay]}
         className="mySwiper"
