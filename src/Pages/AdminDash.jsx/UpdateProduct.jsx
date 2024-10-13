@@ -26,7 +26,7 @@ const apiKey = import.meta.env.VITE_imgBbKey;
 const defaultImageUrl = "https://your-default-image-url.com/default-image.jpg"; // Set your default image URL here
 
 const UpdateProduct = () => {
-  const productData = useLoaderData(); // Get product data from the loader
+  const productData = useLoaderData();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     productName: productData.productName || "",
@@ -273,6 +273,20 @@ const UpdateProduct = () => {
               </div>
             ))}
           </div>
+        </div>
+        <div className="col-span-2">
+          <label className="block mb-1 font-semibold" htmlFor="description">
+            Product Description:
+          </label>
+          <textarea
+            name="description"
+            id="description"
+            rows="4"
+            value={formData.description}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
+            required
+          />
         </div>
         <div className="col-span-2">
           <button
