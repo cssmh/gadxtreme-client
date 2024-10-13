@@ -27,12 +27,12 @@ const AddProduct = () => {
   const [formData, setFormData] = useState({
     productName: "",
     price: "",
+    images: [], // store image URLs to be sent to DB
     discountPrice: "",
     inStock: true,
+    keyFeatures: [], // store key features as an array
     category: "",
     description: "",
-    images: [], // store image URLs to be sent to DB
-    keyFeatures: [], // store key features as an array
   });
 
   const [selectedImages, setSelectedImages] = useState([
@@ -161,7 +161,7 @@ const AddProduct = () => {
       <h1 className="text-xl font-normal mb-2 md:mb-4">Add New Product</h1>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5"
+        className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3"
       >
         <div>
           <label className="block mb-1 font-semibold" htmlFor="productName">
@@ -173,7 +173,7 @@ const AddProduct = () => {
             id="productName"
             value={formData.productName}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
             required
           />
         </div>
@@ -185,10 +185,10 @@ const AddProduct = () => {
             type="number"
             name="price"
             id="price"
+            required
             value={formData.price}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md"
-            required
+            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
           />
         </div>
         <div>
@@ -201,7 +201,7 @@ const AddProduct = () => {
             id="discountPrice"
             value={formData.discountPrice}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
           />
         </div>
         <div>
@@ -225,10 +225,10 @@ const AddProduct = () => {
           <select
             name="category"
             id="category"
+            required
             value={formData.category}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md"
-            required
+            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
           >
             <option value="">Select a category</option>
             {categories.map((category) => (
@@ -248,7 +248,7 @@ const AddProduct = () => {
               type="text"
               value={keyFeatures[index]}
               onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
-              className="w-full mb-2 p-2 border rounded-md"
+              className="w-full mb-2 p-2 border rounded-md outline-none focus:border-blue-300"
               placeholder="Key features"
             />
           ))}
@@ -268,7 +268,7 @@ const AddProduct = () => {
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer"
+                className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
@@ -296,7 +296,7 @@ const AddProduct = () => {
             value={formData.description}
             onChange={handleInputChange}
             rows="5"
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-lg outline-none focus:border-blue-300"
             required
           ></textarea>
         </div>

@@ -14,3 +14,8 @@ export const getGadget = async (id) => {
   const { data } = await axiosSecure(`/api/product/${id}`);
   return data;
 };
+
+export const updateGadget = async (id, updatedDocs) => {
+  const { data } = await axiosSecure.put(`/api/product/${id}`, updatedDocs);
+  return data;
+};

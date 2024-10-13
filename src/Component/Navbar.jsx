@@ -178,6 +178,15 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Full-width search box for small and medium devices */}
+      <div className="block lg:hidden px-1">
+        <input
+          type="text"
+          placeholder="Search for products..."
+          className="w-full p-2 rounded-xl mt-1 border border-gray-300 outline-none"
+        />
+      </div>
+
       {/* Drawer for small screens */}
       {isDrawerOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-end bg-black bg-opacity-70">
@@ -267,7 +276,7 @@ const Navbar = () => {
                             .toLowerCase()
                             .replace(/ & /g, "-")
                             .replace(/\s+/g, "-")}`}
-                          className="block px-4 py-1 hover:text-gadBlue whitespace-nowrap"
+                          className="block px-4 py-1 hover:text-gadBlue"
                         >
                           {subcategory}
                         </Link>

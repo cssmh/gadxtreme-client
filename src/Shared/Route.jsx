@@ -52,8 +52,9 @@ const Route = createBrowserRouter([
             element: <ManageProducts />,
           },
           {
-            path: "/admin-dashboard/update-products",
+            path: "/admin-dashboard/update-products/:id",
             element: <UpdateProduct />,
+            loader: async ({ params }) => await getGadget(params.id),
           },
         ],
       },
