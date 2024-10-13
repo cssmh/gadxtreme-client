@@ -26,6 +26,12 @@ const ProductDetails = () => {
     }
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN").format(price); 
+    // 'en-IN' is for Indian-style formatting
+  };
+
+
   return (
     <div className="container mx-auto p-4 my-6">
       <div className="flex flex-col md:flex-row gap-3 md:gap-6">
@@ -59,27 +65,31 @@ const ProductDetails = () => {
           <div className="text-xl mt-2">
             {discountPrice ? (
               <>
-                <span className="line-through text-gray-500">৳{price}</span>
-                <span className="ml-2 text-[#2e6bc6] font-semibold">
-                  ৳{discountPrice}
+                <span className="line-through text-gray-400">
+                  ৳{formatPrice(price)}
+                </span>
+                <span className="ml-4 text-[#2e6bc6] font-semibold">
+                  ৳{formatPrice(discountPrice)}
                 </span>
               </>
             ) : (
-              <span className="text-[#2e6bc6] font-semibold">৳{price}</span>
+              <span className="text-[#2e6bc6] font-semibold">
+                ৳{formatPrice(price)}
+              </span>
             )}
           </div>
-          <div className="flex items-center space-x-2 mt-3">
-            <div className="flex items-center border rounded-xl">
-              <button onClick={handleDecrement} className="px-3 py-1 border-r">
+          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 mt-3">
+            <div className="flex items-center border rounded-2xl">
+              <button onClick={handleDecrement} className="px-2 py-2 border-r">
                 -
               </button>
               <span className="mx-2">{totalCart}</span>
-              <button onClick={handleIncrement} className="px-3 py-1 border-l">
+              <button onClick={handleIncrement} className="px-2 py-2 border-l">
                 +
               </button>
             </div>
-            <div className="flex space-x-2">
-              <button className="bg-[#e87f35] text-white px-4 py-2 rounded-lg hover:bg-[#cf6d2f]">
+            <div className="flex flex-col md:flex-row space-x-0 md:space-x-2">
+              <button className="bg-[#e87f35] text-white mb-2 md:mb-0 px-4 py-2 rounded-lg hover:bg-[#cf6d2f]">
                 Add to Cart
               </button>
               <button className="bg-[#5eb237] text-white px-4 py-2 rounded-lg hover:bg-[#4c992f]">
@@ -92,7 +102,7 @@ const ProductDetails = () => {
             <ul className="list-disc ml-5 mt-2 space-y-2">
               {keyFeatures &&
                 keyFeatures.map((feature, index) => (
-                  <li key={index} className="text-sm">
+                  <li key={index} className="text-gray-500 text-sm">
                     {feature}
                   </li>
                 ))}
@@ -112,8 +122,6 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-
-      {/* Bottom Section: Descriptions and Photos */}
       <div className="mt-12">
         <h2 className="text-2xl mb-4">Description</h2>
         <img

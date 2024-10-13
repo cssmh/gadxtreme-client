@@ -83,7 +83,7 @@ const Navbar = () => {
     <div className="sticky top-0 left-0 right-0 z-50">
       <div className="bg-black p-[14px] flex items-center justify-between px-4 sm:px-10">
         {/* Mobile and small screens */}
-        <div className="flex items-center justify-between w-full sm:hidden">
+        <div className="flex items-center justify-between w-full lg:hidden">
           <img src={logo} className="w-44" alt="Logo" />
           <div className="flex items-center space-x-4">
             <FaShoppingCart
@@ -97,9 +97,8 @@ const Navbar = () => {
             />
           </div>
         </div>
-
-        {/* Medium and larger screens */}
-        <div className="hidden sm:flex items-center justify-between w-full">
+        {/* larger screens */}
+        <div className="hidden lg:flex items-center justify-between w-full">
           <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
             <Link to="/">
               <img src={logo} className="w-48" alt="Logo" />
@@ -237,7 +236,7 @@ const Navbar = () => {
       )}
 
       {/* Navbar for medium and larger screens */}
-      <div className="bg-[#ededed] text-sm p-2 hidden sm:block">
+      <div className="bg-[#ededed] text-sm p-2 hidden lg:block">
         <ul className="flex space-x-6 justify-center">
           {categories.map((category, index) => (
             <li

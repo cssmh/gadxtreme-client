@@ -4,7 +4,11 @@ import logo from "../assets/logo2.png";
 import {
   FaHeart,
   FaShoppingCart,
+  FaBars,
+  FaTimes,
   FaCaretDown,
+  FaPlus,
+  FaMinus,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 
@@ -38,17 +42,26 @@ const categories = [
 
 const NavNew = () => {
   const { user, logOut } = useAuth();
+  const [showMenu, setShowMenu] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [expandedSubcategories, setExpandedSubcategories] = useState({});
 
   const handleLogOut = () => {
     logOut().then().catch();
   };
 
+  const toggleSubcategory = (categoryName) => {
+    setExpandedSubcategories((prev) => ({
+      ...prev,
+      [categoryName]: !prev[categoryName],
+    }));
+  };
+
   return (
     <div className="sticky top-0 left-0 right-0 z-50 bg-white">
       {/* Upper section: Logo, Search, User Actions */}
-      <div className="px-4 pt-4 flex items-center justify-between">
+      <div className="px-4 pt-2 md:pt-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
@@ -57,11 +70,11 @@ const NavNew = () => {
         </div>
 
         {/* Search bar */}
-        <div className="flex-grow mx-6">
+        <div className="flex-grow mx-6 hidden lg:flex">
           <input
             type="text"
             placeholder="Search for products..."
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded-xl"
           />
         </div>
 
@@ -82,7 +95,7 @@ const NavNew = () => {
               onMouseEnter={() => setShowUserDropdown(true)}
               onMouseLeave={() => setShowUserDropdown(false)}
             >
-              <p className="text-gray-500 font-medium cursor-pointer">
+              <p className="hidden md:block text-gray-500 font-medium cursor-pointer">
                 Hi, {user?.displayName || "Anonymous"}
               </p>
               {showUserDropdown && (
@@ -107,7 +120,7 @@ const NavNew = () => {
                   </Link>
                   <button
                     onClick={handleLogOut}
-                    className="block px-4 py-1 hover:bg-gray-100"
+                    className="block px-4 py-1 hover:bg-gray-100 w-full text-left"
                   >
                     Logout
                   </button>
@@ -115,16 +128,87 @@ const NavNew = () => {
               )}
             </div>
           ) : (
-            <Link to="/login" className="text-gray-700 font-semibold">
+            <Link to="/login" className="text-gray-500 font-medium">
               Login/Register
             </Link>
           )}
         </div>
+
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden">
+          <button onClick={() => setShowMenu(!showMenu)}>
+            {showMenu ? (
+              <FaTimes className="text-gray-600 text-xl" />
+            ) : (
+              <FaBars className="text-gray-600 text-xl" />
+            )}
+          </button>
+        </div>
       </div>
 
-      {/* Lower section: Category Links */}
-      <div className="py-2">
-        <ul className="flex justify-center space-x-6">
+      {/* Search bar for mobile and tablet */}
+      <div className="px-4 lg:hidden mt-2">
+        <input
+          type="text"
+          placeholder="Search for products..."
+          className="w-full p-2 border border-gray-300 rounded-xl"
+        />
+      </div>
+
+      {/* Mobile and tablet Menu */}
+      {showMenu && (
+        <div className="absolute top-28 left-0 right-0 bg-white shadow-md px-4 pb-2 lg:hidden z-50">
+          <ul>
+            {categories.map((category) => (
+              <li key={category.name} className="border-b hover:bg-gray-200 ">
+                <div className="flex justify-between items-center p-2">
+                  <Link
+                    to={category.link}
+                    className="text-gray-700 rounded flex-1"
+                    onClick={() => setShowMenu(false)}
+                  >
+                    {category.name}
+                  </Link>
+                  {category.subcategories.length > 0 && (
+                    <button
+                      onClick={() => toggleSubcategory(category.name)}
+                      className="ml-2 text-gray-600"
+                    >
+                      {expandedSubcategories[category.name] ? (
+                        <FaMinus />
+                      ) : (
+                        <FaPlus />
+                      )}
+                    </button>
+                  )}
+                </div>
+                {expandedSubcategories[category.name] && (
+                  <ul className="pl-4">
+                    {category.subcategories.map((subcategory) => (
+                      <li key={subcategory}>
+                        <Link
+                          to={`/subcategory/${subcategory
+                            .toLowerCase()
+                            .replace(/ & /g, "-")
+                            .replace(/\s+/g, "-")}`}
+                          className="block p-1 text-gray-600 hover:bg-gray-200 rounded"
+                          onClick={() => setShowMenu(false)}
+                        >
+                          {subcategory}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Navbar for larger screens bg-[#ededed] */}
+      <div className="hidden lg:block text-sm p-2">
+        <ul className="flex space-x-6 justify-center">
           {categories.map((category, index) => (
             <li
               key={index}
@@ -134,19 +218,18 @@ const NavNew = () => {
             >
               <Link
                 to={category.link}
-                className="flex font-medium text-sm items-center py-2 text-gray-500 hover:text-blue-500"
+                className="flex font-medium items-center py-2 hover:text-gadBlue"
               >
                 {category.name}
                 {category.subcategories.length > 0 && (
                   <FaCaretDown className="ml-1" />
                 )}
               </Link>
-
-              {/* Subcategories dropdown */}
+              {/* Subcategories dropdown for larger screens */}
               {hoveredCategory === category.name &&
                 category.subcategories.length > 0 && (
-                  <div className="absolute left-0 z-50 bg-white text-gray-600 rounded shadow-lg">
-                    <div className="py-2 space-y-1">
+                  <div className="absolute left-0 z-50 space-y-1 bg-white text-gray-600 rounded shadow-lg transition-all duration-200 ease-in-out">
+                    <div className="space-y-1 py-2">
                       {category.subcategories.map((subcategory, subIndex) => (
                         <Link
                           key={subIndex}
@@ -154,7 +237,7 @@ const NavNew = () => {
                             .toLowerCase()
                             .replace(/ & /g, "-")
                             .replace(/\s+/g, "-")}`}
-                          className="block px-4 py-1 text-sm hover:text-blue-500 whitespace-nowrap"
+                          className="block px-4 py-1 hover:text-gadBlue whitespace-nowrap"
                         >
                           {subcategory}
                         </Link>
