@@ -238,6 +238,16 @@ const UpdateProduct = () => {
               placeholder="Key features"
             />
           ))}
+          {keyFeatures?.map((feature, index) => (
+            <input
+              key={index}
+              type="text"
+              value={feature}
+              onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
+              className="w-full mb-2 p-2 border rounded-md outline-none focus:border-blue-300"
+              placeholder="Key feature"
+            />
+          ))}
         </div>
         <div className="col-span-2">
           <label className="block mb-1 font-semibold" htmlFor="images">
