@@ -1,4 +1,4 @@
-import Swal from "sweetalert2";
+import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { CgSpinnerTwo } from "react-icons/cg";
@@ -15,22 +15,21 @@ const ManageProducts = () => {
   });
 
   const handleDelete = async (id) => {
-    const result = await Swal.fire({
+    const willDelete = await swal({
       title: "Are you sure?",
-      text: "This product will be permanently deleted!",
+      text: "Once deleted, it can't be recovered!",
       icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
+      buttons: true,
+      dangerMode: true,
     });
-    if (result.isConfirmed) {
-      try {
-        await deleteGadget(id);
+    if (willDelete) {
+      const res = await deleteGadget(id);
+      if (res.deletedCount > 0) {
+        swal("The product has been deleted.", {
+          icon: "success",
+          timer: 2000,
+        });
         refetch();
-        Swal.fire("Deleted!", "The product has been deleted.", "success");
-      } catch (error) {
-        console.log(error);
       }
     }
   };

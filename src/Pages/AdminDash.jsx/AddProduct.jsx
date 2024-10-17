@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { postGadget } from "../../Api/gadgets";
-import Swal from "sweetalert2";
+import swal from "sweetalert";
+import toast from "react-hot-toast";
 
 const categories = [
   "Earbuds",
@@ -27,10 +28,10 @@ const AddProduct = () => {
   const [formData, setFormData] = useState({
     productName: "",
     price: "",
-    images: [], // store image URLs to be sent to DB
+    images: [],
     discountPrice: "",
     inStock: true,
-    keyFeatures: [], // store key features as an array
+    keyFeatures: [],
     category: "",
     description: "",
   });
@@ -41,8 +42,7 @@ const AddProduct = () => {
     null,
     null,
   ]); // For preview (max 4 images)
-  const [activeBox, setActiveBox] = useState(null); // Track which box is active for image selection
-
+  const [activeBox, setActiveBox] = useState(null);
   // State for key features input boxes
   const [keyFeatures, setKeyFeatures] = useState(["", "", "", ""]);
 
@@ -85,11 +85,11 @@ const AddProduct = () => {
     formData.append("image", image);
 
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `https://api.imgbb.com/1/upload?key=${apiKey}`,
         formData
       );
-      return response.data.data.url; // Return the uploaded image URL
+      return res.data.data.url; // Return the uploaded image URL
     } catch (error) {
       console.error("Error uploading image:", error);
       return null;
@@ -100,14 +100,11 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      // Validation: Make sure at least one image is uploaded
       if (selectedImages.every((img) => img === null)) {
-        alert("Please upload at least one image.");
+        toast.error("Please upload at least one image.");
         return;
       }
-
       const uploadedImages = [];
       for (let i = 0; i < selectedImages.length; i++) {
         if (selectedImages[i]) {
@@ -117,7 +114,6 @@ const AddProduct = () => {
           }
         }
       }
-
       // Combine the key features into an array by splitting them by commas
       const formattedKeyFeatures = keyFeatures
         .filter((feature) => feature.trim() !== "")
@@ -129,8 +125,7 @@ const AddProduct = () => {
         keyFeatures: formattedKeyFeatures,
       };
 
-      const res = await postGadget(updatedFormData);
-      console.log(res);
+      await postGadget(updatedFormData);
       setFormData({
         productName: "",
         price: "",
@@ -143,11 +138,11 @@ const AddProduct = () => {
       });
       setSelectedImages([null, null, null, null]);
       setKeyFeatures(["", "", "", ""]);
-      Swal.fire({
+      swal({
+        title: "Thank you",
+        text: "Gadget added successfully",
         icon: "success",
-        title: "Gadget added successfully",
-        showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       });
     } catch (error) {
       console.log("Error submitting form:", error);

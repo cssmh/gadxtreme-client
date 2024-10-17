@@ -24,7 +24,7 @@
     "react-router-dom": "^6.26.2",
     "react-spinners": "^0.14.1",
     "sort-by": "^0.0.2",
-    "sweetalert2": "^11.6.13",
+    "sweetalert": "^2.1.2",
     "swiper": "^11.1.14"
   },
   "devDependencies": {

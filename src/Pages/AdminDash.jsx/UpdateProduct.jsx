@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { updateGadget } from "../../Api/gadgets";
-import Swal from "sweetalert2";
+import swal from "sweetalert";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 const categories = [
@@ -100,40 +100,44 @@ const UpdateProduct = () => {
     setLoading(true);
 
     try {
-      const uploadedImages = [];
+      const updatedImages = [...formData.images]; // Start with the existing images
+
+      // Loop through the selectedImages array to check for new uploads
       for (let i = 0; i < selectedImages.length; i++) {
         if (selectedImages[i]) {
+          // If a new image is uploaded, upload it to ImgBB and update the corresponding index
           const imageUrl = await uploadImageToImgBB(selectedImages[i]);
           if (imageUrl) {
-            uploadedImages.push(imageUrl);
+            updatedImages[i] = imageUrl; // Replace the image at index i with the new one
           }
         }
       }
 
+      // Format key features to remove empty values and split if needed
       const formattedKeyFeatures = keyFeatures
         .filter((feature) => feature.trim() !== "")
         .flatMap((feature) => feature.split(",").map((f) => f.trim()));
 
-      // Prepare updated form data
+      // Prepare the updated form data
       const updatedFormData = {
         ...formData,
-        images: uploadedImages.length > 0 ? uploadedImages : productData.images,
+        images: updatedImages, // Use the updatedImages array
         keyFeatures: formattedKeyFeatures,
       };
 
       // Check if both existing images and new uploads are empty, if so, set a default image
       if (updatedFormData.images.length === 0) {
-        updatedFormData.images = [defaultImageUrl]; // Set the default image if none available
+        updatedFormData.images = [defaultImageUrl]; // Set the default image if none are available
       }
 
       // Update the product using your API
       await updateGadget(productData._id, updatedFormData);
       navigate(-1);
-      Swal.fire({
+      swal({
+        title: "Good job",
+        text: "Gadget updated successfully",
         icon: "success",
-        title: "Gadget updated successfully",
-        showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       });
     } catch (error) {
       console.log("Error submitting form:", error);

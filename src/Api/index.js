@@ -1,6 +1,6 @@
 import axios from "axios";
 // import { clearCookie, userLogout } from "./auth";
-import Swal from "sweetalert2";
+import swal from "sweetalert";
 
 const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_server_URL,
@@ -11,7 +11,7 @@ axiosSecure.interceptors.response.use(
   async (error) => {
     // console.log("error in interceptor", error);
     if (error.response.status === 401 || error.response.status === 403) {
-      Swal(
+      swal(
         "Your Session has expired",
         "Please log in again to continue",
         "warning"
