@@ -21,17 +21,21 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`bg-base-200 fixed z-10 h-full w-64 transform transition-transform duration-300 ease-in-out ${
+        className={`bg-base-200 fixed z-10 h-full w-60 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:block`}
       >
-        <div className="p-6">
+        <div className="p-3">
           <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
         </div>
         <nav>
           <NavLink
             to="/admin-dashboard/add-product"
-            className="block py-2.5 px-4 rounded hover:text-gadBlue"
+            className={({ isActive }) =>
+              `block py-2.5 px-4 rounded hover:text-gadBlue ${
+                isActive ? "text-blue-500 font-semibold" : "text-gray-700"
+              }`
+            }
             onClick={() => setIsSidebarOpen(false)} // Close sidebar on mobile when clicking a link
           >
             <FaPlus className="inline-block mr-2" />
@@ -39,7 +43,11 @@ const Sidebar = () => {
           </NavLink>
           <NavLink
             to="/admin-dashboard/manage-products"
-            className="block py-2.5 px-4 rounded hover:text-gadBlue"
+            className={({ isActive }) =>
+              `block py-2.5 px-4 rounded hover:text-gadBlue ${
+                isActive ? "text-blue-500 font-semibold" : "text-gray-700"
+              }`
+            }
             onClick={() => setIsSidebarOpen(false)}
           >
             <FaThList className="inline-block mr-2" />
@@ -47,7 +55,11 @@ const Sidebar = () => {
           </NavLink>
           <NavLink
             to="/admin-dashboard/orders"
-            className="block py-2.5 px-4 rounded hover:text-gadBlue"
+            className={({ isActive }) =>
+              `block py-2.5 px-4 rounded hover:text-gadBlue ${
+                isActive ? "text-blue-500 font-semibold" : "text-gray-700"
+              }`
+            }
             onClick={() => setIsSidebarOpen(false)}
           >
             <FaClipboardList className="inline-block mr-2" />

@@ -3,7 +3,7 @@ import axios from "axios";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { updateGadget } from "../../Api/gadgets";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const categories = [
   "Earbuds",
@@ -28,6 +28,7 @@ const defaultImageUrl = "https://your-default-image-url.com/default-image.jpg"; 
 const UpdateProduct = () => {
   const productData = useLoaderData();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     productName: productData.productName || "",
     price: productData.price || "",
@@ -126,8 +127,8 @@ const UpdateProduct = () => {
       }
 
       // Update the product using your API
-      const res = await updateGadget(productData._id, updatedFormData);
-      console.log(res);
+      await updateGadget(productData._id, updatedFormData);
+      navigate(-1);
       Swal.fire({
         icon: "success",
         title: "Gadget updated successfully",
@@ -228,16 +229,6 @@ const UpdateProduct = () => {
           <label className="block mb-1 font-semibold" htmlFor="keyFeatures">
             Key Features (use comma-separated):
           </label>
-          {[0, 1].map((index) => (
-            <input
-              key={index}
-              type="text"
-              value={keyFeatures[index]}
-              onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
-              className="w-full mb-2 p-2 border rounded-md outline-none focus:border-blue-300"
-              placeholder="Key features"
-            />
-          ))}
           {keyFeatures?.map((feature, index) => (
             <input
               key={index}

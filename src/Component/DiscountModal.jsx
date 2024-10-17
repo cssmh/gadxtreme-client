@@ -34,8 +34,9 @@ const DiscountModal = () => {
             </button>
             <img src={logo} alt="50% Discount Offer" className="mb-4 w-full" />
             <h2 className="text-2xl font-bold mb-2">Special Offer!</h2>
-            <p className="mb-4">
-              Get 50% off on your first purchase! Use code: FIRST50
+            <p className="mb-4 text-xl">
+              {/* Get 50% off on your first purchase! Use code: FIRST50 */}
+              This project is not completed yet!
             </p>
             <button
               onClick={handleClose}
