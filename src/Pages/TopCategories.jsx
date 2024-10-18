@@ -13,18 +13,38 @@ import cate11 from "../assets/gadgets/smart_tv.webp";
 import cate12 from "../assets/gadgets/all-cate.jpeg";
 
 const categories = [
-  { name: "Earbuds", image: cate1, link: "/earbuds" },
-  { name: "Smartwatch", image: cate2, link: "/smartwatch" },
-  { name: "Powerbank", image: cate3, link: "/smartwatch" },
-  { name: "Fan", image: cate4, link: "/smartwatch" },
-  { name: "Headphones", image: cate5, link: "/smartwatch" },
-  { name: "Bluetooth Speaker", image: cate6, link: "/smartwatch" },
-  { name: "Bluetooth Earphone", image: cate7, link: "/smartwatch" },
-  { name: "Charging Accessories", image: cate8, link: "/smartwatch" },
-  { name: "Converters & Hub", image: cate9, link: "/smartwatch" },
-  { name: "Laptop", image: cate10, link: "/smartwatch" },
-  { name: "Smart Tv", image: cate11, link: "/smartwatch" },
-  { name: "All Smart & More Categories", image: cate12, link: "/smartwatch" },
+  { name: "Earbuds", image: cate1, link: "/category/earbuds" },
+  { name: "Smartwatch", image: cate2, link: "/category/smartwatch" },
+  { name: "Powerbank", image: cate3, link: "/category/powerbank" },
+  { name: "Fan", image: cate4, link: "/category/fan" },
+  { name: "Headphones", image: cate5, link: "/category/headphones" },
+  {
+    name: "Bluetooth Speaker",
+    image: cate6,
+    link: "/category/bluetooth speaker",
+  },
+  {
+    name: "Wireless Earphone",
+    image: cate7,
+    link: "/category/wireless earphone",
+  },
+  {
+    name: "Charging Accessories",
+    image: cate8,
+    link: "/category/charging accessories",
+  },
+  {
+    name: "Converters & Hub",
+    image: cate9,
+    link: "/category/converters & hub",
+  },
+  { name: "Laptop", image: cate10, link: "/category/laptop" },
+  { name: "Smart Tv", image: cate11, link: "/category/smart TV" },
+  {
+    name: "All Smart & More Categories",
+    image: cate12,
+    link: "/category/more",
+  },
 ];
 
 const TopCategories = () => {
@@ -46,9 +66,7 @@ const TopCategories = () => {
               className="w-full h-40 object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
             />
             <div className="mt-2 text-center">
-              <h3 className="group-hover:text-gadBlue">
-                {category.name}
-              </h3>
+              <h3 className="group-hover:text-gadBlue">{category.name}</h3>
             </div>
           </Link>
         ))}

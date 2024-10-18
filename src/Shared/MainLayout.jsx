@@ -12,7 +12,7 @@ const MainLayout = () => {
     <div>
       <DiscountModal />
       {noHeaderFooter ? null : home ? <Navbar /> : <NavNew />}
-      <div className="min-h-[75vh]">
+      <div className="min-h-[85vh]">
         <Outlet />
       </div>
       {!noHeaderFooter && <Footer />}

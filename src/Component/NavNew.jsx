@@ -15,7 +15,7 @@ import useAuth from "../hooks/useAuth";
 const categories = [
   {
     name: "Mobile Accessories",
-    link: "/category/charging accessories",
+    link: "/category/mobile accessories",
     subcategories: ["Charging Accessories", "Converters & Hub", "Powerbank"],
   },
   {
@@ -25,8 +25,8 @@ const categories = [
   },
   {
     name: "Earphones & Headphones",
-    link: "/category/bluetooth earphone",
-    subcategories: ["Wired Earphone", "Headphones", "Wired Earphone"],
+    link: "/category/earphones & headphones",
+    subcategories: ["Wired Earphone", "Headphones", "Wireless Earphone"],
   },
   {
     name: "TWS Earbuds",
@@ -56,7 +56,7 @@ const categories = [
   {
     name: "More",
     link: "/category/more",
-    subcategories: ["Smart TV", "Laptops", "Others"],
+    subcategories: ["Smart TV", "Laptops"],
   },
 ];
 

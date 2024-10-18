@@ -2,7 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const Category = () => {
   const categoryData = useLoaderData();
-  console.log(categoryData);
+  // console.log(categoryData);
   
   const calculateDiscount = (price, discountPrice) => {
     const discount = ((price - discountPrice) / price) * 100;
@@ -21,19 +21,19 @@ const Category = () => {
             <div className="space-y-2">
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                ৳0 - ৳5,000
+                ৳0 - ৳2,000
               </label>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                ৳5,001 - ৳10,000
+                ৳2,001 - ৳5,000
               </label>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                ৳10,001 - ৳50,000
+                ৳4,001 - ৳10,000
               </label>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                Above ৳50,000
+                Above ৳10,000
               </label>
             </div>
           </div>
@@ -52,7 +52,7 @@ const Category = () => {
                 id="itemsPerPage"
                 // value={itemsPerPage}
                 // onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
-                className="border border-gray-300 rounded px-2 py-1"
+                className="border border-gray-300 rounded px-2 py-1 outline-none"
               >
                 <option value={3}>3</option>
                 <option value={6}>6</option>
@@ -67,7 +67,7 @@ const Category = () => {
                 id="sortOrder"
                 // value={sortOrder}
                 // onChange={(e) => setSortOrder(e.target.value)}
-                className="border border-gray-300 rounded px-2 py-1"
+                className="border border-gray-300 rounded px-2 py-1 outline-none"
               >
                 <option value="lowToHigh">Price: Low to High</option>
                 <option value="highToLow">Price: High to Low</option>

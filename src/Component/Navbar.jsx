@@ -15,7 +15,7 @@ import useAuth from "../hooks/useAuth";
 const categories = [
   {
     name: "Mobile Accessories",
-    link: "/category/charging accessories",
+    link: "/category/mobile accessories",
     subcategories: ["Charging Accessories", "Converters & Hub", "Powerbank"],
   },
   {
@@ -25,8 +25,8 @@ const categories = [
   },
   {
     name: "Earphones & Headphones",
-    link: "/category/bluetooth earphone",
-    subcategories: ["Wired Earphone", "Headphones", "Wired Earphone"],
+    link: "/category/earphones & headphones",
+    subcategories: ["Wired Earphone", "Headphones", "Wireless Earphone"],
   },
   {
     name: "TWS Earbuds",
@@ -56,7 +56,7 @@ const categories = [
   {
     name: "More",
     link: "/category/more",
-    subcategories: ["Smart TV", "Laptops", "Others"],
+    subcategories: ["Smart TV", "Laptops"],
   },
 ];
 
@@ -83,10 +83,9 @@ const Navbar = () => {
     <div
       className={`sticky top-0 left-0 right-0 ${
         hoveredCategory ? "z-50" : "z-40"
-      }`} // Change z-index dynamically based on hoveredCategory
+      }`}
     >
       <div className="bg-black p-[14px] flex items-center justify-between px-4 sm:px-10">
-        {/* Mobile and small screens */}
         <div className="flex items-center justify-between w-full lg:hidden">
           <img src={logo} className="w-44" alt="Logo" />
           <div className="flex items-center space-x-4">
@@ -107,9 +106,6 @@ const Navbar = () => {
             <Link to="/">
               <img src={logo} className="w-48" alt="Logo" />
             </Link>
-            {/* <h1 className="font-port transition-transform duration-300 ease-in-out hover:scale-105">
-            GadXtreme
-          </h1> */}
           </div>
           <div className="flex-grow mx-4">
             <input
@@ -181,7 +177,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
       {/* Full-width search box for small and medium devices */}
       <div className="block lg:hidden px-1">
         <input
@@ -190,7 +185,6 @@ const Navbar = () => {
           className="w-full p-2 rounded-xl mt-1 border border-gray-300 outline-none"
         />
       </div>
-
       {/* Drawer for small screens */}
       {isDrawerOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-end bg-black bg-opacity-70">
@@ -222,7 +216,6 @@ const Navbar = () => {
                       </button>
                     )}
                   </div>
-
                   {/* Subcategories dropdown for small devices */}
                   {openedCategory === category.name &&
                     category.subcategories.length > 0 && (
@@ -244,7 +237,6 @@ const Navbar = () => {
           </div>
         </div>
       )}
-
       {/* Navbar for medium and larger screens */}
       <div className="bg-[#ededed] text-sm p-2 hidden lg:block">
         <ul className="flex space-x-6 justify-center">
@@ -264,15 +256,14 @@ const Navbar = () => {
                   <FaCaretDown className="ml-1" />
                 )}
               </Link>
-
               {/* Subcategories dropdown for larger screens */}
               {hoveredCategory === category.name &&
                 category.subcategories.length > 0 && (
                   <div className="absolute left-0 z-50 space-y-1 bg-white text-gray-600 rounded shadow-lg transition-all duration-200 ease-in-out">
                     <div className="space-y-1 py-2">
-                      {category.subcategories.map((subcategory, subIndex) => (
+                      {category.subcategories.map((subcategory, idx) => (
                         <Link
-                          key={subIndex}
+                          key={idx}
                           to={`/category/${subcategory}`.toLowerCase()}
                           className="block px-4 py-1 hover:text-gadBlue"
                         >
