@@ -1,53 +1,13 @@
-import { useState, useEffect } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Category = () => {
-  // Sample product data
-  const initialProducts = [
-    {
-      id: 1,
-      name: "Wireless Earbuds",
-      image: "https://i.ibb.co/RTs9FXm/buds-t100-01-500x500.webp",
-      originalPrice: 4500.0,
-      discountPrice: 3650.0,
-      discountPercent: 20,
-    },
-    {
-      id: 2,
-      name: "Earbuds Pro",
-      image: "https://i.ibb.co/z28ZZf0/2878-41130.jpg",
-      originalPrice: 5000.0,
-      discountPrice: 4000.0,
-      discountPercent: 20,
-    },
-    {
-      id: 3,
-      name: "Asus Vivobook A125 Laptop",
-      image:
-        "https://i.ibb.co/4FHQWpk/macbook-air-m1-chip-silver-3-500x500.jpg",
-      originalPrice: 90000.0,
-      discountPrice: 85000.0,
-      discountPercent: 6,
-    },
-    // Add more products as needed
-  ];
-
-  const [products] = useState(initialProducts);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
-  const [sortOrder, setSortOrder] = useState("lowToHigh");
-  const [filteredProducts, setFilteredProducts] = useState(initialProducts);
-
-  // Sorting products based on the selected sort order
-  useEffect(() => {
-    let sortedProducts = [...products];
-
-    if (sortOrder === "lowToHigh") {
-      sortedProducts.sort((a, b) => a.discountPrice - b.discountPrice);
-    } else if (sortOrder === "highToLow") {
-      sortedProducts.sort((a, b) => b.discountPrice - a.discountPrice);
-    }
-
-    setFilteredProducts(sortedProducts);
-  }, [sortOrder, products]);
+  const categoryData = useLoaderData();
+  console.log(categoryData);
+  
+  const calculateDiscount = (price, discountPrice) => {
+    const discount = ((price - discountPrice) / price) * 100;
+    return Math.round(discount);
+  };
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -90,8 +50,8 @@ const Category = () => {
               </label>
               <select
                 id="itemsPerPage"
-                value={itemsPerPage}
-                onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
+                // value={itemsPerPage}
+                // onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
                 className="border border-gray-300 rounded px-2 py-1"
               >
                 <option value={3}>3</option>
@@ -105,8 +65,8 @@ const Category = () => {
               </label>
               <select
                 id="sortOrder"
-                value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
+                // value={sortOrder}
+                // onChange={(e) => setSortOrder(e.target.value)}
                 className="border border-gray-300 rounded px-2 py-1"
               >
                 <option value="lowToHigh">Price: Low to High</option>
@@ -117,33 +77,50 @@ const Category = () => {
 
           {/* Product Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredProducts.slice(0, itemsPerPage).map((product) => (
-              <div
-                key={product.id}
-                className="border border-gray-200 rounded p-4 relative"
-              >
-                <div className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-cover rounded"
-                  />
-                  {product.discountPercent > 0 && (
-                    <span className="absolute top-[-2px] bg-red-500 text-white text-xs px-2 py-1 rounded">
-                      -{product.discountPercent}%
-                    </span>
+            {categoryData?.map((product) => (
+              <Link key={product._id} to={`/details/${product._id}`}>
+                <div className="p-4 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
+                  {/* Discount Badge */}
+                  {product.discountPrice && product.price && (
+                    <div className="absolute top-2 left-2 bg-blue-500 text-white rounded-full px-2 py-1 text-xs z-10">
+                      -{calculateDiscount(product.price, product.discountPrice)}
+                      %
+                    </div>
                   )}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={product?.images[0]}
+                      alt={product.productName}
+                      className="w-full md:h-52 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <img
+                      src={product?.images[1]}
+                      alt={product.productName}
+                      className="absolute inset-0 w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                    />
+                  </div>
+                  <h3 className="text-sm mt-3">{product.productName}</h3>
+                  <p className="text-green-600">
+                    {product.inStock ? "In Stock" : "Out of Stock"}
+                  </p>
+                  <div className="text-sm mt-2">
+                    {product.discountPrice ? (
+                      <>
+                        <span className="line-through text-gray-500">
+                          ৳{product.price}
+                        </span>
+                        <span className="ml-2 text-blue-700 font-medium">
+                          ৳{product.discountPrice}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-blue-700 font-medium">
+                        ৳{product.price}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <h3 className="mt-2 font-semibold text-lg">{product.name}</h3>
-                <div className="mt-1">
-                  <span className="text-gray-500 line-through mr-2">
-                    ৳{product.originalPrice.toLocaleString()}
-                  </span>
-                  <span className="text-green-600 font-semibold">
-                    ৳{product.discountPrice.toLocaleString()}
-                  </span>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
           {/* Pagination or Load More functionality can be added here */}

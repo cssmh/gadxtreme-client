@@ -23,8 +23,6 @@ const categories = [
 
 const apiKey = import.meta.env.VITE_imgBbKey;
 
-const defaultImageUrl = "https://your-default-image-url.com/default-image.jpg"; // Set your default image URL here
-
 const UpdateProduct = () => {
   const productData = useLoaderData();
   const [loading, setLoading] = useState(false);
@@ -124,11 +122,6 @@ const UpdateProduct = () => {
         images: updatedImages, // Use the updatedImages array
         keyFeatures: formattedKeyFeatures,
       };
-
-      // Check if both existing images and new uploads are empty, if so, set a default image
-      if (updatedFormData.images.length === 0) {
-        updatedFormData.images = [defaultImageUrl]; // Set the default image if none are available
-      }
 
       // Update the product using your API
       await updateGadget(productData._id, updatedFormData);
@@ -270,7 +263,7 @@ const UpdateProduct = () => {
                   />
                 ) : (
                   <img
-                    src={productData.images[index] || defaultImageUrl}
+                    src={productData.images[index]}
                     alt={`Product Image ${index}`}
                     className="object-cover w-full h-full"
                   />
@@ -290,17 +283,16 @@ const UpdateProduct = () => {
             value={formData.description}
             onChange={handleInputChange}
             className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
-            required
-          />
+          ></textarea>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 mb-5">
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
+            className="btn bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 px-4 py-2"
             disabled={loading}
           >
             {loading ? (
-              <CgSpinnerTwo className="animate-spin inline-block" />
+              <CgSpinnerTwo className="animate-spin inline-block text-xl" />
             ) : (
               "Update Product"
             )}

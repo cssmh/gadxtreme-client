@@ -10,6 +10,11 @@ export const getAllGadget = async () => {
   return data;
 };
 
+export const getCategoryGadget = async (category) => {
+  const { data } = await axiosSecure(`/api/products/${category}`);
+  return data;
+};
+
 export const getGadget = async (id) => {
   const { data } = await axiosSecure(`/api/product/${id}`);
   return data;

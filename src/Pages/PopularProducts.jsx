@@ -71,33 +71,49 @@ const PopularProducts = () => {
             1400: { slidesPerView: 6, spaceBetween: 10 },
           }}
         >
-          {data?.map((product) => (
+          {data?.slice(0, 8).map((product) => (
             <SwiperSlide key={product._id}>
               <Link to={`/details/${product._id}`}>
-                <div className="p-4 bg-white shadow-lg rounded-lg hover:shadow-2xl transition duration-300 ease-in-out relative">
+                <div className="p-4 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
                   {/* Discount Badge */}
                   {product.discountPrice && product.price && (
-                    <div className="absolute top-2 left-2 bg-blue-500 text-white rounded-full px-2 py-1 text-xs">
+                    <div className="absolute top-2 left-2 bg-blue-500 text-white rounded-full px-2 py-1 text-xs z-10">
                       -{calculateDiscount(product.price, product.discountPrice)}
+                      %
                     </div>
                   )}
                   {/* Product Image */}
-                  <img
-                    src={product.images[0]}
-                    alt={product.productName}
-                    className="w-full md:h-52 object-cover rounded-md"
-                  />
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={product?.images[0]}
+                      alt={product.productName}
+                      className="w-full md:h-52 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <img
+                      src={product?.images[1]}
+                      alt={product.productName}
+                      className="absolute inset-0 w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                    />
+                  </div>
                   <h3 className="text-sm mt-3">{product.productName}</h3>
                   <p className="text-green-600">
                     {product.inStock ? "In Stock" : "Out of Stock"}
                   </p>
                   <div className="text-sm mt-2">
-                    <span className="line-through text-gray-500">
-                      ৳{product.discountPrice}
-                    </span>
-                    <span className="ml-2 text-blue-700 font-medium">
-                      ৳{product.price}
-                    </span>
+                    {product.discountPrice ? (
+                      <>
+                        <span className="line-through text-gray-500">
+                          ৳{product.price}
+                        </span>
+                        <span className="ml-2 text-blue-700 font-medium">
+                          ৳{product.discountPrice}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-blue-700 font-medium">
+                        ৳{product.price}
+                      </span>
+                    )}
                   </div>
                 </div>
               </Link>

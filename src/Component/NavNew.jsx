@@ -15,27 +15,47 @@ import useAuth from "../hooks/useAuth";
 const categories = [
   {
     name: "Mobile Accessories",
-    link: "/mobile-accessories",
-    subcategories: ["Charger & Cable", "Cables & Converters", "PowerBanks"],
+    link: "/category/charging accessories",
+    subcategories: ["Charging Accessories", "Converters & Hub", "Powerbank"],
   },
-  { name: "New Arrival", link: "/new-arrival", subcategories: [] },
+  {
+    name: "Fan",
+    link: "/category/fan",
+    subcategories: [],
+  },
   {
     name: "Earphones & Headphones",
-    link: "/earphones-headphones",
-    subcategories: ["Headphone/Headset", "Earphones", "TWS Earbuds"],
+    link: "/category/bluetooth earphone",
+    subcategories: ["Wired Earphone", "Headphones", "Wired Earphone"],
   },
-  { name: "Earbuds", link: "/earbuds", subcategories: [] },
+  {
+    name: "TWS Earbuds",
+    link: "/category/earbuds",
+    subcategories: [],
+  },
   {
     name: "Speakers",
-    link: "/speakers",
-    subcategories: ["Bluetooth Speaker", "Wired Speaker"],
+    link: "/category/bluetooth speaker",
+    subcategories: [],
   },
-  { name: "Best Seller", link: "/best-seller", subcategories: [] },
-  { name: "Smart Watches", link: "/smart-watches", subcategories: [] },
-  { name: "Lifestyle", link: "/lifestyle", subcategories: [] },
+  {
+    name: "Best Seller",
+    link: "/category/best-seller",
+    subcategories: [],
+  },
+  {
+    name: "Smart Watches",
+    link: "/category/smartwatch",
+    subcategories: [],
+  },
+  {
+    name: "Lifestyle",
+    link: "/category/lifestyle",
+    subcategories: [],
+  },
   {
     name: "More",
-    link: "/more",
+    link: "/category/more",
     subcategories: ["Smart TV", "Laptops", "Others"],
   },
 ];
@@ -174,10 +194,7 @@ const NavNew = () => {
                     {category.subcategories.map((subcategory) => (
                       <li key={subcategory}>
                         <Link
-                          to={`/subcategory/${subcategory
-                            .toLowerCase()
-                            .replace(/ & /g, "-")
-                            .replace(/\s+/g, "-")}`}
+                          to={`/category/${subcategory}`.toLowerCase()}
                           className="block p-1 text-gray-600 hover:bg-gray-200 rounded"
                           onClick={() => setShowMenu(false)}
                         >
@@ -217,10 +234,7 @@ const NavNew = () => {
                       {category.subcategories.map((subcategory, subIndex) => (
                         <Link
                           key={subIndex}
-                          to={`/subcategory/${subcategory
-                            .toLowerCase()
-                            .replace(/ & /g, "-")
-                            .replace(/\s+/g, "-")}`}
+                          to={`/category/${subcategory}`.toLowerCase()}
                           className="block px-4 py-1 hover:text-gadBlue whitespace-nowrap"
                         >
                           {subcategory}
