@@ -1,13 +1,22 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { Link, useParams } from "react-router-dom";
+import { getCategoryGadget } from "../Api/gadgets";
+import SmallLoader from "../Component/SmallLoader";
 
 const Category = () => {
-  const categoryData = useLoaderData();
-  // console.log(categoryData);
-  
+  const { cate } = useParams();
+
+  const { data: categoryData = [], isLoading } = useQuery({
+    queryKey: ["categoriesGadgets", cate],
+    queryFn: async () => await getCategoryGadget(cate),
+  });
+
   const calculateDiscount = (price, discountPrice) => {
     const discount = ((price - discountPrice) / price) * 100;
     return Math.round(discount);
   };
+
+  if (isLoading) return <SmallLoader size="76" />;
 
   return (
     <div className="container mx-auto px-4 py-6">

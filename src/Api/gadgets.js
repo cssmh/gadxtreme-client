@@ -6,7 +6,7 @@ export const postGadget = async (gadInfo) => {
 };
 
 export const getAllGadget = async () => {
-  const { data } = await axiosSecure("/api/products");
+  const { data } = await axiosSecure("/api/all-products");
   return data;
 };
 
