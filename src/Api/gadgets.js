@@ -10,8 +10,9 @@ export const getAllGadget = async () => {
   return data;
 };
 
-export const getCategoryGadget = async (category) => {
-  const { data } = await axiosSecure(`/api/products/${category}`);
+export const getCategoryGadget = async (category, page, limit) => {
+  const api = `/api/products/${category}?page=${page}&limit=${limit}`;
+  const { data } = await axiosSecure(api);
   return data;
 };
 

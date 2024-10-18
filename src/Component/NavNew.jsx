@@ -40,7 +40,7 @@ const categories = [
   },
   {
     name: "Best Seller",
-    link: "/category/best-seller",
+    link: "/category/best seller",
     subcategories: [],
   },
   {
