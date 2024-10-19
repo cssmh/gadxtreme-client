@@ -11,6 +11,7 @@ import {
   FaMinus,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
+import { getSearchGadget } from "../Api/gadgets";
 
 const categories = [
   {
@@ -62,10 +63,21 @@ const categories = [
 
 const NavNew = () => {
   const { user, logOut } = useAuth();
+  const [searchData, setSearchData] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [expandedSubcategories, setExpandedSubcategories] = useState({});
+
+  const handleSearch = async (e) => {
+    const search = e.target.value.trim();
+    if (search === "") {
+      setSearchData([]);
+      return;
+    }
+    const res = await getSearchGadget(search);
+    setSearchData(res);
+  };
 
   const handleLogOut = () => {
     logOut().then().catch();
@@ -80,28 +92,39 @@ const NavNew = () => {
 
   return (
     <div className="sticky top-0 left-0 right-0 z-50 bg-white">
-      <div className="px-4 pt-2 md:pt-4 flex items-center justify-between">
+      <div className="px-4 pt-3 md:pt-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/">
             <img src={logo} className="w-40" alt="Logo" />
           </Link>
         </div>
-        <div className="flex-grow mx-6 hidden lg:flex">
+        <div className="flex-grow mx-6 hidden lg:flex relative">
           <input
             type="text"
+            onChange={handleSearch}
             placeholder="Search for products..."
-            className="w-full p-2 border border-gray-300 rounded-xl"
+            className="w-full p-2 border border-gray-300 rounded-xl outline-none"
           />
+          {searchData && searchData.length > 0 && (
+            <div className="absolute grid grid-cols-2 left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-11 w-full">
+              {searchData.map((gadget) => (
+                <a
+                  key={gadget._id}
+                  href={`/details/${gadget._id}`}
+                  className="flex items-center p-2 hover:bg-gray-100"
+                >
+                  <img
+                    src={gadget.images[0]}
+                    alt={gadget.name}
+                    className="w-12 h-12 object-cover mr-2"
+                  />
+                  <span className="font-medium">{gadget.productName}</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex items-center space-x-4">
-          <FaHeart
-            className="text-gray-600 cursor-pointer text-xl"
-            title="Wishlist"
-          />
-          <FaShoppingCart
-            className="text-gray-600 cursor-pointer text-xl"
-            title="Cart"
-          />
           {user ? (
             <div
               className="relative"
@@ -145,23 +168,66 @@ const NavNew = () => {
               Login/Register
             </Link>
           )}
+          <div className="hidden lg:flex items-center space-x-3">
+            <FaHeart
+              className="text-gray-600 cursor-pointer text-xl"
+              title="Wishlist"
+            />
+            <p className="flex items-center gap-1">
+              <FaShoppingCart
+                className="text-gray-600 cursor-pointer text-xl"
+                title="Cart"
+              />
+              <span>৳0.00</span>
+            </p>
+          </div>
         </div>
-        <div className="lg:hidden">
+        <div className="lg:hidden flex items-center space-x-3">
+          <FaHeart
+            className="text-gray-600 cursor-pointer text-xl"
+            title="Wishlist"
+          />
+          <p className="flex items-center gap-1">
+            <FaShoppingCart
+              className="text-gray-600 cursor-pointer text-xl"
+              title="Cart"
+            />
+            <span>৳0.00</span>
+          </p>
           <button onClick={() => setShowMenu(!showMenu)}>
             {showMenu ? (
               <FaTimes className="text-gray-600 text-xl" />
             ) : (
-              <FaBars className="text-gray-600 text-xl" />
+              <FaBars className="text-gray-600 text-2xl" />
             )}
           </button>
         </div>
       </div>
-      <div className="px-4 lg:hidden mt-2">
+      <div className="px-4 lg:hidden mt-4 relative">
         <input
           type="text"
           placeholder="Search for products..."
-          className="w-full p-2 border border-gray-300 rounded-xl"
+          onChange={handleSearch}
+          className="w-full p-2 border border-gray-300 rounded-xl outline-none"
         />
+        {searchData && searchData.length > 0 && (
+          <div className="absolute left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-1 w-full">
+            {searchData.map((gadget) => (
+              <a
+                key={gadget._id}
+                href={`/details/${gadget._id}`}
+                className="flex items-center p-2 hover:bg-gray-100"
+              >
+                <img
+                  src={gadget.images[0]}
+                  alt={gadget.name}
+                  className="w-12 h-12 object-cover mr-2"
+                />
+                <span className="font-medium">{gadget.productName}</span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
       {showMenu && (
         <div className="absolute top-28 left-0 right-0 bg-white shadow-md px-4 pb-2 lg:hidden z-50">

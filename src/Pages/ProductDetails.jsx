@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router-dom";
 const ProductDetails = () => {
   const [totalCart, setTotalCart] = useState(1);
   const gadgetData = useLoaderData();
+  
   const {
     productName,
     price,

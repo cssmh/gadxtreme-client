@@ -11,6 +11,7 @@ import {
   FaMinus,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
+import { getSearchGadget } from "../Api/gadgets";
 
 const categories = [
   {
@@ -62,10 +63,20 @@ const categories = [
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [searchData, setSearchData] = useState([]);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [openedCategory, setOpenedCategory] = useState(null);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const handleSearch = async (e) => {
+    const search = e.target.value.trim();
+    if (search === "") {
+      setSearchData([]);
+      return;
+    }
+    const res = await getSearchGadget(search);
+    setSearchData(res);
+  };
 
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -107,12 +118,31 @@ const Navbar = () => {
               <img src={logo} className="w-48" alt="Logo" />
             </Link>
           </div>
-          <div className="flex-grow mx-4">
+          <div className="flex-grow mx-4 relative">
             <input
               type="text"
+              onChange={handleSearch}
               placeholder="Search for products..."
-              className="w-full p-2 rounded border border-gray-300"
+              className="w-full p-2 rounded border border-gray-300 outline-none"
             />
+            {searchData && searchData.length > 0 && (
+              <div className="absolute grid grid-cols-2 left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-1 w-full">
+                {searchData.map((gadget) => (
+                  <Link
+                    key={gadget._id}
+                    to={`/details/${gadget._id}`}
+                    className="flex items-center p-2 hover:bg-gray-100"
+                  >
+                    <img
+                      src={gadget.images[0]}
+                      alt={gadget.name}
+                      className="w-12 h-12 object-cover mr-2"
+                    />
+                    <span className="font-medium">{gadget.productName}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex items-center space-x-4">
             <FaUser
@@ -178,12 +208,31 @@ const Navbar = () => {
         </div>
       </div>
       {/* Full-width search box for small and medium devices */}
-      <div className="block lg:hidden px-1">
+      <div className="block lg:hidden px-1 relative">
         <input
           type="text"
+          onChange={handleSearch}
           placeholder="Search for products..."
           className="w-full p-2 rounded-xl mt-1 border border-gray-300 outline-none"
         />
+        {searchData && searchData.length > 0 && (
+          <div className="absolute left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-1 w-full">
+            {searchData.map((gadget) => (
+              <Link
+                key={gadget._id}
+                to={`/details/${gadget._id}`}
+                className="flex items-center p-2 hover:bg-gray-100"
+              >
+                <img
+                  src={gadget.images[0]}
+                  alt={gadget.name}
+                  className="w-12 h-12 object-cover mr-2"
+                />
+                <span className="font-medium">{gadget.productName}</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
       {/* Drawer for small screens */}
       {isDrawerOpen && (

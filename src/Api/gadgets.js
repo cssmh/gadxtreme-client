@@ -30,3 +30,8 @@ export const deleteGadget = async (id) => {
   const { data } = await axiosSecure.delete(`/api/product/${id}`);
   return data;
 };
+
+export const getSearchGadget = async (search) => {
+  const { data } = await axiosSecure(`/api/search-products?search=${search}`);
+  return data;
+};

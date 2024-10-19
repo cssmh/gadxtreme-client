@@ -8,6 +8,9 @@ const Category = () => {
   const { cate } = useParams();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
+  const [priceRange, setPriceRange] = useState([0, 100000]); // Default price range
+  const [sortOrder, setSortOrder] = useState("relevant"); // Sorting state
+
   const { data = [], isLoading } = useQuery({
     queryKey: ["categoriesGadgets", cate, page, limit],
     queryFn: async () => await getCategoryGadget(cate, page, limit),
@@ -22,6 +25,7 @@ const Category = () => {
     return Math.round(discount);
   };
 
+  // Handle previous and next buttons for pagination
   const handlePrevious = () => {
     if (page > 1) setPage((prev) => prev - 1);
   };
@@ -30,37 +34,104 @@ const Category = () => {
     if (page < data?.totalPages) setPage((prev) => prev + 1);
   };
 
+  // Price filtering logic
+  const handlePriceRangeChange = (min, max) => {
+    setPriceRange([min, max]);
+  };
+
+  // Filter and sort products based on client-side logic
+  const filteredProducts = data?.result?.filter((product) => {
+    const productPrice = product.discountPrice || product.price;
+    return productPrice >= priceRange[0] && productPrice <= priceRange[1];
+  });
+
+  const sortedProducts = filteredProducts?.sort((a, b) => {
+    const priceA = a.discountPrice || a.price;
+    const priceB = b.discountPrice || b.price;
+    if (sortOrder === "lowToHigh") {
+      return priceA - priceB;
+    } else if (sortOrder === "highToLow") {
+      return priceB - priceA;
+    }
+    return 0; // Default sorting (relevant)
+  });
+
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="flex">
+    <div className="container mx-auto px-4 py-3 md:py-6 mb-5 md:mb-3">
+      <div className="flex flex-col lg:flex-row">
         {/* Left Sidebar */}
-        <div className="w-1/4 hidden md:block pr-4">
+        <div className="w-full lg:w-1/4 pr-4">
           {/* Filter by Price */}
-          <div className="mb-4">
+          <div className="mb-4 bg-white rounded-lg shadow p-4">
             <h2 className="text-lg font-semibold mb-2">Filter by Price</h2>
             <div className="space-y-2">
               <label className="flex items-center">
-                <input type="checkbox" className="mr-2" />
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  onChange={() => handlePriceRangeChange(0, 2000)}
+                />
                 ৳0 - ৳2,000
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="mr-2" />
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  onChange={() => handlePriceRangeChange(2001, 5000)}
+                />
                 ৳2,001 - ৳5,000
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="mr-2" />
-                ৳4,001 - ৳10,000
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  onChange={() => handlePriceRangeChange(5001, 10000)}
+                />
+                ৳5,001 - ৳10,000
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="mr-2" />
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  onChange={() => handlePriceRangeChange(10001, 100000)}
+                />
                 Above ৳10,000
               </label>
+            </div>
+          </div>
+
+          {/* Price Range Slider */}
+          <div className="mb-4 bg-white rounded-lg shadow p-4">
+            <h2 className="text-lg font-semibold mb-2">Price Range</h2>
+            <input
+              type="range"
+              min="0"
+              max="100000"
+              value={priceRange[0]}
+              onChange={(e) =>
+                handlePriceRangeChange(Number(e.target.value), priceRange[1])
+              }
+              className="w-full"
+            />
+            <input
+              type="range"
+              min="0"
+              max="100000"
+              value={priceRange[1]}
+              onChange={(e) =>
+                handlePriceRangeChange(priceRange[0], Number(e.target.value))
+              }
+              className="w-full"
+            />
+            <div className="flex justify-between">
+              <span>Min: ৳{priceRange[0]}</span>
+              <span>Max: ৳{priceRange[1]}</span>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="w-full md:w-3/4">
+        <div className="w-full lg:w-3/4">
           {/* Top Bar with items per page and sort options */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
             <div className="mb-2 md:mb-0 flex items-center">
@@ -84,11 +155,11 @@ const Category = () => {
               </label>
               <select
                 id="sortOrder"
-                // value={sortOrder}
-                // onChange={(e) => setSortOrder(e.target.value)}
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
                 className="border border-gray-300 rounded px-2 py-1 outline-none"
               >
-                <option value="lowToHigh">Relevant</option>
+                <option value="relevant">Relevant</option>
                 <option value="lowToHigh">Price: Low to High</option>
                 <option value="highToLow">Price: High to Low</option>
               </select>
@@ -100,7 +171,7 @@ const Category = () => {
             <SmallLoader size="60" />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {data?.result?.map((product) => (
+              {sortedProducts?.map((product) => (
                 <Link key={product._id} to={`/details/${product._id}`}>
                   <div className="p-4 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
                     {product.discountPrice && product.price && (
@@ -150,8 +221,10 @@ const Category = () => {
               ))}
             </div>
           )}
+
+          {/* Pagination Controls */}
           {data?.result?.length > 0 && (
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-8">
               <button
                 onClick={handlePrevious}
                 disabled={page === 1}
@@ -159,15 +232,13 @@ const Category = () => {
               >
                 Previous
               </button>
-              {Array.from({ length: data?.totalPages || 1 }, (_, idx) => (
+              {Array.from({ length: data?.totalPages }, (_, idx) => (
                 <button
-                  key={idx + 1}
+                  key={idx}
                   onClick={() => setPage(idx + 1)}
-                  className={`px-3 py-2 mx-1 ${
-                    page === idx + 1
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-300 text-gray-700"
-                  }`}
+                  className={`px-3 py-2 ${
+                    page === idx + 1 ? "bg-blue-500 text-white" : "bg-white"
+                  } border border-gray-300`}
                 >
                   {idx + 1}
                 </button>
