@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import pay from "../assets/pay.png";
 import { useLoaderData } from "react-router-dom";
 
@@ -27,10 +27,13 @@ const ProductDetails = () => {
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat("en-IN").format(price); 
+    return new Intl.NumberFormat("en-IN").format(price);
     // 'en-IN' is for Indian-style formatting
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="container mx-auto p-4 my-6">

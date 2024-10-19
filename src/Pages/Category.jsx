@@ -88,6 +88,7 @@ const Category = () => {
                 // onChange={(e) => setSortOrder(e.target.value)}
                 className="border border-gray-300 rounded px-2 py-1 outline-none"
               >
+                <option value="lowToHigh">Relevant</option>
                 <option value="lowToHigh">Price: Low to High</option>
                 <option value="highToLow">Price: High to Low</option>
               </select>
@@ -150,38 +151,34 @@ const Category = () => {
             </div>
           )}
           {data?.result?.length > 0 && (
-            <div className="flex flex-col items-center mb-4">
-              <div className="flex flex-col md:flex-row items-center mt-8">
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={handlePrevious}
+                disabled={page === 1}
+                className="px-3 py-2 rounded-l bg-blue-500 text-white disabled:bg-gray-300"
+              >
+                Previous
+              </button>
+              {Array.from({ length: data?.totalPages || 1 }, (_, idx) => (
                 <button
-                  onClick={handlePrevious}
-                  disabled={page === 1}
-                  className="btn border-green-400 bg-yellow-50 hover:bg-green-400 hover:text-white text-green-400 hover:border-green-400 disabled:opacity-50 mb-2 md:mb-0"
+                  key={idx + 1}
+                  onClick={() => setPage(idx + 1)}
+                  className={`px-3 py-2 mx-1 ${
+                    page === idx + 1
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-300 text-gray-700"
+                  }`}
                 >
-                  Previous
+                  {idx + 1}
                 </button>
-                <div className="flex flex-wrap m-0 justify-center md:justify-start mx-[6px]">
-                  {Array.from({ length: data?.totalPages || 1 }, (_, idx) => (
-                    <button
-                      key={idx + 1}
-                      onClick={() => setPage(idx + 1)}
-                      className={`btn border-green-400 ${
-                        page === idx + 1
-                          ? "bg-green-400 text-white"
-                          : "bg-yellow-50 text-green-400 hover:bg-green-400 hover:text-white"
-                      } rounded-none mb-2 md:mb-0 mx-[2px]`}
-                    >
-                      {idx + 1}
-                    </button>
-                  ))}
-                </div>
-                <button
-                  onClick={handleNext}
-                  disabled={page === data?.totalPages}
-                  className="btn border-green-400 bg-yellow-50 hover:bg-green-400 hover:text-white text-green-400 hover:border-green-400 disabled:opacity-50"
-                >
-                  Next
-                </button>
-              </div>
+              ))}
+              <button
+                onClick={handleNext}
+                disabled={page === data?.totalPages}
+                className="px-3 py-2 rounded-r bg-blue-500 text-white disabled:bg-gray-300"
+              >
+                Next
+              </button>
             </div>
           )}
         </div>
