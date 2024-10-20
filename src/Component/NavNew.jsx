@@ -131,7 +131,7 @@ const NavNew = () => {
               onMouseEnter={() => setShowUserDropdown(true)}
               onMouseLeave={() => setShowUserDropdown(false)}
             >
-              <p className="hidden md:block text-gray-500 font-medium cursor-pointer">
+              <p className="hidden lg:block text-gray-500 font-medium cursor-pointer">
                 Hi, {user?.displayName || "Anonymous"}
               </p>
               {showUserDropdown && (
@@ -164,36 +164,54 @@ const NavNew = () => {
               )}
             </div>
           ) : (
-            <Link to="/login" className="text-gray-500 font-medium">
+            <Link
+              to="/login"
+              className="hidden lg:block text-sm md:text-base text-gray-500 font-medium"
+            >
               Login/Register
             </Link>
           )}
           <div className="hidden lg:flex items-center space-x-3">
-            <FaHeart
-              className="text-gray-600 cursor-pointer text-xl"
-              title="Wishlist"
-            />
-            <p className="flex items-center gap-1">
-              <FaShoppingCart
+            <Link to={"/my-account/wishlist"}>
+              <FaHeart
                 className="text-gray-600 cursor-pointer text-xl"
-                title="Cart"
+                title="Wishlist"
               />
-              <span>৳0.00</span>
-            </p>
+            </Link>
+            <Link to={"/my-account/cart"}>
+              <p className="flex items-center gap-1">
+                <FaShoppingCart
+                  className="text-gray-600 cursor-pointer text-xl"
+                  title="Cart"
+                />
+                <span>৳0.00</span>
+              </p>
+            </Link>
           </div>
         </div>
-        <div className="lg:hidden flex items-center space-x-3">
-          <FaHeart
-            className="text-gray-600 cursor-pointer text-xl"
-            title="Wishlist"
-          />
-          <p className="flex items-center gap-1">
-            <FaShoppingCart
-              className="text-gray-600 cursor-pointer text-xl"
-              title="Cart"
-            />
-            <span>৳0.00</span>
-          </p>
+        <div className="lg:hidden flex items-center space-x-[6px]">
+          {user && (
+            <>
+              <p className="hidden md:block text-gray-500 font-medium cursor-pointer">
+                Hi, {user?.displayName || "Anonymous"}
+              </p>
+              <Link to={"/my-account/wishlist"}>
+                <FaHeart
+                  className="text-gray-600 cursor-pointer text-xl"
+                  title="Wishlist"
+                />
+              </Link>
+              <Link to={"/my-account/cart"}>
+                <p className="flex items-center gap-1">
+                  <FaShoppingCart
+                    className="text-gray-600 cursor-pointer text-xl"
+                    title="Cart"
+                  />
+                  <span>৳0.00</span>
+                </p>
+              </Link>
+            </>
+          )}
           <button onClick={() => setShowMenu(!showMenu)}>
             {showMenu ? (
               <FaTimes className="text-gray-600 text-xl" />
@@ -232,8 +250,11 @@ const NavNew = () => {
       {showMenu && (
         <div className="absolute top-28 left-0 right-0 bg-white shadow-md px-4 pb-2 lg:hidden z-50">
           <ul>
+            <Link to="/login">
+              <p className="text-gray-700 p-2 border-b">Login/Register</p>
+            </Link>
             {categories?.map((category) => (
-              <li key={category.name} className="border-b hover:bg-gray-200 ">
+              <li key={category.name} className="border-b hover:bg-gray-200">
                 <div className="flex justify-between items-center p-2">
                   <Link
                     to={category.link}

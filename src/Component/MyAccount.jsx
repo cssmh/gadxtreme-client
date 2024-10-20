@@ -14,18 +14,23 @@ const MyAccount = () => {
         <nav className="mt-8">
           <ul className="space-y-2">
             <li>
-              <Link to="dashboard" className="block py-2 px-4">
+              <Link to="/my-account/dashboard" className="block py-2 px-4">
                 Dashboard
               </Link>
             </li>
             <li>
-              <Link to="orders" className="block py-2 px-4">
-                Orders
+              <Link to="/my-account/wishlist" className="block py-2 px-4">
+                Wishlist
               </Link>
             </li>
             <li>
-              <Link to="wishlist" className="block py-2 px-4">
-                Wishlist
+              <Link to="/my-account/cart" className="block py-2 px-4">
+                My Cart
+              </Link>
+            </li>
+            <li>
+              <Link to="/my-account/orders" className="block py-2 px-4">
+                Orders
               </Link>
             </li>
             <li>

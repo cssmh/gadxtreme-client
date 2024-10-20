@@ -6,12 +6,17 @@ import NavNew from "../Component/NavNew";
 
 const MainLayout = () => {
   const loc = useLocation();
-  const home = loc.pathname === "/";
+  const NavRoute =
+    loc.pathname === "/" ||
+    loc.pathname === "/login" ||
+    loc.pathname === "/register";
+
   const noHeaderFooter = loc?.pathname?.startsWith("/admin-dashboard");
+
   return (
     <div>
       <DiscountModal />
-      {noHeaderFooter ? null : home ? <Navbar /> : <NavNew />}
+      {noHeaderFooter ? null : NavRoute ? <Navbar /> : <NavNew />}
       <div className="min-h-[83vh]">
         <Outlet />
       </div>

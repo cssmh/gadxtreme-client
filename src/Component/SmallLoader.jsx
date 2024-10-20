@@ -1,4 +1,5 @@
-import { ScaleLoader } from "react-spinners";
+// import { ScaleLoader } from "react-spinners";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const SmallLoader = ({ size }) => {
   return (
@@ -6,7 +7,8 @@ const SmallLoader = ({ size }) => {
       style={{ height: `${size}vh` }}
       className="flex justify-center items-center"
     >
-      <ScaleLoader size={100} color="red" />
+      <CgSpinnerTwo className="animate-spin text-4xl text-blue-500" />
+      {/* <ScaleLoader size={100} color="red" /> */}
     </div>
   );
 };

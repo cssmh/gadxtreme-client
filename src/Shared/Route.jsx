@@ -16,6 +16,7 @@ import AddProduct from "../Pages/AdminDash.jsx/AddProduct";
 import ManageProducts from "../Pages/AdminDash.jsx/ManageProducts";
 import UpdateProduct from "../Pages/AdminDash.jsx/UpdateProduct";
 import { getGadget } from "../Api/gadgets";
+import Cart from "../Component/MyAccount/Cart";
 
 const Route = createBrowserRouter([
   {
@@ -37,9 +38,10 @@ const Route = createBrowserRouter([
         path: "/my-account",
         element: <MyAccount />,
         children: [
-          { path: "dashboard", element: <Dashboard /> },
-          { path: "orders", element: <Orders /> },
-          { path: "wishlist", element: <Wishlist /> },
+          { path: "/my-account/dashboard", element: <Dashboard /> },
+          { path: "/my-account/wishlist", element: <Wishlist /> },
+          { path: "/my-account/cart", element: <Cart /> },
+          { path: "/my-account/orders", element: <Orders /> },
         ],
       },
       {

@@ -99,11 +99,13 @@ const Navbar = () => {
       <div className="bg-black p-[14px] flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center justify-between w-full lg:hidden">
           <img src={logo} className="w-44" alt="Logo" />
-          <div className="flex items-center space-x-4">
-            <FaShoppingCart
-              className="text-white cursor-pointer text-xl"
-              title="Cart"
-            />
+          <div className="flex items-center space-x-3">
+            <Link to={"/my-account/cart"}>
+              <FaShoppingCart
+                className="text-white cursor-pointer text-xl"
+                title="Cart"
+              />
+            </Link>
             <FaBars
               onClick={toggleDrawer}
               className="text-white cursor-pointer text-xl"
@@ -192,14 +194,18 @@ const Navbar = () => {
                 Login/Register
               </Link>
             )}
-            <FaHeart
-              className="text-white cursor-pointer text-xl"
-              title="Wishlist"
-            />
-            <FaShoppingCart
-              className="text-white cursor-pointer text-xl"
-              title="Cart"
-            />
+            <Link to={"/my-account/wishlist"}>
+              <FaHeart
+                className="text-white cursor-pointer text-xl"
+                title="Wishlist"
+              />
+            </Link>
+            <Link to={"/my-account/cart"}>
+              <FaShoppingCart
+                className="text-white cursor-pointer text-xl"
+                title="Cart"
+              />
+            </Link>
             <FaBars
               className="text-white cursor-pointer text-xl"
               title="Menu"
@@ -242,6 +248,11 @@ const Navbar = () => {
               Close
             </button>
             <ul className="mt-4">
+              <p className="my-1">
+                <Link to="/login" className="font-medium">
+                  Login/Register
+                </Link>
+              </p>
               {categories.map((category) => (
                 <li key={category.name} className="relative group">
                   <div
