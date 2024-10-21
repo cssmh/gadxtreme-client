@@ -9,6 +9,7 @@ import {
   FaCaretDown,
   FaPlus,
   FaMinus,
+  FaTimesCircle,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { getSearchGadget } from "../Api/gadgets";
@@ -64,6 +65,7 @@ const categories = [
 const NavNew = () => {
   const { user, logOut } = useAuth();
   const [searchData, setSearchData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
@@ -71,12 +73,18 @@ const NavNew = () => {
 
   const handleSearch = async (e) => {
     const search = e.target.value.trim();
+    setSearchInput(e.target.value);
     if (search === "") {
       setSearchData([]);
       return;
     }
     const res = await getSearchGadget(search);
     setSearchData(res);
+  };
+
+  const clearSearch = () => {
+    setSearchInput("");
+    setSearchData([]);
   };
 
   const handleLogOut = () => {
@@ -91,7 +99,7 @@ const NavNew = () => {
   };
 
   return (
-    <div className="sticky top-0 left-0 right-0 z-50 bg-white">
+    <div className="sticky top-0 left-0 right-0 z-50 bg-white md:mx-5">
       <div className="px-4 pt-3 md:pt-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/">
@@ -101,17 +109,26 @@ const NavNew = () => {
         <div className="flex-grow mx-6 hidden lg:flex relative">
           <input
             type="text"
+            value={searchInput}
             onChange={handleSearch}
             placeholder="Search for products..."
             className="w-full p-2 border border-gray-300 rounded-xl outline-none"
           />
+          {searchInput && (
+            <button
+              onClick={clearSearch}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+            >
+              <FaTimesCircle />
+            </button>
+          )}
           {searchData && searchData.length > 0 && (
-            <div className="absolute grid grid-cols-2 left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-11 w-full">
+            <div className="absolute grid grid-cols-2 gap-2 left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-11 w-full">
               {searchData.map((gadget) => (
                 <a
                   key={gadget._id}
                   href={`/details/${gadget._id}`}
-                  className="flex items-center p-2 hover:bg-gray-100"
+                  className="flex items-center p-2 hover:bg-gray-100 border-b"
                 >
                   <img
                     src={gadget.images[0]}
@@ -224,17 +241,26 @@ const NavNew = () => {
       <div className="px-4 lg:hidden mt-4 relative">
         <input
           type="text"
+          value={searchInput}
           placeholder="Search for products..."
           onChange={handleSearch}
           className="w-full p-2 border border-gray-300 rounded-xl outline-none"
         />
+        {searchInput && (
+          <button
+            onClick={clearSearch}
+            className="absolute right-6 top-[21px] transform -translate-y-1/2 text-gray-400"
+          >
+            <FaTimesCircle />
+          </button>
+        )}
         {searchData && searchData.length > 0 && (
           <div className="absolute left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-1 w-full">
             {searchData.map((gadget) => (
               <a
                 key={gadget._id}
                 href={`/details/${gadget._id}`}
-                className="flex items-center p-2 hover:bg-gray-100"
+                className="flex items-center p-2 hover:bg-gray-100 border-b"
               >
                 <img
                   src={gadget.images[0]}

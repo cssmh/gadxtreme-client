@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 const ProductDetails = () => {
   const [totalCart, setTotalCart] = useState(1);
   const gadgetData = useLoaderData();
-  
+
   const {
     productName,
     price,
@@ -36,15 +36,25 @@ const ProductDetails = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const calculateDiscount = (price, discountPrice) => {
+    const discount = ((price - discountPrice) / price) * 100;
+    return Math.round(discount);
+  };
+
   return (
     <div className="container mx-auto p-4 my-6">
-      <div className="flex flex-col md:flex-row gap-3 md:gap-6">
-        <div className="w-full md:w-1/2">
+      <div className="flex flex-col md:flex-row gap-5 md:gap-10">
+        <div className="w-full md:w-[58%] relative">
           <img
             src={mainImage}
             alt="Product"
             className="w-full h-auto rounded-lg"
           />
+          {discountPrice && price && (
+            <div className="absolute top-2 right-2 bg-[#2e6bc6] text-white rounded-full px-3 py-4 font-semibold text-[13px] z-10">
+              -{calculateDiscount(price, discountPrice)}%
+            </div>
+          )}
           <div className="flex mt-2 space-x-2">
             {images?.map((img, idx) => (
               <img
@@ -57,7 +67,7 @@ const ProductDetails = () => {
             ))}
           </div>
         </div>
-        <div className="w-full md:w-1/2 md:pl-8 mt-4 md:mt-0">
+        <div className="w-full md:w-[42%]">
           <h1 className="text-xl md:text-3xl font-medium">{productName}</h1>
           <p
             className={`mt-2 ${
