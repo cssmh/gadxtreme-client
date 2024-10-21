@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo2.png";
 import {
-  FaHeart,
-  FaShoppingCart,
   FaBars,
   FaTimes,
   FaCaretDown,
   FaPlus,
   FaMinus,
   FaTimesCircle,
+  FaRegHeart,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { getSearchGadget } from "../Api/gadgets";
+import { BsCart2 } from "react-icons/bs";
 
 const categories = [
   {
@@ -188,19 +188,25 @@ const NavNew = () => {
               Login/Register
             </Link>
           )}
-          <div className="hidden lg:flex items-center space-x-3">
-            <Link to={"/my-account/wishlist"}>
-              <FaHeart
+          <div className="hidden lg:flex items-center space-x-4">
+            <Link to={"/my-account/wishlist"} className="relative">
+              <FaRegHeart
                 className="text-gray-600 cursor-pointer text-xl"
                 title="Wishlist"
               />
+              <span className="absolute -top-2 -right-2 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                2
+              </span>
             </Link>
-            <Link to={"/my-account/cart"}>
-              <p className="flex items-center gap-1">
-                <FaShoppingCart
-                  className="text-gray-600 cursor-pointer text-xl"
+            <Link to={"/cart"}>
+              <p className="flex items-center gap-1 relative">
+                <BsCart2
+                  className="text-gray-600 cursor-pointer text-2xl mr-1"
                   title="Cart"
                 />
+                <span className="absolute -top-[6px] right-12 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                  3
+                </span>
                 <span>৳0.00</span>
               </p>
             </Link>
@@ -212,18 +218,24 @@ const NavNew = () => {
               <p className="hidden md:block text-gray-500 font-medium cursor-pointer">
                 Hi, {user?.displayName || "Anonymous"}
               </p>
-              <Link to={"/my-account/wishlist"}>
-                <FaHeart
+              <Link to={"/my-account/wishlist"} className="relative">
+                <FaRegHeart
                   className="text-gray-600 cursor-pointer text-xl"
                   title="Wishlist"
                 />
+                <span className="absolute -top-2 -right-1 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                  2
+                </span>
               </Link>
-              <Link to={"/my-account/cart"}>
-                <p className="flex items-center gap-1">
-                  <FaShoppingCart
-                    className="text-gray-600 cursor-pointer text-xl"
+              <Link to={"/cart"}>
+                <p className="flex items-center gap-1 relative">
+                  <BsCart2
+                    className="text-gray-600 cursor-pointer text-2xl mr-1"
                     title="Cart"
                   />
+                  <span className="absolute -top-[6px] right-12 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                    3
+                  </span>
                   <span>৳0.00</span>
                 </p>
               </Link>

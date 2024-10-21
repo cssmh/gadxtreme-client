@@ -24,11 +24,6 @@ const MyAccount = () => {
               </Link>
             </li>
             <li>
-              <Link to="/my-account/cart" className="block py-2 px-4">
-                My Cart
-              </Link>
-            </li>
-            <li>
               <Link to="/my-account/orders" className="block py-2 px-4">
                 Orders
               </Link>

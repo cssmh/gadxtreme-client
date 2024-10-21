@@ -109,7 +109,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between w-full lg:hidden">
           <img src={logo} className="w-44" alt="Logo" />
           <div className="flex items-center space-x-3">
-            <Link to={"/my-account/cart"}>
+            <Link to={"/cart"}>
               <FaShoppingCart
                 className="text-white cursor-pointer text-xl"
                 title="Cart"
@@ -218,7 +218,7 @@ const Navbar = () => {
                 title="Wishlist"
               />
             </Link>
-            <Link to={"/my-account/cart"}>
+            <Link to={"/cart"}>
               <FaShoppingCart
                 className="text-white cursor-pointer text-xl"
                 title="Cart"

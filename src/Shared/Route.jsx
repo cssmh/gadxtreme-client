@@ -40,10 +40,10 @@ const Route = createBrowserRouter([
         children: [
           { path: "/my-account/dashboard", element: <Dashboard /> },
           { path: "/my-account/wishlist", element: <Wishlist /> },
-          { path: "/my-account/cart", element: <Cart /> },
           { path: "/my-account/orders", element: <Orders /> },
         ],
       },
+      { path: "/cart", element: <Cart /> },
       {
         path: "/admin-dashboard",
         element: <AdminDashboard />,

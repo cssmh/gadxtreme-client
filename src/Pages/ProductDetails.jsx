@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import pay from "../assets/pay.png";
 import { useLoaderData } from "react-router-dom";
+import { postCart } from "../Api/cartGadget";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const [totalCart, setTotalCart] = useState(1);
@@ -41,8 +43,25 @@ const ProductDetails = () => {
     return Math.round(discount);
   };
 
+  const handleAddToCart = async (gadget) => {
+    const cartData = {
+      gadgetId: gadget._id,
+      image: gadget.images[0],
+      name: gadget.productName,
+      price: gadget.discountPrice || gadget.price,
+      quantity: totalCart || 1,
+    };
+    try {
+      const res = await postCart(cartData);
+      console.log(res);
+      toast.success("added to cart");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="container mx-auto p-4 my-6">
+    <div className="container mx-auto p-4 my-4">
       <div className="flex flex-col md:flex-row gap-5 md:gap-10">
         <div className="w-full md:w-[58%] relative">
           <img
@@ -103,7 +122,10 @@ const ProductDetails = () => {
               </button>
             </div>
             <div className="flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <button className="bg-[#e87f35] text-white mb-2 md:mb-0 px-4 py-2 rounded-lg hover:bg-[#cf6d2f]">
+              <button
+                onClick={() => handleAddToCart(gadgetData)}
+                className="bg-[#e87f35] text-white mb-2 md:mb-0 px-4 py-2 rounded-lg hover:bg-[#cf6d2f]"
+              >
                 Add to Cart
               </button>
               <button className="bg-[#5eb237] text-white px-4 py-2 rounded-lg hover:bg-[#4c992f]">
