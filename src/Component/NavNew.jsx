@@ -13,6 +13,7 @@ import {
 import useAuth from "../hooks/useAuth";
 import { getSearchGadget } from "../Api/gadgets";
 import { BsCart2 } from "react-icons/bs";
+import useMyCart from "../hooks/useMyCart";
 
 const categories = [
   {
@@ -63,6 +64,7 @@ const categories = [
 ];
 
 const NavNew = () => {
+  const { myCartData } = useMyCart();
   const { user, logOut } = useAuth();
   const [searchData, setSearchData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -205,7 +207,7 @@ const NavNew = () => {
                   title="Cart"
                 />
                 <span className="absolute -top-[6px] right-12 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                  3
+                  {myCartData?.length || 0}
                 </span>
                 <span>৳0.00</span>
               </p>
@@ -234,7 +236,7 @@ const NavNew = () => {
                     title="Cart"
                   />
                   <span className="absolute -top-[6px] right-12 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                    3
+                    {myCartData?.length || 0}
                   </span>
                   <span>৳0.00</span>
                 </p>

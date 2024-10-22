@@ -3,8 +3,10 @@ import pay from "../assets/pay.png";
 import { useLoaderData } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
 
 const ProductDetails = () => {
+  const { user } = useAuth();
   const [totalCart, setTotalCart] = useState(1);
   const gadgetData = useLoaderData();
 
@@ -46,6 +48,7 @@ const ProductDetails = () => {
   const handleAddToCart = async (gadget) => {
     const cartData = {
       gadgetId: gadget._id,
+      author: user?.email,
       image: gadget.images[0],
       name: gadget.productName,
       price: gadget.discountPrice || gadget.price,

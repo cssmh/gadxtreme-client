@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Component/Navbar";
 import Footer from "../Pages/Footer";
@@ -6,6 +7,11 @@ import NavNew from "../Component/NavNew";
 
 const MainLayout = () => {
   const loc = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const NavRoute =
     loc.pathname === "/" ||
     loc.pathname === "/login" ||

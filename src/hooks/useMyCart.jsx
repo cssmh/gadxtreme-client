@@ -1,21 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
+import { myCart } from "../Api/cartGadget";
 import useAuth from "./useAuth";
-import { getMyFoods } from "../api/Foods";
 
-const useMyFoods = () => {
+const useMyCart = () => {
   const { loading, user } = useAuth();
   const {
-    data: myFoods = [],
+    data: myCartData = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["myFoods", user?.email],
-    queryFn: async () => {
-      return await getMyFoods(user?.email);
-    },
+    queryKey: ["myCart", user?.email],
+    queryFn: () => myCart(user?.email),
     enabled: !loading && !!user?.email,
   });
-  return { isLoading, myFoods, refetch, user };
+  return { isLoading, myCartData, refetch };
 };
 
-export default useMyFoods;
+export default useMyCart;
