@@ -17,6 +17,7 @@ import ManageProducts from "../Pages/AdminDash.jsx/ManageProducts";
 import UpdateProduct from "../Pages/AdminDash.jsx/UpdateProduct";
 import { getGadget } from "../Api/gadgets";
 import Cart from "../Component/MyAccount/Cart";
+import Checkout from "../Component/MyAccount/Checkout";
 
 const Route = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const Route = createBrowserRouter([
         ],
       },
       { path: "/cart", element: <Cart /> },
+      { path: "/checkout", element: <Checkout /> },
       {
         path: "/admin-dashboard",
         element: <AdminDashboard />,
