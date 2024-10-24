@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         gadBlue: "#00a9e1",
+        gadDarkBlue: "#2e6bc6",
       },
     },
   },

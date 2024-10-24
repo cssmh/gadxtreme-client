@@ -9,3 +9,8 @@ export const myCart = async (email) => {
   const { data } = await axiosSecure(`/api/my-cart?email=${email}`);
   return data;
 };
+
+export const deleteMyCart = async (id) => {
+  const { data } = await axiosSecure.delete(`/api/cart/${id}`);
+  return data;
+};

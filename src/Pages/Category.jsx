@@ -175,7 +175,7 @@ const Category = () => {
                 <Link key={product._id} to={`/details/${product._id}`}>
                   <div className="p-2 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
                     {product.discountPrice && product.price && (
-                      <div className="absolute top-3 left-3 bg-[#2e6bc6] text-white rounded-full px-2 py-3 font-semibold text-xs z-10">
+                      <div className="absolute top-3 left-3 bg-gadDarkBlue text-white rounded-full px-2 py-3 font-semibold text-xs z-10">
                         -
                         {calculateDiscount(
                           product.price,

@@ -4,9 +4,11 @@ import { useLoaderData } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import useMyCart from "../hooks/useMyCart";
 
 const ProductDetails = () => {
   const { user } = useAuth();
+  const { refetch } = useMyCart();
   const [totalCart, setTotalCart] = useState(1);
   const gadgetData = useLoaderData();
 
@@ -56,6 +58,7 @@ const ProductDetails = () => {
     };
     try {
       const res = await postCart(cartData);
+      refetch();
       console.log(res);
       toast.success("added to cart");
     } catch (error) {
@@ -73,7 +76,7 @@ const ProductDetails = () => {
             className="w-full h-auto rounded-lg"
           />
           {discountPrice && price && (
-            <div className="absolute top-2 right-2 bg-[#2e6bc6] text-white rounded-full px-3 py-4 font-semibold text-[13px] z-10">
+            <div className="absolute top-2 right-2 bg-gadDarkBlue text-white rounded-full px-3 py-4 font-semibold text-[13px] z-10">
               -{calculateDiscount(price, discountPrice)}%
             </div>
           )}
@@ -104,12 +107,12 @@ const ProductDetails = () => {
                 <span className="line-through text-gray-400">
                   ৳{formatPrice(price)}
                 </span>
-                <span className="ml-4 text-[#2e6bc6] font-semibold">
+                <span className="ml-4 text-gadDarkBlue font-semibold">
                   ৳{formatPrice(discountPrice)}
                 </span>
               </>
             ) : (
-              <span className="text-[#2e6bc6] font-semibold">
+              <span className="text-gadDarkBlue font-semibold">
                 ৳{formatPrice(price)}
               </span>
             )}

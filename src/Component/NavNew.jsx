@@ -196,7 +196,7 @@ const NavNew = () => {
                 className="text-gray-600 cursor-pointer text-xl"
                 title="Wishlist"
               />
-              <span className="absolute -top-2 -right-2 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                 2
               </span>
             </Link>
@@ -206,7 +206,7 @@ const NavNew = () => {
                   className="text-gray-600 cursor-pointer text-2xl mr-1"
                   title="Cart"
                 />
-                <span className="absolute -top-[6px] right-12 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                <span className="absolute -top-[6px] right-12 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                   {myCartData?.length || 0}
                 </span>
                 <span>৳0.00</span>
@@ -225,7 +225,7 @@ const NavNew = () => {
                   className="text-gray-600 cursor-pointer text-xl"
                   title="Wishlist"
                 />
-                <span className="absolute -top-2 -right-1 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                <span className="absolute -top-2 -right-1 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                   2
                 </span>
               </Link>
@@ -235,7 +235,7 @@ const NavNew = () => {
                     className="text-gray-600 cursor-pointer text-2xl mr-1"
                     title="Cart"
                   />
-                  <span className="absolute -top-[6px] right-12 bg-[#2e6bc6] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                  <span className="absolute -top-[6px] right-12 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                     {myCartData?.length || 0}
                   </span>
                   <span>৳0.00</span>

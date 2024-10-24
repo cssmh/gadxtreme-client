@@ -3,14 +3,16 @@ import { useState } from "react";
 import useMyCart from "../../hooks/useMyCart";
 import toast from "react-hot-toast";
 import SmallLoader from "../SmallLoader";
+import { deleteMyCart } from "../../Api/cartGadget";
 
 const Cart = () => {
-  const { isLoading, myCartData } = useMyCart();
+  const { isLoading, myCartData, refetch } = useMyCart();
   const [couponCode, setCouponCode] = useState("");
 
-  // const handleIncrement = (itemId, currentQuantity) => {
-  //   // Logic for incrementing quantity
-  // };
+  const handleIncrement = (itemId, currentQuantity) => {
+    console.log(itemId);
+    console.log(currentQuantity);
+  };
 
   const handleDecrement = (itemId, currentQuantity) => {
     if (currentQuantity > 1) {
@@ -19,16 +21,12 @@ const Cart = () => {
   };
 
   const handleRemove = async (itemId) => {
-    console.log(itemId);
-    // Logic for removing item from cart
-    // try {
-    //   // Assuming removeCartItem is a function that removes the item from the cart
-    //   await removeCartItem(itemId);
-    //   toast.success("Item removed from cart");
-    //   refetch();
-    // } catch (error) {
-    //   toast.error("Error removing item");
-    // }
+    try {
+      await deleteMyCart(itemId);
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleApplyCoupon = () => {
@@ -40,10 +38,10 @@ const Cart = () => {
     return price * quantity;
   };
 
-  if (isLoading) return <SmallLoader size="78" /> 
+  if (isLoading) return <SmallLoader size="78" />;
 
   return (
-    <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-8 gap-4">
+    <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4">
       {/* Left Side - Cart Items */}
       <div className="lg:w-[70%] w-full border p-4 rounded-lg">
         {myCartData?.length > 0 ? (
@@ -62,23 +60,21 @@ const Cart = () => {
                   {/* Product Column */}
                   <td className="py-4 flex items-center">
                     <FaTimes
-                      className="text-red-600 cursor-pointer mr-4"
+                      className="cursor-pointer mr-3"
                       onClick={() => handleRemove(item._id)}
                     />
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-16 h-16 object-cover mr-4"
+                      className="w-16 h-16 object-cover mr-3"
                     />
                     <span>{item.name}</span>
                   </td>
-
                   {/* Price Column */}
                   <td className="py-4">৳{item?.price}</td>
-
                   {/* Quantity Column */}
                   <td className="py-4">
-                    <div className="flex items-center border rounded-2xl">
+                    <div className="flex items-center border rounded-2xl mx-1">
                       <button
                         onClick={() => handleDecrement(item._id, item.quantity)}
                         className="px-2 py-2 border-r"
@@ -87,7 +83,7 @@ const Cart = () => {
                       </button>
                       <span className="mx-2">{item.quantity}</span>
                       <button
-                        // onClick={() => handleIncrement(item._id, item.quantity)}
+                        onClick={() => handleIncrement(item._id, item.quantity)}
                         className="px-2 py-2 border-l"
                       >
                         +
@@ -96,7 +92,7 @@ const Cart = () => {
                   </td>
 
                   {/* Subtotal Column */}
-                  <td className="py-4">
+                  <td className="py-4 text-gadDarkBlue font-semibold">
                     ৳{calculateSubtotal(item.price, item.quantity).toFixed(2)}
                   </td>
                 </tr>
@@ -106,7 +102,6 @@ const Cart = () => {
         ) : (
           <p>Your cart is empty.</p>
         )}
-
         {/* Coupon Code Section */}
         <div className="mt-6">
           <h3 className="font-semibold mb-2">Have a Coupon?</h3>
@@ -120,14 +115,13 @@ const Cart = () => {
             />
             <button
               onClick={handleApplyCoupon}
-              className="bg-green-500 text-white py-2 px-4 rounded-lg w-full sm:w-auto"
+              className="bg-gadDarkBlue text-white py-2 px-4 rounded-lg w-full sm:w-auto"
             >
               Apply Code
             </button>
           </div>
         </div>
       </div>
-
       {/* Right Side - Cart Totals */}
       <div className="lg:w-[30%] w-full border p-4 rounded-lg">
         <h2 className="text-xl font-bold mb-4">Cart Totals</h2>
@@ -140,7 +134,7 @@ const Cart = () => {
               .toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between py-2">
+        <div className="flex justify-between py-2 font-semibold text-gadDarkBlue text-lg">
           <span>Total</span>
           <span>
             ৳
@@ -149,7 +143,7 @@ const Cart = () => {
               .toFixed(2)}
           </span>
         </div>
-        <button className="w-full mt-4 bg-green-500 text-white py-2 rounded">
+        <button className="w-full mt-4 bg-gadDarkBlue text-white py-2 rounded">
           Proceed to Checkout
         </button>
       </div>
