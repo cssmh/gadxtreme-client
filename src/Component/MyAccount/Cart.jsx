@@ -3,20 +3,33 @@ import { useState } from "react";
 import useMyCart from "../../hooks/useMyCart";
 import toast from "react-hot-toast";
 import SmallLoader from "../SmallLoader";
-import { deleteMyCart } from "../../Api/cartGadget";
+import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
 
 const Cart = () => {
   const { isLoading, myCartData, refetch } = useMyCart();
   const [couponCode, setCouponCode] = useState("");
 
-  const handleIncrement = (itemId, currentQuantity) => {
-    console.log(itemId);
-    console.log(currentQuantity);
+  const handleIncrement = async (itemId, currentQuantity) => {
+    try {
+      const newQuantity = currentQuantity + 1;
+      await updateMyCart(itemId, { quantity: newQuantity });
+      refetch();
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to update quantity");
+    }
   };
 
-  const handleDecrement = (itemId, currentQuantity) => {
+  const handleDecrement = async (itemId, currentQuantity) => {
     if (currentQuantity > 1) {
-      // Logic for decrementing quantity
+      try {
+        const newQuantity = currentQuantity - 1;
+        await updateMyCart(itemId, { quantity: newQuantity });
+        refetch();
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to update quantity");
+      }
     }
   };
 
@@ -43,12 +56,12 @@ const Cart = () => {
   return (
     <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4">
       {/* Left Side - Cart Items */}
-      <div className="lg:w-[70%] w-full border p-4 rounded-lg">
+      <div className="lg:w-[70%] w-full border px-4 pb-4 rounded-lg">
         {myCartData?.length > 0 ? (
           <table className="w-full text-left">
             <thead>
               <tr className="border-b">
-                <th className="py-2">Product</th>
+                <th className="py-3">Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
@@ -90,7 +103,6 @@ const Cart = () => {
                       </button>
                     </div>
                   </td>
-
                   {/* Subtotal Column */}
                   <td className="py-4 text-gadDarkBlue font-semibold">
                     ৳{calculateSubtotal(item.price, item.quantity).toFixed(2)}
@@ -123,7 +135,7 @@ const Cart = () => {
         </div>
       </div>
       {/* Right Side - Cart Totals */}
-      <div className="lg:w-[30%] w-full border p-4 rounded-lg">
+      <div className="lg:w-[30%] w-full border p-4 rounded-lg lg:self-start pb-5">
         <h2 className="text-xl font-bold mb-4">Cart Totals</h2>
         <div className="flex justify-between border-b py-2">
           <span>Subtotal</span>
@@ -133,6 +145,18 @@ const Cart = () => {
               ?.reduce((acc, item) => acc + item.price * item.quantity, 0)
               .toFixed(2)}
           </span>
+        </div>
+        <div className="flex justify-between border-b py-2 ">
+          <span>Shipping</span>
+          <div className="text-right">
+            <p className="text-gadDarkBlue font-semibold">
+              Delivery Charge: ৳100
+            </p>
+            <p className="text-sm text-gray-500 mt-1">
+              Shipping options will be updated during checkout. Calculate
+              shipping.
+            </p>
+          </div>
         </div>
         <div className="flex justify-between py-2 font-semibold text-gadDarkBlue text-lg">
           <span>Total</span>

@@ -14,3 +14,8 @@ export const deleteMyCart = async (id) => {
   const { data } = await axiosSecure.delete(`/api/cart/${id}`);
   return data;
 };
+
+export const updateMyCart = async (id, quantity) => {
+  const { data } = await axiosSecure.put(`/api/cart/${id}`, quantity);
+  return data;
+};
