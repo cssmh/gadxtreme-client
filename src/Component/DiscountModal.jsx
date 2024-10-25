@@ -7,7 +7,7 @@ const DiscountModal = () => {
   useEffect(() => {
     const modalLastShown = localStorage.getItem("discountModalLastShown");
     const currentTime = new Date().getTime();
-    const twelveHours = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+    const twelveHours = 3 * 60 * 60 * 1000;
 
     // Check if 3 hours have passed since the modal was last shown
     if (!modalLastShown || currentTime - modalLastShown > twelveHours) {
