@@ -202,11 +202,20 @@ const Cart = () => {
                 .toFixed(2)}
             </span>
           </div>
-          <Link to="/checkout">
-            <button className="w-full mt-4 bg-gadDarkBlue text-white py-2 rounded">
+          {myCartData?.length > 0 ? (
+            <Link to="/checkout">
+              <button className="w-full mt-4 bg-gadDarkBlue text-white py-2 rounded">
+                Proceed to Checkout
+              </button>
+            </Link>
+          ) : (
+            <button
+              className="w-full mt-4 bg-gray-400 text-white py-2 rounded"
+              disabled
+            >
               Proceed to Checkout
             </button>
-          </Link>
+          )}
         </div>
       </div>
     </div>
