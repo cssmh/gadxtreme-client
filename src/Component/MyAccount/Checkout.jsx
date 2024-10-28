@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useMyCart from "../../hooks/useMyCart";
-import { updateMyCart } from "../../Api/cartGadget";
+import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
 import toast from "react-hot-toast";
 import SmallLoader from "../SmallLoader";
 import { FaTimes } from "react-icons/fa";
@@ -10,6 +10,7 @@ import { placeOrder } from "../../Api/order";
 const Checkout = () => {
   const { loading, user } = useAuth();
   const { isLoading, myCartData, refetch } = useMyCart();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [quantities, setQuantities] = useState(
     myCartData?.reduce(
       (acc, item) => ({ ...acc, [item._id]: item.quantity }),
@@ -17,7 +18,6 @@ const Checkout = () => {
     )
   );
 
-  // State for form inputs
   const [formData, setFormData] = useState({
     name: user?.displayName || "",
     mobileNumber: "",
@@ -28,7 +28,6 @@ const Checkout = () => {
     additionalInfo: "",
   });
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -47,6 +46,16 @@ const Checkout = () => {
     }
   };
 
+  const handleRemove = async (itemId) => {
+    try {
+      await deleteMyCart(itemId);
+      refetch();
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to remove item");
+    }
+  };
+
   const handleDecrement = async (itemId) => {
     if (quantities[itemId] > 1) {
       const newQuantity = quantities[itemId] - 1;
@@ -62,8 +71,8 @@ const Checkout = () => {
     }
   };
 
-  const handlePlaceOrder = async (e) => {
-    e.preventDefault();
+  const handlePlaceOrder = async () => {
+    setIsSubmitting(true);
     try {
       const orderData = {
         ...formData,
@@ -76,16 +85,18 @@ const Checkout = () => {
           image: item.image,
         })),
         status: "Pending",
+        payment: "Pending",
         createdAt: new Date(),
       };
 
-      // Send order data to the server
       await placeOrder(orderData);
       toast.success("Order placed successfully!");
       // Optionally, redirect or clear cart here
     } catch (error) {
       console.error(error);
       toast.error("Failed to place order");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -96,7 +107,6 @@ const Checkout = () => {
       <div className="lg:w-[60%] w-full border px-4 pb-4 rounded-lg">
         <h2 className="text-xl font-semibold my-3">Billing & Shipping</h2>
         <form onSubmit={(e) => e.preventDefault()}>
-          {/* Name */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Name *</label>
             <input
@@ -108,22 +118,18 @@ const Checkout = () => {
               required
             />
           </div>
-
-          {/* Mobile Number */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Mobile Number *</label>
             <input
               type="text"
               name="mobileNumber"
-              value={formData.mobileNumber || "+880"}
+              defaultValue={"+880"}
               onChange={handleChange}
               className="w-full border rounded-lg p-2 outline-none"
               placeholder="Enter your mobile number"
               required
             />
           </div>
-
-          {/* Country/Region */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Country / Region *</label>
             <select
@@ -135,8 +141,6 @@ const Checkout = () => {
               <option value="Bangladesh">Bangladesh</option>
             </select>
           </div>
-
-          {/* District */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">District *</label>
             <select
@@ -157,8 +161,6 @@ const Checkout = () => {
               <option value="Rangpur">Rangpur</option>
             </select>
           </div>
-
-          {/* Address */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Address *</label>
             <input
@@ -171,8 +173,6 @@ const Checkout = () => {
               required
             />
           </div>
-
-          {/* Email */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Email (optional)</label>
             <input
@@ -183,8 +183,6 @@ const Checkout = () => {
               className="w-full border rounded-lg p-2 outline-none"
             />
           </div>
-
-          {/* Additional Information */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">
               Additional information (Note)
@@ -200,8 +198,6 @@ const Checkout = () => {
           </div>
         </form>
       </div>
-
-      {/* Right Side - Order Summary */}
       <div className="lg:w-[40%] bg-[#f7f7f7] w-full border p-4 rounded-lg lg:self-start pb-6">
         <h2 className="text-xl font-semibold mb-4">Your Order</h2>
         {myCartData?.length > 0 ? (
@@ -212,7 +208,7 @@ const Checkout = () => {
                   <div className="flex items-center">
                     <FaTimes
                       className="cursor-pointer mr-3"
-                      //   onClick={() => handleRemove(item._id)}
+                      onClick={() => handleRemove(item._id)}
                     />
                     <div className="flex justify-between">
                       <div>
@@ -224,8 +220,6 @@ const Checkout = () => {
                       </span>
                     </div>
                   </div>
-
-                  {/* Quantity Controls */}
                   <div className="flex items-center mt-2">
                     <button
                       onClick={() => handleDecrement(item._id)}
@@ -246,49 +240,44 @@ const Checkout = () => {
                 </div>
               </div>
             ))}
-
-            {/* Order Totals */}
             <div className="border-t pt-4">
               <div className="flex justify-between py-2">
                 <span className="font-semibold">Subtotal</span>
                 <span>
                   ৳
                   {myCartData
-                    .reduce(
-                      (total, item) =>
-                        total + item.price * quantities[item._id],
+                    ?.reduce(
+                      (acc, item) => acc + item.price * quantities[item._id],
                       0
                     )
                     .toFixed(2)}
                 </span>
-              </div>
-              <div className="flex justify-between py-2">
-                <span className="font-semibold">Shipping</span>
-                <span>৳0.00</span>
               </div>
               <div className="flex justify-between py-2">
                 <span className="font-semibold">Total</span>
                 <span>
                   ৳
                   {myCartData
-                    .reduce(
-                      (total, item) =>
-                        total + item.price * quantities[item._id],
+                    ?.reduce(
+                      (acc, item) => acc + item.price * quantities[item._id],
                       0
                     )
                     .toFixed(2)}
                 </span>
               </div>
-              <button
-                onClick={handlePlaceOrder}
-                className="bg-green-500 text-white w-full py-2 rounded-lg mt-4"
-              >
-                Place Order
-              </button>
             </div>
+            <button
+              onClick={handlePlaceOrder}
+              disabled={isSubmitting}
+              className={`w-full mt-4 ${
+                isSubmitting ? "bg-gray-500" : "bg-gadDarkBlue"
+              } text-white py-2 rounded`}
+            >
+              {isSubmitting ? "Order Placing..." : "Place Order"}
+            </button>
           </div>
         ) : (
-          <div className="text-center">No items in your cart</div>
+          <p>Your cart is empty.</p>
         )}
       </div>
     </div>
