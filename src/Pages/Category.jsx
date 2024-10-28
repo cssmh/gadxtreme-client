@@ -56,6 +56,10 @@ const Category = () => {
     return 0; // Default sorting (relevant)
   });
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN").format(price);
+  };
+
   return (
     <div className="container mx-auto px-4 py-3 md:py-6 mb-5 md:mb-3">
       <div className="flex flex-col lg:flex-row">
@@ -168,7 +172,7 @@ const Category = () => {
 
           {/* Product Cards */}
           {isLoading ? (
-            <SmallLoader size="60" />
+            <SmallLoader size="58" />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {sortedProducts?.map((product) => (
@@ -204,15 +208,15 @@ const Category = () => {
                       {product.discountPrice ? (
                         <>
                           <span className="line-through text-gray-500">
-                            ৳{product.price}
+                            ৳{formatPrice(product.price)}
                           </span>
                           <span className="ml-2 text-blue-700 font-medium">
-                            ৳{product.discountPrice}
+                            ৳{formatPrice(product.discountPrice)}
                           </span>
                         </>
                       ) : (
                         <span className="text-blue-700 font-medium">
-                          ৳{product.price}
+                          ৳{formatPrice(product.price)}
                         </span>
                       )}
                     </div>

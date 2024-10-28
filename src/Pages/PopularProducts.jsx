@@ -25,6 +25,10 @@ const PopularProducts = () => {
 
   const skeletonCount = getSkeletonCount();
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN").format(price);
+  };
+
   return (
     <div className="max-w-[1250px] mx-1 my-2 md:mx-auto">
       <h1 className="text-center font-bold text-xl text-emerald-600 md:text-2xl pb-3 max-w-md mx-auto">
@@ -50,7 +54,7 @@ const PopularProducts = () => {
         </div>
       ) : (
         <Swiper
-          speed={1000}
+          speed={900}
           grabCursor={true}
           autoplay={{
             delay: 1500,
@@ -100,10 +104,10 @@ const PopularProducts = () => {
                     {product.discountPrice ? (
                       <>
                         <span className="line-through text-gray-500">
-                          ৳{product.price}
+                          ৳{formatPrice(product.price)}
                         </span>
                         <span className="ml-2 text-blue-700 font-medium">
-                          ৳{product.discountPrice}
+                          ৳{formatPrice(product.discountPrice)}
                         </span>
                       </>
                     ) : (

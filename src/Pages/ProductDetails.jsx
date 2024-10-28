@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import pay from "../assets/pay.png";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
@@ -9,6 +9,7 @@ import useMyCart from "../hooks/useMyCart";
 const ProductDetails = () => {
   const { user } = useAuth();
   const { refetch } = useMyCart();
+  const navigate = useNavigate();
   const [totalCart, setTotalCart] = useState(1);
   const gadgetData = useLoaderData();
 
@@ -35,7 +36,6 @@ const ProductDetails = () => {
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-IN").format(price);
-    // 'en-IN' is for Indian-style formatting
   };
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const ProductDetails = () => {
     return Math.round(discount);
   };
 
-  const handleAddToCart = async (gadget) => {
+  const handleAddToCart = async (gadget, redirectToCart = false) => {
     const cartData = {
       gadgetId: gadget._id,
       author: user?.email,
@@ -57,10 +57,12 @@ const ProductDetails = () => {
       quantity: totalCart || 1,
     };
     try {
-      const res = await postCart(cartData);
+      await postCart(cartData);
       refetch();
-      console.log(res);
-      toast.success("added to cart");
+      toast.success("Added to cart");
+      if (redirectToCart) {
+        navigate("/cart");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -134,7 +136,10 @@ const ProductDetails = () => {
               >
                 Add to Cart
               </button>
-              <button className="bg-[#5eb237] text-white px-4 py-2 rounded-lg hover:bg-[#4c992f]">
+              <button
+                onClick={() => handleAddToCart(gadgetData, true)}
+                className="bg-[#5eb237] text-white px-4 py-2 rounded-lg hover:bg-[#4c992f]"
+              >
                 Buy Now
               </button>
             </div>

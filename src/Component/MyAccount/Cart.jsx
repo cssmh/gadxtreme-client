@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const { isLoading, myCartData, refetch } = useMyCart();
   const [couponCode, setCouponCode] = useState("");
-  const [notification, setNotification] = useState(null); // State for notification
+  const [notification, setNotification] = useState(null);
 
   const showNotification = (message, type = "info") => {
     setNotification({ message, type });
-    setTimeout(() => setNotification(null), 3000); // Hide after 3 seconds
+    setTimeout(() => setNotification(null), 3000);
   };
 
   const handleIncrement = async (itemId, currentQuantity) => {
@@ -54,7 +54,6 @@ const Cart = () => {
   };
 
   const handleApplyCoupon = () => {
-    // Logic for applying the coupon code
     toast.success("Coupon applied");
     showNotification("Coupon applied successfully!", "success");
   };
@@ -67,7 +66,6 @@ const Cart = () => {
 
   return (
     <div className="relative">
-      {/* Notification Banner */}
       {notification && (
         <div
           className={`absolute -top-6 left-0 right-0 p-3 text-white px-8 z-50 ${
@@ -77,18 +75,16 @@ const Cart = () => {
           {notification.message}
         </div>
       )}
-
       <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4 mt-2">
-        {/* Left Side - Cart Items */}
         <div className="lg:w-[70%] w-full border px-4 pb-4 rounded-lg">
           {myCartData?.length > 0 ? (
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b">
-                  <th className="py-3">Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Subtotal</th>
+                  <th className="py-3 px-2">Product</th>
+                  <th className="py-3 px-2">Price</th>
+                  <th className="py-3 px-2">Quantity</th>
+                  <th className="py-3 px-2">Subtotal</th>
                 </tr>
               </thead>
               <tbody>
@@ -107,10 +103,8 @@ const Cart = () => {
                       />
                       <span>{item.name}</span>
                     </td>
-                    {/* Price Column */}
-                    <td className="py-4">৳{item?.price}</td>
-                    {/* Quantity Column */}
-                    <td className="py-4">
+                    <td className="py-4 px-1">৳{item?.price}</td>
+                    <td className="py-4 px-1">
                       <div className="flex items-center border rounded-2xl mx-1">
                         <button
                           onClick={() =>
@@ -131,8 +125,7 @@ const Cart = () => {
                         </button>
                       </div>
                     </td>
-                    {/* Subtotal Column */}
-                    <td className="py-4 text-gadDarkBlue font-semibold">
+                    <td className="py-4 px-1 text-gadDarkBlue font-semibold">
                       ৳{calculateSubtotal(item.price, item.quantity).toFixed(2)}
                     </td>
                   </tr>
@@ -142,8 +135,6 @@ const Cart = () => {
           ) : (
             <p>Your cart is empty.</p>
           )}
-
-          {/* Coupon Code Section */}
           <div className="mt-6">
             <h3 className="font-semibold mb-2">Have a Coupon?</h3>
             <div className="flex flex-col sm:flex-row gap-2">
@@ -163,8 +154,6 @@ const Cart = () => {
             </div>
           </div>
         </div>
-
-        {/* Right Side - Cart Totals */}
         <div className="lg:w-[30%] w-full border p-4 rounded-lg lg:self-start pb-5">
           <h2 className="text-xl font-bold mb-4">Cart Totals</h2>
           <div className="flex justify-between border-b py-2">
