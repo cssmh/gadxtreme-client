@@ -18,6 +18,7 @@ import UpdateProduct from "../Pages/AdminDash.jsx/UpdateProduct";
 import { getGadget } from "../Api/gadgets";
 import Cart from "../Component/MyAccount/Cart";
 import Checkout from "../Component/MyAccount/Checkout";
+import PrivateRoute from "./PrivateRoute";
 
 const Route = createBrowserRouter([
   {
@@ -32,20 +33,42 @@ const Route = createBrowserRouter([
       { path: "/category/:cate", element: <Category /> },
       {
         path: "/details/:id",
-        element: <ProductDetails />,
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
         loader: async ({ params }) => await getGadget(params.id),
       },
       {
         path: "/my-account",
-        element: <MyAccount />,
+        element: (
+          <PrivateRoute>
+            <MyAccount />
+          </PrivateRoute>
+        ),
         children: [
           { path: "/my-account/dashboard", element: <Dashboard /> },
           { path: "/my-account/wishlist", element: <Wishlist /> },
           { path: "/my-account/orders", element: <Orders /> },
         ],
       },
-      { path: "/cart", element: <Cart /> },
-      { path: "/checkout", element: <Checkout /> },
+      {
+        path: "/cart",
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/checkout",
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/admin-dashboard",
         element: <AdminDashboard />,

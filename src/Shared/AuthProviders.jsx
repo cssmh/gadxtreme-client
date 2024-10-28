@@ -11,7 +11,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-// import { clearCookie, setToken } from "../../Api/auth";
+import { clearCookie, setToken } from "../Api/auth";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -47,30 +47,26 @@ const AuthProviders = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
-  // const verifyEmail = () => {
-  //   return sendEmailVerification(auth.currentUser);
-  // };
-
   const logOut = async () => {
-    // await clearCookie();
+    await clearCookie();
     return signOut(auth);
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      // const userEmail = currentUser?.email || user?.email;
-      // try {
-      //   if (userEmail) {
-      //     await setToken(userEmail);
-      //   } else {
-      //     await clearCookie();
-      //   }
-      // } catch (error) {
-      //   console.log("Error during state change", error);
-      // } finally {
-      // }
-      setLoading(false);
+      const userEmail = currentUser?.email || user?.email;
+      try {
+        if (userEmail) {
+          await setToken(userEmail);
+        } else {
+          await clearCookie();
+        }
+      } catch (error) {
+        console.log("Error during state change", error);
+      } finally {
+        setLoading(false);
+      }
     });
 
     return () => {

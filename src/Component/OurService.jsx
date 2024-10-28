@@ -10,7 +10,7 @@ const OurService = () => {
         our mission is to provide authentic, high-quality products that elevate
         your digital experience.
       </p>
-      <div className="bg-gray-100 p-6 rounded-lg shadow-lg max-w-4xl mx-auto text-gray-900">
+      <div className="bengali-text bg-gray-100 p-6 rounded-lg shadow-lg max-w-4xl mx-auto text-gray-900">
         <h2 className="text-lg md:text-xl font-semibold mb-4 text-center">
           কেনো গ্যাডএক্সট্রিম থেকে প্রোডাক্ট কিনবেন?
         </h2>

@@ -10,6 +10,12 @@ export const getAllGadget = async () => {
   return data;
 };
 
+export const getPopularGadget = async (skip, limit) => {
+  const api = `/api/popular-gadget?skip=${skip}&limit=${limit}`;
+  const { data } = await axiosSecure(api);
+  return data;
+};
+
 export const getCategoryGadget = async (category, page, limit) => {
   const api = `/api/products/${category}?page=${page}&limit=${limit}`;
   const { data } = await axiosSecure(api);

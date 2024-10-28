@@ -4,24 +4,23 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getAllGadget } from "../Api/gadgets";
+import { getPopularGadget } from "../Api/gadgets";
 
 const PopularProducts = () => {
   const { data = [], isLoading } = useQuery({
     queryKey: ["popularGadgets"],
-    queryFn: async () => await getAllGadget(),
+    queryFn: async () => await getPopularGadget(10, 10),
   });
 
-  // Function to calculate the discount percentage
   const calculateDiscount = (price, discountPrice) => {
     const discount = ((price - discountPrice) / price) * 100;
     return Math.round(discount);
   };
 
   const getSkeletonCount = () => {
-    if (window.innerWidth < 700) return 2; // small devices
-    if (window.innerWidth >= 768 && window.innerWidth < 1024) return 3; // medium devices
-    return 6; // large devices
+    if (window.innerWidth < 700) return 2;
+    if (window.innerWidth >= 768 && window.innerWidth < 1024) return 3;
+    return 6;
   };
 
   const skeletonCount = getSkeletonCount();
@@ -71,18 +70,16 @@ const PopularProducts = () => {
             1400: { slidesPerView: 6, spaceBetween: 10 },
           }}
         >
-          {data?.slice(0, 8).map((product) => (
+          {data?.map((product) => (
             <SwiperSlide key={product._id}>
               <Link to={`/details/${product._id}`}>
                 <div className="p-4 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
-                  {/* Discount Badge */}
                   {product.discountPrice && product.price && (
                     <div className="absolute top-2 left-2 bg-blue-500 text-white rounded-full px-2 py-1 text-xs z-10">
                       -{calculateDiscount(product.price, product.discountPrice)}
                       %
                     </div>
                   )}
-                  {/* Product Image */}
                   <div className="relative overflow-hidden">
                     <img
                       src={product?.images[0]}

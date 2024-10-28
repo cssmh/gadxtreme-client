@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { clearCookie, userLogout } from "./auth";
+import { clearCookie, userLogout } from "./auth";
 import swal from "sweetalert";
 
 const axiosSecure = axios.create({
@@ -16,8 +16,8 @@ axiosSecure.interceptors.response.use(
         "Please log in again to continue",
         "warning"
       );
-      // await clearCookie();
-      // await userLogout();
+      await clearCookie();
+      await userLogout();
       history.push("/login");
     }
 
