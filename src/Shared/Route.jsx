@@ -19,6 +19,7 @@ import { getGadget } from "../Api/gadgets";
 import Cart from "../Component/MyAccount/Cart";
 import Checkout from "../Component/MyAccount/Checkout";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../Component/MyAccount/Payment";
 
 const Route = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ const Route = createBrowserRouter([
           { path: "/my-account/dashboard", element: <Dashboard /> },
           { path: "/my-account/wishlist", element: <Wishlist /> },
           { path: "/my-account/orders", element: <Orders /> },
+          { path: "/my-account/payment", element: <Payment /> },
         ],
       },
       {

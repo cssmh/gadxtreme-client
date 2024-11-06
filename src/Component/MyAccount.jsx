@@ -1,15 +1,15 @@
-import { Outlet, Link } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { Outlet } from "react-router-dom";
+// import useAuth from "../hooks/useAuth";
 
 const MyAccount = () => {
-  const { logOut } = useAuth();
-  const handleLogOut = () => {
-    logOut().then().catch();
-  };
+  // const { logOut } = useAuth();
+  // const handleLogOut = () => {
+  //   logOut().then().catch();
+  // };
   return (
     <div className="flex max-w-7xl mx-auto">
       {/* Left Sidebar */}
-      <aside className="hidden lg:block w-60 p-6 space-y-2">
+      {/* <aside className="hidden lg:block w-60 p-6 space-y-2">
         <h2 className="text-2xl font-semibold">My Account</h2>
         <nav className="mt-8">
           <ul className="space-y-2">
@@ -35,7 +35,7 @@ const MyAccount = () => {
             </li>
           </ul>
         </nav>
-      </aside>
+      </aside> */}
       <div className="flex-grow py-6">
         <Outlet />
       </div>

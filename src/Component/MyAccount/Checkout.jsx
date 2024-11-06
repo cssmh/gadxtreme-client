@@ -72,6 +72,15 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = async () => {
+    if (
+      !formData.name ||
+      !formData.mobileNumber ||
+      !formData.district ||
+      !formData.address
+    ) {
+      toast.error("Please fill out all required fields.");
+      return;
+    }
     setIsSubmitting(true);
     try {
       const orderData = {
@@ -90,8 +99,18 @@ const Checkout = () => {
       };
 
       await placeOrder(orderData);
+      refetch();
       toast.success("Order placed successfully!");
-      // Optionally, redirect or clear cart here
+      setFormData({
+        name: "",
+        mobileNumber: "",
+        country: "Bangladesh",
+        district: "",
+        address: "",
+        email: "",
+        additionalInfo: "",
+      });
+      setQuantities({});
     } catch (error) {
       console.error(error);
       toast.error("Failed to place order");

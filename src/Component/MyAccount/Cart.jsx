@@ -143,7 +143,7 @@ const Cart = () => {
               </tbody>
             </table>
           ) : (
-            <p>Your cart is empty.</p>
+            <p className="py-3">Your cart is empty.</p>
           )}
           <div className="mt-6">
             <h3 className="font-semibold mb-2">Have a Coupon?</h3>

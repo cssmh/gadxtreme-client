@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import pay from "../assets/pay.png";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
@@ -9,7 +9,6 @@ import useMyCart from "../hooks/useMyCart";
 const ProductDetails = () => {
   const { user } = useAuth();
   const { refetch } = useMyCart();
-  const navigate = useNavigate();
   const [totalCart, setTotalCart] = useState(1);
   const gadgetData = useLoaderData();
 
@@ -47,22 +46,19 @@ const ProductDetails = () => {
     return Math.round(discount);
   };
 
-  const handleAddToCart = async (gadget, redirectToCart = false) => {
+  const handleAddToCart = async (gadget) => {
     const cartData = {
       gadgetId: gadget._id,
       author: user?.email,
       image: gadget.images[0],
       name: gadget.productName,
-      price: gadget.discountPrice || gadget.price,
-      quantity: totalCart || 1,
+      price: parseFloat(gadget.discountPrice) || parseFloat(gadget.price),
+      quantity: Number(totalCart) || 1,
     };
     try {
       await postCart(cartData);
       refetch();
       toast.success("Added to cart");
-      if (redirectToCart) {
-        navigate("/cart");
-      }
     } catch (error) {
       console.log(error);
     }
@@ -137,7 +133,7 @@ const ProductDetails = () => {
                 Add to Cart
               </button>
               <button
-                onClick={() => handleAddToCart(gadgetData, true)}
+                onClick={() => handleAddToCart(gadgetData)}
                 className="bg-[#5eb237] text-white px-4 py-2 rounded-lg hover:bg-[#4c992f]"
               >
                 Buy Now

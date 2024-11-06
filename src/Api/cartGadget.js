@@ -1,7 +1,7 @@
 import axiosSecure from ".";
 
 export const postCart = async (cartInfo) => {
-  const { data } = await axiosSecure.post("/api/cart", cartInfo);
+  const { data } = await axiosSecure.put("/api/cart", cartInfo);
   return data;
 };
 
