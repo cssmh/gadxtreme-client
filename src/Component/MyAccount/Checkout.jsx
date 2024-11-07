@@ -178,6 +178,7 @@ const Checkout = () => {
               <option value="Sylhet">Sylhet</option>
               <option value="Barishal">Barishal</option>
               <option value="Rangpur">Rangpur</option>
+              <option value="Tangail">Tangail</option>
             </select>
           </div>
           <div className="mb-4">
