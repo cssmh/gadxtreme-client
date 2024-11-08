@@ -11,7 +11,6 @@ const MainLayout = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
   const NavRoute =
     loc.pathname === "/" ||
     loc.pathname === "/login" ||

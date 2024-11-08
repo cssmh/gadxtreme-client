@@ -64,6 +64,29 @@ const ProductDetails = () => {
     }
   };
 
+  // const formattedContent = description
+  //   ? description.split("\n").map((line, index) => (
+  //       <p key={index} className="text-gray-700 px-1 md:px-0 mb-4">
+  //         {line}
+  //       </p>
+  //     ))
+  //   : null;
+  
+  const formattedContent = description
+    ? description.split("\n").map((line, index) => {
+        const trimmedLine = line.trim();
+
+        // Avoid rendering empty lines
+        if (!trimmedLine) return null;
+
+        return (
+          <p key={index} className="text-gray-700 px-1 md:px-0 mb-4">
+            {trimmedLine}
+          </p>
+        );
+      })
+    : null;
+
   return (
     <div className="container mx-auto p-4 my-4">
       <div className="flex flex-col md:flex-row gap-5 md:gap-10">
@@ -172,7 +195,7 @@ const ProductDetails = () => {
           alt="image"
           className="w-full h-[350px] object-cover rounded-lg mb-4"
         />
-        {description}
+        {formattedContent}
       </div>
     </div>
   );
