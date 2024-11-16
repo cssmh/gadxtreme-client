@@ -10,6 +10,11 @@ export const getAllGadget = async () => {
   return data;
 };
 
+export const getNewArrival = async () => {
+  const { data } = await axiosSecure("/api/new-arrival");
+  return data;
+};
+
 export const getPopularGadget = async (skip, limit) => {
   const api = `/api/popular-gadget?skip=${skip}&limit=${limit}`;
   const { data } = await axiosSecure(api);

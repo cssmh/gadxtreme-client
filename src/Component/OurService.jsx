@@ -1,6 +1,6 @@
 const OurService = () => {
   return (
-    <div className="container text-center mx-auto py-5 md:py-12 px-4">
+    <div className="container text-center mx-auto py-5 md:pb-10 px-4">
       <h1 className="text-xl md:text-2xl font-bold text-center mb-4">
         Your Trusted Source for Premium Gadgets
       </h1>

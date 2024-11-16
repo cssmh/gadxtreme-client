@@ -9,7 +9,6 @@ const DiscountModal = () => {
     const currentTime = new Date().getTime();
     const twelveHours = 3 * 60 * 60 * 1000;
 
-    // Check if 3 hours have passed since the modal was last shown
     if (!modalLastShown || currentTime - modalLastShown > twelveHours) {
       setShowModal(true);
     }
@@ -18,7 +17,7 @@ const DiscountModal = () => {
   const handleClose = () => {
     setShowModal(false);
     const currentTime = new Date().getTime();
-    localStorage.setItem("discountModalLastShown", currentTime.toString()); // Save the current time
+    localStorage.setItem("discountModalLastShown", currentTime.toString());
   };
 
   return (
@@ -34,7 +33,7 @@ const DiscountModal = () => {
             </button>
             <img src={logo} alt="50% Discount Offer" className="mb-4 w-full" />
             <h2 className="text-2xl font-bold mb-2">Special Offer!</h2>
-            <p className="mb-4 text-xl">
+            <p className="mb-4 text-xl capitalize">
               {/* Get 50% off on your first purchase! Use code: FIRST50 */}
               This project is not completed yet!
             </p>

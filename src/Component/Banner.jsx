@@ -2,8 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
-import { assets } from "../assets/Assets";
 import { Link } from "react-router-dom";
+import { assets } from "../assets/assets";
 
 const Banner = () => {
   const { best_mobile, brand_day, get_gadgets, phone_pro } = assets;
