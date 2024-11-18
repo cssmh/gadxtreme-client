@@ -21,21 +21,20 @@ const Orders = () => {
   if (isLoading) return <SmallLoader size="68" />;
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-4 text-gray-800">My Orders</h1>
-      <p className="text-gray-600 mb-6">
+    <div className="px-4 mb-10">
+      <h1 className="text-2xl font-bold text-gray-700">My Orders</h1>
+      <p className="text-gray-600 mb-3">
         Easily track your orders and payment status below.
       </p>
       {data.length === 0 ? (
         <p className="text-lg text-gray-500">You have no orders yet.</p>
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-5">
           {data.map((order) => (
             <div
               key={order._id}
-              className="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl"
+              className="bg-white rounded-lg shadow-lg p-4 transition hover:shadow-xl"
             >
-              {/* Header */}
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-gray-700">
                   Order ID: {order._id}
@@ -58,8 +57,6 @@ const Orders = () => {
                   )}
                 </span>
               </div>
-
-              {/* Additional Information */}
               <div className="text-gray-600 mb-6">
                 <p>
                   <span className="font-semibold">Customer:</span> {order.name}
@@ -92,8 +89,6 @@ const Orders = () => {
                   </p>
                 )}
               </div>
-
-              {/* Ordered Items */}
               <div className="border-t pt-4">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">
                   Items Ordered
@@ -126,13 +121,11 @@ const Orders = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Pay Now Button */}
               {!order.payment && (
                 <div className="mt-6 text-right">
                   <button
                     onClick={() => handlePayment(order)}
-                    className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition"
+                    className="px-6 py-2 bg-teal-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 transition"
                   >
                     Pay Now
                   </button>

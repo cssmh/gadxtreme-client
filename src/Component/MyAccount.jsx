@@ -36,7 +36,7 @@ const MyAccount = () => {
           </ul>
         </nav>
       </aside> */}
-      <div className="flex-grow py-6">
+      <div className="flex-grow">
         <Outlet />
       </div>
     </div>
