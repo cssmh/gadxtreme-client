@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useMyCart from "../../hooks/useMyCart";
 import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import SmallLoader from "../SmallLoader";
 import { FaTimes } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
@@ -94,8 +94,6 @@ const Checkout = () => {
           image: item.image,
         })),
         status: "Pending",
-        payment: "Pending",
-        createdAt: new Date(),
       };
 
       await placeOrder(orderData);

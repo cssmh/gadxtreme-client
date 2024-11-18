@@ -1,22 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { getMyOrder } from "../../Api/order";
 import SmallLoader from "../SmallLoader";
+import axios from "axios";
 
 const Orders = () => {
   const { loading, user } = useAuth();
-  const navigate = useNavigate();
   const { data = [], isLoading } = useQuery({
     queryKey: ["myOrders"],
     queryFn: async () => await getMyOrder(user?.email),
     enabled: !loading && !!user?.email,
   });
+  console.log(data);
 
   if (isLoading) return <SmallLoader size="68" />;
 
-  const handlePayment = (orderId) => {
-    navigate("/my-account/payment", { state: { orderId } });
+  const handlePayment = async (order) => {
+    const { data } = await axios.post(
+      "http://localhost:2000/payment-gateway",
+      order
+    );
+    window.location.replace(data.url);
   };
 
   return (
@@ -26,7 +30,6 @@ const Orders = () => {
         View the details of your orders below. Track your status and payment
         details easily.
       </p>
-
       {data.length === 0 ? (
         <p className="text-gray-500 text-lg">You have no orders yet.</p>
       ) : (
@@ -63,11 +66,21 @@ const Orders = () => {
                     {order.payment}
                   </span>
                 </p>
-                <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
+                {order.createAt && (
+                  <p>Cart: {new Date(order.createAt).toLocaleDateString()}</p>
+                )}
+                {order.paidAt && (
+                  <p className="text-green-500">
+                    Paid: Success ({new Date(order.paidAt).toLocaleDateString()}
+                    )
+                  </p>
+                )}
                 <p>Delivery Address: {order.address}</p>
                 <p>Contact: {order.mobileNumber}</p>
+                {order.transactionId && (
+                  <p>transactionId: {order.transactionId}</p>
+                )}
               </div>
-
               <div className="border-t pt-4 mt-4">
                 <h3 className="text-lg font-semibold mb-3 text-gray-800">
                   Items Ordered
@@ -103,10 +116,10 @@ const Orders = () => {
                   ))}
                 </div>
               </div>
-              {order.payment === "Pending" && (
+              {!order.payment && (
                 <div className="mt-6 text-right">
                   <button
-                    onClick={() => handlePayment(order._id)}
+                    onClick={() => handlePayment(order)}
                     className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
                   >
                     Pay Now

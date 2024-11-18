@@ -7,6 +7,7 @@
 ## Live Demo
 
 - [GadXtreme on Firebase](https://gadxtreme-906da.web.app)
+- [GadXtreme on Firebase](https://gadxtreme.vercel.app)
 - [GadXtreme on Netlify](https://gadxtreme.netlify.app)
 
 ### Admin Dashboard Preview
@@ -31,8 +32,8 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
    - Secure sign up and login (Google authentication included).
    - Profile updates and password management.
    - Role-based access (User/Admin).
-   
 2. **Product Management:**
+
    - Browse products by category (e.g., smartwatches, headphones).
    - Add and remove products from the cart.
    - Real-time cart updates and order placement.
@@ -41,15 +42,12 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
    - Add, update, and delete products.
    - Manage orders (view, update status, delete).
    - User management (upgrade to admin, view activity).
-   
 4. **Order Management:**
    - Track order history and status (Pending, Shipped, Delivered).
    - Admins can update and manage orders.
-   
 5. **Responsive Design:**
    - Fully responsive across devices (mobile, tablet, and desktop).
    - Interactive animations using **AOS** and **Swiper** for product carousels.
-   
 6. **Upcoming Stripe Integration:**
    - **Stripe.js** will be added for secure payments and transaction tracking.
 
@@ -63,7 +61,7 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
 - [swiper](https://www.npmjs.com/package/swiper) - Product image carousels.
 - [react-icons](https://www.npmjs.com/package/react-icons) - Iconography for UI elements.
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query) - Data fetching and caching.
-- [react-hot-toast](https://www.npmjs.com/package/react-hot-toast) - Notifications.
+- [sonner](https://www.npmjs.com/package/sonner) - Notifications.
 
 ### Dev Dependencies
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import pay from "../assets/pay.png";
 import { useLoaderData } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import useAuth from "../hooks/useAuth";
 import useMyCart from "../hooks/useMyCart";
 
@@ -59,6 +59,7 @@ const ProductDetails = () => {
       await postCart(cartData);
       refetch();
       toast.success("Added to cart");
+      // window.location.replace("/checkout");
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +72,7 @@ const ProductDetails = () => {
   //       </p>
   //     ))
   //   : null;
-  
+
   const formattedContent = description
     ? description.split("\n").map((line, index) => {
         const trimmedLine = line.trim();

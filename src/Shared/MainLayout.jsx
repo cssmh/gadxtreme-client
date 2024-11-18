@@ -11,21 +11,24 @@ const MainLayout = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const NavRoute =
     loc.pathname === "/" ||
     loc.pathname === "/login" ||
     loc.pathname === "/register";
 
   const noHeaderFooter = loc?.pathname?.startsWith("/admin-dashboard");
+  const noNavFooter = loc?.pathname?.startsWith("/success");
 
   return (
     <div>
       <DiscountModal />
-      {noHeaderFooter ? null : NavRoute ? <Navbar /> : <NavNew />}
+      {!noNavFooter &&
+        (noHeaderFooter ? null : NavRoute ? <Navbar /> : <NavNew />)}
       <div className="min-h-[83vh]">
         <Outlet />
       </div>
-      {!noHeaderFooter && <Footer />}
+      {!noNavFooter && !noHeaderFooter && <Footer />}
     </div>
   );
 };

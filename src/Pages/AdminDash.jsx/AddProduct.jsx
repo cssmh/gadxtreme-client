@@ -3,7 +3,7 @@ import axios from "axios";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { postGadget } from "../../Api/gadgets";
 import swal from "sweetalert";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 const categories = [
   "Earbuds",
