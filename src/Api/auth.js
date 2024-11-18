@@ -32,3 +32,8 @@ export const updateRole = async (email, role) => {
   const { data } = await axiosSecure.patch(`/user-update/${email}`, { role });
   return data;
 };
+
+export const sslPay = async (order) => {
+  const { data } = await axiosSecure.post("/payment-gateway", order);
+  return data;
+};

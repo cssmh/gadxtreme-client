@@ -8,7 +8,6 @@
 
 - [GadXtreme on Firebase](https://gadxtreme-906da.web.app)
 - [GadXtreme on Firebase](https://gadxtreme.vercel.app)
-- [GadXtreme on Netlify](https://gadxtreme.netlify.app)
 
 ### Admin Dashboard Preview
 
