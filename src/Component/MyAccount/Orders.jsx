@@ -21,26 +21,31 @@ const Orders = () => {
   if (isLoading) return <SmallLoader size="68" />;
 
   return (
-    <div className="px-4 mb-10">
-      <h1 className="text-2xl font-bold text-gray-700">My Orders</h1>
-      <p className="text-gray-600 mb-3">
-        Easily track your orders and payment status below.
+    <div className="px-4 py-2 max-w-6xl mx-auto mb-7">
+      <p className="text-gray-600 mb-4">
+        Track your orders and payment status below.
       </p>
+
       {data.length === 0 ? (
-        <p className="text-lg text-gray-500">You have no orders yet.</p>
+        <p className="text-gray-500">You have no orders yet.</p>
       ) : (
-        <div className="space-y-5">
+        <div className="space-y-6">
           {data.map((order) => (
             <div
               key={order._id}
-              className="bg-white rounded-lg shadow-lg p-4 transition hover:shadow-xl"
+              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all"
             >
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-gray-700">
-                  Order ID: {order._id}
-                </h2>
+              <div className="p-4 flex justify-between items-center border-b border-gray-200">
+                <div>
+                  <h2 className="text-lg font-semibold text-gray-800">
+                    Order ID: {order._id}
+                  </h2>
+                  <p className=" text-gray-500">
+                    {new Date(order.createAt).toLocaleDateString()}
+                  </p>
+                </div>
                 <span
-                  className={`inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold ${
+                  className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
                     order.payment
                       ? "bg-green-100 text-green-600"
                       : "bg-yellow-100 text-yellow-600"
@@ -48,27 +53,24 @@ const Orders = () => {
                 >
                   {order.payment ? (
                     <>
-                      <FaCheckCircle className="mr-2" /> Paid
+                      <FaCheckCircle className="mr-1 " /> Paid
                     </>
                   ) : (
                     <>
-                      <FaExclamationTriangle className="mr-2" /> Pending
+                      <FaExclamationTriangle className="mr-1 " /> Pending
                     </>
                   )}
                 </span>
               </div>
-              <div className="text-gray-600 mb-6">
+
+              <div className="p-4  text-gray-700 space-y-2">
                 <p>
                   <span className="font-semibold">Customer:</span> {order.name}
                 </p>
                 <p>
                   <span className="font-semibold">Email:</span> {order.email}
                 </p>
-                <p>
-                  <span className="font-semibold">Contact:</span>{" "}
-                  {order.mobileNumber}
-                </p>
-                <p>
+                <p className="truncate">
                   <span className="font-semibold">Delivery Address:</span>{" "}
                   {order.address}, {order.district}, {order.country}
                 </p>
@@ -78,10 +80,6 @@ const Orders = () => {
                     {order.transactionId}
                   </p>
                 )}
-                <p>
-                  <span className="font-semibold">Order Date:</span>{" "}
-                  {new Date(order.createAt).toLocaleDateString()}
-                </p>
                 {order.paidAt && (
                   <p>
                     <span className="font-semibold text-green-600">Paid:</span>{" "}
@@ -89,43 +87,45 @@ const Orders = () => {
                   </p>
                 )}
               </div>
-              <div className="border-t pt-4">
-                <h3 className="text-lg font-semibold mb-4 text-gray-800">
-                  Items Ordered
+
+              <div className="p-4 border-t">
+                <h3 className=" font-semibold text-gray-800 mb-3">
+                  Items
                 </h3>
-                <div className="grid gap-4">
+                <div className="space-y-2">
                   {order.cartItems.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between bg-gray-100 p-4 rounded-lg"
+                      className="flex justify-between items-center"
                     >
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-3">
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="w-16 h-16 object-cover rounded-lg shadow-md"
+                          className="w-12 h-12 object-cover rounded-md"
                         />
                         <div>
-                          <h4 className="font-medium text-gray-800">
+                          <h4 className=" font-medium text-gray-800">
                             {item.name}
                           </h4>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-xs text-gray-500">
                             ৳{item.price} x {item.quantity}
                           </p>
                         </div>
                       </div>
-                      <p className="text-lg font-semibold text-gray-800">
+                      <p className=" font-semibold text-gray-800">
                         ৳{item.price * item.quantity}
                       </p>
                     </div>
                   ))}
                 </div>
               </div>
+
               {!order.payment && (
-                <div className="mt-6 text-right">
+                <div className="p-4 text-right">
                   <button
                     onClick={() => handlePayment(order)}
-                    className="px-6 py-2 bg-teal-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 transition"
+                    className="px-6 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition"
                   >
                     Pay Now
                   </button>

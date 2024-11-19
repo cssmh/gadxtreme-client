@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
   const [view, setView] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { login, googleLogin, resetPassword } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +17,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await login(email, password);
       toast.success("Login successful!");
@@ -23,10 +25,13 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       toast.error("Login failed. Please check your credentials.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleGoogleLogin = async () => {
+    setLoading(true);
     try {
       await googleLogin();
       toast.success("Google login successful!");
@@ -34,6 +39,8 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       toast.error("Google login failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -101,9 +108,12 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-gadBlue text-white py-2 px-4 rounded-md"
+              disabled={loading}
+              className={`w-full ${
+                loading ? "bg-gray-500" : "bg-gadBlue"
+              } text-white py-2 px-4 rounded-md`}
             >
-              Log in
+              {loading ? "Logging in..." : "Log in"}
             </button>
           </form>
           <div className="mt-4 text-center text-gray-500">Or login with</div>

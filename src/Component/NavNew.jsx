@@ -168,10 +168,10 @@ const NavNew = () => {
                     Orders
                   </Link>
                   <Link
-                    to="/my-account/wishlist"
+                    to="/my-account/profile"
                     className="block px-4 py-1 hover:bg-gray-100"
                   >
-                    Wishlist
+                    Profile
                   </Link>
                   <button
                     onClick={handleLogOut}
@@ -191,10 +191,10 @@ const NavNew = () => {
             </Link>
           )}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link to={"/my-account/wishlist"} className="relative">
+            <Link to={"/my-account/profile"} className="relative">
               <FaRegHeart
                 className="text-gray-600 cursor-pointer text-xl"
-                title="Wishlist"
+                title="Profile"
               />
               <span className="absolute -top-2 -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                 2
@@ -245,7 +245,7 @@ const NavNew = () => {
           )}
           <button onClick={() => setShowMenu(!showMenu)}>
             {showMenu ? (
-              <FaTimes className="text-gray-600 text-xl" />
+              <FaTimes className="text-gray-600 text-2xl" />
             ) : (
               <FaBars className="text-gray-600 text-2xl" />
             )}
@@ -288,11 +288,20 @@ const NavNew = () => {
         )}
       </div>
       {showMenu && (
-        <div className="absolute top-28 left-0 right-0 bg-white shadow-md px-4 pb-2 lg:hidden z-50">
+        <div className="absolute top-[101px] left-0 right-0 bg-white shadow-md px-4 pb-2 lg:hidden z-50">
           <ul>
-            <Link to="/login">
-              <p className="text-gray-700 p-2 border-b">Login/Register</p>
-            </Link>
+            {user ? (
+              <Link
+                onClick={() => setShowMenu(!showMenu)}
+                to="my-account/dashboard"
+              >
+                <p className="text-gray-700 p-2 border-b">Dashboard</p>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <p className="text-gray-700 p-2 border-b">Login/Register</p>
+              </Link>
+            )}
             {categories?.map((category) => (
               <li key={category.name} className="border-b hover:bg-gray-200">
                 <div className="flex justify-between items-center p-2">
@@ -322,7 +331,7 @@ const NavNew = () => {
                       <li key={subcategory}>
                         <Link
                           to={`/category/${subcategory}`.toLowerCase()}
-                          className="block p-1 text-gray-600 hover:bg-gray-200 rounded"
+                          className="block py-1 text-gray-600 hover:bg-base-200 rounded"
                           onClick={() => setShowMenu(false)}
                         >
                           {subcategory}

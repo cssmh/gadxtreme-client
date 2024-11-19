@@ -195,10 +195,10 @@ const Navbar = () => {
                       Orders
                     </Link>
                     <Link
-                      to="/my-account/wishlist"
+                      to="/my-account/profile"
                       className="block px-4 py-1 hover:bg-gray-100"
                     >
-                      Wishlist
+                      Profile
                     </Link>
                     <button
                       onClick={handleLogOut}
@@ -214,10 +214,10 @@ const Navbar = () => {
                 Login/Register
               </Link>
             )}
-            <Link to={"/my-account/wishlist"}>
+            <Link to={"/my-account/profile"}>
               <FaHeart
                 className="text-white cursor-pointer text-xl"
-                title="Wishlist"
+                title="Profile"
               />
             </Link>
             <Link to={"/cart"}>
@@ -238,7 +238,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* Full-width search box for small and medium devices */}
       <div className="block lg:hidden px-1 relative">
         <input
           type="text"
@@ -274,7 +273,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      {/* Drawer for small screens */}
       {isDrawerOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-end bg-black bg-opacity-70">
           <div className="bg-white w-64 h-full shadow-lg p-4">
@@ -282,11 +280,22 @@ const Navbar = () => {
               Close
             </button>
             <ul className="mt-4">
-              <p className="my-1">
-                <Link to="/login" className="font-medium">
-                  Login/Register
-                </Link>
-              </p>
+              {user ? (
+                <p className="font-medium my-1">
+                  <Link
+                    onClick={() => setDrawerOpen(!isDrawerOpen)}
+                    to="my-account/dashboard"
+                  >
+                    Dashboard
+                  </Link>
+                </p>
+              ) : (
+                <p className="my-1">
+                  <Link to="/login" className="font-medium">
+                    Login/Register
+                  </Link>
+                </p>
+              )}
               {categories.map((category) => (
                 <li key={category.name} className="relative group">
                   <div
@@ -310,7 +319,6 @@ const Navbar = () => {
                       </button>
                     )}
                   </div>
-                  {/* Subcategories dropdown for small devices */}
                   {openedCategory === category.name &&
                     category.subcategories.length > 0 && (
                       <div className="ml-4 space-y-1 bg-white text-gray-600 rounded shadow-lg">
@@ -331,7 +339,6 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      {/* Navbar for medium and larger screens */}
       <div className="bg-[#ededed] text-sm p-2 hidden lg:block">
         <ul className="flex space-x-6 justify-center">
           {categories.map((category, index) => (
@@ -350,7 +357,6 @@ const Navbar = () => {
                   <FaCaretDown className="ml-1" />
                 )}
               </Link>
-              {/* Subcategories dropdown for larger screens */}
               {hoveredCategory === category.name &&
                 category.subcategories.length > 0 && (
                   <div className="absolute left-0 z-50 space-y-1 bg-white text-gray-600 rounded shadow-lg transition-all duration-200 ease-in-out">

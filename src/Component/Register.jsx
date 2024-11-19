@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [view, setView] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { createUser, updateProfileInfo } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await createUser(email, password);
       await updateProfileInfo(name);
@@ -23,6 +25,8 @@ const Register = () => {
     } catch (error) {
       console.log(error);
       toast.error("Registration failed. Please check your credentials.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -102,9 +106,12 @@ const Register = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-gadBlue text-white py-2 px-4 rounded-md"
+              disabled={loading}
+              className={`w-full ${
+                loading ? "bg-gray-500" : "bg-gadBlue"
+              } text-white py-2 px-4 rounded-md`}
             >
-              Register
+              {loading ? "Register in..." : "Register"}
             </button>
           </form>
         </div>

@@ -23,7 +23,7 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
 
 ## Description
 
-**GadXtreme** is an advanced e-commerce platform tailored for gadget enthusiasts. It allows users to browse and purchase a wide range of gadgets, manage their orders, and perform secure payments (Stripe integration coming soon). Admins have the ability to manage products, orders, and users through a powerful admin dashboard.
+**GadXtreme** is an advanced e-commerce platform tailored for gadget enthusiasts. It allows users to browse and purchase a wide range of gadgets, manage their orders, and perform secure payments (SSLCommerz integration). Admins have the ability to manage products, orders, and users through a powerful admin dashboard.
 
 ## Features
 
@@ -32,7 +32,6 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
    - Profile updates and password management.
    - Role-based access (User/Admin).
 2. **Product Management:**
-
    - Browse products by category (e.g., smartwatches, headphones).
    - Add and remove products from the cart.
    - Real-time cart updates and order placement.
@@ -47,8 +46,10 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
 5. **Responsive Design:**
    - Fully responsive across devices (mobile, tablet, and desktop).
    - Interactive animations using **AOS** and **Swiper** for product carousels.
-6. **Upcoming Stripe Integration:**
-   - **Stripe.js** will be added for secure payments and transaction tracking.
+6. **SSLCommerz Integration:**
+   - **SSLCommerz** for secure payment transactions.
+   - Users can make payments securely through SSLCommerz.
+   - Integration for order payments with SSLCommerz gateway.
 
 ## Packages Used
 
@@ -61,6 +62,7 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
 - [react-icons](https://www.npmjs.com/package/react-icons) - Iconography for UI elements.
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query) - Data fetching and caching.
 - [sonner](https://www.npmjs.com/package/sonner) - Notifications.
+- [sslcommerz](https://www.npmjs.com/package/sslcommerz) - SSLCommerz payment gateway integration for secure transactions.
 
 ### Dev Dependencies
 
@@ -74,3 +76,8 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
 - **Product Reviews & Ratings:** Users can leave reviews and ratings for purchased gadgets.
 - **Wishlist Feature:** Save products for later with a wishlist functionality.
 - **Advanced Admin Analytics:** Detailed sales, user, and product analytics for admins.
+- **SSLCommerz Enhancements:** Continued optimization of the SSLCommerz payment gateway.
+
+## SSLCommerz Integration
+
+The payment system is powered by [SSLCommerz](https://github.com/sslcommerz/SSLCommerz-NodeJS). This integration allows users to complete their payments securely.
