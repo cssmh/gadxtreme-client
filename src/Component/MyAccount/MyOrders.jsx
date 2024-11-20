@@ -5,7 +5,7 @@ import SmallLoader from "../SmallLoader";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { sslPay } from "../../Api/auth";
 
-const Orders = () => {
+const MyOrders = () => {
   const { loading, user } = useAuth();
   const { data = [], isLoading } = useQuery({
     queryKey: ["myOrders"],
@@ -89,9 +89,7 @@ const Orders = () => {
               </div>
 
               <div className="p-4 border-t">
-                <h3 className=" font-semibold text-gray-800 mb-3">
-                  Items
-                </h3>
+                <h3 className=" font-semibold text-gray-800 mb-3">Items</h3>
                 <div className="space-y-2">
                   {order.cartItems.map((item, index) => (
                     <div
@@ -139,4 +137,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default MyOrders;

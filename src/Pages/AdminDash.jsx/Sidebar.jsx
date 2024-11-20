@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { FaPlus, FaThList, FaClipboardList } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import { FaPlus, FaThList, FaClipboardList, FaUsers } from "react-icons/fa";
 import { AiOutlineBars } from "react-icons/ai";
 
 const Sidebar = () => {
@@ -12,10 +12,10 @@ const Sidebar = () => {
 
   return (
     <div>
-      {/* Toggle Button for Mobile */}
-      <div className="md:hidden p-4">
-        <button onClick={toggleSidebar}>
-          <AiOutlineBars className="h-6 w-6" />
+      {/* Mobile Menu Button */}
+      <div className="md:hidden p-4 bg-gray-100">
+        <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
+          <AiOutlineBars className="h-6 w-6 text-gray-700" />
         </button>
       </div>
 
@@ -25,53 +25,85 @@ const Sidebar = () => {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:block`}
       >
-        <div className="p-3">
-          <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
+        {/* Sidebar Header */}
+        <div className="p-4 border-b border-gray-300">
+          <Link to="/admin-dashboard">
+            <h1 className="text-xl font-bold text-gray-800">Admin Dashboard</h1>
+          </Link>
         </div>
-        <nav>
+
+        {/* Navigation Links */}
+        <nav className="mt-4">
+          {/* Add Product */}
           <NavLink
             to="/admin-dashboard/add-product"
             className={({ isActive }) =>
-              `block py-2.5 px-4 rounded hover:text-gadBlue ${
-                isActive ? "text-blue-500 font-semibold" : "text-gray-700"
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+                isActive
+                  ? "bg-blue-100 text-blue-500 font-semibold"
+                  : "text-gray-700 hover:bg-gray-200"
               }`
             }
-            onClick={() => setIsSidebarOpen(false)} // Close sidebar on mobile when clicking a link
+            onClick={() => setIsSidebarOpen(false)}
           >
-            <FaPlus className="inline-block mr-2" />
+            <FaPlus className="mr-3 text-lg" />
             Add Product
           </NavLink>
+
+          {/* Manage Products */}
           <NavLink
             to="/admin-dashboard/manage-products"
             className={({ isActive }) =>
-              `block py-2.5 px-4 rounded hover:text-gadBlue ${
-                isActive ? "text-blue-500 font-semibold" : "text-gray-700"
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+                isActive
+                  ? "bg-blue-100 text-blue-500 font-semibold"
+                  : "text-gray-700 hover:bg-gray-200"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaThList className="inline-block mr-2" />
+            <FaThList className="mr-3 text-lg" />
             Manage Products
           </NavLink>
+
+          {/* Orders */}
           <NavLink
             to="/admin-dashboard/orders"
             className={({ isActive }) =>
-              `block py-2.5 px-4 rounded hover:text-gadBlue ${
-                isActive ? "text-blue-500 font-semibold" : "text-gray-700"
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+                isActive
+                  ? "bg-blue-100 text-blue-500 font-semibold"
+                  : "text-gray-700 hover:bg-gray-200"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaClipboardList className="inline-block mr-2" />
+            <FaClipboardList className="mr-3 text-lg" />
             Orders
+          </NavLink>
+
+          {/* All Users */}
+          <NavLink
+            to="/admin-dashboard/all-users"
+            className={({ isActive }) =>
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+                isActive
+                  ? "bg-blue-100 text-blue-500 font-semibold"
+                  : "text-gray-700 hover:bg-gray-200"
+              }`
+            }
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            <FaUsers className="mr-3 text-lg" />
+            All Users
           </NavLink>
         </nav>
       </div>
 
-      {/* Overlay for Mobile */}
+      {/* Overlay for Mobile Sidebar */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-50 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 md:hidden"
           onClick={toggleSidebar}
         ></div>
       )}

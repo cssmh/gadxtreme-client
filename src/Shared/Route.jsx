@@ -6,7 +6,7 @@ import Category from "../Pages/Category";
 import ProductDetails from "../Pages/ProductDetails";
 import MyAccount from "../Component/MyAccount";
 import Dashboard from "../Component/MyAccount/Dashboard";
-import Orders from "../Component/MyAccount/Orders";
+import MyOrders from "../Component/MyAccount/MyOrders";
 import Wishlist from "../Component/MyAccount/Wishlist";
 import Login from "../Component/Login";
 import Register from "../Component/Register";
@@ -21,6 +21,9 @@ import Checkout from "../Component/MyAccount/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import Success from "../Component/MyAccount/Success";
 import MyProfile from "../Component/MyAccount/MyProfile";
+import Orders from "../Pages/AdminDash.jsx/Orders";
+import AllUsers from "../Pages/AdminDash.jsx/AllUsers";
+import DashLayout from "../Pages/AdminDash.jsx/DashLayout";
 
 const Route = createBrowserRouter([
   {
@@ -52,7 +55,7 @@ const Route = createBrowserRouter([
         children: [
           { path: "/my-account/dashboard", element: <Dashboard /> },
           { path: "/my-account/wishlist", element: <Wishlist /> },
-          { path: "/my-account/orders", element: <Orders /> },
+          { path: "/my-account/orders", element: <MyOrders /> },
           { path: "/my-account/profile", element: <MyProfile /> },
         ],
       },
@@ -78,8 +81,9 @@ const Route = createBrowserRouter([
       },
       {
         path: "/admin-dashboard",
-        element: <AdminDashboard />,
+        element: <DashLayout />,
         children: [
+          { path: "/admin-dashboard", element: <AdminDashboard /> },
           { path: "/admin-dashboard/add-product", element: <AddProduct /> },
           {
             path: "/admin-dashboard/manage-products",
@@ -89,6 +93,14 @@ const Route = createBrowserRouter([
             path: "/admin-dashboard/update-product/:id",
             element: <UpdateProduct />,
             loader: async ({ params }) => await getGadget(params.id),
+          },
+          {
+            path: "/admin-dashboard/orders",
+            element: <Orders />,
+          },
+          {
+            path: "/admin-dashboard/all-users",
+            element: <AllUsers />,
           },
         ],
       },

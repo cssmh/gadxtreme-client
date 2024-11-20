@@ -24,7 +24,7 @@ const Dashboard = () => {
           </span>{" "}
           to your account dashboard!
         </p>
-        {isAdmin && (
+        {!isAdmin && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -15,33 +15,11 @@ body {
 }
 /* Create animated dots using CSS */
 .dots-animation {
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.5) 1px,
+    transparent 1px
+  );
   background-size: 20px 20px;
   animation: moveDots 10s linear infinite;
-}
-
-@keyframes moveDots {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100% 100%;
-  }
-}
-
-/* Background gradient animation for the MyProfile page */
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradientBG {
-  animation: gradientBG 15s ease infinite;
 }

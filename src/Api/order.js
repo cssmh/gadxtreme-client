@@ -9,3 +9,8 @@ export const getMyOrder = async (email) => {
   const { data } = await axiosSecure(`/api/my-orders?email=${email}`);
   return data;
 };
+
+export const getAllOrders = async () => {
+  const { data } = await axiosSecure("/api/all-orders")
+  return data
+};
