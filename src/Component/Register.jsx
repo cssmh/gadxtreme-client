@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { saveUser } from "../Api/auth";
 
 const Register = () => {
   const [view, setView] = useState(true);
@@ -18,8 +19,9 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await createUser(email, password);
+      const res = await createUser(email, password);
       await updateProfileInfo(name);
+      await saveUser(res.user);
       toast.success("Registration successful!");
       navigateTo(location?.state || "/", { replace: true });
     } catch (error) {

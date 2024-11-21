@@ -10,7 +10,7 @@ export const saveUser = async (user) => {
     photo: user?.photoURL || import.meta.env.VITE_Default_URL,
     timestamp: [user.metadata?.createdAt, user.reloadUserInfo?.lastLoginAt],
   };
-  const { data } = await axiosSecure.put("/add-user", currentUser);
+  const { data } = await axiosSecure.put("/api/add-user", currentUser);
   return data;
 };
 

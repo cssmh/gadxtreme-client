@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "sonner";
 import { useNavigate, useLocation } from "react-router-dom";
+import { saveUser } from "../Api/auth";
 
 const Login = () => {
   const [view, setView] = useState(true);
@@ -19,7 +20,8 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await login(email, password);
+      const res = await login(email, password);
+      await saveUser(res.user);
       toast.success("Login successful!");
       navigateTo(location?.state || "/", { replace: true });
     } catch (error) {
@@ -33,7 +35,8 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
-      await googleLogin();
+      const res = await googleLogin();
+      await saveUser(res.user);
       toast.success("Google login successful!");
       navigateTo(location?.state || "/", { replace: true });
     } catch (error) {

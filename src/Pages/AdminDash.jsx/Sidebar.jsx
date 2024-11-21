@@ -12,29 +12,22 @@ const Sidebar = () => {
 
   return (
     <div>
-      {/* Mobile Menu Button */}
       <div className="md:hidden p-4 bg-gray-100">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <AiOutlineBars className="h-6 w-6 text-gray-700" />
         </button>
       </div>
-
-      {/* Sidebar */}
       <div
         className={`bg-base-200 fixed z-10 h-full w-60 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:block`}
       >
-        {/* Sidebar Header */}
         <div className="p-4 border-b border-gray-300">
           <Link to="/admin-dashboard">
             <h1 className="text-xl font-bold text-gray-800">Admin Dashboard</h1>
           </Link>
         </div>
-
-        {/* Navigation Links */}
         <nav className="mt-4">
-          {/* Add Product */}
           <NavLink
             to="/admin-dashboard/add-product"
             className={({ isActive }) =>
@@ -49,8 +42,6 @@ const Sidebar = () => {
             <FaPlus className="mr-3 text-lg" />
             Add Product
           </NavLink>
-
-          {/* Manage Products */}
           <NavLink
             to="/admin-dashboard/manage-products"
             className={({ isActive }) =>
@@ -65,8 +56,6 @@ const Sidebar = () => {
             <FaThList className="mr-3 text-lg" />
             Manage Products
           </NavLink>
-
-          {/* Orders */}
           <NavLink
             to="/admin-dashboard/orders"
             className={({ isActive }) =>
@@ -79,7 +68,7 @@ const Sidebar = () => {
             onClick={() => setIsSidebarOpen(false)}
           >
             <FaClipboardList className="mr-3 text-lg" />
-            Orders
+            Ordered Product
           </NavLink>
 
           {/* All Users */}

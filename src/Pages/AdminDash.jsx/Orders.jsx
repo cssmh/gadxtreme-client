@@ -17,13 +17,12 @@ const Orders = () => {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">All Orders</h1>
+    <div className="py-6">
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border px-4 py-2">Order ID</th>
+              <th className="border px-4 py-2">#</th>
               <th className="border px-4 py-2">Customer</th>
               <th className="border px-4 py-2">Address</th>
               <th className="border px-4 py-2">Items</th>
@@ -34,9 +33,9 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {orders.map((order, idx) => (
               <tr key={order._id} className="hover:bg-gray-100">
-                <td className="border px-4 py-2">{order._id}</td>
+                <td className="border px-4 py-2">{idx + 1}</td>
                 <td className="border px-4 py-2">{order.name}</td>
                 <td className="border px-4 py-2">
                   {order.address}, {order.district}, {order.country}
