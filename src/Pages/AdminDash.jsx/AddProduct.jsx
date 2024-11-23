@@ -325,7 +325,7 @@ const AddProduct = () => {
             type="submit"
             disabled={loading}
             className={`w-full ${
-              loading ? "bg-gray-800" : "bg-gadBlue"
+              loading ? "bg-gray-800" : "bg-green-500"
             } text-white py-2 rounded-md`}
           >
             <div className="flex justify-center items-center py-[2px]">

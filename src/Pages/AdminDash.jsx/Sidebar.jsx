@@ -61,7 +61,7 @@ const Sidebar = () => {
             Manage Products
           </NavLink>
           <NavLink
-            to="/admin-dashboard/orders"
+            to="/admin-dashboard/all-ordered"
             className={({ isActive }) =>
               `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive

@@ -25,6 +25,7 @@ const apiKey = import.meta.env.VITE_imgBbKey;
 
 const UpdateProduct = () => {
   const productData = useLoaderData();
+  console.log(productData);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -34,8 +35,8 @@ const UpdateProduct = () => {
     inStock: productData.inStock || true,
     category: productData.category || "",
     description: productData.description || "",
-    images: productData.images || [], // Assuming the product has an images field
-    keyFeatures: productData.keyFeatures || [], // Assuming the product has keyFeatures
+    images: productData.images || [],
+    keyFeatures: productData.keyFeatures || [],
   });
 
   const [selectedImages, setSelectedImages] = useState([
@@ -82,11 +83,11 @@ const UpdateProduct = () => {
     formData.append("image", image);
 
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `https://api.imgbb.com/1/upload?key=${apiKey}`,
         formData
       );
-      return response.data.data.url;
+      return res.data.data.url;
     } catch (error) {
       console.error("Error uploading image:", error);
       return null;
@@ -96,59 +97,57 @@ const UpdateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      const updatedImages = [...formData.images]; // Start with the existing images
-
-      // Loop through the selectedImages array to check for new uploads
+      const updatedImages = [...formData.images];
+      
       for (let i = 0; i < selectedImages.length; i++) {
         if (selectedImages[i]) {
-          // If a new image is uploaded, upload it to ImgBB and update the corresponding index
           const imageUrl = await uploadImageToImgBB(selectedImages[i]);
           if (imageUrl) {
-            updatedImages[i] = imageUrl; // Replace the image at index i with the new one
+            updatedImages[i] = imageUrl;
           }
         }
       }
 
-      // Format key features to remove empty values and split if needed
       const formattedKeyFeatures = keyFeatures
         .filter((feature) => feature.trim() !== "")
         .flatMap((feature) => feature.split(",").map((f) => f.trim()));
 
-      // Prepare the updated form data
       const updatedFormData = {
         ...formData,
-        images: updatedImages, // Use the updatedImages array
+        images: updatedImages,
         keyFeatures: formattedKeyFeatures,
       };
 
-      // Update the product using your API
       await updateGadget(productData._id, updatedFormData);
-      navigate(-1);
       swal({
-        title: "Good job",
-        text: "Gadget updated successfully",
+        title: "Success",
+        text: "Product updated successfully",
         icon: "success",
         timer: 2000,
       });
+      navigate(-1);
     } catch (error) {
-      console.log("Error submitting form:", error);
+      console.log("Error updating product:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-xl font-normal mb-2 md:mb-4">Update Product</h1>
+    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-semibold text-gray-800 mb-6">
+        Update Product
+      </h1>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3"
+        className="grid grid-cols-1 md:grid-cols-2 gap-2"
       >
-        {/* Input fields similar to AddProduct */}
         <div>
-          <label className="block mb-1 font-semibold" htmlFor="productName">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="productName"
+          >
             Product Name:
           </label>
           <input
@@ -157,62 +156,24 @@ const UpdateProduct = () => {
             id="productName"
             value={formData.productName}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             required
           />
         </div>
         <div>
-          <label className="block mb-1 font-semibold" htmlFor="price">
-            Price (৳):
-          </label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            required
-            value={formData.price}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold" htmlFor="discountPrice">
-            Discount Price (৳):
-          </label>
-          <input
-            type="number"
-            name="discountPrice"
-            id="discountPrice"
-            value={formData.discountPrice}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold" htmlFor="inStock">
-            In Stock:
-          </label>
-          <input
-            type="checkbox"
-            name="inStock"
-            id="inStock"
-            checked={formData.inStock}
-            onChange={handleInputChange}
-            className="mr-2"
-          />
-          <span>{formData.inStock ? "Available" : "Out of Stock"}</span>
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold" htmlFor="category">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="category"
+          >
             Category:
           </label>
           <select
             name="category"
             id="category"
-            required
             value={formData.category}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            required
           >
             <option value="">Select a category</option>
             {categories.map((category) => (
@@ -221,6 +182,64 @@ const UpdateProduct = () => {
               </option>
             ))}
           </select>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div>
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="price"
+            >
+              Price (৳):
+            </label>
+            <input
+              type="number"
+              name="price"
+              id="price"
+              value={formData.price}
+              onChange={handleInputChange}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              required
+            />
+          </div>
+          <div>
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="discountPrice"
+            >
+              Discount Price (৳):
+            </label>
+            <input
+              type="number"
+              name="discountPrice"
+              id="discountPrice"
+              value={formData.discountPrice}
+              onChange={handleInputChange}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            />
+          </div>
+        </div>
+        <div className="flex items-center justify-center space-x-4 p-4">
+          <label
+            className="label text-gray-700 font-semibold"
+            htmlFor="inStock"
+          >
+            <span className="label-text">In Stock:</span>
+          </label>
+          <input
+            type="checkbox"
+            name="inStock"
+            id="inStock"
+            checked={formData.inStock}
+            onChange={handleInputChange}
+            className="toggle toggle-accent"
+          />
+          <span
+            className={`text-gray-700 font-semibold ${
+              formData.inStock ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {formData.inStock ? "Available" : "Out of Stock"}
+          </span>
         </div>
         <div className="col-span-2">
           <label className="block mb-1 font-semibold" htmlFor="keyFeatures">
@@ -238,7 +257,10 @@ const UpdateProduct = () => {
           ))}
         </div>
         <div className="col-span-2">
-          <label className="block mb-1 font-semibold" htmlFor="images">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="images"
+          >
             Product Images (Max 4):
           </label>
           <input
@@ -252,14 +274,14 @@ const UpdateProduct = () => {
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300"
+                className="w-full h-32 bg-gray-100 border border-dashed rounded-lg flex justify-center items-center cursor-pointer"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
                   <img
                     src={URL.createObjectURL(image)}
-                    alt={`Preview ${index}`}
-                    className="object-cover w-full h-full"
+                    alt={`Selected Image ${index + 1}`}
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
                   <img
@@ -285,14 +307,17 @@ const UpdateProduct = () => {
             className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
           ></textarea>
         </div>
-        <div className="col-span-2 mb-5">
+        <div className="col-span-2 flex justify-end mt-3">
           <button
             type="submit"
-            className="btn bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 px-4 py-2"
+            className="bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 px-3 py-2"
             disabled={loading}
           >
             {loading ? (
-              <CgSpinnerTwo className="animate-spin inline-block text-xl" />
+              <p className="flex items-center gap-1">
+                <CgSpinnerTwo className="animate-spin text-xl" />{" "}
+                <span>Updating</span>
+              </p>
             ) : (
               "Update Product"
             )}

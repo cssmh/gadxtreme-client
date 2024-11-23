@@ -21,7 +21,7 @@ import Checkout from "../Component/MyAccount/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import Success from "../Component/MyAccount/Success";
 import MyProfile from "../Component/MyAccount/MyProfile";
-import Orders from "../Pages/AdminDash.jsx/Orders";
+import AllOrdered from "../Pages/AdminDash.jsx/AllOrdered";
 import AllUsers from "../Pages/AdminDash.jsx/AllUsers";
 import DashLayout from "../Pages/AdminDash.jsx/DashLayout";
 
@@ -95,8 +95,8 @@ const Route = createBrowserRouter([
             loader: async ({ params }) => await getGadget(params.id),
           },
           {
-            path: "/admin-dashboard/orders",
-            element: <Orders />,
+            path: "/admin-dashboard/all-ordered",
+            element: <AllOrdered />,
           },
           {
             path: "/admin-dashboard/all-users",
