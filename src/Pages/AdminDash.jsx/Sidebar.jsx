@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaPlus, FaThList, FaClipboardList, FaUsers } from "react-icons/fa";
 import { AiOutlineBars } from "react-icons/ai";
+import logo from "../../assets/favicon.webp";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -11,17 +12,15 @@ const Sidebar = () => {
   };
 
   return (
-    <div>
-      {/* Mobile Hamburger Menu */}
-      <div className="md:hidden p-4 bg-gray-100">
+    <div className="relative">
+      <div className="md:hidden flex justify-between items-center px-4 py-3 bg-gray-100 fixed top-0 left-0 w-full z-30">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <AiOutlineBars className="h-6 w-6 text-gray-700" />
         </button>
+        <img src={logo} alt="Logo" className="h-8" />
       </div>
-
-      {/* Sidebar */}
       <div
-        className={`bg-base-200 fixed z-10 h-full w-60 transform transition-transform duration-300 ease-in-out ${
+        className={`bg-base-200 fixed z-50 top-0 left-0 h-full w-56 md:w-60 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:block`}
       >
@@ -73,8 +72,6 @@ const Sidebar = () => {
             <FaClipboardList className="mr-3 text-lg" />
             Ordered Product
           </NavLink>
-
-          {/* All Users */}
           <NavLink
             to="/admin-dashboard/all-users"
             className={({ isActive }) =>
@@ -91,8 +88,6 @@ const Sidebar = () => {
           </NavLink>
         </nav>
       </div>
-
-      {/* Overlay for Mobile Sidebar */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 md:hidden"

@@ -41,12 +41,10 @@ const AddProduct = () => {
     null,
     null,
     null,
-  ]); // For preview (max 4 images)
+  ]);
   const [activeBox, setActiveBox] = useState(null);
-  // State for key features input boxes
   const [keyFeatures, setKeyFeatures] = useState(["", "", "", ""]);
 
-  // Handle input changes for text fields
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -55,31 +53,26 @@ const AddProduct = () => {
     });
   };
 
-  // Handle image selection for a specific box
   const handleImageChange = (e) => {
-    const file = e.target.files[0]; // Get selected file
+    const file = e.target.files[0];
     if (activeBox !== null && file) {
       const updatedImages = [...selectedImages];
-      updatedImages[activeBox] = file; // Set the image in the correct box
+      updatedImages[activeBox] = file;
       setSelectedImages(updatedImages);
     }
   };
 
-  // Function to trigger image selection when a box is clicked
   const handleBoxClick = (index) => {
-    setActiveBox(index); // Set the active box index
+    setActiveBox(index);
     document.getElementById("imageUploadInput").click();
-    // Trigger the hidden input field
   };
 
-  // Handle key features input change
   const handleKeyFeatureChange = (index, value) => {
     const updatedFeatures = [...keyFeatures];
     updatedFeatures[index] = value;
     setKeyFeatures(updatedFeatures);
   };
 
-  // Upload image to imgbb
   const uploadImageToImgBB = async (image) => {
     const formData = new FormData();
     formData.append("image", image);
@@ -89,14 +82,13 @@ const AddProduct = () => {
         `https://api.imgbb.com/1/upload?key=${apiKey}`,
         formData
       );
-      return res.data.data.url; // Return the uploaded image URL
+      return res.data.data.url;
     } catch (error) {
       console.error("Error uploading image:", error);
       return null;
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -114,7 +106,7 @@ const AddProduct = () => {
           }
         }
       }
-      // Combine the key features into an array by splitting them by commas
+
       const formattedKeyFeatures = keyFeatures
         .filter((feature) => feature.trim() !== "")
         .flatMap((feature) => feature.split(",").map((f) => f.trim()));
@@ -152,14 +144,19 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-xl font-normal mb-2 md:mb-4">Add New Product</h1>
+    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-semibold text-gray-800 mb-6">
+        Add a Product
+      </h1>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3"
+        className="grid grid-cols-1 md:grid-cols-2 gap-2"
       >
         <div>
-          <label className="block mb-1 font-semibold" htmlFor="productName">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="productName"
+          >
             Product Name:
           </label>
           <input
@@ -168,53 +165,15 @@ const AddProduct = () => {
             id="productName"
             value={formData.productName}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             required
           />
         </div>
         <div>
-          <label className="block mb-1 font-semibold" htmlFor="price">
-            Price (৳):
-          </label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            required
-            value={formData.price}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold" htmlFor="discountPrice">
-            Discount Price (৳):
-          </label>
-          <input
-            type="number"
-            name="discountPrice"
-            id="discountPrice"
-            value={formData.discountPrice}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold" htmlFor="inStock">
-            In Stock:
-          </label>
-          <input
-            type="checkbox"
-            name="inStock"
-            id="inStock"
-            checked={formData.inStock}
-            onChange={handleInputChange}
-            className="mr-2"
-          />
-          <span>{formData.inStock ? "Available" : "Out of Stock"}</span>
-        </div>
-        <div>
-          <label className="block mb-1 font-semibold" htmlFor="category">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="category"
+          >
             Category:
           </label>
           <select
@@ -223,7 +182,7 @@ const AddProduct = () => {
             required
             value={formData.category}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
           >
             <option value="">Select a category</option>
             {categories.map((category) => (
@@ -233,23 +192,89 @@ const AddProduct = () => {
             ))}
           </select>
         </div>
-        <div className="col-span-2">
-          <label className="block mb-1 font-semibold" htmlFor="keyFeatures">
-            Key Features (use comma-separated):
-          </label>
-          {[0, 1].map((index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div>
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="price"
+            >
+              Price (৳):
+            </label>
             <input
-              key={index}
-              type="text"
-              value={keyFeatures[index]}
-              onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
-              className="w-full mb-2 p-2 border rounded-md outline-none focus:border-blue-300"
-              placeholder="Key features"
+              type="number"
+              name="price"
+              id="price"
+              required
+              value={formData.price}
+              onChange={handleInputChange}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
-          ))}
+          </div>
+          <div>
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="discountPrice"
+            >
+              Discount Price (৳):
+            </label>
+            <input
+              type="number"
+              name="discountPrice"
+              id="discountPrice"
+              value={formData.discountPrice}
+              onChange={handleInputChange}
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            />
+          </div>
+        </div>
+        <div className="flex items-center justify-center space-x-4 p-4">
+          <label
+            className="label text-gray-700 font-semibold"
+            htmlFor="inStock"
+          >
+            <span className="label-text">In Stock:</span>
+          </label>
+          <input
+            type="checkbox"
+            name="inStock"
+            id="inStock"
+            checked={formData.inStock}
+            onChange={handleInputChange}
+            className="toggle toggle-accent"
+          />
+          <span
+            className={`text-gray-700 font-semibold ${
+              formData.inStock ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {formData.inStock ? "Available" : "Out of Stock"}
+          </span>
+        </div>
+        <div className="col-span-2 space-y-4">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="keyFeatures"
+          >
+            Key Features (comma separated):
+          </label>
+          <div className="flex space-x-2">
+            {[0, 1].map((index) => (
+              <input
+                key={index}
+                type="text"
+                value={keyFeatures[index]}
+                onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+                placeholder="Key feature"
+              />
+            ))}
+          </div>
         </div>
         <div className="col-span-2">
-          <label className="block mb-1 font-semibold" htmlFor="images">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="images"
+          >
             Product Images (Max 4):
           </label>
           <input
@@ -263,19 +288,19 @@ const AddProduct = () => {
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-24 h-24 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300"
+                className="w-28 h-28 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
                   <img
                     src={URL.createObjectURL(image)}
-                    alt={`Preview ${index}`}
-                    className="object-cover w-full h-full"
+                    alt={`product-${index}`}
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <span className="text-gray-500 text-center">
-                    Click to Upload
-                  </span>
+                  <div className="w-full h-full flex items-center justify-center text-gray-500">
+                    <span>+ Upload</span>
+                  </div>
                 )}
               </div>
             ))}
@@ -290,12 +315,11 @@ const AddProduct = () => {
             id="description"
             value={formData.description}
             onChange={handleInputChange}
-            rows="5"
+            rows="4"
             className="w-full p-2 border rounded-lg outline-none focus:border-blue-300"
             required
           ></textarea>
         </div>
-
         <div className="col-span-2">
           <button
             type="submit"

@@ -43,56 +43,72 @@ const ManageProducts = () => {
   }
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-semibold mb-4">Manage Products</h1>
-      <table className="min-w-full bg-white border border-gray-300">
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-3xl font-extrabold text-center text-teal-600 mb-6">
+        Manage Products
+      </h1>
+      <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
         <thead>
-          <tr className="bg-gray-100 text-gray-700">
-            <th className="py-2 px-4 border-b text-center">Product Name</th>
-            <th className="py-2 px-4 border-b text-center">Price (৳)</th>
-            <th className="py-2 px-4 border-b text-center">In Stock</th>
-            <th className="py-2 px-4 border-b text-center">Category</th>
-            <th className="py-2 px-4 border-b text-center">Actions</th>
+          <tr className="bg-teal-100 text-teal-700">
+            <th className="py-3 px-6 text-center">Product Name</th>
+            <th className="py-3 px-6 text-center">Price (৳)</th>
+            <th className="py-3 px-6 text-center">In Stock</th>
+            <th className="py-3 px-6 text-center">Category</th>
+            <th className="py-3 px-6 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
           {products?.map((product) => (
-            <tr key={product._id} className="hover:bg-gray-50">
-              <td className="py-2 px-4 border-b text-center">
-                <Link to={`/details/${product._id}`}>
-                  {product.productName.slice(0, 10)}
+            <tr
+              key={product._id}
+              className="hover:bg-teal-50 transition-colors duration-300"
+            >
+              <td className="py-3 px-6 text-center">
+                <Link
+                  to={`/details/${product._id}`}
+                  className="text-teal-600 hover:underline"
+                >
+                  {product.productName.slice(0, 10)}...
                 </Link>
               </td>
-              <td className="py-2 px-4 border-b text-center">
+              <td className="py-3 px-6 text-center">
                 {product.discountPrice ? (
                   <div>
                     <span className="line-through text-gray-500">
                       {product.price}
                     </span>{" "}
-                    <span className="text-blue-600">
+                    <span className="text-teal-600 font-semibold">
                       {product.discountPrice}
                     </span>
                   </div>
                 ) : (
-                  product.price
+                  <span className="text-teal-600 font-semibold">
+                    {product.price}
+                  </span>
                 )}
               </td>
-              <td className="py-2 px-4 border-b text-center">
-                {product.inStock ? "Yes" : "No"}
+              <td className="py-3 px-6 text-center">
+                <span
+                  className={`${
+                    product.inStock ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {product.inStock ? "Yes" : "No"}
+                </span>
               </td>
-              <td className="py-2 px-4 border-b text-center">
-                {product.category}
+              <td className="py-3 px-6 text-center">
+                <span className="text-gray-600">{product.category}</span>
               </td>
-              <td className="py-2 px-4 border-b text-center space-x-2">
+              <td className="py-3 px-6 text-center space-x-4">
                 <Link
                   to={`/admin-dashboard/update-product/${product._id}`}
-                  className="text-blue-500 hover:underline"
+                  className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   Edit
                 </Link>
                 <button
                   onClick={() => handleDelete(product._id)}
-                  className="text-red-500 hover:underline"
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                 >
                   Delete
                 </button>
