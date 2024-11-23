@@ -12,11 +12,14 @@ const Sidebar = () => {
 
   return (
     <div>
+      {/* Mobile Hamburger Menu */}
       <div className="md:hidden p-4 bg-gray-100">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <AiOutlineBars className="h-6 w-6 text-gray-700" />
         </button>
       </div>
+
+      {/* Sidebar */}
       <div
         className={`bg-base-200 fixed z-10 h-full w-60 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
