@@ -7,12 +7,7 @@
 ## Live Demo
 
 - [GadXtreme on Firebase](https://gadxtreme-906da.web.app)
-- [GadXtreme on Firebase](https://gadxtreme.vercel.app)
-
-### Admin Dashboard Preview
-
-![Admin Dashboard](./src/assets/admin_dashboard_preview.png)
-_Screenshot showcasing the Admin Dashboard with product and order management features._
+- [GadXtreme on Vercel](https://gadxtreme.vercel.app)
 
 ## Table of Contents
 
@@ -23,7 +18,7 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
 
 ## Description
 
-**GadXtreme** is an advanced e-commerce platform tailored for gadget enthusiasts. It allows users to browse and purchase a wide range of gadgets, manage their orders, and perform secure payments (SSLCommerz integration). Admins have the ability to manage products, orders, and users through a powerful admin dashboard.
+**GadXtreme** is an e-commerce platform focused on gadgets and electronics. It allows users to browse and purchase a wide range of gadgets, manage their orders, and perform secure payments (SSLCommerz integration). Admins have the ability to manage products, orders, and users through a powerful admin dashboard.
 
 ## Features
 
@@ -72,11 +67,9 @@ _Screenshot showcasing the Admin Dashboard with product and order management fea
 
 ## Upcoming Features
 
-- **Stripe Integration:** Full payment support using Stripe.js for secure transactions.
 - **Product Reviews & Ratings:** Users can leave reviews and ratings for purchased gadgets.
 - **Wishlist Feature:** Save products for later with a wishlist functionality.
 - **Advanced Admin Analytics:** Detailed sales, user, and product analytics for admins.
-- **SSLCommerz Enhancements:** Continued optimization of the SSLCommerz payment gateway.
 
 ## SSLCommerz Integration
 
