@@ -13,30 +13,32 @@ const Sidebar = () => {
 
   return (
     <div className="relative">
-      <div className="md:hidden flex justify-between items-center px-4 py-3 bg-gray-100 fixed top-0 left-0 w-full z-30">
+      <div className="md:hidden flex justify-between items-center px-4 py-3 bg-teal-700 text-white fixed top-0 left-0 w-full z-30">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
-          <AiOutlineBars className="h-6 w-6 text-gray-700" />
+          <AiOutlineBars className="h-6 w-6" />
         </button>
         <img src={logo} alt="Logo" className="h-8" />
       </div>
       <div
-        className={`bg-base-200 fixed z-50 top-0 left-0 h-full w-56 md:w-60 transform transition-transform duration-300 ease-in-out ${
+        className={`bg-white shadow-lg fixed z-50 top-0 left-0 h-full w-56 md:w-60 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:block`}
       >
-        <div className="p-4 border-b border-gray-300">
+        <div className="p-6 border-b border-gray-300">
           <Link to="/admin-dashboard">
-            <h1 className="text-xl font-bold text-gray-800">Admin Dashboard</h1>
+            <h1 className="text-2xl font-bold text-gray-800">
+              Admin Dashboard
+            </h1>
           </Link>
         </div>
-        <nav className="mt-4">
+        <nav className="mt-6 space-y-2">
           <NavLink
             to="/admin-dashboard/add-product"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive
-                  ? "bg-blue-100 text-blue-500 font-semibold"
-                  : "text-gray-700 hover:bg-gray-200"
+                  ? "bg-teal-100 text-teal-600 font-semibold"
+                  : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
@@ -47,10 +49,10 @@ const Sidebar = () => {
           <NavLink
             to="/admin-dashboard/manage-products"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive
-                  ? "bg-blue-100 text-blue-500 font-semibold"
-                  : "text-gray-700 hover:bg-gray-200"
+                  ? "bg-teal-100 text-teal-600 font-semibold"
+                  : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
@@ -61,10 +63,10 @@ const Sidebar = () => {
           <NavLink
             to="/admin-dashboard/orders"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive
-                  ? "bg-blue-100 text-blue-500 font-semibold"
-                  : "text-gray-700 hover:bg-gray-200"
+                  ? "bg-teal-100 text-teal-600 font-semibold"
+                  : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
@@ -75,10 +77,10 @@ const Sidebar = () => {
           <NavLink
             to="/admin-dashboard/all-users"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 ${
+              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive
-                  ? "bg-blue-100 text-blue-500 font-semibold"
-                  : "text-gray-700 hover:bg-gray-200"
+                  ? "bg-teal-100 text-teal-600 font-semibold"
+                  : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
@@ -90,7 +92,7 @@ const Sidebar = () => {
       </div>
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-30 md:hidden"
           onClick={toggleSidebar}
         ></div>
       )}

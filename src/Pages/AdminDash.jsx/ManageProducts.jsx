@@ -43,7 +43,7 @@ const ManageProducts = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto py-4">
       <h1 className="text-3xl font-extrabold text-center text-teal-600 mb-6">
         Manage Products
       </h1>
