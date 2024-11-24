@@ -2,12 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { FaCamera } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "sonner";
 
 const MyProfile = () => {
   const { user, updateProfileInfo, logOut } = useAuth();
   const apiKey = import.meta.env.VITE_imgBbKey;
 
-  // State for form data
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState(user?.displayName || "");
   const [profileImage, setProfileImage] = useState(
     user?.photoURL ||
@@ -34,9 +35,17 @@ const MyProfile = () => {
     }
   };
 
-  const handleNameUpdate = (e) => {
+  const handleNameUpdate = async (e) => {
     e.preventDefault();
-    updateProfileInfo(name, profileImage);
+    setLoading(true);
+    try {
+      await updateProfileInfo(name, profileImage);
+      toast.success("Profile Updated");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,9 +75,6 @@ const MyProfile = () => {
                 onChange={handleImageUpload}
                 className="hidden"
               />
-              {imageUploading && (
-                <p className="text-sm text-teal-500 mt-2">Uploading...</p>
-              )}
             </div>
           </div>
           <div className="mb-3">
@@ -91,10 +97,14 @@ const MyProfile = () => {
           <div className="flex flex-col gap-2 md:gap-0 md:flex-row justify-between items-center">
             <button
               type="submit"
-              disabled={imageUploading}
+              disabled={imageUploading || loading}
               className="bg-teal-500 text-white px-5 py-2 rounded-lg hover:bg-teal-600 transition duration-300"
             >
-              Update Profile
+              {imageUploading
+                ? "Image uploading..."
+                : loading
+                ? "Updating..."
+                : "Update Profile"}
             </button>
             <div className="space-x-1 ">
               <button

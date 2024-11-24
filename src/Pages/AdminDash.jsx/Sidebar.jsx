@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaPlus, FaThList, FaClipboardList, FaUsers } from "react-icons/fa";
-import { AiOutlineBars } from "react-icons/ai";
+import { FaUsers } from "react-icons/fa";
+import { AiOutlineBars, AiOutlineProduct } from "react-icons/ai";
 import logo from "../../assets/favicon.webp";
+import { MdAddTask, MdProductionQuantityLimits } from "react-icons/md";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,9 +25,9 @@ const Sidebar = () => {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:block`}
       >
-        <div className="p-6 border-b border-gray-300">
+        <div className="p-4 border-b border-gray-300">
           <Link to="/admin-dashboard">
-            <h1 className="text-2xl font-bold text-gray-800">
+            <h1 className="text-2xl font-semibold text-gray-800">
               Admin Dashboard
             </h1>
           </Link>
@@ -36,51 +37,43 @@ const Sidebar = () => {
             to="/admin-dashboard/add-product"
             className={({ isActive }) =>
               `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
-                isActive
-                  ? "bg-teal-100 text-teal-600 font-semibold"
-                  : "hover:bg-teal-50"
+                isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaPlus className="mr-3 text-lg" />
+            <MdAddTask className="mr-3 text-lg" />
             Add Product
           </NavLink>
           <NavLink
             to="/admin-dashboard/manage-products"
             className={({ isActive }) =>
               `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
-                isActive
-                  ? "bg-teal-100 text-teal-600 font-semibold"
-                  : "hover:bg-teal-50"
+                isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaThList className="mr-3 text-lg" />
+            <MdProductionQuantityLimits className="mr-3 text-lg" />
             Manage Products
           </NavLink>
           <NavLink
             to="/admin-dashboard/all-ordered"
             className={({ isActive }) =>
               `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
-                isActive
-                  ? "bg-teal-100 text-teal-600 font-semibold"
-                  : "hover:bg-teal-50"
+                isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaClipboardList className="mr-3 text-lg" />
+            <AiOutlineProduct className="mr-3 text-lg" />
             Ordered Product
           </NavLink>
           <NavLink
             to="/admin-dashboard/all-users"
             className={({ isActive }) =>
               `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
-                isActive
-                  ? "bg-teal-100 text-teal-600 font-semibold"
-                  : "hover:bg-teal-50"
+                isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}

@@ -14,6 +14,7 @@ import useAuth from "../hooks/useAuth";
 import { getSearchGadget } from "../Api/gadgets";
 import { BsCart2 } from "react-icons/bs";
 import useMyCart from "../hooks/useMyCart";
+import { PiSignOutThin } from "react-icons/pi";
 
 const categories = [
   {
@@ -162,22 +163,23 @@ const NavNew = () => {
                     Dashboard
                   </Link>
                   <Link
+                    to="/my-account/profile"
+                    className="block px-4 py-1 hover:bg-gray-100"
+                  >
+                    View Profile
+                  </Link>
+                  <Link
                     to="/my-account/orders"
                     className="block px-4 py-1 hover:bg-gray-100"
                   >
                     Orders
                   </Link>
-                  <Link
-                    to="/my-account/profile"
-                    className="block px-4 py-1 hover:bg-gray-100"
-                  >
-                    Profile
-                  </Link>
                   <button
                     onClick={handleLogOut}
-                    className="block px-4 py-1 hover:bg-gray-100 w-full text-left"
+                    className="px-4 py-1 hover:bg-gray-100 w-full text-left flex items-center space-x-1"
                   >
-                    Logout
+                    <span>Logout</span>
+                    <PiSignOutThin className="text-fuchsia-600" />
                   </button>
                 </div>
               )}

@@ -25,14 +25,13 @@ const apiKey = import.meta.env.VITE_imgBbKey;
 
 const UpdateProduct = () => {
   const productData = useLoaderData();
-  console.log(productData);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     productName: productData.productName || "",
     price: productData.price || "",
     discountPrice: productData.discountPrice || "",
-    inStock: productData.inStock || true,
+    inStock: productData.inStock,
     category: productData.category || "",
     description: productData.description || "",
     images: productData.images || [],
@@ -49,6 +48,7 @@ const UpdateProduct = () => {
   const [keyFeatures, setKeyFeatures] = useState(
     productData.keyFeatures || ["", "", "", ""]
   );
+  console.log(keyFeatures);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -72,9 +72,9 @@ const UpdateProduct = () => {
     document.getElementById("imageUploadInput").click();
   };
 
-  const handleKeyFeatureChange = (index, value) => {
-    const updatedFeatures = [...keyFeatures];
-    updatedFeatures[index] = value;
+  const handleKeyFeatureChange = (e) => {
+    const { value } = e.target;
+    const updatedFeatures = value.split(",").map((feature) => feature.trim());
     setKeyFeatures(updatedFeatures);
   };
 
@@ -89,7 +89,7 @@ const UpdateProduct = () => {
       );
       return res.data.data.url;
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.log("Error uploading image:", error);
       return null;
     }
   };
@@ -99,7 +99,7 @@ const UpdateProduct = () => {
     setLoading(true);
     try {
       const updatedImages = [...formData.images];
-      
+
       for (let i = 0; i < selectedImages.length; i++) {
         if (selectedImages[i]) {
           const imageUrl = await uploadImageToImgBB(selectedImages[i]);
@@ -245,16 +245,15 @@ const UpdateProduct = () => {
           <label className="block mb-1 font-semibold" htmlFor="keyFeatures">
             Key Features (use comma-separated):
           </label>
-          {keyFeatures?.map((feature, index) => (
-            <input
-              key={index}
-              type="text"
-              value={feature}
-              onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
-              className="w-full mb-2 p-2 border rounded-md outline-none focus:border-blue-300"
-              placeholder="Key feature"
-            />
-          ))}
+          <input
+            type="text"
+            name="keyFeatures"
+            id="keyFeatures"
+            value={keyFeatures.join(", ")}
+            onChange={handleKeyFeatureChange}
+            className="w-full mb-2 p-2 border rounded-md outline-none focus:border-blue-300"
+            placeholder="Enter key features separated by commas"
+          />
         </div>
         <div className="col-span-2">
           <label
@@ -310,7 +309,7 @@ const UpdateProduct = () => {
         <div className="col-span-2 flex justify-end mt-3">
           <button
             type="submit"
-            className="bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 px-3 py-2"
+            className="bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 px-3 py-2"
             disabled={loading}
           >
             {loading ? (

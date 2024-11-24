@@ -14,6 +14,7 @@ import {
 import useAuth from "../hooks/useAuth";
 import { getSearchGadget } from "../Api/gadgets";
 import useMyCart from "../hooks/useMyCart";
+import { PiSignOutThin } from "react-icons/pi";
 
 const categories = [
   {
@@ -124,7 +125,6 @@ const Navbar = () => {
             />
           </div>
         </div>
-        {/* larger screens */}
         <div className="hidden lg:flex items-center justify-between w-full">
           <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
             <Link to="/">
@@ -189,22 +189,23 @@ const Navbar = () => {
                       Dashboard
                     </Link>
                     <Link
+                      to="/my-account/profile"
+                      className="block px-4 py-1 hover:bg-gray-100"
+                    >
+                      View Profile
+                    </Link>
+                    <Link
                       to="/my-account/orders"
                       className="block px-4 py-1 hover:bg-gray-100"
                     >
                       Orders
                     </Link>
-                    <Link
-                      to="/my-account/profile"
-                      className="block px-4 py-1 hover:bg-gray-100"
-                    >
-                      Profile
-                    </Link>
                     <button
                       onClick={handleLogOut}
-                      className="block px-4 py-1 hover:bg-gray-100"
+                      className="px-4 py-1 hover:bg-gray-100 w-full text-left flex items-center space-x-1"
                     >
-                      Logout
+                      <span>Logout</span>
+                      <PiSignOutThin className="text-fuchsia-600" />
                     </button>
                   </div>
                 )}
