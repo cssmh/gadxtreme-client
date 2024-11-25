@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { FaUserShield, FaHeart, FaClipboardList } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const isAdmin = user?.role === "admin";
+  const { isAdmin } = useAdmin();
 
   return (
     <div className="min-h-screen">
@@ -21,8 +22,7 @@ const Dashboard = () => {
         <p className="text-lg text-gray-700 mb-5">
           Get insights, manage your account, and explore your preferences.
         </p>
-
-        {!isAdmin && (
+        {isAdmin && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

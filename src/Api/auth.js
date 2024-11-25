@@ -28,8 +28,23 @@ export const clearCookie = async () => {
   return data;
 };
 
+export const getAllUsers = async () => {
+  const { data } = await axiosSecure("/api/all-users");
+  return data;
+};
+
+export const getRole = async (email) => {
+  const { data } = await axiosSecure(`/api/get-role/${email}`);
+  return data;
+};
+
 export const updateRole = async (email, role) => {
-  const { data } = await axiosSecure.patch(`/user-update/${email}`, { role });
+  const { data } = await axiosSecure.patch(`/api/user-update/${email}`, { role });
+  return data;
+};
+
+export const deleteUser = async (id) => {
+  const { data } = await axiosSecure.delete(`/user/${id}`);
   return data;
 };
 

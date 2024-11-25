@@ -24,6 +24,7 @@ import MyProfile from "../Component/MyAccount/MyProfile";
 import AllOrdered from "../Pages/AdminDash.jsx/AllOrdered";
 import AllUsers from "../Pages/AdminDash.jsx/AllUsers";
 import DashLayout from "../Pages/AdminDash.jsx/DashLayout";
+import AdminRoute from "./AdminRoute";
 
 const Route = createBrowserRouter([
   {
@@ -81,7 +82,11 @@ const Route = createBrowserRouter([
       },
       {
         path: "/admin-dashboard",
-        element: <DashLayout />,
+        element: (
+          <AdminRoute>
+            <DashLayout />
+          </AdminRoute>
+        ),
         children: [
           { path: "/admin-dashboard", element: <AdminDashboard /> },
           { path: "/admin-dashboard/add-product", element: <AddProduct /> },
