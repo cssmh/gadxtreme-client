@@ -121,83 +121,67 @@ const UserDataRow = ({ user, refetch }) => {
 
   return (
     <>
-      <tr>
-        <td className="py-4 whitespace-nowrap text-sm">
-          <div className="flex items-center gap-2">
+      <tr className="bg-gray-100 transition-colors duration-200">
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+          <div className="flex items-center gap-4">
             <img
               src={user?.photo}
-              className="w-9 h-9 rounded-full object-cover"
-              alt={user?.name}
+              className="w-12 h-12 rounded-full border border-gray-300 object-cover"
+              alt={user?.name || "User Avatar"}
             />
-            <span className="font-semibold text-gray-700">{user?.name}</span>
+            <span className="font-semibold truncate">
+              {user?.name || "N/A"}
+            </span>
           </div>
         </td>
-        <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-          {user?.email}
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+          <span className="truncate block">{user?.email || "N/A"}</span>
         </td>
-        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-700">
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
           <div className="flex flex-col space-y-1">
-            <p className="text-green-500">
+            <span className="text-green-600 font-medium">
               Created:{" "}
-              {new Date(parseInt(user?.timestamp[0], 10)).toLocaleString(
-                "en-GB",
-                {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit",
-                  hour12: true,
-                }
-              )}
-            </p>
-            <p>
+              {user?.timestamp?.[0]
+                ? new Date(parseInt(user.timestamp[0], 10)).toLocaleString()
+                : "N/A"}
+            </span>
+            <span className="text-gray-500">
               Last Login:{" "}
-              {new Date(parseInt(user?.timestamp[1], 10)).toLocaleString(
-                "en-GB",
-                {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit",
-                  hour12: true,
-                }
-              )}
-            </p>
+              {user?.timestamp?.[1]
+                ? new Date(parseInt(user.timestamp[1], 10)).toLocaleString()
+                : "N/A"}
+            </span>
           </div>
         </td>
-        <td className="px-5 py-4 whitespace-nowrap text-sm">
+        <td className="px-6 py-4 whitespace-nowrap text-sm">
           <span
-            className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+            className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${
               user?.role === "guest"
-                ? "bg-green-100 text-green-500"
-                : "bg-orange-100 text-red-600"
+                ? "bg-green-100 text-green-700"
+                : "bg-orange-100 text-orange-700"
             }`}
           >
             {user?.role?.toUpperCase() || "Unavailable"}
           </span>
         </td>
-        <td className="pr-2 text-center py-4 whitespace-nowrap text-gray-500">
+        <td className="px-6 py-4 text-center whitespace-nowrap">
           <button
             onClick={() => handleDelete(user._id, user?.role)}
-            className="inline-flex items-center px-2 py-1 text-red-500 hover:text-red-700 transition-colors duration-200"
+            className="p-2 text-red-500 hover:text-red-700 transition-colors duration-200"
+            aria-label="Delete User"
           >
-            <FaTrashAlt />
+            <FaTrashAlt size={18} />
           </button>
         </td>
-        <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <td className="px-6 py-4 text-right whitespace-nowrap">
           <button
             onClick={openRoleModal}
-            className="inline-flex items-center px-2 py-1 text-base font-medium rounded-lg text-white bg-green-500 hover:bg-green-600 transform active:translate-y-0.5 transition-transform duration-150 ease-in-out"
+            className="px-4 py-2 text-sm font-medium bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors duration-200"
           >
             Update Role
           </button>
         </td>
       </tr>
-      {/* Modal */}
       {isModalOpen && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50"

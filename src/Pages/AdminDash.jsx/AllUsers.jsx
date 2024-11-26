@@ -22,34 +22,36 @@ const AllUsers = () => {
   }
 
   return (
-    <div className="bg-white shadow-lg rounded-lg px-4 py-3">
-      <h1 className="text-xl font-bold mb-4">All Users ({data?.length})</h1>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white divide-y divide-gray-200">
-          <thead className="bg-gray-800 text-white">
+    <div className="bg-gray-50 py-4 rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">
+        All Users ({data.length})
+      </h1>
+      <div className="overflow-hidden border rounded-lg">
+        <table className="min-w-full divide-y divide-gray-200 bg-white">
+          <thead className="bg-teal-600">
             <tr>
-              <th className="px-5 py-2 text-left text-xs font-medium uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">
                 Name
               </th>
-              <th className="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">
                 Email
               </th>
-              <th className="px-5 py-2 text-left text-xs font-medium uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">
                 Created & Last Login
               </th>
-              <th className="px-7 py-2 text-left text-xs font-medium uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">
                 Role
               </th>
-              <th className="px-7 py-2 text-left text-xs font-medium uppercase tracking-wider">
+              <th className="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">
                 Delete
               </th>
-              <th className="px-5 py-2 text-center text-xs font-medium uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-bold text-white uppercase tracking-wider">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {data?.map((user) => (
+          <tbody className="divide-y divide-gray-200">
+            {data.map((user) => (
               <UserDataRow key={user._id} user={user} refetch={refetch} />
             ))}
           </tbody>
