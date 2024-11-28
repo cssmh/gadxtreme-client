@@ -44,7 +44,7 @@ const ManageProducts = () => {
 
   return (
     <div className="container mx-auto py-4">
-      <h1 className="text-4xl font-bold text-center text-teal-700 mb-6">
+      <h1 className="text-xl md:text-3xl font-semibold text-center text-teal-700 mb-6">
         Manage Products
       </h1>
       <div className="overflow-x-auto bg-white border border-gray-300 rounded-lg shadow-md">
@@ -63,7 +63,7 @@ const ManageProducts = () => {
               <th className="py-4 px-6 text-left text-sm font-medium">
                 Category
               </th>
-              <th className="py-4 px-6 text-left text-sm font-medium">
+              <th className="py-4 px-14 text-left text-sm font-medium">
                 Actions
               </th>
             </tr>

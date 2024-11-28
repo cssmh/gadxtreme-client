@@ -4,8 +4,10 @@ import { FaUsers } from "react-icons/fa";
 import { AiOutlineBars, AiOutlineProduct } from "react-icons/ai";
 import logo from "../../assets/favicon.webp";
 import { MdAddTask, MdProductionQuantityLimits } from "react-icons/md";
+import useAuth from "../../hooks/useAuth";
 
 const Sidebar = () => {
+  const { user } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -26,59 +28,66 @@ const Sidebar = () => {
         } md:translate-x-0 md:relative md:block`}
       >
         <div className="p-4 border-b border-gray-300">
-          <Link to="/admin-dashboard">
-            <h1 className="text-2xl font-semibold text-gray-800">
-              Admin Dashboard
-            </h1>
+          <Link to="/" className="hidden md:block">
+            <div className="w-full hidden md:flex px-4 py-1 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
+              <img src={logo} className="h-14" alt="Logo" />
+            </div>
           </Link>
+          {user && (
+            <div className="flex items-center px-4 my-4 text-gray-600">
+              <span className="font-medium">
+                Hi, {user?.displayName || "User"}
+              </span>
+            </div>
+          )}
         </div>
-        <nav className="mt-6 space-y-2">
+        <nav className="mt-1">
           <NavLink
             to="/admin-dashboard/add-product"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
+              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <MdAddTask className="mr-3 text-lg" />
+            <MdAddTask className="mr-3 text-xl" />
             Add Product
           </NavLink>
           <NavLink
             to="/admin-dashboard/manage-products"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
+              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <MdProductionQuantityLimits className="mr-3 text-lg" />
+            <MdProductionQuantityLimits className="mr-3 text-xl" />
             Manage Products
           </NavLink>
           <NavLink
             to="/admin-dashboard/all-ordered"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
+              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <AiOutlineProduct className="mr-3 text-lg" />
+            <AiOutlineProduct className="mr-3 text-xl" />
             Ordered Product
           </NavLink>
           <NavLink
             to="/admin-dashboard/all-users"
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 rounded-lg transition-colors duration-200 text-gray-700 ${
+              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaUsers className="mr-3 text-lg" />
+            <FaUsers className="mr-3 text-xl" />
             All Users
           </NavLink>
         </nav>

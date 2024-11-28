@@ -145,7 +145,7 @@ const AddProduct = () => {
 
   return (
     <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-6">
+      <h1 className="text-2xl font-semibold text-teal-600 mb-6">
         Add a Product
       </h1>
       <form
@@ -165,7 +165,7 @@ const AddProduct = () => {
             id="productName"
             value={formData.productName}
             onChange={handleInputChange}
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             required
           />
         </div>
@@ -182,7 +182,7 @@ const AddProduct = () => {
             required
             value={formData.category}
             onChange={handleInputChange}
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
           >
             <option value="">Select a category</option>
             {categories.map((category) => (
@@ -207,7 +207,7 @@ const AddProduct = () => {
               required
               value={formData.price}
               onChange={handleInputChange}
-              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
           <div>
@@ -223,7 +223,7 @@ const AddProduct = () => {
               id="discountPrice"
               value={formData.discountPrice}
               onChange={handleInputChange}
-              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
         </div>
@@ -264,7 +264,7 @@ const AddProduct = () => {
                 type="text"
                 value={keyFeatures[index]}
                 onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
                 placeholder="Key feature"
               />
             ))}
@@ -288,7 +288,7 @@ const AddProduct = () => {
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-28 h-28 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
+                className="w-24 h-20 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
@@ -298,7 +298,7 @@ const AddProduct = () => {
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-500">
+                  <div className="w-full h-full flex text-sm items-center justify-center text-gray-500">
                     <span>+ Upload</span>
                   </div>
                 )}

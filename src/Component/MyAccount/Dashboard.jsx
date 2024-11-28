@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen">
       <motion.div
-        className="max-w-7xl 2xl:max-w-[92%] mx-auto bg-white p-6 rounded-lg shadow-lg"
+        className="max-w-7xl 2xl:max-w-[92%] mx-auto bg-white p-6 rounded-lg shadow-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}

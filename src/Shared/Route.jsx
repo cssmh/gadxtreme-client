@@ -4,7 +4,6 @@ import Error from "../Component/Error";
 import Home from "../Component/Home";
 import Category from "../Pages/Category";
 import ProductDetails from "../Pages/ProductDetails";
-import MyAccount from "../Component/MyAccount";
 import Dashboard from "../Component/MyAccount/Dashboard";
 import MyOrders from "../Component/MyAccount/MyOrders";
 import Wishlist from "../Component/MyAccount/Wishlist";
@@ -47,18 +46,36 @@ const Route = createBrowserRouter([
         loader: async ({ params }) => await getGadget(params.id),
       },
       {
-        path: "/my-account",
+        path: "/my-account/dashboard",
         element: (
           <PrivateRoute>
-            <MyAccount />
+            <Dashboard />
           </PrivateRoute>
         ),
-        children: [
-          { path: "/my-account/dashboard", element: <Dashboard /> },
-          { path: "/my-account/wishlist", element: <Wishlist /> },
-          { path: "/my-account/orders", element: <MyOrders /> },
-          { path: "/my-account/profile", element: <MyProfile /> },
-        ],
+      },
+      {
+        path: "/my-account/wishlist",
+        element: (
+          <PrivateRoute>
+            <Wishlist />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-account/orders",
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-account/profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/success/:tranId",

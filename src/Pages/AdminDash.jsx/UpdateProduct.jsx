@@ -156,7 +156,7 @@ const UpdateProduct = () => {
             id="productName"
             value={formData.productName}
             onChange={handleInputChange}
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             required
           />
         </div>
@@ -172,7 +172,7 @@ const UpdateProduct = () => {
             id="category"
             value={formData.category}
             onChange={handleInputChange}
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             required
           >
             <option value="">Select a category</option>
@@ -197,7 +197,7 @@ const UpdateProduct = () => {
               id="price"
               value={formData.price}
               onChange={handleInputChange}
-              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
               required
             />
           </div>
@@ -214,7 +214,7 @@ const UpdateProduct = () => {
               id="discountPrice"
               value={formData.discountPrice}
               onChange={handleInputChange}
-              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
         </div>
@@ -273,7 +273,7 @@ const UpdateProduct = () => {
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-full h-32 bg-gray-100 border border-dashed rounded-lg flex justify-center items-center cursor-pointer"
+                className="w-24 h-20 bg-gray-100 border border-dashed rounded-lg flex justify-center items-center cursor-pointer"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
@@ -306,20 +306,23 @@ const UpdateProduct = () => {
             className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
           ></textarea>
         </div>
-        <div className="col-span-2 flex justify-end mt-3">
+        <div className="col-span-2">
           <button
             type="submit"
-            className="bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 px-3 py-2"
             disabled={loading}
+            className={`w-full ${
+              loading ? "bg-gray-800" : "bg-teal-500"
+            } text-white py-2 rounded-md`}
           >
-            {loading ? (
-              <p className="flex items-center gap-1">
-                <CgSpinnerTwo className="animate-spin text-xl" />{" "}
-                <span>Updating</span>
-              </p>
-            ) : (
-              "Update Product"
-            )}
+            <div className="flex justify-center items-center py-[2px]">
+              {loading ? (
+                <p className="flex items-center">
+                  Updating.. <CgSpinnerTwo className="animate-spin text-lg" />
+                </p>
+              ) : (
+                "Update Product"
+              )}
+            </div>
           </button>
         </div>
       </form>
