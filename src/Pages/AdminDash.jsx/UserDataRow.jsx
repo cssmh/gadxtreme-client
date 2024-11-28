@@ -97,22 +97,22 @@ const UserDataRow = ({ user, refetch }) => {
   if (loading) {
     return (
       <tr>
-        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        <td className="px-2 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
           <div className="w-24 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-500">
           <div className="w-32 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-500">
           <div className="w-24 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-4 py-4 whitespace-nowrap text-sm">
+        <td className="px-4 py-3 whitespace-nowrap text-sm">
           <div className="w-20 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-4 py-4 whitespace-nowrap text-center text-sm font-medium">
+        <td className="px-4 py-3 whitespace-nowrap text-center text-sm font-medium">
           <div className="w-8 h-8 bg-gray-200 animate-pulse rounded-full"></div>
         </td>
-        <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <td className="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
           <div className="w-32 h-6 bg-gray-200 animate-pulse rounded"></div>
         </td>
       </tr>
@@ -122,7 +122,7 @@ const UserDataRow = ({ user, refetch }) => {
   return (
     <>
       <tr className="bg-gray-100 transition-colors duration-200">
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-800">
           <div className="flex items-center gap-4">
             <img
               src={user?.photo}
@@ -134,10 +134,10 @@ const UserDataRow = ({ user, refetch }) => {
             </span>
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-600">
           <span className="truncate block">{user?.email || "N/A"}</span>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-700">
           <div className="flex flex-col space-y-1">
             <span className="text-green-600 font-medium">
               Created:{" "}
@@ -153,7 +153,7 @@ const UserDataRow = ({ user, refetch }) => {
             </span>
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm">
+        <td className="px-2 py-3 whitespace-nowrap text-sm">
           <span
             className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${
               user?.role === "guest"
@@ -164,7 +164,7 @@ const UserDataRow = ({ user, refetch }) => {
             {user?.role?.toUpperCase() || "Unavailable"}
           </span>
         </td>
-        <td className="px-6 py-4 text-center whitespace-nowrap">
+        <td className="px-2 py-3 text-center whitespace-nowrap">
           <button
             onClick={() => handleDelete(user._id, user?.role)}
             className="p-2 text-red-500 hover:text-red-700 transition-colors duration-200"
@@ -173,7 +173,7 @@ const UserDataRow = ({ user, refetch }) => {
             <FaTrashAlt size={18} />
           </button>
         </td>
-        <td className="px-6 py-4 text-right whitespace-nowrap">
+        <td className="px-2 py-3 text-right whitespace-nowrap">
           <button
             onClick={openRoleModal}
             className="px-4 py-2 text-sm font-medium bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors duration-200"

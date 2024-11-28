@@ -50,7 +50,7 @@ const AdminDashboard = () => {
             </div>
           </div>
         </div>
-      </section>
+    </section>
       <hr className="border-t-2 border-gray-200 mb-8 mx-6" />
       <section className="bg-white shadow-lg rounded-lg p-8 mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">

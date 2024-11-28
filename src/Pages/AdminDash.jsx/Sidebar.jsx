@@ -21,7 +21,7 @@ const Sidebar = () => {
         <img src={logo} alt="Logo" className="h-8" />
       </div>
       <div
-        className={`bg-white shadow-lg fixed z-50 top-0 left-0 h-full w-56 md:w-60 transform transition-transform duration-300 ease-in-out ${
+        className={`bg-slate-50 shadow-lg fixed z-50 top-0 left-0 h-full w-56 md:w-60 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:block`}
       >

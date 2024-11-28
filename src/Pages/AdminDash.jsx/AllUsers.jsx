@@ -22,7 +22,7 @@ const AllUsers = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-4 rounded-lg shadow-lg">
+    <div className="bg-gray-50 py-2 rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
         All Users ({data.length})
       </h1>
