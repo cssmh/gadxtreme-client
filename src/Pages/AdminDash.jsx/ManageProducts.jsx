@@ -1,8 +1,8 @@
 import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { getAllGadget, deleteGadget } from "../../Api/gadgets";
+import { Link } from "react-router-dom";
 
 const ManageProducts = () => {
   const {
@@ -43,88 +43,73 @@ const ManageProducts = () => {
   }
 
   return (
-    <div className="container mx-auto py-4">
-      <h1 className="text-xl md:text-3xl font-semibold text-center text-teal-700 mb-6">
-        Manage Products
+    <div className="p-3">
+      <h1 className="text-xl font-bold mb-4">
+        Manage Products ({products?.length})
       </h1>
-      <div className="overflow-x-auto bg-white border border-gray-300 rounded-lg shadow-md">
-        <table className="min-w-full">
+      <div className="overflow-x-auto">
+        <table className="table-auto w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
           <thead>
-            <tr className="bg-teal-100 text-teal-700">
-              <th className="py-4 px-6 text-left text-sm font-medium">
-                Product Name
+            <tr className="bg-teal-500 text-white rounded-xl">
+              <th className="border border-gray-300 px-4 py-2">Image</th>
+              <th className="border border-gray-300 px-4 py-2">Product Name</th>
+              <th className="border border-gray-300 px-4 py-2">Category</th>
+              <th className="border border-gray-300 px-4 py-2">Price</th>
+              <th className="border border-gray-300 px-4 py-2">
+                Discount Price
               </th>
-              <th className="py-4 px-6 text-left text-sm font-medium">
-                Price (৳)
-              </th>
-              <th className="py-4 px-6 text-left text-sm font-medium">
-                In Stock
-              </th>
-              <th className="py-4 px-6 text-left text-sm font-medium">
-                Category
-              </th>
-              <th className="py-4 px-14 text-left text-sm font-medium">
-                Actions
-              </th>
+              <th className="border border-gray-300 px-4 py-2">Stock Status</th>
+              <th className="border border-gray-300 px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {products?.map((product) => (
-              <tr
-                key={product._id}
-                className="transition-all duration-300 hover:bg-teal-50 cursor-pointer"
-              >
-                <td className="py-4 px-6 text-sm text-gray-700">
-                  <Link
-                    to={`/details/${product._id}`}
-                    className="text-teal-600 hover:underline"
-                  >
-                    {product.productName.length > 20
-                      ? product.productName.slice(0, 16) + "..."
-                      : product.productName}
+            {products.map((product) => (
+              <tr key={product._id} className="border hover:bg-base-100">
+                <td className=" border-gray-300 px-4 py-2">
+                  <img
+                    src={product.images[0]}
+                    alt={product.productName}
+                    className="w-16 h-16 object-cover rounded-md"
+                  />
+                </td>
+                <td className=" border-gray-300 px-2 py-2">
+                  <Link to={`/details/${product._id}`}>
+                    {product.productName.slice(0, 20)}..
                   </Link>
                 </td>
-                <td className="py-4 px-6 text-sm text-gray-700">
-                  {product.discountPrice ? (
-                    <div className="flex flex-col">
-                      <span className="line-through text-gray-500 text-xs">
-                        {product.price}
-                      </span>
-                      <span className="text-teal-600 font-semibold text-lg">
-                        {product.discountPrice}
-                      </span>
-                    </div>
-                  ) : (
-                    <span className="text-teal-600 font-semibold text-lg">
-                      {product.price}
-                    </span>
-                  )}
+                <td className=" border-gray-300 px-4 py-2">
+                  {product.category}
                 </td>
-                <td className="py-4 px-6 text-sm text-gray-700">
+                <td className=" border-gray-300 px-4 py-2">${product.price}</td>
+                <td className=" border-gray-300 px-4 py-2">
+                  ${product.discountPrice}
+                </td>
+                <td className=" border-gray-300 px-4 py-2">
                   <span
-                    className={`${
-                      product.inStock ? "text-green-600" : "text-red-600"
-                    } font-medium`}
+                    className={`px-2 py-1 text-sm rounded-full ${
+                      product.inStock
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
                   >
-                    {product.inStock ? "Yes" : "No"}
+                    {product.inStock ? "In Stock" : "Out of Stock"}
                   </span>
                 </td>
-                <td className="py-4 px-6 text-sm text-gray-700">
-                  <span className="text-gray-600">{product.category}</span>
-                </td>
-                <td className="py-4 px-6 text-sm text-gray-700 space-x-4">
-                  <Link
-                    to={`/admin-dashboard/update-product/${product._id}`}
-                    className="px-5 py-2 text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(product._id)}
-                    className="px-5 py-2 text-sm bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                  >
-                    Delete
-                  </button>
+                <td className=" gap-1 border-gray-300 px-4 py-2">
+                  <div className="flex items-center gap-1">
+                    <Link
+                      to={`/admin-dashboard/update-product/${product._id}`}
+                      className="px-5 py-2 text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

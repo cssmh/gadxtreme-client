@@ -18,44 +18,59 @@ const AllOrdered = () => {
 
   return (
     <div className="container mx-auto py-4">
-      <h1 className="text-3xl font-semibold text-center text-teal-600 mb-4">
+      <h1 className="text-xl font-bold text-center text-teal-600 mb-4">
         All Orders
       </h1>
       <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-        <table className="min-w-full table-auto border-collapse text-sm">
-          <thead className="bg-teal-100 text-teal-700">
+        <table className="min-w-full table-auto border-collapse">
+          <thead className="bg-teal-600 text-white">
             <tr>
-              <th className="border px-6 py-3 text-left">#</th>
-              <th className="border px-6 py-3 text-left">Customer</th>
-              <th className="border px-6 py-3 text-left">Address</th>
-              <th className="border px-6 py-3 text-left">Items</th>
-              <th className="border px-6 py-3 text-left">Total</th>
-              <th className="border px-6 py-3 text-left">Status</th>
-              <th className="border px-6 py-3 text-left">Payment</th>
-              <th className="border px-6 py-3 text-left">Date</th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">#</th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">
+                Customer
+              </th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">
+                Address
+              </th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">
+                Items
+              </th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">
+                Total
+              </th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">
+                Status
+              </th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">
+                Payment
+              </th>
+              <th className="px-5 py-3 text-left text-sm font-semibold">
+                Date
+              </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-200">
             {orders.map((order, idx) => (
               <tr
                 key={order._id}
-                className="hover:bg-teal-50 transition-colors duration-300"
+                className="hover:bg-gray-50 transition-colors duration-200"
               >
-                <td className="border px-4 py-4">{idx + 1}</td>
-                <td className="border px-4 py-4">{order.name}</td>
-                <td className="border px-4 py-4">
+                <td className="px-5 py-4 text-sm text-gray-700">{idx + 1}</td>
+                <td className="px-5 py-4 text-sm text-gray-700">
+                  {order.name}
+                </td>
+                <td className="px-5 py-4 text-sm text-gray-700">
                   {order.address}, {order.district}, {order.country}
                 </td>
-                <td className="border px-6 py-4">
+                <td className="px-5 py-4 text-sm text-gray-700">
                   {order.cartItems.map((item) => (
                     <div key={item.gadgetId}>
-                      <p>
-                        {item.name} x {item.quantity}
-                      </p>
+                      {item.name} <span className="text-gray-500">x</span>{" "}
+                      {item.quantity}
                     </div>
                   ))}
                 </td>
-                <td className="border px-6 py-4">
+                <td className="px-5 py-4 text-sm text-gray-700 font-medium">
                   ৳
                   {order.cartItems.reduce(
                     (total, item) => total + item.price * item.quantity,
@@ -63,24 +78,24 @@ const AllOrdered = () => {
                   )}
                 </td>
                 <td
-                  className={`border px-6 py-4 font-semibold ${
+                  className={`px-5 py-4 text-sm font-medium ${
                     order.status === "Pending"
-                      ? "text-yellow-700"
+                      ? "text-yellow-600"
                       : order.status === "Completed"
-                      ? "text-green-500"
-                      : "text-red-500"
+                      ? "text-green-600"
+                      : "text-red-600"
                   }`}
                 >
                   {order.status}
                 </td>
-                <td className="border px-6 py-4 text-center">
+                <td className="px-5 py-4 text-center">
                   {order.payment ? (
-                    <FaCheck className="text-green-500 inline-block" />
+                    <FaCheck className="text-green-500 text-lg" />
                   ) : (
-                    <FaTimes className="text-red-500 inline-block" />
+                    <FaTimes className="text-red-500 text-lg" />
                   )}
                 </td>
-                <td className="border px-6 py-4">
+                <td className="px-5 py-4 text-sm text-gray-500">
                   {new Date(order.createAt).toLocaleDateString()}{" "}
                   {new Date(order.createAt).toLocaleTimeString()}
                 </td>

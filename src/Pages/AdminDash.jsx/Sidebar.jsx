@@ -5,6 +5,7 @@ import { AiOutlineBars, AiOutlineProduct } from "react-icons/ai";
 import logo from "../../assets/favicon.webp";
 import { MdAddTask, MdProductionQuantityLimits } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
+import { BsCartCheck } from "react-icons/bs";
 
 const Sidebar = () => {
   const { user } = useAuth();
@@ -53,6 +54,18 @@ const Sidebar = () => {
           >
             <MdAddTask className="mr-3 text-xl" />
             Add Product
+          </NavLink>
+          <NavLink
+            to="/admin-dashboard/user-carts"
+            className={({ isActive }) =>
+              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
+                isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
+              }`
+            }
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            <BsCartCheck className="mr-3 text-xl" />
+            Cart Products
           </NavLink>
           <NavLink
             to="/admin-dashboard/manage-products"

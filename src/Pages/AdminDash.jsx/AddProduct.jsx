@@ -144,10 +144,8 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
-      <h1 className="text-2xl font-semibold text-teal-600 mb-6">
-        Add a Product
-      </h1>
+    <div className="container mx-auto bg-white p-8">
+      <h1 className="text-xl font-bold text-gray-800 mb-4">Add a Product</h1>
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-2"

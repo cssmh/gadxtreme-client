@@ -24,6 +24,7 @@ import AllOrdered from "../Pages/AdminDash.jsx/AllOrdered";
 import AllUsers from "../Pages/AdminDash.jsx/AllUsers";
 import DashLayout from "../Pages/AdminDash.jsx/DashLayout";
 import AdminRoute from "./AdminRoute";
+import CartProducts from "../Pages/AdminDash.jsx/CartProducts";
 
 const Route = createBrowserRouter([
   {
@@ -123,6 +124,10 @@ const Route = createBrowserRouter([
           {
             path: "/admin-dashboard/all-users",
             element: <AllUsers />,
+          },
+          {
+            path: "/admin-dashboard/user-carts",
+            element: <CartProducts />,
           },
         ],
       },
