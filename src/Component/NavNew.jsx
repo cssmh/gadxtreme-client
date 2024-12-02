@@ -193,13 +193,13 @@ const NavNew = () => {
             </Link>
           )}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link to={"/my-account/profile"} className="relative">
+            <Link to={"/my-account/wishlist"} className="relative">
               <FaRegHeart
                 className="text-gray-600 cursor-pointer text-xl"
-                title="Profile"
+                title="Wishlist"
               />
               <span className="absolute -top-2 -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                2
+                0
               </span>
             </Link>
             <Link to={"/cart"}>
@@ -228,7 +228,7 @@ const NavNew = () => {
                   title="Wishlist"
                 />
                 <span className="absolute -top-2 -right-1 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                  2
+                  0
                 </span>
               </Link>
               <Link to={"/cart"}>

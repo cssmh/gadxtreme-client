@@ -215,10 +215,10 @@ const Navbar = () => {
                 Login/Register
               </Link>
             )}
-            <Link to={"/my-account/profile"}>
+            <Link to={"/my-account/wishlist"}>
               <FaHeart
                 className="text-white cursor-pointer text-xl"
-                title="Profile"
+                title="Wishlist"
               />
             </Link>
             <Link to={"/cart"}>

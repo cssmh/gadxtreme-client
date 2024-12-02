@@ -1,5 +1,5 @@
 import { FaTimes } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useMyCart from "../../hooks/useMyCart";
 import { toast } from "sonner";
 import SmallLoader from "../SmallLoader";
@@ -16,6 +16,16 @@ const Cart = () => {
       return acc;
     }, {})
   );
+
+  useEffect(() => {
+    if (myCartData?.length > 0) {
+      const initialQuantities = myCartData.reduce((acc, item) => {
+        acc[item._id] = item.quantity;
+        return acc;
+      }, {});
+      setQuantities(initialQuantities);
+    }
+  }, [myCartData]);
 
   const showNotification = (message, type = "info") => {
     setNotification({ message, type });
@@ -34,22 +44,17 @@ const Cart = () => {
   };
 
   const handleIncrement = (itemId) => {
-    setQuantities((prev) => {
-      const newQuantity = prev[itemId] + 1;
-      updateQuantity(itemId, newQuantity);
-      return { ...prev, [itemId]: newQuantity };
-    });
+    const newQuantity = quantities[itemId] + 1;
+    updateQuantity(itemId, newQuantity);
+    setQuantities({ ...quantities, [itemId]: newQuantity });
   };
 
   const handleDecrement = (itemId) => {
-    setQuantities((prev) => {
-      if (prev[itemId] > 1) {
-        const newQuantity = prev[itemId] - 1;
-        updateQuantity(itemId, newQuantity);
-        return { ...prev, [itemId]: newQuantity };
-      }
-      return prev;
-    });
+    if (quantities[itemId] > 1) {
+      const newQuantity = quantities[itemId] - 1;
+      updateQuantity(itemId, newQuantity);
+      setQuantities({ ...quantities, [itemId]: newQuantity });
+    }
   };
 
   const handleRemove = async (itemId) => {

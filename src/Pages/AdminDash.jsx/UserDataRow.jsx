@@ -142,13 +142,33 @@ const UserDataRow = ({ user, refetch }) => {
             <span className="text-green-600 font-medium">
               Created:{" "}
               {user?.timestamp?.[0]
-                ? new Date(parseInt(user.timestamp[0], 10)).toLocaleString()
+                ? new Date(parseInt(user.timestamp[0], 10)).toLocaleString(
+                    "en-GB",
+                    {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    }
+                  )
                 : "N/A"}
             </span>
             <span className="text-gray-500">
               Last Login:{" "}
               {user?.timestamp?.[1]
-                ? new Date(parseInt(user.timestamp[1], 10)).toLocaleString()
+                ? new Date(parseInt(user.timestamp[1], 10)).toLocaleString(
+                    "en-GB",
+                    {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    }
+                  )
                 : "N/A"}
             </span>
           </div>
