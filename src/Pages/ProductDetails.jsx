@@ -47,6 +47,10 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = async (gadget) => {
+    if (!inStock) {
+      toast.error("This product is out of stock.");
+      return;
+    }
     const cartData = {
       gadgetId: gadget._id,
       author: user?.email,

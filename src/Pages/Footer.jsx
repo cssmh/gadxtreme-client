@@ -1,17 +1,14 @@
 const Footer = () => { 
   return (
     <footer className="bg-gray-900 text-white py-10">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
-        {/* Logo and Description */}
-        <div className="col-span-1">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-7 md:px-4">
+        <div className="md:col-span-1">
           <h2 className="text-2xl font-bold mb-4">GadXtreme</h2>
           <p className="text-sm">
             Your one-stop destination for the latest gadgets and accessories.
             Quality products, fast delivery, and exceptional service.
           </p>
         </div>
-
-        {/* Quick Links */}
         <div className="col-span-1">
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul>
@@ -29,8 +26,6 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
-        {/* Customer Support */}
         <div className="col-span-1">
           <h3 className="text-lg font-semibold mb-4">Customer Support</h3>
           <ul>
@@ -48,8 +43,6 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
-        {/* Payment Methods */}
         <div className="col-span-1">
           <h3 className="text-lg font-semibold mb-2">Payment Methods</h3>
           <p className="mb-3">We accept:</p>

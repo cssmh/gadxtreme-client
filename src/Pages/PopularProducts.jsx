@@ -88,12 +88,12 @@ const PopularProducts = () => {
                     <img
                       src={product?.images[0]}
                       alt={product.productName}
-                      className="w-full md:h-52 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
+                      className="w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
                     />
                     <img
                       src={product?.images[1]}
                       alt={product.productName}
-                      className="absolute inset-0 w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                      className="absolute inset-0 w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100"
                     />
                   </div>
                   <h3 className="text-sm mt-3">{product.productName}</h3>

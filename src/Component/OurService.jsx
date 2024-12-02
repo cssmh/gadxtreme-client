@@ -14,7 +14,7 @@ const OurService = () => {
         <h2 className="text-lg md:text-xl font-semibold mb-4 text-center">
           কেনো গ্যাডএক্সট্রিম থেকে প্রোডাক্ট কিনবেন?
         </h2>
-        <p className="text-sm md:text-base leading-7">
+        <p className="text-base leading-7">
           গ্যাডএক্সট্রিম বাংলাদেশে একটি অগ্রণী প্রিমিয়াম গ্যাজেট শপ। আমরা
           বিশ্বাস করি যে গ্যাজেট শুধু ব্যবহার করার জিনিস নয়, এটি প্রযুক্তি
           প্রেমীদের জন্য একটি সম্পদ। আমাদের ৭ বছরের অভিজ্ঞতা এবং উৎসর্গী টিম

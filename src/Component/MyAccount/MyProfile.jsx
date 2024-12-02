@@ -1,20 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
-import { FaCamera } from "react-icons/fa";
+import { FaCamera, FaTrash } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "sonner";
 
 const MyProfile = () => {
   const { user, updateProfileInfo, logOut } = useAuth();
   const apiKey = import.meta.env.VITE_imgBbKey;
+  const defaultImage = import.meta.env.VITE_Default_URL;
 
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState(user?.displayName || "");
-  const [profileImage, setProfileImage] = useState(
-    user?.photoURL ||
-      "https://raw.githubusercontent.com/cssmh/book-sharing-client/refs/heads/main/src/assets/default.jpg"
-  );
-  console.log(user);
+  const [name, setName] = useState(user?.displayName || "anonymous");
+  const [profileImage, setProfileImage] = useState(user?.photoURL);
   const [imageUploading, setImageUploading] = useState(false);
 
   const handleImageUpload = async (e) => {
@@ -48,6 +45,15 @@ const MyProfile = () => {
     }
   };
 
+  const resetProfileImage = async () => {
+    setProfileImage(defaultImage);
+    try {
+      await updateProfileInfo(name, defaultImage);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="py-6">
       <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
@@ -60,7 +66,7 @@ const MyProfile = () => {
               <img
                 src={profileImage || ""}
                 alt="Profile"
-                className="w-28 h-28 rounded-full object-fit border-4 border-teal-500"
+                className="w-28 h-28 rounded-full object-cover border-4 border-teal-500"
               />
               <label
                 htmlFor="image-upload"
@@ -76,6 +82,16 @@ const MyProfile = () => {
                 className="hidden"
               />
             </div>
+          </div>
+          <div className="flex justify-center mb-3">
+            <button
+              type="button"
+              onClick={resetProfileImage}
+              className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 focus:outline-none"
+            >
+              <FaTrash className="inline mr-2" />
+              Remove Picture
+            </button>
           </div>
           <div className="mb-3">
             <label
@@ -119,7 +135,7 @@ const MyProfile = () => {
                 className="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
                 onClick={() => {
                   setName(user?.displayName || "");
-                  setProfileImage(user?.profileUrl || "");
+                  setProfileImage(user?.photoURL || "");
                 }}
               >
                 Reset
