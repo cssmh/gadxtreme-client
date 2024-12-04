@@ -177,9 +177,12 @@ const Navbar = () => {
                 onMouseEnter={() => setShowUserDropdown(true)}
                 onMouseLeave={() => setShowUserDropdown(false)}
               >
-                <p className="text-white font-semibold cursor-pointer">
+                <Link
+                  to="/my-account/dashboard"
+                  className="text-white font-semibold cursor-pointer"
+                >
                   Hi, {user?.displayName || "Anonymous"}
-                </p>
+                </Link>
                 {showUserDropdown && (
                   <div className="absolute right-0 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
                     <Link
@@ -215,11 +218,14 @@ const Navbar = () => {
                 Login/Register
               </Link>
             )}
-            <Link to={"/my-account/wishlist"}>
+            <Link to={"/my-account/wishlist"} className="relative">
               <FaHeart
                 className="text-white cursor-pointer text-xl"
                 title="Wishlist"
               />
+              <span className="absolute -top-2 -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                0
+              </span>
             </Link>
             <Link to={"/cart"}>
               <p className="flex items-center gap-1 relative">

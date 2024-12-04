@@ -1,22 +1,24 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+
 const Success = () => {
   const { tranId } = useParams();
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-green-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full text-center">
-        <FaCheckCircle className="text-green-500 text-6xl mx-auto mb-4" />
-        <h1 className="text-3xl font-semibold text-green-700">
-          Payment Success
+    <div className="flex items-center justify-center min-h-screen bg-gray-200 py-12 px-6">
+      <div className="bg-white p-10 rounded-lg shadow-lg max-w-lg w-full text-center">
+        <FaCheckCircle className="text-green-600 text-5xl mb-3 mx-auto" />
+        <h1 className="text-2xl font-semibold text-gray-800 mb-2">
+          Payment Successful
         </h1>
-        <p className="mt-2 text-lg text-gray-600">
+        <p className="text-sm text-gray-600 mb-3">
           Your payment has been successfully processed. Thank you for your
           purchase!
         </p>
-        <p className="text-sm">Transaction ID : {tranId}</p>
-        <div className="mt-6">
+        <p className="text-xs text-gray-500 mb-6">Transaction ID: {tranId}</p>
+        <div className="mt-2">
           <button
-            className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+            className="px-6 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300"
             onClick={() => (window.location.href = "/my-account/orders")}
           >
             Go to Orders

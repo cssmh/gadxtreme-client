@@ -151,9 +151,12 @@ const NavNew = () => {
               onMouseEnter={() => setShowUserDropdown(true)}
               onMouseLeave={() => setShowUserDropdown(false)}
             >
-              <p className="hidden lg:block text-gray-500 font-medium cursor-pointer">
+              <Link
+                to="/my-account/dashboard"
+                className="hidden lg:block text-gray-500 font-medium cursor-pointer"
+              >
                 Hi, {user?.displayName || "Anonymous"}
-              </p>
+              </Link>
               {showUserDropdown && (
                 <div className="absolute right-0 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
                   <Link

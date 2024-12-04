@@ -38,7 +38,7 @@ const categories = [
     image: cate9,
     link: "/category/converters & hub",
   },
-  { name: "Laptop", image: cate10, link: "/category/laptop" },
+  { name: "Laptop", image: cate10, link: "/category/laptops" },
   { name: "Smart Tv", image: cate11, link: "/category/smart TV" },
   {
     name: "All Smart & More Categories",

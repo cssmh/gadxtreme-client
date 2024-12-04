@@ -25,6 +25,7 @@ import AllUsers from "../Pages/AdminDash.jsx/AllUsers";
 import DashLayout from "../Pages/AdminDash.jsx/DashLayout";
 import AdminRoute from "./AdminRoute";
 import CartProducts from "../Pages/AdminDash.jsx/CartProducts";
+import OrderDetails from "../Component/MyAccount/OrderDetails";
 
 const Route = createBrowserRouter([
   {
@@ -67,6 +68,14 @@ const Route = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/order-details/:id",
+        element: (
+          <PrivateRoute>
+            <OrderDetails />
           </PrivateRoute>
         ),
       },

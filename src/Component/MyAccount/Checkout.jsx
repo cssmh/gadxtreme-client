@@ -94,6 +94,7 @@ const Checkout = () => {
           image: item.image,
         })),
         status: "Pending",
+        orderPlaced: new Date(),
       };
 
       await placeOrder(orderData);
