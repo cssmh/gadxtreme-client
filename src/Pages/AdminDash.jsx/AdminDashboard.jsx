@@ -6,8 +6,15 @@ import {
   FaPlus,
   FaChartPie,
 } from "react-icons/fa";
+import { totalCounts } from "../../Api/admin";
+import { useQuery } from "@tanstack/react-query";
 
 const AdminDashboard = () => {
+  const { data = {} } = useQuery({
+    queryKey: ["totalCounts"],
+    queryFn: async () => await totalCounts(),
+  });
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-gradient-to-r from-blue-500 to-purple-500 py-6 mb-8 text-center text-white">
@@ -19,38 +26,36 @@ const AdminDashboard = () => {
           <div className="flex items-center space-x-4">
             <FaChartPie className="text-4xl text-blue-600" />
             <div>
-              <h3 className="font-semibold text-gray-700">
-                Total Orders
-              </h3>
-              <p className="text-xl font-bold text-gray-900">1,245</p>
+              <h3 className="font-semibold text-gray-700">Total Orders</h3>
+              <p className="text-xl font-bold text-gray-900">
+                {data?.totalOrder || 0}
+              </p>
             </div>
           </div>
         </div>
-
         <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300">
           <div className="flex items-center space-x-4">
             <FaUsers className="text-4xl text-green-600" />
             <div>
-              <h3 className="font-semibold text-gray-700">
-                Total Users
-              </h3>
-              <p className="text-xl font-bold text-gray-900">542</p>
+              <h3 className="font-semibold text-gray-700">Total Users</h3>
+              <p className="text-xl font-bold text-gray-900">
+                {data?.totalUser || 0}
+              </p>
             </div>
           </div>
         </div>
-
         <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300">
           <div className="flex items-center space-x-4">
             <FaBoxOpen className="text-4xl text-orange-600" />
             <div>
-              <h3 className="font-semibold text-gray-700">
-                Total Products
-              </h3>
-              <p className="text-xl font-bold text-gray-900">328</p>
+              <h3 className="font-semibold text-gray-700">Total Products</h3>
+              <p className="text-xl font-bold text-gray-900">
+                {data?.totalProduct || 0}
+              </p>
             </div>
           </div>
         </div>
-    </section>
+      </section>
       <hr className="border-t-2 border-gray-200 mb-8 mx-6" />
       <section className="bg-white shadow-lg rounded-lg p-8 mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
@@ -66,7 +71,6 @@ const AdminDashboard = () => {
               Add Product
             </span>
           </Link>
-
           <Link
             to="/admin-dashboard/manage-products"
             className="p-6 bg-yellow-200 rounded-lg hover:bg-yellow-300 flex items-center justify-between shadow-md transition-all duration-300"
@@ -76,7 +80,6 @@ const AdminDashboard = () => {
               Manage Products
             </span>
           </Link>
-
           <Link
             to="/admin-dashboard/orders"
             className="p-6 bg-green-200 rounded-lg hover:bg-green-300 flex items-center justify-between shadow-md transition-all duration-300"
@@ -86,7 +89,6 @@ const AdminDashboard = () => {
               View Orders
             </span>
           </Link>
-
           <Link
             to="/admin-dashboard/all-users"
             className="p-6 bg-purple-200 rounded-lg hover:bg-purple-300 flex items-center justify-between shadow-md transition-all duration-300"
