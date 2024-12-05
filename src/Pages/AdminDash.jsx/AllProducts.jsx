@@ -4,7 +4,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { getAllGadget, deleteGadget } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
 
-const ManageProducts = () => {
+const AllProducts = () => {
   const {
     data: products = [],
     isLoading,
@@ -45,7 +45,7 @@ const ManageProducts = () => {
   return (
     <div className="p-3">
       <h1 className="text-xl font-bold mb-4">
-        Manage Products ({products?.length})
+        All Products ({products?.length})
       </h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
@@ -120,4 +120,4 @@ const ManageProducts = () => {
   );
 };
 
-export default ManageProducts;
+export default AllProducts;

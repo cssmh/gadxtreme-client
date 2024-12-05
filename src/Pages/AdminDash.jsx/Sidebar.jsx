@@ -68,7 +68,7 @@ const Sidebar = () => {
             Cart Products
           </NavLink>
           <NavLink
-            to="/admin-dashboard/manage-products"
+            to="/admin-dashboard/all-products"
             className={({ isActive }) =>
               `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
@@ -77,7 +77,7 @@ const Sidebar = () => {
             onClick={() => setIsSidebarOpen(false)}
           >
             <MdProductionQuantityLimits className="mr-3 text-xl" />
-            Manage Products
+            All Products
           </NavLink>
           <NavLink
             to="/admin-dashboard/all-ordered"

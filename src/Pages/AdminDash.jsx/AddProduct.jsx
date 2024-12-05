@@ -144,11 +144,11 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container mx-auto bg-white p-8">
+    <div className="bg-white p-4 md:p-8">
       <h1 className="text-xl font-bold text-gray-800 mb-4">Add a Product</h1>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-2"
+        className="grid grid-cols-1 gap-4 md:grid-cols-2"
       >
         <div>
           <label
@@ -161,10 +161,10 @@ const AddProduct = () => {
             type="text"
             name="productName"
             id="productName"
+            required
             value={formData.productName}
             onChange={handleInputChange}
             className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
-            required
           />
         </div>
         <div>
@@ -190,7 +190,7 @@ const AddProduct = () => {
             ))}
           </select>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label
               className="block text-gray-700 font-semibold mb-2"
@@ -255,7 +255,7 @@ const AddProduct = () => {
           >
             Key Features (comma separated):
           </label>
-          <div className="flex space-x-2">
+          <div className="flex flex-col md:flex-row space-x-0 md:space-x-2 space-y-2 md:space-y-0">
             {[0, 1].map((index) => (
               <input
                 key={index}
@@ -268,7 +268,7 @@ const AddProduct = () => {
             ))}
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="md:col-span-2">
           <label
             className="block text-gray-700 font-semibold mb-2"
             htmlFor="images"
@@ -282,7 +282,7 @@ const AddProduct = () => {
             onChange={handleImageChange}
             accept="image/*"
           />
-          <div className="md:w-1/2 grid grid-cols-4 mt-4">
+          <div className="md:w-1/2 grid md:grid-cols-4 mt-4">
             {selectedImages.map((image, index) => (
               <div
                 key={index}
@@ -304,7 +304,7 @@ const AddProduct = () => {
             ))}
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="md:col-span-2">
           <label className="block mb-1 font-semibold" htmlFor="description">
             Product Description:
           </label>

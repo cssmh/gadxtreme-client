@@ -6,9 +6,11 @@ import SmallLoader from "../SmallLoader";
 import { FaTimes } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { placeOrder } from "../../Api/order";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const { loading, user } = useAuth();
+  const navigate = useNavigate();
   const { isLoading, myCartData, refetch } = useMyCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [quantities, setQuantities] = useState(
@@ -110,6 +112,7 @@ const Checkout = () => {
         additionalInfo: "",
       });
       setQuantities({});
+      navigate("/my-account/orders");
     } catch (error) {
       console.error(error);
       toast.error("Failed to place order");

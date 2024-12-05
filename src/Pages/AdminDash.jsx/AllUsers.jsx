@@ -22,8 +22,8 @@ const AllUsers = () => {
   }
 
   return (
-    <div className="p-2 rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">
+    <div className="p-4 rounded-lg shadow-lg">
+      <h1 className="text-xl font-bold text-gray-800 mb-2">
         All Users ({data.length})
       </h1>
       <div className="overflow-hidden border rounded-lg">

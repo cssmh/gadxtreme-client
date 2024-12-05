@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen">
       <motion.div
-        className="max-w-7xl 2xl:max-w-[92%] mx-auto bg-white p-6 rounded-lg shadow-sm"
+        className="max-w-7xl 2xl:max-w-[92%] mx-auto bg-white p-3 md:p-6 rounded-lg shadow-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -36,10 +36,9 @@ const Dashboard = () => {
             </Link>
           </motion.div>
         )}
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
           <motion.div
-            className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -58,9 +57,8 @@ const Dashboard = () => {
               </span>
             </Link>
           </motion.div>
-
           <motion.div
-            className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -77,9 +75,8 @@ const Dashboard = () => {
               </span>
             </Link>
           </motion.div>
-
           <motion.div
-            className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -99,11 +96,9 @@ const Dashboard = () => {
             </Link>
           </motion.div>
         </div>
-
-        {/* Stats Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <motion.div
-            className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -113,9 +108,8 @@ const Dashboard = () => {
             <p className="text-4xl font-bold text-gray-800">120</p>
             <p className="text-sm text-gray-500 mt-2">Orders completed</p>
           </motion.div>
-
           <motion.div
-            className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -125,9 +119,8 @@ const Dashboard = () => {
             <p className="text-4xl font-bold text-gray-800">৳500,000</p>
             <p className="text-sm text-gray-500 mt-2">Total sales value</p>
           </motion.div>
-
           <motion.div
-            className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

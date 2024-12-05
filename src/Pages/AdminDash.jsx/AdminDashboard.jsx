@@ -21,7 +21,7 @@ const AdminDashboard = () => {
         <h1 className="text-3xl font-semibold">Admin Dashboard</h1>
         <p className="mt-2">Manage your store and track performance</p>
       </header>
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 mb-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 px-2 md:px-6 md:mb-8">
         <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300">
           <div className="flex items-center space-x-4">
             <FaChartPie className="text-4xl text-blue-600" />
@@ -57,11 +57,11 @@ const AdminDashboard = () => {
         </div>
       </section>
       <hr className="border-t-2 border-gray-200 mb-8 mx-6" />
-      <section className="bg-white shadow-lg rounded-lg p-8 mb-8">
+      <section className="bg-white md:shadow-md rounded-lg p-4 md:p-8 mb-6 md:mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
           Admin Actions
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           <Link
             to="/admin-dashboard/add-product"
             className="p-6 bg-blue-200 rounded-lg hover:bg-blue-300 flex items-center justify-between shadow-md transition-all duration-300"
