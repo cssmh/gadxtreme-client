@@ -22,7 +22,6 @@ const categories = [
 ];
 
 const apiKey = import.meta.env.VITE_imgBbKey;
-
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
