@@ -145,52 +145,51 @@ const AddProduct = () => {
   return (
     <div className="bg-white p-4 md:p-8">
       <h1 className="text-xl font-bold text-gray-800 mb-4">Add a Product</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 gap-4 md:grid-cols-2"
-      >
-        <div>
-          <label
-            className="block text-gray-700 font-semibold mb-2"
-            htmlFor="productName"
-          >
-            Product Name:
-          </label>
-          <input
-            type="text"
-            name="productName"
-            id="productName"
-            required
-            value={formData.productName}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
-          />
+      <form onSubmit={handleSubmit}>
+        <div className="w-full flex flex-col lg:flex-row gap-2 md:gap-4">
+          <div className="lg:w-1/2">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="productName"
+            >
+              Product Name:
+            </label>
+            <input
+              type="text"
+              name="productName"
+              id="productName"
+              required
+              value={formData.productName}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            />
+          </div>
+          <div className="lg:w-1/2">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="category"
+            >
+              Category:
+            </label>
+            <select
+              name="category"
+              id="category"
+              required
+              value={formData.category}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div>
-          <label
-            className="block text-gray-700 font-semibold mb-2"
-            htmlFor="category"
-          >
-            Category:
-          </label>
-          <select
-            name="category"
-            id="category"
-            required
-            value={formData.category}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
-          >
-            <option value="">Select a category</option>
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
+        <div className="flex flex-wrap items-center gap-4 mt-4">
+          <div className="w-full lg:w-1/3">
             <label
               className="block text-gray-700 font-semibold mb-2"
               htmlFor="price"
@@ -207,7 +206,7 @@ const AddProduct = () => {
               className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
-          <div>
+          <div className="w-full lg:w-1/3">
             <label
               className="block text-gray-700 font-semibold mb-2"
               htmlFor="discountPrice"
@@ -223,38 +222,35 @@ const AddProduct = () => {
               className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
+          <div className="flex items-center justify-center gap-4 p-4">
+            <label
+              className="label text-gray-700 font-semibold"
+              htmlFor="inStock"
+            >
+              <span className="label-text">In Stock:</span>
+            </label>
+            <input
+              type="checkbox"
+              name="inStock"
+              id="inStock"
+              checked={formData.inStock}
+              onChange={handleInputChange}
+              className="toggle toggle-accent"
+            />
+            <span
+              className={`text-gray-700 font-semibold ${
+                formData.inStock ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {formData.inStock ? "Available" : "Out of Stock"}
+            </span>
+          </div>
         </div>
-        <div className="flex items-center justify-center space-x-4 p-4">
-          <label
-            className="label text-gray-700 font-semibold"
-            htmlFor="inStock"
-          >
-            <span className="label-text">In Stock:</span>
-          </label>
-          <input
-            type="checkbox"
-            name="inStock"
-            id="inStock"
-            checked={formData.inStock}
-            onChange={handleInputChange}
-            className="toggle toggle-accent"
-          />
-          <span
-            className={`text-gray-700 font-semibold ${
-              formData.inStock ? "text-green-600" : "text-red-600"
-            }`}
-          >
-            {formData.inStock ? "Available" : "Out of Stock"}
-          </span>
-        </div>
-        <div className="col-span-2 space-y-4">
-          <label
-            className="block text-gray-700 font-semibold mb-2"
-            htmlFor="keyFeatures"
-          >
+        <div className="flex flex-col gap-4 mt-4">
+          <label className="text-gray-700 font-semibold">
             Key Features (comma separated):
           </label>
-          <div className="flex flex-col md:flex-row space-x-0 md:space-x-2 space-y-2 md:space-y-0">
+          <div className="flex flex-col md:flex-row gap-2">
             {[0, 1].map((index) => (
               <input
                 key={index}
@@ -262,12 +258,12 @@ const AddProduct = () => {
                 value={keyFeatures[index]}
                 onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
-                placeholder="Key feature"
+                placeholder="Key features"
               />
             ))}
           </div>
         </div>
-        <div className="md:col-span-2">
+        <div className="mt-4">
           <label
             className="block text-gray-700 font-semibold mb-2"
             htmlFor="images"
@@ -281,11 +277,11 @@ const AddProduct = () => {
             onChange={handleImageChange}
             accept="image/*"
           />
-          <div className="md:w-1/2 grid md:grid-cols-4 mt-4">
+          <div className="flex gap-2 flex-wrap">
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-24 h-20 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
+                className="w-20 lg:w-28 h-16 lg:h-20 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
@@ -295,7 +291,7 @@ const AddProduct = () => {
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <div className="w-full h-full flex text-sm items-center justify-center text-gray-500">
+                  <div className="w-full h-full flex text-sm items-center justify-center text-gray-500 pr-2">
                     <span>+ Upload</span>
                   </div>
                 )}
@@ -303,8 +299,11 @@ const AddProduct = () => {
             ))}
           </div>
         </div>
-        <div className="md:col-span-2">
-          <label className="block mb-1 font-semibold" htmlFor="description">
+        <div className="mt-4">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="description"
+          >
             Product Description:
           </label>
           <textarea
@@ -317,25 +316,23 @@ const AddProduct = () => {
             required
           ></textarea>
         </div>
-        <div className="col-span-2">
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full ${
-              loading ? "bg-gray-800" : "bg-teal-500"
-            } text-white py-2 rounded-md`}
-          >
-            <div className="flex justify-center items-center py-[2px]">
-              {loading ? (
-                <p className="flex items-center">
-                  Submitting.. <CgSpinnerTwo className="animate-spin text-lg" />
-                </p>
-              ) : (
-                "Add Product"
-              )}
-            </div>
-          </button>
-        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full mt-4 ${
+            loading ? "bg-gray-800" : "bg-teal-500"
+          } text-white py-2 rounded-md`}
+        >
+          <div className="flex justify-center items-center">
+            {loading ? (
+              <p className="flex items-center">
+                Submitting.. <CgSpinnerTwo className="animate-spin text-lg" />
+              </p>
+            ) : (
+              "Add Product"
+            )}
+          </div>
+        </button>
       </form>
     </div>
   );
