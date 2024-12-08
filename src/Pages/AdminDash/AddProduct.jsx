@@ -91,11 +91,23 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      if (selectedImages.every((img) => img === null)) {
-        toast.error("Please upload at least one image.");
+      if (
+        formData.discountPrice &&
+        +formData.discountPrice >= +formData.price
+      ) {
+        toast.error("Discount price must be lower than the original price.");
+        setLoading(false);
         return;
       }
+
+      if (selectedImages.every((img) => img === null)) {
+        toast.error("Please upload at least one image.");
+        setLoading(false);
+        return;
+      }
+
       const uploadedImages = [];
       for (let i = 0; i < selectedImages.length; i++) {
         if (selectedImages[i]) {
@@ -281,7 +293,7 @@ const AddProduct = () => {
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-20 lg:w-28 h-16 lg:h-20 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
+                className="w-20 lg:w-36 h-16 lg:h-28 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (

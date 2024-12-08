@@ -97,6 +97,18 @@ const UpdateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if (formData.discountPrice && formData.discountPrice > formData.price) {
+      swal({
+        title: "Error",
+        text: "Discount Price cannot be greater than Price!",
+        icon: "error",
+        timer: 2000,
+      });
+      setLoading(false);
+      return;
+    }
+
     try {
       const updatedImages = [...formData.images];
 
@@ -135,54 +147,53 @@ const UpdateProduct = () => {
   };
 
   return (
-    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg">
+    <div className="bg-white p-4 md:p-8">
       <h1 className="text-xl font-bold text-gray-800 mb-4">Update Product</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-2"
-      >
-        <div>
-          <label
-            className="block text-gray-700 font-semibold mb-2"
-            htmlFor="productName"
-          >
-            Product Name:
-          </label>
-          <input
-            type="text"
-            name="productName"
-            id="productName"
-            value={formData.productName}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
-            required
-          />
+      <form onSubmit={handleSubmit}>
+        <div className="w-full flex flex-col lg:flex-row gap-2 md:gap-4">
+          <div className="lg:w-1/2">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="productName"
+            >
+              Product Name:
+            </label>
+            <input
+              type="text"
+              name="productName"
+              id="productName"
+              required
+              value={formData.productName}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            />
+          </div>
+          <div className="lg:w-1/2">
+            <label
+              className="block text-gray-700 font-semibold mb-2"
+              htmlFor="category"
+            >
+              Category:
+            </label>
+            <select
+              name="category"
+              id="category"
+              required
+              value={formData.category}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div>
-          <label
-            className="block text-gray-700 font-semibold mb-2"
-            htmlFor="category"
-          >
-            Category:
-          </label>
-          <select
-            name="category"
-            id="category"
-            value={formData.category}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
-            required
-          >
-            <option value="">Select a category</option>
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <div>
+        <div className="flex flex-wrap items-center gap-4 mt-4">
+          <div className="w-full lg:w-1/3">
             <label
               className="block text-gray-700 font-semibold mb-2"
               htmlFor="price"
@@ -193,13 +204,13 @@ const UpdateProduct = () => {
               type="number"
               name="price"
               id="price"
+              required
               value={formData.price}
               onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
-              required
             />
           </div>
-          <div>
+          <div className="w-full lg:w-1/3">
             <label
               className="block text-gray-700 font-semibold mb-2"
               htmlFor="discountPrice"
@@ -215,31 +226,31 @@ const UpdateProduct = () => {
               className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
+          <div className="flex items-center justify-center gap-4 p-4">
+            <label
+              className="label text-gray-700 font-semibold"
+              htmlFor="inStock"
+            >
+              <span className="label-text">In Stock:</span>
+            </label>
+            <input
+              type="checkbox"
+              name="inStock"
+              id="inStock"
+              checked={formData.inStock}
+              onChange={handleInputChange}
+              className="toggle toggle-accent"
+            />
+            <span
+              className={`text-gray-700 font-semibold ${
+                formData.inStock ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {formData.inStock ? "Available" : "Out of Stock"}
+            </span>
+          </div>
         </div>
-        <div className="flex items-center justify-center space-x-4 p-4">
-          <label
-            className="label text-gray-700 font-semibold"
-            htmlFor="inStock"
-          >
-            <span className="label-text">In Stock:</span>
-          </label>
-          <input
-            type="checkbox"
-            name="inStock"
-            id="inStock"
-            checked={formData.inStock}
-            onChange={handleInputChange}
-            className="toggle toggle-accent"
-          />
-          <span
-            className={`text-gray-700 font-semibold ${
-              formData.inStock ? "text-green-600" : "text-red-600"
-            }`}
-          >
-            {formData.inStock ? "Available" : "Out of Stock"}
-          </span>
-        </div>
-        <div className="col-span-2">
+        <div className="flex flex-col gap-4 mt-4">
           <label className="block mb-1 font-semibold" htmlFor="keyFeatures">
             Key Features (use comma-separated):
           </label>
@@ -253,7 +264,7 @@ const UpdateProduct = () => {
             placeholder="Enter key features separated by commas"
           />
         </div>
-        <div className="col-span-2">
+        <div className="mt-4">
           <label
             className="block text-gray-700 font-semibold mb-2"
             htmlFor="images"
@@ -267,17 +278,17 @@ const UpdateProduct = () => {
             onChange={handleImageChange}
             accept="image/*"
           />
-          <div className="md:w-1/2 grid grid-cols-4 mt-4">
+          <div className="flex gap-2 flex-wrap">
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-24 h-20 bg-gray-100 border border-dashed rounded-lg flex justify-center items-center cursor-pointer"
+                className="w-20 lg:w-36 h-16 lg:h-28 border border-gray-300 rounded-lg flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
                   <img
                     src={URL.createObjectURL(image)}
-                    alt={`Selected Image ${index + 1}`}
+                    alt={`product-${index}`}
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
@@ -291,38 +302,39 @@ const UpdateProduct = () => {
             ))}
           </div>
         </div>
-        <div className="col-span-2">
-          <label className="block mb-1 font-semibold" htmlFor="description">
+        <div className="mt-4">
+          <label
+            className="block text-gray-700 font-semibold mb-2"
+            htmlFor="description"
+          >
             Product Description:
           </label>
           <textarea
             name="description"
             id="description"
-            rows="4"
             value={formData.description}
             onChange={handleInputChange}
+            rows="6"
             className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
           ></textarea>
         </div>
-        <div className="col-span-2">
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full ${
-              loading ? "bg-gray-800" : "bg-teal-500"
-            } text-white py-2 rounded-md`}
-          >
-            <div className="flex justify-center items-center py-[2px]">
-              {loading ? (
-                <p className="flex items-center">
-                  Updating.. <CgSpinnerTwo className="animate-spin text-lg" />
-                </p>
-              ) : (
-                "Update Product"
-              )}
-            </div>
-          </button>
-        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full mt-4 ${
+            loading ? "bg-gray-800" : "bg-teal-500"
+          } text-white py-2 rounded-md`}
+        >
+          <div className="flex justify-center items-center py-[2px]">
+            {loading ? (
+              <p className="flex items-center">
+                Updating.. <CgSpinnerTwo className="animate-spin text-lg" />
+              </p>
+            ) : (
+              "Update Product"
+            )}
+          </div>
+        </button>
       </form>
     </div>
   );
