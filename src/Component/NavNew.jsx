@@ -60,7 +60,7 @@ const categories = [
   {
     name: "More",
     link: "/category/more",
-    subcategories: ["Smart TV", "Laptops"],
+    subcategories: ["Smart TV", "Laptop"],
   },
 ];
 
@@ -152,7 +152,7 @@ const NavNew = () => {
               onMouseLeave={() => setShowUserDropdown(false)}
             >
               <Link
-                to="/my-account/dashboard"
+                to="/dashboard"
                 className="hidden lg:block text-gray-500 font-medium cursor-pointer"
               >
                 Hi, {user?.displayName || "Anonymous"}
@@ -160,7 +160,7 @@ const NavNew = () => {
               {showUserDropdown && (
                 <div className="absolute right-0 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
                   <Link
-                    to="/my-account/dashboard"
+                    to="/dashboard"
                     className="block px-4 py-1 hover:bg-gray-100"
                   >
                     Dashboard

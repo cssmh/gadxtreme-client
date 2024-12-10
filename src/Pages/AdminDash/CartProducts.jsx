@@ -47,7 +47,7 @@ const CartProducts = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-3">
       <h1 className="text-xl font-bold text-gray-800 mb-4">All Cart Items</h1>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">

@@ -59,14 +59,6 @@ const Route = createBrowserRouter([
         element: <Success />,
       },
       {
-        path: "/profile",
-        element: (
-          <PrivateRoute>
-            <MyProfile />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/cart",
         element: (
           <PrivateRoute>
@@ -92,6 +84,10 @@ const Route = createBrowserRouter([
         children: [
           { path: "/dashboard", element: <Dashboard /> },
           {
+            path: "/dashboard/profile",
+            element: <MyProfile />,
+          },
+          {
             path: "/dashboard/wishlist",
             element: <Wishlist />,
           },
@@ -105,7 +101,7 @@ const Route = createBrowserRouter([
             element: <AllProducts />,
           },
           {
-            path: "/dashboard/update-product/:id",
+            path: "/dashboard/update/:id",
             element: <UpdateProduct />,
             loader: async ({ params }) => await getGadget(params.id),
           },

@@ -60,7 +60,7 @@ const categories = [
   {
     name: "More",
     link: "/category/more",
-    subcategories: ["Smart TV", "Laptops"],
+    subcategories: ["Smart TV", "Laptop"],
   },
 ];
 
@@ -178,7 +178,7 @@ const Navbar = () => {
                 onMouseLeave={() => setShowUserDropdown(false)}
               >
                 <Link
-                  to="/my-account/dashboard"
+                  to="/dashboard"
                   className="text-white font-semibold cursor-pointer"
                 >
                   Hi, {user?.displayName || "Anonymous"}
@@ -291,7 +291,7 @@ const Navbar = () => {
                 <p className="font-medium my-1">
                   <Link
                     onClick={() => setDrawerOpen(!isDrawerOpen)}
-                    to="my-account/dashboard"
+                    to="/dashboard"
                   >
                     Dashboard
                   </Link>

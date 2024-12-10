@@ -10,7 +10,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import useAdmin from "../../hooks/useAdmin";
 
 const Sidebar = () => {
-  const { user, logout } = useAuth();
+  const { user, logOut } = useAuth();
   const { isAdmin } = useAdmin();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showAdminRoutes, setShowAdminRoutes] = useState(true);
@@ -19,8 +19,8 @@ const Sidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleLogout = async () => {
-    await logout();
+  const handleLogout = () => {
+    logOut();
     toggleSidebar();
   };
 
@@ -37,9 +37,9 @@ const Sidebar = () => {
         <img src={logo} alt="Logo" className="h-8" />
       </div>
       <div
-        className={`bg-[#f3f4f6] shadow-lg overflow-x-auto fixed z-50 top-0 left-0 h-full w-56 md:w-60 transform transition-transform duration-300 ease-in-out  ${
+        className={`flex flex-col bg-[#f3f4f6] shadow-lg overflow-x-auto fixed z-50 top-0 left-0 h-full w-56 md:w-56 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0  md:block`}
+        } md:translate-x-0`}
         // md:relative
       >
         <div className="px-4 pt-4 border-b border-gray-300">
@@ -49,7 +49,7 @@ const Sidebar = () => {
             </div>
           </Link>
           {user && (
-            <div className="flex items-center px-4 my-4 text-gray-600">
+            <div className="flex items-center px-1 my-1 md:my-4 pb-3 md:pb-0 text-gray-600">
               <span className="font-medium">
                 Hi, {user?.displayName || "User"}
               </span>
@@ -57,7 +57,7 @@ const Sidebar = () => {
           )}
         </div>
         {isAdmin && (
-          <div className="flex items-center justify-between px-4 py-2 border-b border-gray-300">
+          <div className="flex items-center justify-center gap-3 py-2 border-b border-gray-300">
             <span className="text-gray-700">Admin Routes</span>
             <button
               onClick={handleAdminToggle}
@@ -72,7 +72,31 @@ const Sidebar = () => {
           </div>
         )}
         {!showAdminRoutes && (
-          <nav className="mt-1">
+          <nav className="mt-1 px-1">
+            <NavLink
+              to="/dashboard/cart"
+              className={({ isActive }) =>
+                `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
+                  isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
+                }`
+              }
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              <BsCartCheck className="mr-3 text-xl" />
+              Cart
+            </NavLink>
+            <NavLink
+              to="/dashboard/my-orders"
+              className={({ isActive }) =>
+                `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
+                  isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
+                }`
+              }
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              <MdAddTask className="mr-3 text-xl" />
+              My Orders
+            </NavLink>
             <NavLink
               to="/dashboard/my-reviews"
               className={({ isActive }) =>
@@ -95,7 +119,7 @@ const Sidebar = () => {
               onClick={() => setIsSidebarOpen(false)}
             >
               <FaRegListAlt className="mr-3 text-xl" />
-              Pending Reviews
+              Pending Review
             </NavLink>
             <NavLink
               to="/dashboard/pending-products"
@@ -107,12 +131,12 @@ const Sidebar = () => {
               onClick={() => setIsSidebarOpen(false)}
             >
               <MdProductionQuantityLimits className="mr-3 text-xl" />
-              Pending Products
+              Pending Order
             </NavLink>
           </nav>
         )}
         {isAdmin && showAdminRoutes && (
-          <nav>
+          <nav className="mt-1 px-1">
             <NavLink
               to="/dashboard/add-product"
               className={({ isActive }) =>
@@ -175,9 +199,9 @@ const Sidebar = () => {
             </NavLink>
           </nav>
         )}
-        <div className="mt-auto border-t border-gray-300 pt-2">
+        <div className="mt-auto px-1 border-t border-gray-300 pt-2">
           <NavLink
-            to="/profile"
+            to="/dashboard/profile"
             className={({ isActive }) =>
               `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"

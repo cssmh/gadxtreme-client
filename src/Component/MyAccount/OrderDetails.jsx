@@ -10,7 +10,6 @@ const OrderDetails = () => {
     queryKey: ["orderDetails", id],
     queryFn: async () => await getOrderDetails(id),
   });
-  console.log(order);
 
   if (isLoading) return <SmallLoader size="68" />;
 

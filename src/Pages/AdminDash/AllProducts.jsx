@@ -44,9 +44,7 @@ const AllProducts = () => {
 
   return (
     <div className="p-3">
-      <h1 className="text-xl font-bold mb-4">
-        All Products
-      </h1>
+      <h1 className="text-xl font-bold mb-4">All Products</h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
           <thead>
@@ -80,9 +78,11 @@ const AllProducts = () => {
                 <td className=" border-gray-300 px-4 py-2">
                   {product.category}
                 </td>
-                <td className=" border-gray-300 px-4 py-2">${product.price}</td>
-                <td className=" border-gray-300 px-4 py-2">
-                  ${product.discountPrice}
+                <td className=" border-gray-300 px-4 py-2">৳{product.price}</td>
+                <td className="border-gray-300 px-4 py-2">
+                  {product.discountPrice
+                    ? `৳${product.discountPrice}`
+                    : "No Discount"}
                 </td>
                 <td className=" border-gray-300 px-4 py-2">
                   <span
@@ -98,7 +98,7 @@ const AllProducts = () => {
                 <td className=" gap-1 border-gray-300 px-4 py-2">
                   <div className="flex items-center gap-1">
                     <Link
-                      to={`/admin-dashboard/update-product/${product._id}`}
+                      to={`/dashboard/update/${product._id}`}
                       className="px-5 py-2 text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                     >
                       Edit
