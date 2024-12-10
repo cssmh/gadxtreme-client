@@ -44,7 +44,7 @@ const Sidebar = () => {
         </div>
         <nav className="mt-1">
           <NavLink
-            to="/admin-dashboard/add-product"
+            to="/dashboard/add-product"
             className={({ isActive }) =>
               `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
@@ -56,7 +56,7 @@ const Sidebar = () => {
             Add Product
           </NavLink>
           <NavLink
-            to="/admin-dashboard/user-carts"
+            to="/dashboard/user-carts"
             className={({ isActive }) =>
               `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
@@ -68,7 +68,7 @@ const Sidebar = () => {
             Cart Products
           </NavLink>
           <NavLink
-            to="/admin-dashboard/all-products"
+            to="/dashboard/all-products"
             className={({ isActive }) =>
               `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
@@ -80,7 +80,7 @@ const Sidebar = () => {
             All Products
           </NavLink>
           <NavLink
-            to="/admin-dashboard/all-ordered"
+            to="/dashboard/all-ordered"
             className={({ isActive }) =>
               `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
@@ -92,7 +92,7 @@ const Sidebar = () => {
             Ordered Product
           </NavLink>
           <NavLink
-            to="/admin-dashboard/all-users"
+            to="/dashboard/all-users"
             className={({ isActive }) =>
               `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                 isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"

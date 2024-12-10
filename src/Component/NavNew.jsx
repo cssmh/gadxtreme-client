@@ -298,7 +298,7 @@ const NavNew = () => {
             {user ? (
               <Link
                 onClick={() => setShowMenu(!showMenu)}
-                to="my-account/dashboard"
+                to="/dashboard"
               >
                 <p className="text-gray-700 p-2 border-b">Dashboard</p>
               </Link>

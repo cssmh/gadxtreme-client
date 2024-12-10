@@ -56,7 +56,7 @@ const MyProfile = () => {
 
   return (
     <div className="py-6">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">
           My Profile
         </h1>
@@ -66,7 +66,7 @@ const MyProfile = () => {
               <img
                 src={profileImage || ""}
                 alt="Profile"
-                className="w-28 h-28 rounded-full object-cover border-4 border-teal-500"
+                className="w-28 h-28 rounded-full border-4 border-teal-500"
               />
               <label
                 htmlFor="image-upload"

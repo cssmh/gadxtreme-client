@@ -24,7 +24,7 @@ const AllUsers = () => {
   return (
     <div className="p-4 rounded-lg shadow-lg">
       <h1 className="text-xl font-bold text-gray-800 mb-2">
-        All Users ({data.length})
+        All Users
       </h1>
       <div className="overflow-hidden border rounded-lg">
         <table className="min-w-full divide-y divide-gray-200 bg-white">

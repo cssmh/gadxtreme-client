@@ -45,7 +45,7 @@ const AllProducts = () => {
   return (
     <div className="p-3">
       <h1 className="text-xl font-bold mb-4">
-        All Products ({products?.length})
+        All Products
       </h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">

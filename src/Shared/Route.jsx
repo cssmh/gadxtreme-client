@@ -4,13 +4,11 @@ import Error from "../Component/Error";
 import Home from "../Component/Home";
 import Category from "../Pages/Category";
 import ProductDetails from "../Pages/ProductDetails";
-import Dashboard from "../Component/MyAccount/Dashboard";
 import MyOrders from "../Component/MyAccount/MyOrders";
 import Wishlist from "../Component/MyAccount/Wishlist";
 import Login from "../Component/Login";
 import Register from "../Component/Register";
 import Policy from "../Component/Policy";
-import AdminDashboard from "../Pages/AdminDash/AdminDashboard";
 import AddProduct from "../Pages/AdminDash/AddProduct";
 import AllProducts from "../Pages/AdminDash/AllProducts";
 import UpdateProduct from "../Pages/AdminDash/UpdateProduct";
@@ -26,6 +24,7 @@ import DashLayout from "../Pages/AdminDash/DashLayout";
 import AdminRoute from "./AdminRoute";
 import CartProducts from "../Pages/AdminDash/CartProducts";
 import OrderDetails from "../Component/MyAccount/OrderDetails";
+import Dashboard from "../Pages/Dashboard";
 
 const Route = createBrowserRouter([
   {
@@ -48,30 +47,6 @@ const Route = createBrowserRouter([
         loader: async ({ params }) => await getGadget(params.id),
       },
       {
-        path: "/my-account/dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-account/wishlist",
-        element: (
-          <PrivateRoute>
-            <Wishlist />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-account/orders",
-        element: (
-          <PrivateRoute>
-            <MyOrders />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/order-details/:id",
         element: (
           <PrivateRoute>
@@ -80,16 +55,16 @@ const Route = createBrowserRouter([
         ),
       },
       {
-        path: "/my-account/profile",
+        path: "/success/:tranId",
+        element: <Success />,
+      },
+      {
+        path: "/profile",
         element: (
           <PrivateRoute>
             <MyProfile />
           </PrivateRoute>
         ),
-      },
-      {
-        path: "/success/:tranId",
-        element: <Success />,
       },
       {
         path: "/cart",
@@ -108,34 +83,42 @@ const Route = createBrowserRouter([
         ),
       },
       {
-        path: "/admin-dashboard",
+        path: "/dashboard",
         element: (
           <AdminRoute>
             <DashLayout />
           </AdminRoute>
         ),
         children: [
-          { path: "/admin-dashboard", element: <AdminDashboard /> },
-          { path: "/admin-dashboard/add-product", element: <AddProduct /> },
+          { path: "/dashboard", element: <Dashboard /> },
           {
-            path: "/admin-dashboard/all-products",
+            path: "/dashboard/wishlist",
+            element: <Wishlist />,
+          },
+          {
+            path: "/dashboard/orders",
+            element: <MyOrders />,
+          },
+          { path: "/dashboard/add-product", element: <AddProduct /> },
+          {
+            path: "/dashboard/all-products",
             element: <AllProducts />,
           },
           {
-            path: "/admin-dashboard/update-product/:id",
+            path: "/dashboard/update-product/:id",
             element: <UpdateProduct />,
             loader: async ({ params }) => await getGadget(params.id),
           },
           {
-            path: "/admin-dashboard/all-ordered",
+            path: "/dashboard/all-ordered",
             element: <AllOrdered />,
           },
           {
-            path: "/admin-dashboard/all-users",
+            path: "/dashboard/all-users",
             element: <AllUsers />,
           },
           {
-            path: "/admin-dashboard/user-carts",
+            path: "/dashboard/user-carts",
             element: <CartProducts />,
           },
         ],

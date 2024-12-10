@@ -186,7 +186,7 @@ const Navbar = () => {
                 {showUserDropdown && (
                   <div className="absolute right-0 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
                     <Link
-                      to="/my-account/dashboard"
+                      to="/dashboard"
                       className="block px-4 py-1 hover:bg-gray-100"
                     >
                       Dashboard

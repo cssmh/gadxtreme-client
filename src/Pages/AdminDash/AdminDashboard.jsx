@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
-import {
-  FaUsers,
-  FaShoppingCart,
-  FaBoxOpen,
-  FaPlus,
-  FaChartPie,
-} from "react-icons/fa";
+import { FaUsers, FaBoxOpen, FaChartPie } from "react-icons/fa";
+import { FaUserShield, FaHeart, FaClipboardList } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { totalCounts } from "../../Api/admin";
 import { useQuery } from "@tanstack/react-query";
 
@@ -26,8 +22,10 @@ const AdminDashboard = () => {
           <div className="flex items-center space-x-4">
             <FaChartPie className="text-4xl text-blue-600" />
             <div>
-              <h3 className="font-semibold text-gray-700">Total Orders</h3>
-              <p className="text-xl font-bold text-gray-900">
+              <Link to="/dashboard/all-ordered">
+                <h3 className="font-semibold text-gray-700">Total Orders</h3>
+              </Link>
+              <p className="text-3xl font-bold text-gray-900">
                 {data?.totalOrder || 0}
               </p>
             </div>
@@ -37,8 +35,10 @@ const AdminDashboard = () => {
           <div className="flex items-center space-x-4">
             <FaUsers className="text-4xl text-green-600" />
             <div>
-              <h3 className="font-semibold text-gray-700">Total Users</h3>
-              <p className="text-xl font-bold text-gray-900">
+              <Link to="/dashboard/all-users">
+                <h3 className="font-semibold text-gray-700">Total Users</h3>
+              </Link>
+              <p className="text-3xl font-bold text-gray-900">
                 {data?.totalUser || 0}
               </p>
             </div>
@@ -48,8 +48,10 @@ const AdminDashboard = () => {
           <div className="flex items-center space-x-4">
             <FaBoxOpen className="text-4xl text-orange-600" />
             <div>
-              <h3 className="font-semibold text-gray-700">Total Products</h3>
-              <p className="text-xl font-bold text-gray-900">
+              <Link to="/dashboard/all-products">
+                <h3 className="font-semibold text-gray-700">Total Products</h3>
+              </Link>
+              <p className="text-3xl font-bold text-gray-900">
                 {data?.totalProduct || 0}
               </p>
             </div>
@@ -57,49 +59,61 @@ const AdminDashboard = () => {
         </div>
       </section>
       <hr className="border-t-2 border-gray-200 mb-8 mx-6" />
-      <section className="bg-white md:shadow-md rounded-lg p-4 md:p-8 mb-6 md:mb-8">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Admin Actions
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
+        <motion.div
+          className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+          whileTap={{ scale: 0.95 }}
+        >
+          <h2 className="text-2xl font-semibold text-gray-700">My Wishlist</h2>
+          <p className="text-sm text-gray-500 mb-4">
+            Keep track of your favorite items and manage your preferences.
+          </p>
           <Link
-            to="/admin-dashboard/add-product"
-            className="p-6 bg-blue-200 rounded-lg hover:bg-blue-300 flex items-center justify-between shadow-md transition-all duration-300"
+            to="/dashboard/wishlist"
+            className="inline-block px-4 py-2 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 transition duration-300"
           >
-            <FaPlus className="text-blue-600 text-3xl" />
-            <span className="text-lg font-semibold text-gray-700">
-              Add Product
+            <span className="flex items-center gap-1">
+              <FaHeart className="mr-2" /> View Wishlist
             </span>
           </Link>
+        </motion.div>
+        <motion.div
+          className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+          whileTap={{ scale: 0.95 }}
+        >
+          <h2 className="text-2xl font-semibold text-gray-700">My Orders</h2>
+          <p className="text-sm text-gray-500 mb-4">
+            Track your order history and manage recent purchases.
+          </p>
           <Link
-            to="/admin-dashboard/manage-products"
-            className="p-6 bg-yellow-200 rounded-lg hover:bg-yellow-300 flex items-center justify-between shadow-md transition-all duration-300"
+            to="/dashboard/orders"
+            className="inline-block px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition duration-300"
           >
-            <FaBoxOpen className="text-yellow-600 text-3xl" />
-            <span className="text-lg font-semibold text-gray-700">
-              Manage Products
+            <span className="flex items-center gap-1">
+              <FaClipboardList className="mr-2" /> View Orders
             </span>
           </Link>
+        </motion.div>
+        <motion.div
+          className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+          whileTap={{ scale: 0.95 }}
+        >
+          <h2 className="text-2xl font-semibold text-gray-700">
+            Profile Information
+          </h2>
+          <p className="text-sm text-gray-500 mb-4">
+            View and manage your profile details. keep updated!
+          </p>
           <Link
-            to="/admin-dashboard/orders"
-            className="p-6 bg-green-200 rounded-lg hover:bg-green-300 flex items-center justify-between shadow-md transition-all duration-300"
+            to="/profile"
+            className="inline-block px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition duration-300"
           >
-            <FaShoppingCart className="text-green-600 text-3xl" />
-            <span className="text-lg font-semibold text-gray-700">
-              View Orders
+            <span className="flex items-center gap-1">
+              <FaUserShield className="mr-2" /> Go to Profile
             </span>
           </Link>
-          <Link
-            to="/admin-dashboard/all-users"
-            className="p-6 bg-purple-200 rounded-lg hover:bg-purple-300 flex items-center justify-between shadow-md transition-all duration-300"
-          >
-            <FaUsers className="text-purple-600 text-3xl" />
-            <span className="text-lg font-semibold text-gray-700">
-              Manage Users
-            </span>
-          </Link>
-        </div>
-      </section>
+        </motion.div>
+      </div>
     </div>
   );
 };

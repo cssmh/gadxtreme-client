@@ -2,11 +2,9 @@ import { Link } from "react-router-dom";
 import { FaUserShield, FaHeart, FaClipboardList } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
-import useAdmin from "../../hooks/useAdmin";
 
-const Dashboard = () => {
+const UserDashboard = () => {
   const { user } = useAuth();
-  const { isAdmin } = useAdmin();
 
   return (
     <div className="min-h-screen">
@@ -22,24 +20,9 @@ const Dashboard = () => {
         <p className="text-lg text-gray-700 mb-5">
           Get insights, manage your account, and explore your preferences.
         </p>
-        {isAdmin && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2 }}
-          >
-            <Link
-              to="/admin-dashboard"
-              className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transition duration-300 transform hover:scale-105"
-            >
-              <FaUserShield className="mr-2" /> Go to Admin Dashboard
-            </Link>
-          </motion.div>
-        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
           <motion.div
             className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <h2 className="text-2xl font-semibold text-gray-700">
@@ -49,7 +32,7 @@ const Dashboard = () => {
               Keep track of your favorite items and manage your preferences.
             </p>
             <Link
-              to="/my-account/wishlist"
+              to="/dashboard/wishlist"
               className="inline-block px-4 py-2 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 transition duration-300"
             >
               <span className="flex items-center gap-1">
@@ -59,7 +42,6 @@ const Dashboard = () => {
           </motion.div>
           <motion.div
             className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <h2 className="text-2xl font-semibold text-gray-700">My Orders</h2>
@@ -67,7 +49,7 @@ const Dashboard = () => {
               Track your order history and manage recent purchases.
             </p>
             <Link
-              to="/my-account/orders"
+              to="/dashboard/orders"
               className="inline-block px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition duration-300"
             >
               <span className="flex items-center gap-1">
@@ -77,7 +59,6 @@ const Dashboard = () => {
           </motion.div>
           <motion.div
             className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <h2 className="text-2xl font-semibold text-gray-700">
@@ -87,7 +68,7 @@ const Dashboard = () => {
               View and manage your profile details.
             </p>
             <Link
-              to="/my-account/profile"
+              to="/profile"
               className="inline-block px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition duration-300"
             >
               <span className="flex items-center gap-1">
@@ -99,7 +80,6 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <motion.div
             className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <h2 className="text-2xl font-semibold text-gray-700">
@@ -110,7 +90,6 @@ const Dashboard = () => {
           </motion.div>
           <motion.div
             className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <h2 className="text-2xl font-semibold text-gray-700">
@@ -121,7 +100,6 @@ const Dashboard = () => {
           </motion.div>
           <motion.div
             className="bg-white p-3 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <h2 className="text-2xl font-semibold text-gray-700">New Users</h2>
@@ -134,4 +112,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default UserDashboard;

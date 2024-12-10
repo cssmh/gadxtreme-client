@@ -17,7 +17,7 @@ const MainLayout = () => {
     loc.pathname === "/login" ||
     loc.pathname === "/register";
 
-  const noHeaderFooter = loc?.pathname?.startsWith("/admin-dashboard");
+  const noHeaderFooter = loc?.pathname?.startsWith("/dashboard");
   const noNavFooter = loc?.pathname?.startsWith("/success");
 
   return (
