@@ -166,13 +166,13 @@ const NavNew = () => {
                     Dashboard
                   </Link>
                   <Link
-                    to="/my-account/profile"
+                    to="/dashboard/profile"
                     className="block px-4 py-1 hover:bg-gray-100"
                   >
                     View Profile
                   </Link>
                   <Link
-                    to="/my-account/orders"
+                    to="/dashboard/orders"
                     className="block px-4 py-1 hover:bg-gray-100"
                   >
                     Orders
@@ -296,10 +296,7 @@ const NavNew = () => {
         <div className="absolute top-[101px] left-0 right-0 bg-white shadow-md px-4 pb-2 lg:hidden z-50">
           <ul>
             {user ? (
-              <Link
-                onClick={() => setShowMenu(!showMenu)}
-                to="/dashboard"
-              >
+              <Link onClick={() => setShowMenu(!showMenu)} to="/dashboard">
                 <p className="text-gray-700 p-2 border-b">Dashboard</p>
               </Link>
             ) : (

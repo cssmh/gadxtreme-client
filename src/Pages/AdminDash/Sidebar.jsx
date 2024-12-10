@@ -86,7 +86,7 @@ const Sidebar = () => {
               Cart
             </NavLink>
             <NavLink
-              to="/dashboard/my-orders"
+              to="/dashboard/orders"
               className={({ isActive }) =>
                 `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                   isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"

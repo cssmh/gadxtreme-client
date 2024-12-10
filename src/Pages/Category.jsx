@@ -215,7 +215,7 @@ const Category = () => {
               ))}
             </div>
           )}
-          {data?.result?.length > 0 && (
+          {data?.result?.length > 0 && sortedProducts.length > 0 && (
             <div className="flex justify-center mt-8">
               <button
                 onClick={handlePrevious}

@@ -192,13 +192,13 @@ const Navbar = () => {
                       Dashboard
                     </Link>
                     <Link
-                      to="/my-account/profile"
+                      to="/dashboard/profile"
                       className="block px-4 py-1 hover:bg-gray-100"
                     >
                       View Profile
                     </Link>
                     <Link
-                      to="/my-account/orders"
+                      to="/dashboard/orders"
                       className="block px-4 py-1 hover:bg-gray-100"
                     >
                       Orders
@@ -366,7 +366,7 @@ const Navbar = () => {
               </Link>
               {hoveredCategory === category.name &&
                 category.subcategories.length > 0 && (
-                  <div className="absolute left-0 z-50 space-y-1 bg-white text-gray-600 rounded shadow-lg transition-all duration-200 ease-in-out">
+                  <div className="absolute left-0 z-50 min-w-[100px] space-y-1 bg-white text-gray-600 rounded shadow-lg transition-all duration-200 ease-in-out">
                     <div className="space-y-1 py-2">
                       {category.subcategories.map((subcategory, idx) => (
                         <Link
