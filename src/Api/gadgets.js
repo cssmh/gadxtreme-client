@@ -46,3 +46,8 @@ export const getSearchGadget = async (search) => {
   const { data } = await axiosSecure(`/api/search-products?search=${search}`);
   return data;
 };
+
+export const getBestSeller = async () => {
+  const { data } = await axiosSecure("/api/best-seller");
+  return data;
+};

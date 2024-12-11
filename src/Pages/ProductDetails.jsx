@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import pay from "../assets/pay.png";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import { toast } from "sonner";
 import useAuth from "../hooks/useAuth";
 import useMyCart from "../hooks/useMyCart";
+import { assets } from "../assets/assets";
 
 const ProductDetails = () => {
   const { user } = useAuth();
@@ -194,7 +194,7 @@ const ProductDetails = () => {
             <br />
             Book This Product Before Coming To Our Store
             <br />
-            <img src={pay} className="mt-3" alt="Payment Options" />
+            <img src={assets.pay} className="mt-3" alt="Payment Options" />
           </div>
         </div>
       </div>

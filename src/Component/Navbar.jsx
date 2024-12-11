@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
 import {
   FaUser,
   FaHeart,
@@ -15,6 +14,7 @@ import useAuth from "../hooks/useAuth";
 import { getSearchGadget } from "../Api/gadgets";
 import useMyCart from "../hooks/useMyCart";
 import { PiSignOutThin } from "react-icons/pi";
+import { assets } from "../assets/assets";
 
 const categories = [
   {
@@ -110,7 +110,7 @@ const Navbar = () => {
     >
       <div className="bg-black p-[14px] flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center justify-between w-full lg:hidden">
-          <img src={logo} className="w-44" alt="Logo" />
+          <img src={assets.logo} className="w-44" alt="Logo" />
           <div className="flex items-center space-x-3">
             <Link to={"/cart"}>
               <FaShoppingCart
@@ -128,7 +128,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center justify-between w-full">
           <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
             <Link to="/">
-              <img src={logo} className="w-48" alt="Logo" />
+              <img src={assets.logo} className="w-48" alt="Logo" />
             </Link>
           </div>
           <div className="flex-grow mx-4 relative">

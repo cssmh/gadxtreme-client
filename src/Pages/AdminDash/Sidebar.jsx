@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaUsers, FaRegComments, FaRegListAlt } from "react-icons/fa";
 import { AiOutlineBars, AiOutlineProduct } from "react-icons/ai";
-import logo from "../../assets/favicon.webp";
 import { MdAddTask, MdProductionQuantityLimits } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
 import { BsCartCheck } from "react-icons/bs";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import useAdmin from "../../hooks/useAdmin";
+import { assets } from "../../assets/assets";
 
 const Sidebar = () => {
   const { user, logOut } = useAuth();
@@ -34,7 +34,7 @@ const Sidebar = () => {
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <AiOutlineBars className="h-6 w-6" />
         </button>
-        <img src={logo} alt="Logo" className="h-8" />
+        <img src={assets.gadget} alt="Logo" className="h-8" />
       </div>
       <div
         className={`flex flex-col bg-[#f3f4f6] shadow-lg overflow-x-auto fixed z-50 top-0 left-0 h-full w-56 md:w-56 transform transition-transform duration-300 ease-in-out ${
@@ -45,7 +45,7 @@ const Sidebar = () => {
         <div className="px-4 pt-4 border-b border-gray-300">
           <Link to="/" className="hidden md:block">
             <div className="w-full hidden md:flex px-4 py-1 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
-              <img src={logo} className="h-14" alt="Logo" />
+              <img src={assets.gadget} className="h-14" alt="Logo" />
             </div>
           </Link>
           {user && (

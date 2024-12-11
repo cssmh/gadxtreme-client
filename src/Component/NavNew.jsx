@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
 import {
   FaBars,
   FaTimes,
@@ -15,6 +14,7 @@ import { getSearchGadget } from "../Api/gadgets";
 import { BsCart2 } from "react-icons/bs";
 import useMyCart from "../hooks/useMyCart";
 import { PiSignOutThin } from "react-icons/pi";
+import { assets } from "../assets/assets";
 
 const categories = [
   {
@@ -106,7 +106,7 @@ const NavNew = () => {
       <div className="px-4 pt-3 md:pt-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/">
-            <img src={logo} className="w-40" alt="Logo" />
+            <img src={assets.logo} className="w-40" alt="Logo" />
           </Link>
         </div>
         <div className="flex-grow mx-6 hidden lg:flex relative">

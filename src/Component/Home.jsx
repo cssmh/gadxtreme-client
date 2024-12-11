@@ -1,3 +1,4 @@
+import BestSeller from "../Pages/BestSeller";
 import NewArrivals from "../Pages/NewArrivals";
 import PopularProducts from "../Pages/PopularProducts";
 import TopCategories from "../Pages/TopCategories";
@@ -11,6 +12,7 @@ const Home = () => {
       <NewArrivals />
       <TopCategories />
       <PopularProducts />
+      <BestSeller />
       <OurService />
     </div>
   );

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Component/Navbar";
-import Footer from "../Pages/Footer";
 // import DiscountModal from "../Component/DiscountModal";
 import NavNew from "../Component/NavNew";
+import Footer from "../Component/Footer";
 
 const MainLayout = () => {
   const loc = useLocation();

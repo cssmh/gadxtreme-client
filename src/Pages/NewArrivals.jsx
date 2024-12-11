@@ -25,25 +25,30 @@ const NewArrivals = () => {
         {data?.map((product) => (
           <div
             key={product._id}
-            className="bg-white shadow-lg rounded-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <Link to={`/details/${product._id}`}>
-              <div className="h-36 w-full flex items-center justify-center ">
+              <div className="relative h-40 w-full">
                 <img
                   src={product.images[0]}
                   alt={product.productName}
-                  className="h-full w-auto rounded-md object-cover"
+                  className="h-full w-full object-cover rounded-t-lg"
                 />
+                {!product.inStock && (
+                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center text-white text-sm font-semibold">
+                    Out of Stock
+                  </div>
+                )}
               </div>
               <div className="p-3">
-                <h3 className="text-sm font-medium text-gray-800 truncate">
+                <h3 className="text-sm font-medium text-gray-800 line-clamp-2">
                   {product.productName}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
                   <span className="text-gray-500 line-through text-xs">
                     ৳{product.price}
                   </span>
-                  <span className="text-green-600 font-bold text-sm">
+                  <span className="text-green-600 font-semibold text-sm">
                     ৳{product.discountPrice}
                   </span>
                 </div>

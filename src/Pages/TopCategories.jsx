@@ -1,24 +1,27 @@
 import { Link } from "react-router-dom";
-import cate1 from "../assets/gadgets/earbuds.png";
-import cate2 from "../assets/gadgets/smartwatch.jpg";
-import cate4 from "../assets/gadgets/fan.png";
-import cate5 from "../assets/gadgets/headphones.jpeg";
-import cate6 from "../assets/gadgets/speakers.png";
-import cate7 from "../assets/gadgets/blueEarphone.jpeg";
+import { assets } from "../assets/assets";
 
 const categories = [
-  { name: "Earbuds", image: cate1, link: "/category/earbuds" },
-  { name: "Smartwatch", image: cate2, link: "/category/smartwatch" },
-  { name: "Fan", image: cate4, link: "/category/fan" },
-  { name: "Headphones", image: cate5, link: "/category/headphones" },
+  { name: "Earbuds", image: assets.earbuds, link: "/category/earbuds" },
+  {
+    name: "Smartwatch",
+    image: assets.smartwatch,
+    link: "/category/smartwatch",
+  },
+  { name: "Fan", image: assets.fan, link: "/category/fan" },
+  {
+    name: "Headphones",
+    image: assets.headphones,
+    link: "/category/headphones",
+  },
   {
     name: "Bluetooth Speaker",
-    image: cate6,
+    image: assets.speakers,
     link: "/category/bluetooth speaker",
   },
   {
     name: "Wireless Earphone",
-    image: cate7,
+    image: assets.blueEarphone,
     link: "/category/wireless earphone",
   },
 ];
