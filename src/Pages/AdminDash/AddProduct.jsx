@@ -12,6 +12,7 @@ const categories = [
   "Fan",
   "Headphones",
   "Bluetooth Speaker",
+  "Best Seller",
   "Wired Earphone",
   "Wireless Earphone",
   "Charging Accessories",
@@ -325,7 +326,6 @@ const AddProduct = () => {
             onChange={handleInputChange}
             rows="4"
             className="w-full p-2 border rounded-lg outline-none focus:border-blue-300"
-            required
           ></textarea>
         </div>
         <button

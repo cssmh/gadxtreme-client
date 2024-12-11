@@ -21,7 +21,7 @@ const NewArrivals = () => {
       <h2 className="text-xl lg:text-2xl font-bold mb-6 text-center">
         <span className="text-[#00a9e1]">New</span> Arrivals
       </h2>
-      <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
         {data?.map((product) => (
           <div
             key={product._id}

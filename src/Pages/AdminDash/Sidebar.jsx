@@ -74,7 +74,7 @@ const Sidebar = () => {
         {!showAdminRoutes && (
           <nav className="mt-1 px-1">
             <NavLink
-              to="/dashboard/cart"
+              to="/cart"
               className={({ isActive }) =>
                 `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
                   isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
@@ -83,7 +83,7 @@ const Sidebar = () => {
               onClick={() => setIsSidebarOpen(false)}
             >
               <BsCartCheck className="mr-3 text-xl" />
-              Cart
+              My Cart
             </NavLink>
             <NavLink
               to="/dashboard/orders"
@@ -96,6 +96,18 @@ const Sidebar = () => {
             >
               <MdAddTask className="mr-3 text-xl" />
               My Orders
+            </NavLink>
+            <NavLink
+              to="/dashboard/pending-products"
+              className={({ isActive }) =>
+                `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
+                  isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
+                }`
+              }
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              <MdProductionQuantityLimits className="mr-3 text-xl" />
+              Pending Order
             </NavLink>
             <NavLink
               to="/dashboard/my-reviews"
@@ -120,18 +132,6 @@ const Sidebar = () => {
             >
               <FaRegListAlt className="mr-3 text-xl" />
               Pending Review
-            </NavLink>
-            <NavLink
-              to="/dashboard/pending-products"
-              className={({ isActive }) =>
-                `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
-                  isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
-                }`
-              }
-              onClick={() => setIsSidebarOpen(false)}
-            >
-              <MdProductionQuantityLimits className="mr-3 text-xl" />
-              Pending Order
             </NavLink>
           </nav>
         )}

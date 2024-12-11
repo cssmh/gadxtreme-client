@@ -13,6 +13,7 @@ const categories = [
   "Headphones",
   "Bluetooth Speaker",
   "Bluetooth Earphone",
+  "Best Seller",
   "Wired Earphone",
   "Charging Accessories",
   "Converters & Hub",

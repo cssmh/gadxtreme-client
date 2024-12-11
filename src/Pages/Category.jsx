@@ -128,7 +128,7 @@ const Category = () => {
         </div>
         <div className="w-full lg:w-3/4">
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-            <div className="mb-2 md:mb-0 flex items-center">
+            {/* <div className="mb-2 md:mb-0 flex items-center">
               <label htmlFor="itemsPerPage" className="mr-2 font-medium">
                 Show:
               </label>
@@ -142,6 +142,43 @@ const Category = () => {
                 <option value={6}>6</option>
                 <option value={12}>12</option>
               </select>
+            </div> */}
+            <div className="mb-2 md:mb-0 flex items-center">
+              <label htmlFor="itemsPerPage" className="mr-2 font-medium">
+                Show:
+              </label>
+              <div className="flex space-x-2">
+                <div
+                  onClick={() => setLimit(3)}
+                  className={`cursor-pointer border border-gray-300 rounded px-4 py-1 text-center ${
+                    limit === 3
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-gray-700"
+                  }`}
+                >
+                  3
+                </div>
+                <div
+                  onClick={() => setLimit(6)}
+                  className={`cursor-pointer border border-gray-300 rounded px-4 py-1 text-center ${
+                    limit === 6
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-gray-700"
+                  }`}
+                >
+                  6
+                </div>
+                <div
+                  onClick={() => setLimit(12)}
+                  className={`cursor-pointer border border-gray-300 rounded px-4 py-1 text-center ${
+                    limit === 12
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-gray-700"
+                  }`}
+                >
+                  12
+                </div>
+              </div>
             </div>
             <div className="flex items-center">
               <label htmlFor="sortOrder" className="mr-2 font-medium">
@@ -160,7 +197,7 @@ const Category = () => {
             </div>
           </div>
           {isLoading ? (
-            <SmallLoader size="58" />
+            <SmallLoader size="52" />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {sortedProducts?.map((product) => (
@@ -191,7 +228,11 @@ const Category = () => {
                       )}
                     </div>
                     <h3 className="text-sm mt-3">{product.productName}</h3>
-                    <p className="text-green-600">
+                    <p
+                      className={`${
+                        product.inStock ? "text-green-600" : "text-red-500"
+                      }`}
+                    >
                       {product.inStock ? "In Stock" : "Out of Stock"}
                     </p>
                     <div className="text-sm mt-2">
