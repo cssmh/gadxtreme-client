@@ -6,6 +6,7 @@ import phone_pro from "./phone_pro.webp";
 import discount from "./discount.jpg";
 import logo from "./logo.png";
 import pay from "./pay.png";
+import Earbuds100 from "./Earbuds100.jpg";
 import gadget from "./gadget.webp";
 import blueEarphone from "./Categories/blueEarphone.jpeg";
 import earbuds from "./Categories/earbuds.png";
@@ -15,5 +16,5 @@ import smartwatch from "./Categories/smartwatch.jpg";
 import speakers from "./Categories/speakers.png";
 
 export const assets = {
-  best_deal, best_mobile, brand_day, get_gadgets, phone_pro, discount, logo, pay, gadget, blueEarphone, earbuds, headphones, fan, smartwatch, speakers
+  best_deal, best_mobile, brand_day, Earbuds100, get_gadgets, phone_pro, discount, logo, pay, gadget, blueEarphone, earbuds, headphones, fan, smartwatch, speakers
 };

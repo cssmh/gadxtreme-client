@@ -17,8 +17,8 @@ const NewArrivals = () => {
   }
 
   return (
-    <div className="p-3 md:p-6 bg-gray-50">
-      <h2 className="text-2xl font-bold mb-6 text-center">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-3 lg:px-0 py-3 md:py-6 bg-gray-50">
+      <h2 className="text-xl lg:text-2xl font-bold mb-6 text-center">
         <span className="text-[#00a9e1]">New</span> Arrivals
       </h2>
       <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
