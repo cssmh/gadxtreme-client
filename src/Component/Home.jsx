@@ -3,7 +3,6 @@ import PopularProducts from "../Pages/PopularProducts";
 import TopCategories from "../Pages/TopCategories";
 import Banner from "./Banner";
 import OurService from "./OurService";
-// import RoyalEnfield from "./RoyalEnfield";
 
 const Home = () => {
   return (
@@ -12,7 +11,6 @@ const Home = () => {
       <NewArrivals />
       <TopCategories />
       <PopularProducts />
-      {/* <RoyalEnfield /> */}
       <OurService />
     </div>
   );
