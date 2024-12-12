@@ -30,11 +30,14 @@ const Sidebar = () => {
 
   return (
     <div className="relative">
+      {/* bottom kona and img and logout */}
       <div className="md:hidden flex justify-between items-center px-4 py-3 bg-teal-700 text-white fixed top-0 left-0 w-full z-30">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
-          <AiOutlineBars className="h-6 w-6" />
+          <AiOutlineBars className="h-7 w-7" />
         </button>
-        <img src={assets.gadget} alt="Logo" className="h-8" />
+        <Link to="/">
+          <img src={assets.gadget} alt="Logo" className="h-9" />
+        </Link>
       </div>
       <div
         className={`flex flex-col bg-[#f3f4f6] shadow-lg overflow-x-auto fixed z-50 top-0 left-0 h-full w-56 md:w-56 transform transition-transform duration-300 ease-in-out ${

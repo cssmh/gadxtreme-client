@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBestSeller } from "../Api/gadgets";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
+import SmallLoader from "../Component/SmallLoader";
 
 const BestSeller = () => {
   const { data = [], isLoading } = useQuery({
@@ -9,21 +10,15 @@ const BestSeller = () => {
     queryFn: async () => await getBestSeller(),
   });
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-60">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
-      </div>
-    );
-  }
+  if (isLoading) return <SmallLoader size="30" />;
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-3 bg-gray-50 flex flex-col lg:flex-row gap-6 my-5">
-      <div className="lg:w-[35%] p-3 lg:px-6 rounded-lg shadow-md min-h-[calc(2*16rem)]">
-        <h2 className="text-xl md:text-2xl font-bold mb-2 text-center text-[#00a9e1]">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-3 bg-orange-50 flex flex-col lg:flex-row gap-3 my-5">
+      <div className="lg:w-[35%] p-3 lg:px-6 rounded-lg space-y-5">
+        <h2 className="text-xl md:text-2xl font-bold text-center text-[#00a9e1]">
           Best Seller
         </h2>
-        <p className="text-sm md:text-base text-gray-800 mb-4">
+        <p className="text-sm md:text-base text-gray-800">
           Discover our top-selling gadgets that are making waves! These products
           are highly recommended by our customers. Explore the best of the best!
         </p>
@@ -33,8 +28,8 @@ const BestSeller = () => {
           className="w-full h-auto rounded-lg"
         />
       </div>
-      <div className="lg:w-[65%] grid gap-6 grid-cols-1 md:grid-cols-2">
-        {data?.slice(0, 6).map((product) => (
+      <div className="lg:w-[65%] grid gap-6 grid-cols-1 md:grid-cols-2 p-5">
+        {data?.slice(0, 4).map((product) => (
           <div
             key={product._id}
             className="bg-white rounded-lg shadow-lg transition-shadow duration-300"
@@ -57,12 +52,20 @@ const BestSeller = () => {
                   {product.productName}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-gray-500 line-through text-sm">
+                  <span
+                    className={`"text-gray-500 ${
+                      product.discountPrice
+                        ? "line-through"
+                        : "text-green-600 font-semibold"
+                    }  text-lg`}
+                  >
                     ৳{product.price}
                   </span>
-                  <span className="text-green-600 font-semibold text-lg">
-                    ৳{product.discountPrice}
-                  </span>
+                  {product.discountPrice && (
+                    <span className="text-green-600 font-semibold text-lg">
+                      ৳{product.discountPrice}
+                    </span>
+                  )}
                 </div>
                 {product.inStock ? (
                   <span className="mt-3 inline-block px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">

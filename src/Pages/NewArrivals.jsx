@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getNewArrival } from "../Api/gadgets";
 import { Link } from "react-router-dom";
+import SmallLoader from "../Component/SmallLoader";
 
 const NewArrivals = () => {
   const { data = [], isLoading } = useQuery({
@@ -8,13 +9,7 @@ const NewArrivals = () => {
     queryFn: async () => await getNewArrival(),
   });
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-40">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
-  }
+  if (isLoading) return <SmallLoader size="30" />
 
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-3 lg:px-0 py-3 md:py-6 bg-gray-50">

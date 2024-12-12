@@ -25,6 +25,7 @@ import AdminRoute from "./AdminRoute";
 import CartProducts from "../Pages/AdminDash/CartProducts";
 import OrderDetails from "../Component/MyAccount/OrderDetails";
 import Dashboard from "../Pages/Dashboard";
+import MyReviews from "../Component/MyAccount/MyReviews";
 
 const Route = createBrowserRouter([
   {
@@ -39,20 +40,7 @@ const Route = createBrowserRouter([
       { path: "/category/:cate", element: <Category /> },
       {
         path: "/details/:id",
-        element: (
-          <PrivateRoute>
-            <ProductDetails />
-          </PrivateRoute>
-        ),
-        loader: async ({ params }) => await getGadget(params.id),
-      },
-      {
-        path: "/order-details/:id",
-        element: (
-          <PrivateRoute>
-            <OrderDetails />
-          </PrivateRoute>
-        ),
+        element: <ProductDetails />,
       },
       {
         path: "/success/:tranId",
@@ -94,6 +82,14 @@ const Route = createBrowserRouter([
           {
             path: "/dashboard/orders",
             element: <MyOrders />,
+          },
+          {
+            path: "/dashboard/order-details/:id",
+            element: <OrderDetails />,
+          },
+          {
+            path: "/dashboard/my-reviews",
+            element: <MyReviews />,
           },
           { path: "/dashboard/add-product", element: <AddProduct /> },
           {

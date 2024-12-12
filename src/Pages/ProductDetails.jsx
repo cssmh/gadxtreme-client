@@ -1,28 +1,40 @@
 import { useState, useEffect } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import { toast } from "sonner";
 import useAuth from "../hooks/useAuth";
 import useMyCart from "../hooks/useMyCart";
 import { assets } from "../assets/assets";
+import { getGadget } from "../Api/gadgets";
+import SmallLoader from "../Component/SmallLoader";
 
 const ProductDetails = () => {
-  const { user } = useAuth();
+  const { loading, user } = useAuth();
+  const { id } = useParams();
   const navigate = useNavigate();
   const { refetch } = useMyCart();
   const [totalCart, setTotalCart] = useState(1);
-  const gadgetData = useLoaderData();
+  const [gadgetData, setGadgetData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const {
-    productName,
-    price,
-    discountPrice,
-    description,
-    images,
-    inStock,
-    keyFeatures,
-  } = gadgetData;
-  const [mainImage, setMainImage] = useState(images[0]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await getGadget(id);
+        console.log(response);
+        setGadgetData(response);
+      } catch (err) {
+        console.log("Error fetching product details:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  const [mainImage, setMainImage] = useState(gadgetData?.images[0]);
 
   const handleIncrement = () => {
     setTotalCart((prev) => prev + 1);
@@ -48,10 +60,12 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = async (gadget, buy = false) => {
-    if (!inStock) {
+    if (!gadgetData?.inStock) {
       toast.error("This product is out of stock.");
       return;
     }
+    if (!user) return toast.error("PLease login first");
+
     const cartData = {
       gadgetId: gadget._id,
       author: user?.email,
@@ -82,8 +96,8 @@ const ProductDetails = () => {
   //     ))
   //   : null;
 
-  const formattedContent = description
-    ? description.split("\n").map((line, index) => {
+  const formattedContent = gadgetData?.description
+    ? gadgetData?.description.split("\n").map((line, index) => {
         const trimmedLine = line.trim();
 
         // Avoid rendering empty lines
@@ -97,22 +111,25 @@ const ProductDetails = () => {
       })
     : null;
 
+  if (loading || isLoading) return <SmallLoader size="76" />;
+
   return (
-    <div className="container mx-auto p-4 my-4">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-4 my-4">
       <div className="flex flex-col md:flex-row gap-5 md:gap-10">
         <div className="w-full md:w-[58%] relative">
           <img
-            src={mainImage}
+            src={mainImage || gadgetData?.images[0]}
             alt="Product"
             className="w-full h-auto rounded-lg"
           />
-          {discountPrice && price && (
+          {gadgetData?.discountPrice && gadgetData?.price && (
             <div className="absolute top-2 right-2 bg-gadDarkBlue text-white rounded-full px-3 py-4 font-semibold text-[13px] z-10">
-              -{calculateDiscount(price, discountPrice)}%
+              -{calculateDiscount(gadgetData?.price, gadgetData?.discountPrice)}
+              %
             </div>
           )}
           <div className="flex mt-2 space-x-2">
-            {images?.map((img, idx) => (
+            {gadgetData?.images?.map((img, idx) => (
               <img
                 key={idx}
                 src={img}
@@ -124,27 +141,29 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="w-full md:w-[42%]">
-          <h1 className="text-xl md:text-3xl font-medium">{productName}</h1>
+          <h1 className="text-xl md:text-3xl font-medium">
+            {gadgetData?.productName}
+          </h1>
           <p
             className={`mt-2 ${
-              inStock ? "text-green-600" : "text-red-600"
+              gadgetData?.inStock ? "text-green-600" : "text-red-600"
             } font-semibold`}
           >
-            {inStock ? "In Stock" : "Out of Stock"}
+            {gadgetData?.inStock ? "In Stock" : "Out of Stock"}
           </p>
           <div className="text-xl mt-2">
-            {discountPrice ? (
+            {gadgetData?.discountPrice ? (
               <>
                 <span className="line-through text-gray-400">
-                  ৳{formatPrice(price)}
+                  ৳{formatPrice(gadgetData?.price)}
                 </span>
                 <span className="ml-4 text-gadDarkBlue font-semibold">
-                  ৳{formatPrice(discountPrice)}
+                  ৳{formatPrice(gadgetData?.discountPrice)}
                 </span>
               </>
             ) : (
               <span className="text-gadDarkBlue font-semibold">
-                ৳{formatPrice(price)}
+                ৳{formatPrice(gadgetData?.price)}
               </span>
             )}
           </div>
@@ -176,8 +195,8 @@ const ProductDetails = () => {
           <div className="mt-3">
             <h2 className="text-xl font-semibold">Key Features</h2>
             <ul className="list-disc ml-5 mt-2 space-y-2">
-              {keyFeatures &&
-                keyFeatures.map((feature, index) => (
+              {gadgetData?.keyFeatures &&
+                gadgetData?.keyFeatures.map((feature, index) => (
                   <li key={index} className="text-gray-500 text-sm">
                     {feature}
                   </li>
@@ -201,7 +220,7 @@ const ProductDetails = () => {
       <div className="mt-12">
         <h2 className="text-2xl mb-4">Description</h2>
         <img
-          src={images[1] || images[0]}
+          src={gadgetData?.images[1] || gadgetData?.images[0]}
           alt="image"
           className="w-full h-[350px] object-cover rounded-lg mb-4"
         />

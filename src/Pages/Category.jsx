@@ -197,7 +197,7 @@ const Category = () => {
             </div>
           </div>
           {isLoading ? (
-            <SmallLoader size="52" />
+            <SmallLoader size="50" />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {sortedProducts?.map((product) => (
