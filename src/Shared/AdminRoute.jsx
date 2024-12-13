@@ -1,10 +1,12 @@
 import { Navigate } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
-import SmallLoader from "../Component/SmallLoader";
+import BigLoader from "../Component/BigLoader";
+import useAuth from "../hooks/useAuth";
 
 const AdminRoute = ({ children }) => {
+  const { loading } = useAuth();
   const { isAdmin, isLoading } = useAdmin();
-  if (isLoading) return <SmallLoader size="96" />;
+  if (loading || isLoading) return <BigLoader size="96" />;
   if (isAdmin) return children;
   return <Navigate to="/"></Navigate>;
 };

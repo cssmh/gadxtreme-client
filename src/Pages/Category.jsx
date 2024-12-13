@@ -1,8 +1,7 @@
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { getCategoryGadget } from "../Api/gadgets";
-import { useEffect, useState } from "react";
-import SmallLoader from "../Component/SmallLoader";
 
 const Category = () => {
   const { cate } = useParams();
@@ -35,6 +34,7 @@ const Category = () => {
 
   const handlePriceRangeChange = (min, max) => {
     setPriceRange([min, max]);
+    setPage(1);
   };
 
   const filteredProducts = data?.result?.filter((product) => {
@@ -58,7 +58,7 @@ const Category = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-3 md:py-6 mb-5 md:mb-3">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 py-3 md:py-6 mb-5 md:mb-3">
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/4 pr-4">
           <div className="mb-4 bg-white rounded-lg shadow p-4">
@@ -197,12 +197,30 @@ const Category = () => {
             </div>
           </div>
           {isLoading ? (
-            <SmallLoader size="50" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[...Array(limit)].map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg shadow-md animate-pulse"
+                >
+                  <div className="skeleton h-52 w-full bg-gray-300 rounded-t-lg"></div>
+                  <div className="p-3 space-y-3">
+                    <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
+                    <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
+                    <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {sortedProducts?.map((product) => (
-                <Link key={product._id} to={`/details/${product._id}`}>
-                  <div className="p-2 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
+                <Link
+                  key={product._id}
+                  to={`/details/${product._id}`}
+                  className="flex flex-col"
+                >
+                  <div className="p-2 bg-white shadow-lg rounded-xl transition duration-300 ease-in-out relative group h-full flex flex-col">
                     {product.discountPrice && product.price && (
                       <div className="absolute top-3 left-3 bg-gadDarkBlue text-white rounded-full px-2 py-3 font-semibold text-xs z-10">
                         -
@@ -227,29 +245,31 @@ const Category = () => {
                         />
                       )}
                     </div>
-                    <h3 className="text-sm mt-3">{product.productName}</h3>
-                    <p
-                      className={`${
-                        product.inStock ? "text-green-600" : "text-red-500"
-                      }`}
-                    >
-                      {product.inStock ? "In Stock" : "Out of Stock"}
-                    </p>
-                    <div className="text-sm mt-2">
-                      {product.discountPrice ? (
-                        <>
-                          <span className="line-through text-gray-500">
+                    <div className="flex flex-col flex-grow">
+                      <h3 className="text-sm mt-3 ">{product.productName}</h3>
+                      <p
+                        className={`${
+                          product.inStock ? "text-green-600" : "text-red-500"
+                        } mt-1`}
+                      >
+                        {product.inStock ? "In Stock" : "Out of Stock"}
+                      </p>
+                      <div className="text-sm mt-2">
+                        {product.discountPrice ? (
+                          <>
+                            <span className="line-through text-gray-500">
+                              ৳{formatPrice(product.price)}
+                            </span>
+                            <span className="ml-2 text-blue-700 font-medium">
+                              ৳{formatPrice(product.discountPrice)}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-blue-700 font-medium">
                             ৳{formatPrice(product.price)}
                           </span>
-                          <span className="ml-2 text-blue-700 font-medium">
-                            ৳{formatPrice(product.discountPrice)}
-                          </span>
-                        </>
-                      ) : (
-                        <span className="text-blue-700 font-medium">
-                          ৳{formatPrice(product.price)}
-                        </span>
-                      )}
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Link>

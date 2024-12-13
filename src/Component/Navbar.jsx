@@ -218,7 +218,7 @@ const Navbar = () => {
                 Login/Register
               </Link>
             )}
-            <Link to={"/my-account/wishlist"} className="relative">
+            <Link to={"/dashboard/wishlist"} className="relative">
               <FaHeart
                 className="text-white cursor-pointer text-xl"
                 title="Wishlist"

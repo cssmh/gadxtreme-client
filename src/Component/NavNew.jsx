@@ -196,7 +196,7 @@ const NavNew = () => {
             </Link>
           )}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link to={"/my-account/wishlist"} className="relative">
+            <Link to={"/dashboard/wishlist"} className="relative">
               <FaRegHeart
                 className="text-gray-600 cursor-pointer text-xl"
                 title="Wishlist"
@@ -225,7 +225,7 @@ const NavNew = () => {
               <p className="hidden md:block text-gray-500 font-medium cursor-pointer">
                 Hi, {user?.displayName || "Anonymous"}
               </p>
-              <Link to={"/my-account/wishlist"} className="relative">
+              <Link to={"/dashboard/wishlist"} className="relative">
                 <FaRegHeart
                   className="text-gray-600 cursor-pointer text-xl"
                   title="Wishlist"

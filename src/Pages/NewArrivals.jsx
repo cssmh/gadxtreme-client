@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getNewArrival } from "../Api/gadgets";
 import { Link } from "react-router-dom";
-import SmallLoader from "../Component/SmallLoader";
 
 const NewArrivals = () => {
   const { data = [], isLoading } = useQuery({
@@ -9,7 +8,32 @@ const NewArrivals = () => {
     queryFn: async () => await getNewArrival(),
   });
 
-  if (isLoading) return <SmallLoader size="30" />
+  const getSkeletonCount = () => {
+    if (window.innerWidth < 700) return 2;
+    if (window.innerWidth >= 768 && window.innerWidth < 1024) return 3;
+    return 6;
+  };
+
+  const skeletonCount = getSkeletonCount();
+
+  if (isLoading)
+    return (
+      <div className="max-w-7xl 2xl:max-w-[90%] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mt-10 mb-2 gap-5 mx-3">
+        {Array.from({ length: skeletonCount }).map((_, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-lg shadow-md animate-pulse"
+          >
+            <div className="skeleton h-40 w-full bg-gray-300 rounded-t-lg"></div>
+            <div className="p-3 space-y-3">
+              <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
+              <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
+              <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
 
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-3 lg:px-0 py-3 md:py-6 bg-gray-50">

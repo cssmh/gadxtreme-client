@@ -55,8 +55,8 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-2xl bg-orange-50 p-8 rounded-lg shadow-lg">
+    <div className="flex items-center justify-center min-h-[96vh]">
+      <div className="w-full max-w-3xl bg-orange-50 p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">
           My Profile
         </h1>

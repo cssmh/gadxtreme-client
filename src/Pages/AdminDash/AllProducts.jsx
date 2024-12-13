@@ -1,6 +1,5 @@
 import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
-import { CgSpinnerTwo } from "react-icons/cg";
 import { getAllGadget, deleteGadget } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
 
@@ -37,7 +36,7 @@ const AllProducts = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-[93vh]">
-        <CgSpinnerTwo className="animate-spin text-4xl text-teal-600" />
+        <span className="loading loading-spinner text-neutral"></span>
       </div>
     );
   }
