@@ -1,6 +1,5 @@
 import swal from "sweetalert";
 import { toast } from "sonner";
-import "./userData.css"
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
@@ -119,18 +118,20 @@ const UserDataRow = ({ user, refetch }) => {
   return (
     <>
       <tr>
-        <td className="px-2 py-4 whitespace-nowrap flex items-center">
+        <td className="px-4 py-4 whitespace-nowrap flex items-center space-x-4">
           <img
             src={user.photo}
             alt={user.name}
-            className="w-10 h-10 rounded-full mr-4"
+            className="w-12 h-12 rounded-full border-2 border-gray-300 shadow-sm"
           />
-          <span>{user.name}</span>
+          <span className="font-semibold text-gray-800">{user.name}</span>
         </td>
-        <td className="px-2 py-4 whitespace-nowrap">{user.email}</td>
-        <td className="px-2 py-4 whitespace-nowrap">
+        <td className="px-4 py-4 whitespace-nowrap text-gray-600">
+          {user.email}
+        </td>
+        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
           <div>
-            <div>
+            <div className="font-medium text-gray-700">
               Created:{" "}
               {user?.timestamp?.[0]
                 ? new Date(parseInt(user.timestamp[0], 10)).toLocaleString(
@@ -164,9 +165,9 @@ const UserDataRow = ({ user, refetch }) => {
             </div>
           </div>
         </td>
-        <td className="px-4 py-4 whitespace-nowrap">
+        <td className="px-4 py-4 whitespace-nowrap text-center">
           <span
-            className={`px-3 py-1 rounded-full text-xs font-medium ${
+            className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
               user.role === "admin"
                 ? "bg-green-100 text-green-800"
                 : "bg-blue-100 text-blue-800"
@@ -175,63 +176,74 @@ const UserDataRow = ({ user, refetch }) => {
             {user.role === "admin" ? "Admin" : "User"}
           </span>
         </td>
-        <td className="px-2 py-4 whitespace-nowrap text-right">
+        <td className="px-4 py-4 whitespace-nowrap text-right space-x-2">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-3 py-1 text-blue-600 hover:text-blue-800"
+            className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none transition-all duration-200"
           >
             <FaUserEdit size={16} />
           </button>
           <button
             onClick={handleDelete}
-            className="px-3 py-1 text-red-600 hover:text-red-800"
+            className="px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none transition-all duration-200"
           >
             <FaTrashAlt size={16} />
           </button>
         </td>
       </tr>
       {isModalOpen && (
-        <div className="modal modal-open">
-          <div className="modal-box relative animate-slide-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            ref={modalRef}
+            className="relative bg-white rounded-lg shadow-xl w-96 p-6 animate-slide-in"
+          >
             <button
               onClick={() => setIsModalOpen(false)}
-              className="btn btn-sm btn-circle absolute right-2 text-white top-2 bg-red-500 hover:bg-red-600"
+              className="absolute right-4 top-4 text-white bg-red-500 hover:bg-red-600 rounded-full px-2 focus:outline-none"
             >
               ✕
             </button>
-            <h3 className="text-lg font-bold text-center mb-4">Update Role</h3>
-            <div className="space-y-3">
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="role"
-                  value="admin"
-                  checked={selectedRole === "admin"}
-                  onChange={() => setSelectedRole("admin")}
-                  className="radio radio-accent"
-                />
-                <span className="text-sm">Admin</span>
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="role"
-                  value="guest"
-                  checked={selectedRole === "guest"}
-                  onChange={() => setSelectedRole("guest")}
-                  className="radio radio-accent"
-                />
-                <span className="text-sm">Guest</span>
-              </label>
+            <h3 className="text-xl font-semibold text-center text-gray-800 mb-4">
+              Update Role
+            </h3>
+            <div className="flex justify-between space-x-8">
+              <div className="space-y-4 w-1/3">
+                <div className="flex items-center gap-3">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    checked={selectedRole === "admin"}
+                    onChange={() => setSelectedRole("admin")}
+                    className="radio radio-accent"
+                  />
+                  <span className="text-sm font-medium">Admin</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="guest"
+                    checked={selectedRole === "guest"}
+                    onChange={() => setSelectedRole("guest")}
+                    className="radio radio-accent"
+                  />
+                  <span className="text-sm font-medium">Guest</span>
+                </div>
+              </div>
+              <div className="w-2/3"></div>
             </div>
-            <div className="modal-action justify-between mt-4">
+            <div className="flex justify-between mt-6">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="btn btn-outline"
+                className="btn btn-sm btn-outline w-24"
               >
                 Cancel
               </button>
-              <button onClick={handleRoleUpdate} className="btn btn-success text-white">
+              <button
+                onClick={handleRoleUpdate}
+                className="btn btn-sm btn-success text-white hover:bg-green-700 w-24"
+              >
                 Save
               </button>
             </div>
