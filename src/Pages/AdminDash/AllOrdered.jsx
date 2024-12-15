@@ -66,7 +66,7 @@ const AllOrdered = () => {
                     <td className="px-3 py-4 text-sm text-gray-700">
                       <Link
                         to={`/dashboard/order-details/${order._id}`}
-                        className="text-blue-600 hover:underline"
+                        className="text-blue-500 hover:underline"
                       >
                         {order.name}
                       </Link>
@@ -97,7 +97,7 @@ const AllOrdered = () => {
                     <td
                       className={`px-3 py-4 text-sm font-medium ${
                         order.status === "Pending"
-                          ? "text-yellow-600"
+                          ? "text-red-500"
                           : order.status === "Completed"
                           ? "text-green-600"
                           : "text-red-600"

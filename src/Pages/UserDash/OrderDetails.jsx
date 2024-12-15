@@ -2,16 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getOrderDetails } from "../../Api/order";
 import { sslPay } from "../../Api/auth";
-import SmallLoader from "../../Component/SmallLoader";
+import useAuth from "../../hooks/useAuth";
+import BigLoader from "../../Component/BigLoader";
 
 const OrderDetails = () => {
+  const { loading, user } = useAuth();
   const { id } = useParams();
   const { data: order, isLoading } = useQuery({
     queryKey: ["orderDetails", id],
     queryFn: async () => await getOrderDetails(id),
   });
 
-  if (isLoading) return <SmallLoader size="68" />;
+  if (loading || isLoading) return <BigLoader size="96" />;
 
   if (!order) {
     return (
@@ -126,7 +128,7 @@ const OrderDetails = () => {
             ))}
           </div>
         </div>
-        {!order.payment && (
+        {!order.payment && order?.email === user?.email && (
           <div className="text-right">
             <button
               onClick={() => handlePayment(order)}

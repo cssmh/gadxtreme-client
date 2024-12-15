@@ -28,8 +28,8 @@ export const clearCookie = async () => {
   return data;
 };
 
-export const getAllUsers = async () => {
-  const { data } = await axiosSecure("/api/all-users");
+export const getAllUsers = async (searchTerm) => {
+  const { data } = await axiosSecure(`/api/all-users?search=${searchTerm}`);
   return data;
 };
 

@@ -1,8 +1,9 @@
 import swal from "sweetalert";
 import { toast } from "sonner";
+import "./userData.css"
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
 import { deleteUser, updateRole } from "../../Api/auth";
 import useAuth from "../../hooks/useAuth";
 
@@ -72,10 +73,6 @@ const UserDataRow = ({ user, refetch }) => {
     }
   };
 
-  const openRoleModal = () => {
-    setIsModalOpen(true);
-  };
-
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setIsModalOpen(false);
@@ -121,25 +118,19 @@ const UserDataRow = ({ user, refetch }) => {
 
   return (
     <>
-      <tr className="bg-gray-100 transition-colors duration-200">
-        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-800">
-          <div className="flex items-center gap-4">
-            <img
-              src={user?.photo}
-              className="w-12 h-12 rounded-full border border-gray-300 object-cover"
-              alt={user?.name || "User Avatar"}
-            />
-            <span className="font-semibold truncate">
-              {user?.name || "N/A"}
-            </span>
-          </div>
+      <tr>
+        <td className="px-2 py-4 whitespace-nowrap flex items-center">
+          <img
+            src={user.photo}
+            alt={user.name}
+            className="w-10 h-10 rounded-full mr-4"
+          />
+          <span>{user.name}</span>
         </td>
-        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-600">
-          <span className="truncate block">{user?.email || "N/A"}</span>
-        </td>
-        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-700">
-          <div className="flex flex-col space-y-1">
-            <span className="text-green-600 font-medium">
+        <td className="px-2 py-4 whitespace-nowrap">{user.email}</td>
+        <td className="px-2 py-4 whitespace-nowrap">
+          <div>
+            <div>
               Created:{" "}
               {user?.timestamp?.[0]
                 ? new Date(parseInt(user.timestamp[0], 10)).toLocaleString(
@@ -154,8 +145,8 @@ const UserDataRow = ({ user, refetch }) => {
                     }
                   )
                 : "N/A"}
-            </span>
-            <span className="text-gray-500">
+            </div>
+            <div>
               Last Login:{" "}
               {user?.timestamp?.[1]
                 ? new Date(parseInt(user.timestamp[1], 10)).toLocaleString(
@@ -170,86 +161,79 @@ const UserDataRow = ({ user, refetch }) => {
                     }
                   )
                 : "N/A"}
-            </span>
+            </div>
           </div>
         </td>
-        <td className="px-2 py-3 whitespace-nowrap text-sm">
+        <td className="px-4 py-4 whitespace-nowrap">
           <span
-            className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${
-              user?.role === "guest"
-                ? "bg-green-100 text-green-700"
-                : "bg-orange-100 text-orange-700"
+            className={`px-3 py-1 rounded-full text-xs font-medium ${
+              user.role === "admin"
+                ? "bg-green-100 text-green-800"
+                : "bg-blue-100 text-blue-800"
             }`}
           >
-            {user?.role?.toUpperCase() || "Unavailable"}
+            {user.role === "admin" ? "Admin" : "User"}
           </span>
         </td>
-        <td className="px-2 py-3 text-center whitespace-nowrap">
+        <td className="px-2 py-4 whitespace-nowrap text-right">
           <button
-            onClick={() => handleDelete(user._id, user?.role)}
-            className="p-2 text-red-500 hover:text-red-700 transition-colors duration-200"
-            aria-label="Delete User"
+            onClick={() => setIsModalOpen(true)}
+            className="px-3 py-1 text-blue-600 hover:text-blue-800"
           >
-            <FaTrashAlt size={18} />
+            <FaUserEdit size={16} />
           </button>
-        </td>
-        <td className="px-2 py-3 text-right whitespace-nowrap">
           <button
-            onClick={openRoleModal}
-            className="px-4 py-2 text-sm font-medium bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors duration-200"
+            onClick={handleDelete}
+            className="px-3 py-1 text-red-600 hover:text-red-800"
           >
-            Update Role
+            <FaTrashAlt size={16} />
           </button>
         </td>
       </tr>
       {isModalOpen && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50"
-          onClick={handleClickOutside}
-        >
-          <div
-            ref={modalRef}
-            className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 className="text-lg font-semibold mb-4">Select Role</h2>
-            <div className="flex flex-col space-y-4">
-              <label className="flex items-center space-x-2">
+        <div className="modal modal-open">
+          <div className="modal-box relative animate-slide-in">
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="btn btn-sm btn-circle absolute right-2 text-white top-2 bg-red-500 hover:bg-red-600"
+            >
+              ✕
+            </button>
+            <h3 className="text-lg font-bold text-center mb-4">Update Role</h3>
+            <div className="space-y-3">
+              <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   name="role"
                   value="admin"
                   checked={selectedRole === "admin"}
                   onChange={() => setSelectedRole("admin")}
-                  className="form-radio"
+                  className="radio radio-accent"
                 />
-                <span className="text-gray-700">Admin</span>
+                <span className="text-sm">Admin</span>
               </label>
-              <label className="flex items-center space-x-2">
+              <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   name="role"
                   value="guest"
                   checked={selectedRole === "guest"}
                   onChange={() => setSelectedRole("guest")}
-                  className="form-radio"
+                  className="radio radio-accent"
                 />
-                <span className="text-gray-700">Guest</span>
+                <span className="text-sm">Guest</span>
               </label>
-              <div className="flex space-x-4">
-                <button
-                  onClick={handleRoleUpdate}
-                  className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300"
-                >
-                  Save Changes
-                </button>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-300"
-                >
-                  Cancel
-                </button>
-              </div>
+            </div>
+            <div className="modal-action justify-between mt-4">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="btn btn-outline"
+              >
+                Cancel
+              </button>
+              <button onClick={handleRoleUpdate} className="btn btn-success text-white">
+                Save
+              </button>
             </div>
           </div>
         </div>
