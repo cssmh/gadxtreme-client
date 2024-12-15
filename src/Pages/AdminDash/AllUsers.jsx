@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllUsers } from "../../Api/auth";
-import { CgSpinnerTwo } from "react-icons/cg";
 import UserDataRow from "./UserDataRow";
 
 const AllUsers = () => {
   const {
-    data= [],
+    data = [],
     isLoading,
     refetch,
   } = useQuery({
@@ -13,19 +12,9 @@ const AllUsers = () => {
     queryFn: async () => await getAllUsers(),
   });
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-[93vh]">
-        <CgSpinnerTwo className="animate-spin text-4xl text-teal-600" />
-      </div>
-    );
-  }
-
   return (
     <div className="p-4 rounded-lg shadow-lg">
-      <h1 className="text-xl font-bold text-gray-800 mb-2">
-        All Users
-      </h1>
+      <h1 className="text-xl font-bold text-gray-800 mb-2">All Users</h1>
       <div className="overflow-hidden border rounded-lg">
         <table className="min-w-full divide-y divide-gray-200 bg-white">
           <thead className="bg-teal-600">
@@ -51,9 +40,32 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {data.map((user) => (
-              <UserDataRow key={user._id} user={user} refetch={refetch} />
-            ))}
+            {isLoading
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <tr key={index} className="animate-pulse">
+                    <td className="px-6 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded"></div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded"></div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-full"></div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-2/4 mx-auto"></div>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-2/4 ml-auto"></div>
+                    </td>
+                  </tr>
+                ))
+              : data?.map((user) => (
+                  <UserDataRow key={user._id} user={user} refetch={refetch} />
+                ))}
           </tbody>
         </table>
       </div>

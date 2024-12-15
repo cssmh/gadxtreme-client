@@ -26,7 +26,7 @@ const OrderDetails = () => {
   };
 
   return (
-    <div className="px-4 py-2 max-w-6xl 2xl:max-w-[85%] mx-auto">
+    <div className="px-4 lg:px-5 py-2 lg:py-4 max-w-6xl 2xl:max-w-[85%] mx-auto">
       <h1 className="text-2xl font-bold text-gray-800 mb-2">Order Details</h1>
       <div className="bg-white rounded-lg shadow p-3 md:p-5 space-y-6">
         <div className="border-b pb-4">

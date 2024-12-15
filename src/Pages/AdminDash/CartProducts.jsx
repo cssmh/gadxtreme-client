@@ -1,7 +1,6 @@
 import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
 import { allCart, deleteMyCart } from "../../Api/cartGadget";
-import { CgSpinnerTwo } from "react-icons/cg";
 
 const CartProducts = () => {
   const {
@@ -12,14 +11,6 @@ const CartProducts = () => {
     queryKey: ["allCart"],
     queryFn: async () => await allCart(),
   });
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <CgSpinnerTwo className="animate-spin text-4xl text-teal-600" />
-      </div>
-    );
-  }
 
   const handleDelete = async (id) => {
     const confirmDelete = await swal({
@@ -62,34 +53,58 @@ const CartProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
-              <tr
-                key={item._id}
-                className="border-b hover:bg-gray-50 transition duration-200"
-              >
-                <td className="px-6 py-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-12 h-12 rounded object-cover"
-                  />
-                </td>
-                <td className="px-6 py-4 text-gray-800">{item.name}</td>
-                <td className="px-6 py-4 text-gray-600">৳{item.price}</td>
-                <td className="px-6 py-4 text-center text-gray-600">
-                  {item.quantity}
-                </td>
-                <td className="px-6 py-4 text-gray-600">{item.author}</td>
-                <td className="px-6 py-4 text-right">
-                  <button
-                    onClick={() => handleDelete(item._id)}
-                    className="px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600 transition duration-300"
+            {isLoading
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <tr key={index} className="animate-pulse">
+                    <td className="px-3 py-4">
+                      <div className="skeleton w-20 h-12 bg-gray-300 rounded"></div>
+                    </td>
+                    <td className="px-3 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
+                    </td>
+                    <td className="px-3 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-1/2"></div>
+                    </td>
+                    <td className="px-3 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="skeleton h-8 bg-gray-300 rounded w-20"></div>
+                    </td>
+                  </tr>
+                ))
+              : // Render Actual Data
+                data.map((item) => (
+                  <tr
+                    key={item._id}
+                    className="border-b hover:bg-gray-50 transition duration-200"
                   >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+                    <td className="px-6 py-4">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-12 h-12 rounded object-cover"
+                      />
+                    </td>
+                    <td className="px-6 py-4 text-gray-800">{item.name}</td>
+                    <td className="px-6 py-4 text-gray-600">৳{item.price}</td>
+                    <td className="px-6 py-4 text-center text-gray-600">
+                      {item.quantity}
+                    </td>
+                    <td className="px-6 py-4 text-gray-600">{item.author}</td>
+                    <td className="px-6 py-4 text-right">
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600 transition duration-300"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </div>
