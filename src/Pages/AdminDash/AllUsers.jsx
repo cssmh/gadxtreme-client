@@ -37,7 +37,7 @@ const AllUsers = () => {
                 (header) => (
                   <th
                     key={header}
-                    className="px-6 py-[10px] text-left text-sm font-bold uppercase"
+                    className="px-5 py-[10px] text-left text-sm font-bold uppercase"
                   >
                     {header}
                   </th>

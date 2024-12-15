@@ -2,24 +2,26 @@ import swal from "sweetalert";
 import { toast } from "sonner";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
+import { FaRegUserCircle, FaTrashAlt, FaUserCheck } from "react-icons/fa";
 import { deleteUser, updateRole } from "../../Api/auth";
 import useAuth from "../../hooks/useAuth";
 
 const UserDataRow = ({ user, refetch }) => {
   const { loading, user: userAuth } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRole, setSelectedRole] = useState(user?.role);
+  const [isAdmin, setIsAdmin] = useState(user?.role === "admin");
   const navigate = useNavigate();
   const modalRef = useRef(null);
 
   const handleRoleUpdate = async () => {
     try {
-      const res = await updateRole(user?.email, selectedRole);
+      const newRole = isAdmin ? "user" : "admin";
+      const res = await updateRole(user?.email, newRole);
       if (res?.modifiedCount > 0) {
-        toast.success(`Updated to ${selectedRole}`);
+        toast.success(`Updated to ${newRole}`);
+        setIsAdmin(!isAdmin);
         refetch();
-        if (userAuth?.email === user?.email && selectedRole === "guest") {
+        if (userAuth?.email === user?.email && newRole === "user") {
           navigate("/");
         }
       }
@@ -102,13 +104,13 @@ const UserDataRow = ({ user, refetch }) => {
         <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-500">
           <div className="w-24 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-4 py-3 whitespace-nowrap text-sm">
+        <td className="px-2 py-3 whitespace-nowrap text-sm">
           <div className="w-20 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-4 py-3 whitespace-nowrap text-center text-sm font-medium">
+        <td className="px-2 py-3 whitespace-nowrap text-center text-sm font-medium">
           <div className="w-8 h-8 bg-gray-200 animate-pulse rounded-full"></div>
         </td>
-        <td className="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
+        <td className="px-2 py-3 whitespace-nowrap text-right text-sm font-medium">
           <div className="w-32 h-6 bg-gray-200 animate-pulse rounded"></div>
         </td>
       </tr>
@@ -118,13 +120,13 @@ const UserDataRow = ({ user, refetch }) => {
   return (
     <>
       <tr>
-        <td className="px-4 py-4 whitespace-nowrap flex items-center space-x-4">
+        <td className="px-3 py-4 whitespace-nowrap flex items-center space-x-4">
           <img
             src={user.photo}
             alt={user.name}
             className="w-12 h-12 rounded-full border-2 border-gray-300 shadow-sm"
           />
-          <span className="font-semibold text-gray-800">{user.name}</span>
+          <span className="font-medium text-gray-800">{user.name}</span>
         </td>
         <td className="px-4 py-4 whitespace-nowrap text-gray-600">
           {user.email}
@@ -132,44 +134,40 @@ const UserDataRow = ({ user, refetch }) => {
         <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
           <div>
             <div className="font-medium text-gray-700">
-              Created:{" "}
-              {user?.timestamp?.[0]
-                ? new Date(parseInt(user.timestamp[0], 10)).toLocaleString(
-                    "en-GB",
-                    {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      second: "2-digit",
-                    }
-                  )
-                : "N/A"}
+              {new Date(parseInt(user?.timestamp[0], 10)).toLocaleString(
+                "en-GB",
+                {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                  hour12: true,
+                }
+              )}
             </div>
             <div>
-              Last Login:{" "}
-              {user?.timestamp?.[1]
-                ? new Date(parseInt(user.timestamp[1], 10)).toLocaleString(
-                    "en-GB",
-                    {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      second: "2-digit",
-                    }
-                  )
-                : "N/A"}
+              {new Date(parseInt(user?.timestamp[1], 10)).toLocaleString(
+                "en-GB",
+                {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                  hour12: true,
+                }
+              )}
             </div>
           </div>
         </td>
-        <td className="px-4 py-4 whitespace-nowrap text-center">
+        <td className="px-2 py-4 whitespace-nowrap text-center">
           <span
             className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
               user.role === "admin"
-                ? "bg-green-100 text-green-800"
+                ? "bg-green-100 text-green-700"
                 : "bg-blue-100 text-blue-800"
             }`}
           >
@@ -178,78 +176,25 @@ const UserDataRow = ({ user, refetch }) => {
         </td>
         <td className="px-4 py-4 whitespace-nowrap text-right space-x-2">
           <button
-            onClick={() => setIsModalOpen(true)}
-            className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none transition-all duration-200"
+            onClick={handleRoleUpdate}
+            className={`px-3 py-1 text-white ${
+              user?.role === "admin" ? "bg-green-600" : "bg-blue-800"
+            } rounded-lg focus:outline-none transition-all duration-200`}
           >
-            <FaUserEdit size={16} />
+            {user?.role === "admin" ? (
+              <FaUserCheck size={16} />
+            ) : (
+              <FaRegUserCircle size={16} />
+            )}
           </button>
           <button
-            onClick={handleDelete}
+            onClick={() => handleDelete(user._id, user.role)}
             className="px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none transition-all duration-200"
           >
             <FaTrashAlt size={16} />
           </button>
         </td>
       </tr>
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div
-            ref={modalRef}
-            className="relative bg-white rounded-lg shadow-xl w-96 p-6 animate-slide-in"
-          >
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute right-4 top-4 text-white bg-red-500 hover:bg-red-600 rounded-full px-2 focus:outline-none"
-            >
-              ✕
-            </button>
-            <h3 className="text-xl font-semibold text-center text-gray-800 mb-4">
-              Update Role
-            </h3>
-            <div className="flex justify-between space-x-8">
-              <div className="space-y-4 w-1/3">
-                <div className="flex items-center gap-3">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="admin"
-                    checked={selectedRole === "admin"}
-                    onChange={() => setSelectedRole("admin")}
-                    className="radio radio-accent"
-                  />
-                  <span className="text-sm font-medium">Admin</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="guest"
-                    checked={selectedRole === "guest"}
-                    onChange={() => setSelectedRole("guest")}
-                    className="radio radio-accent"
-                  />
-                  <span className="text-sm font-medium">Guest</span>
-                </div>
-              </div>
-              <div className="w-2/3"></div>
-            </div>
-            <div className="flex justify-between mt-6">
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="btn btn-sm btn-outline w-24"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleRoleUpdate}
-                className="btn btn-sm btn-success text-white hover:bg-green-700 w-24"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };

@@ -25,9 +25,8 @@ const MainLayout = () => {
       {/* <DiscountModal /> */}
       {!noNavFooter &&
         (noHeaderFooter ? null : NavRoute ? <Navbar /> : <NavNew />)}
-      <div className="min-h-[83vh]">
-        <Outlet />
-      </div>
+      {/* className="min-h-[83vh]" */}
+      <Outlet />
       {!noNavFooter && !noHeaderFooter && <Footer />}
     </div>
   );
