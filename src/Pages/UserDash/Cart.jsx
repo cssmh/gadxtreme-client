@@ -2,9 +2,9 @@ import { FaTimes } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import useMyCart from "../../hooks/useMyCart";
 import { toast } from "sonner";
-import SmallLoader from "../SmallLoader";
 import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
+import SmallLoader from "../../Component/SmallLoader";
 
 const Cart = () => {
   const { isLoading, myCartData, refetch } = useMyCart();

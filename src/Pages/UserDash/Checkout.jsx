@@ -2,11 +2,11 @@ import { useState } from "react";
 import useMyCart from "../../hooks/useMyCart";
 import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
 import { toast } from "sonner";
-import SmallLoader from "../SmallLoader";
 import { FaTimes } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { placeOrder } from "../../Api/order";
 import { useNavigate } from "react-router-dom";
+import SmallLoader from "../../Component/SmallLoader";
 
 const Checkout = () => {
   const { loading, user } = useAuth();

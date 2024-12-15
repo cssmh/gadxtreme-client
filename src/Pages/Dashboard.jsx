@@ -1,4 +1,4 @@
-import UserDashboard from "../Component/MyAccount/UserDashboard";
+import UserDashboard from "./UserDash/UserDashboard";
 import useAdmin from "../hooks/useAdmin";
 import AdminDashboard from "./AdminDash/AdminDashboard";
 

@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import { getMyOrder } from "../../Api/order";
-import SmallLoader from "../SmallLoader";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import SmallLoader from "../../Component/SmallLoader";
 
 const MyOrders = () => {
   const { loading, user } = useAuth();

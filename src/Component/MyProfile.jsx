@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { FaCamera, FaTrash } from "react-icons/fa";
-import useAuth from "../../hooks/useAuth";
 import { toast } from "sonner";
+import useAuth from "../hooks/useAuth";
 
 const MyProfile = () => {
   const { user, updateProfileInfo, logOut } = useAuth();

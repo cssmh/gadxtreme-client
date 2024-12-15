@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import SmallLoader from "../SmallLoader";
 import { getOrderDetails } from "../../Api/order";
 import { sslPay } from "../../Api/auth";
+import SmallLoader from "../../Component/SmallLoader";
 
 const OrderDetails = () => {
   const { id } = useParams();
