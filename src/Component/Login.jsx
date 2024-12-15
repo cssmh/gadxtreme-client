@@ -33,7 +33,6 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async () => {
-    setLoading(true);
     try {
       const res = await googleLogin();
       await saveUser(res.user);
@@ -42,13 +41,11 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       toast.error("Google login failed. Please try again.");
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col lg:flex-row max-w-6xl mx-auto mb-2 md:mb-0">
+    <div className="flex flex-col lg:flex-row max-w-6xl 2xl:max-w-[85%] mx-auto mb-2 md:mb-0">
       <div className="w-full lg:w-1/2 flex items-center justify-center md:py-12 px-4 lg:px-20">
         <div className="w-full max-w-md mt-5 md:mt-0">
           <h2 className="text-2xl font-bold text-gray-700">Login</h2>

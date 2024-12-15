@@ -65,9 +65,9 @@ const Route = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <AdminRoute>
+          <PrivateRoute>
             <DashLayout />
-          </AdminRoute>
+          </PrivateRoute>
         ),
         children: [
           { path: "/dashboard", element: <Dashboard /> },
@@ -91,27 +91,54 @@ const Route = createBrowserRouter([
             path: "/dashboard/my-reviews",
             element: <MyReviews />,
           },
-          { path: "/dashboard/add-product", element: <AddProduct /> },
+          {
+            path: "/dashboard/add-product",
+            element: (
+              <AdminRoute>
+                <AddProduct />
+              </AdminRoute>
+            ),
+          },
           {
             path: "/dashboard/all-products",
-            element: <AllProducts />,
+            element: (
+              <AdminRoute>
+                <AllProducts />
+              </AdminRoute>
+            ),
           },
           {
             path: "/dashboard/update/:id",
-            element: <UpdateProduct />,
+            element: (
+              <AdminRoute>
+                <UpdateProduct />
+              </AdminRoute>
+            ),
             loader: async ({ params }) => await getGadget(params.id),
           },
           {
             path: "/dashboard/all-ordered",
-            element: <AllOrdered />,
+            element: (
+              <AdminRoute>
+                <AllOrdered />
+              </AdminRoute>
+            ),
           },
           {
             path: "/dashboard/all-users",
-            element: <AllUsers />,
+            element: (
+              <AdminRoute>
+                <AllUsers />
+              </AdminRoute>
+            ),
           },
           {
             path: "/dashboard/user-carts",
-            element: <CartProducts />,
+            element: (
+              <AdminRoute>
+                <CartProducts />
+              </AdminRoute>
+            ),
           },
         ],
       },

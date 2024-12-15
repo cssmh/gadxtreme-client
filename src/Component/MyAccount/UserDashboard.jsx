@@ -68,7 +68,7 @@ const UserDashboard = () => {
               View and manage your profile details.
             </p>
             <Link
-              to="/profile"
+              to="/dashboard/profile"
               className="inline-block px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition duration-300"
             >
               <span className="flex items-center gap-1">
