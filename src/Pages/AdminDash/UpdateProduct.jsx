@@ -49,7 +49,6 @@ const UpdateProduct = () => {
   const [keyFeatures, setKeyFeatures] = useState(
     productData.keyFeatures || ["", "", "", ""]
   );
-  console.log(keyFeatures);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -98,11 +97,24 @@ const UpdateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const price = Number(formData.price);
+    const discountPrice = Number(formData.discountPrice);
 
-    if (formData.discountPrice && formData.discountPrice > formData.price) {
+    if (discountPrice > price) {
       swal({
         title: "Error",
         text: "Discount Price cannot be greater than Price!",
+        icon: "error",
+        timer: 2000,
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (discountPrice === price) {
+      swal({
+        title: "Error",
+        text: "Discount Price cannot be the same as Price!",
         icon: "error",
         timer: 2000,
       });
