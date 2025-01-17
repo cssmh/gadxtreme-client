@@ -93,20 +93,69 @@ const Cart = () => {
       <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4 mt-2">
         <div className="lg:w-[70%] w-full border px-4 pb-4 rounded-lg">
           {myCartData?.length > 0 ? (
-            <table className="w-full text-left">
-              <thead>
-                <tr className="border-b">
-                  <th className="py-3 px-2">Product</th>
-                  <th className="py-3 px-2">Price</th>
-                  <th className="py-3 px-2">Quantity</th>
-                  <th className="py-3 px-2">Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
+            <>
+              <div className="hidden md:block">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-3 px-2">Product</th>
+                      <th className="py-3 px-2">Price</th>
+                      <th className="py-3 px-2">Quantity</th>
+                      <th className="py-3 px-2">Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {myCartData.map((item) => (
+                      <tr key={item._id} className="border-b">
+                        <td className="py-4 flex items-center">
+                          <FaTimes
+                            className="cursor-pointer mr-3"
+                            onClick={() => handleRemove(item._id)}
+                          />
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-16 h-16 object-cover mr-3"
+                          />
+                          <span>{item.name}</span>
+                        </td>
+                        <td className="py-4 px-1">৳{item?.price}</td>
+                        <td className="py-4 px-1">
+                          <div className="flex items-center border rounded-2xl mx-1">
+                            <button
+                              onClick={() => handleDecrement(item._id)}
+                              className="px-2 py-2 border-r"
+                            >
+                              -
+                            </button>
+                            <span className="mx-2">{quantities[item._id]}</span>
+                            <button
+                              onClick={() => handleIncrement(item._id)}
+                              className="px-2 py-2 border-l"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-4 px-1 text-gadDarkBlue font-semibold">
+                          ৳
+                          {calculateSubtotal(
+                            item.price,
+                            quantities[item._id]
+                          ).toFixed(2)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="block md:hidden">
                 {myCartData.map((item) => (
-                  <tr key={item._id} className="border-b">
-                    {/* Product Column */}
-                    <td className="py-4 flex items-center">
+                  <div
+                    key={item._id}
+                    className="border-b py-4 flex flex-col space-y-3"
+                  >
+                    <div className="flex items-center">
                       <FaTimes
                         className="cursor-pointer mr-3"
                         onClick={() => handleRemove(item._id)}
@@ -116,37 +165,44 @@ const Cart = () => {
                         alt={item.name}
                         className="w-16 h-16 object-cover mr-3"
                       />
-                      <span>{item.name}</span>
-                    </td>
-                    <td className="py-4 px-1">৳{item?.price}</td>
-                    <td className="py-4 px-1">
-                      <div className="flex items-center border rounded-2xl mx-1">
+                      <span className="font-semibold">{item.name}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium">Price:</span>
+                      <span>৳{item?.price}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium">Quantity:</span>
+                      <div className="flex items-center border rounded-2xl">
                         <button
                           onClick={() => handleDecrement(item._id)}
-                          className="px-2 py-2 border-r"
+                          className="px-2 py-1 border-r"
                         >
                           -
                         </button>
-                        <span className="mx-2">{quantities[item._id]}</span>
+                        <span className="px-3">{quantities[item._id]}</span>
                         <button
                           onClick={() => handleIncrement(item._id)}
-                          className="px-2 py-2 border-l"
+                          className="px-2 py-1 border-l"
                         >
                           +
                         </button>
                       </div>
-                    </td>
-                    <td className="py-4 px-1 text-gadDarkBlue font-semibold">
-                      ৳
-                      {calculateSubtotal(
-                        item.price,
-                        quantities[item._id]
-                      ).toFixed(2)}
-                    </td>
-                  </tr>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm font-medium">Subtotal:</span>
+                      <span className="font-semibold text-gadDarkBlue">
+                        ৳
+                        {calculateSubtotal(
+                          item.price,
+                          quantities[item._id]
+                        ).toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </>
           ) : (
             <p className="py-3">Your cart is empty.</p>
           )}

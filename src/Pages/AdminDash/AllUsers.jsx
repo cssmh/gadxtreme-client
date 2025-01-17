@@ -19,7 +19,7 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-3 md:p-5">
       <h1 className="text-2xl font-semibold text-gray-800 mb-2">All Users</h1>
       <div className="mb-3">
         <input
@@ -29,7 +29,7 @@ const AllUsers = () => {
           className="px-4 py-2 border rounded-lg w-full focus:outline-none"
         />
       </div>
-      <div className="overflow-hidden border rounded-lg">
+      <div className="border rounded-lg overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead className="bg-teal-600 text-white">
             <tr>
@@ -37,7 +37,7 @@ const AllUsers = () => {
                 (header) => (
                   <th
                     key={header}
-                    className="px-5 py-[10px] text-left text-sm font-bold uppercase"
+                    className="px-5 py-1 md:py-[10px] text-left text-sm font-bold uppercase"
                   >
                     {header}
                   </th>

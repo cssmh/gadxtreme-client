@@ -63,21 +63,21 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="p-3">
+    <div className="p-2">
       <h1 className="text-xl font-bold mb-4">All Products</h1>
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
+        <table className="w-full border-collapse bg-white rounded-md shadow-lg overflow-hidden">
           <thead>
-            <tr className="bg-teal-500 text-white rounded-xl">
-              <th className="border border-gray-300 px-4 py-2">Image</th>
-              <th className="border border-gray-300 px-4 py-2">Product Name</th>
-              <th className="border border-gray-300 px-4 py-2">Category</th>
-              <th className="border border-gray-300 px-4 py-2">Price</th>
-              <th className="border border-gray-300 px-4 py-2">
+            <tr className="bg-gray-200 text-gray-600 text-left">
+              <th className="px-4 py-3">Image</th>
+              <th className="px-4 py-3">Product Name</th>
+              <th className="px-4 py-3">Category</th>
+              <th className="px-4 py-3">Price</th>
+              <th className="px-4 py-3">
                 Discount Price
               </th>
-              <th className="border border-gray-300 px-4 py-2">Stock Status</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
+              <th className="px-4 py-3">Stock Status</th>
+              <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
           <tbody>

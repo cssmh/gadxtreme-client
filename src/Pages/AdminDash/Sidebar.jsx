@@ -88,23 +88,19 @@ const Sidebar = () => {
 
   return (
     <div className="relative">
-      {/* Mobile Header */}
-      <div className="md:hidden flex justify-between items-center px-5 py-2 bg-teal-700 text-white fixed top-0 left-0 w-full z-30">
+      <div className="md:hidden flex justify-between items-center px-5 py-2 bg-[#61c0f1] text-white fixed top-0 left-0 w-full z-30">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
-          <AiOutlineBars className="h-7 w-7" />
+          <AiOutlineBars className="w-7 h-7" />
         </button>
         <Link to="/">
-          <img src={assets.gadget} alt="Logo" className="w-10" />
+          <img src={assets.gadget} alt="Logo" className="w-11 border rounded-full" />
         </Link>
       </div>
-
-      {/* Sidebar */}
       <div
         className={`flex flex-col bg-[#f3f4f6] shadow-lg fixed z-50 top-0 left-0 h-full w-56 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
-        {/* Sidebar Header */}
         <div className="px-4 pt-4 border-b border-gray-300">
           <Link to="/" className="hidden md:block">
             <div className="w-full hidden md:flex px-4 py-1 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
@@ -119,8 +115,6 @@ const Sidebar = () => {
             </div>
           )}
         </div>
-
-        {/* Admin Toggle */}
         {isAdmin && (
           <div className="flex items-center justify-center gap-3 py-2 border-b border-gray-300">
             <span className="text-gray-700">Admin Routes</span>
@@ -136,15 +130,11 @@ const Sidebar = () => {
             </button>
           </div>
         )}
-
-        {/* Routes */}
         <nav className="mt-1 px-1">
           {isAdmin && showAdminRoutes
             ? renderRoutes(adminRoutes)
             : renderRoutes(userRoutes)}
         </nav>
-
-        {/* Footer */}
         <div className="mt-auto px-1 border-t border-gray-300 pt-2">
           <NavLink
             to="/dashboard/profile"
@@ -167,8 +157,6 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-
-      {/* Sidebar Overlay */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 md:hidden"
