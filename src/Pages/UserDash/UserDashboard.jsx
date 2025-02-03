@@ -8,9 +8,17 @@ import {
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { myDashboard } from "../../Api/cartGadget";
 
 const UserDashboard = () => {
-  const { user } = useAuth();
+  const { loading, user } = useAuth();
+  const { data } = useQuery({
+    queryKey: ["userCount", user?.email],
+    queryFn: async () => await myDashboard(user?.email),
+    enabled: !loading && !!user?.email,
+  });
+  console.log(data);
 
   return (
     <div>
@@ -43,7 +51,6 @@ const UserDashboard = () => {
               {/* Static value */}
             </div>
           </motion.div>
-
           <motion.div
             className="p-3 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             whileTap={{ scale: 0.95 }}
@@ -60,12 +67,13 @@ const UserDashboard = () => {
               {/* Static value */}
             </div>
           </motion.div>
-
           <motion.div
             className="p-3 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             whileTap={{ scale: 0.95 }}
           >
-            <h2 className="text-2xl font-semibold text-gray-700">Total Revenue</h2>
+            <h2 className="text-2xl font-semibold text-gray-700">
+              Total Revenue
+            </h2>
             <p className="text-sm text-gray-500 mb-4">
               Total amount spent on orders.
             </p>
@@ -76,7 +84,6 @@ const UserDashboard = () => {
             </div>
           </motion.div>
         </section>
-
         {/* Links Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
           <motion.div
@@ -98,7 +105,6 @@ const UserDashboard = () => {
               </span>
             </Link>
           </motion.div>
-
           <motion.div
             className="p-3 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             whileTap={{ scale: 0.95 }}
@@ -116,7 +122,6 @@ const UserDashboard = () => {
               </span>
             </Link>
           </motion.div>
-
           <motion.div
             className="p-3 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             whileTap={{ scale: 0.95 }}

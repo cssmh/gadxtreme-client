@@ -10,6 +10,11 @@ export const postCart = async (cartInfo) => {
   return data;
 };
 
+export const myDashboard = async (email) => {
+  const { data } = await axiosSecure(`/api/my-dashboard?email=${email}`);
+  return data;
+};
+
 export const myCart = async (email) => {
   const { data } = await axiosSecure(`/api/my-cart?email=${email}`);
   return data;

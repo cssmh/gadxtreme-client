@@ -83,7 +83,13 @@ const Checkout = () => {
       toast.error("Please fill out all required fields.");
       return;
     }
+
     setIsSubmitting(true);
+
+    const totalAmount = myCartData
+      ?.reduce((acc, item) => acc + item.price * quantities[item._id], 0)
+      .toFixed(2);
+
     try {
       const orderData = {
         ...formData,
@@ -97,6 +103,7 @@ const Checkout = () => {
         })),
         status: "Pending",
         orderPlaced: new Date(),
+        totalAmount,
       };
 
       await placeOrder(orderData);
