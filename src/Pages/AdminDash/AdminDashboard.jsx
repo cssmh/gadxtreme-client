@@ -19,7 +19,7 @@ const AdminDashboard = () => {
       </header>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 px-2 md:px-6 mb-5 md:mb-8">
         <motion.div
-          className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300"
+          className="bg-white rounded-lg shadow-md p-6 transition-all duration-300"
           whileHover={{ scale: 1.05 }}
         >
           <div className="flex items-center space-x-4">
@@ -34,9 +34,8 @@ const AdminDashboard = () => {
             </div>
           </div>
         </motion.div>
-
         <motion.div
-          className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300"
+          className="bg-white rounded-lg shadow-md p-6 transition-all duration-300"
           whileHover={{ scale: 1.05 }}
         >
           <div className="flex items-center space-x-4">
@@ -51,9 +50,8 @@ const AdminDashboard = () => {
             </div>
           </div>
         </motion.div>
-
         <motion.div
-          className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300"
+          className="bg-white rounded-lg p-6 shadow-md transition-all duration-300"
           whileHover={{ scale: 1.05 }}
         >
           <div className="flex items-center space-x-4">
@@ -72,7 +70,7 @@ const AdminDashboard = () => {
       <hr className="border-t-2 border-gray-200 mb-8 mx-6" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
         <motion.div
-          className="bg-white p-5 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+          className="bg-white p-5 md:p-6 rounded-lg shadow-md transition-all duration-300"
           whileTap={{ scale: 0.95 }}
         >
           <h2 className="text-2xl font-semibold text-gray-700">My Wishlist</h2>
@@ -88,9 +86,8 @@ const AdminDashboard = () => {
             </span>
           </Link>
         </motion.div>
-
         <motion.div
-          className="bg-white p-5 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+          className="bg-white p-5 md:p-6 rounded-lg shadow-md transition-all duration-300"
           whileTap={{ scale: 0.95 }}
         >
           <h2 className="text-2xl font-semibold text-gray-700">My Orders</h2>
@@ -106,9 +103,8 @@ const AdminDashboard = () => {
             </span>
           </Link>
         </motion.div>
-
         <motion.div
-          className="bg-white p-5 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+          className="bg-white p-5 md:p-6 rounded-lg shadow-md transition-all duration-300"
           whileTap={{ scale: 0.95 }}
         >
           <h2 className="text-2xl font-semibold text-gray-700">

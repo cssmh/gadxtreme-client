@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaUsers, FaRegComments, FaRegListAlt } from "react-icons/fa";
 import { AiOutlineBars, AiOutlineProduct } from "react-icons/ai";
-import { MdAddTask, MdProductionQuantityLimits } from "react-icons/md";
+import {
+  MdAddTask,
+  MdOutlineSpaceDashboard,
+  MdProductionQuantityLimits,
+} from "react-icons/md";
 import { BsCartCheck } from "react-icons/bs";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
@@ -12,6 +16,7 @@ import { assets } from "../../assets/assets";
 const Sidebar = () => {
   const { user, logOut } = useAuth();
   const { isAdmin } = useAdmin();
+  const loc = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showAdminRoutes, setShowAdminRoutes] = useState(true);
 
@@ -30,6 +35,7 @@ const Sidebar = () => {
 
   // Define common routes
   const userRoutes = [
+    { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/cart", icon: <BsCartCheck />, label: "My Cart" },
     { to: "/dashboard/orders", icon: <MdAddTask />, label: "My Orders" },
     {
@@ -50,6 +56,7 @@ const Sidebar = () => {
   ];
 
   const adminRoutes = [
+    { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
     { to: "/dashboard/add-product", icon: <MdAddTask />, label: "Add Product" },
     {
@@ -65,25 +72,23 @@ const Sidebar = () => {
     {
       to: "/dashboard/all-ordered",
       icon: <AiOutlineProduct />,
-      label: "Ordered Product",
+      label: "All Ordered",
     },
   ];
 
   const renderRoutes = (routes) =>
     routes.map(({ to, icon, label }) => (
-      <NavLink
+      <Link
         key={to}
         to={to}
-        className={({ isActive }) =>
-          `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
-            isActive ? "bg-teal-50 text-teal-600 font-semibold" : ""
-          }`
-        }
+        className={`flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+          loc.pathname === to ? "bg-teal-50 text-teal-600 font-semibold" : ""
+        }`}
         onClick={() => setIsSidebarOpen(false)}
       >
         <span className="text-xl">{icon}</span>
         <span className="ml-3">{label}</span>
-      </NavLink>
+      </Link>
     ));
 
   return (
