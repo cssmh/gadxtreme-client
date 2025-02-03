@@ -28,9 +28,11 @@ const MainLayout = () => {
     loc.pathname === "/register";
 
   const noHeaderFooter = loc?.pathname?.startsWith("/dashboard");
-  const noNavFooter = loc?.pathname?.startsWith("/success");
+  const noNavFooter =
+    loc?.pathname?.startsWith("/success") ||
+    loc?.pathname?.startsWith("/cancel");
 
-  if (loading) return <MainLoader />;
+  // if (loading) return <MainLoader />;
 
   return (
     <div>

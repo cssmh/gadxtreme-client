@@ -26,6 +26,7 @@ import OrderDetails from "../Pages/UserDash/OrderDetails";
 import Dashboard from "../Pages/Dashboard";
 import MyReviews from "../Pages/UserDash/MyReviews";
 import MyProfile from "../Component/MyProfile";
+import PayCancel from "../Component/PayCancel";
 
 const Route = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const Route = createBrowserRouter([
       {
         path: "/success/:tranId/:id",
         element: <Success />,
+      },
+      {
+        path: "/cancel",
+        element: <PayCancel />,
       },
       {
         path: "/cart",

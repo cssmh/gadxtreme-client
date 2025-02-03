@@ -4,6 +4,7 @@ import { getMyOrder } from "../../Api/order";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SmallLoader from "../../Component/SmallLoader";
+import { toast } from "sonner";
 
 const MyOrders = () => {
   const { loading, user } = useAuth();
@@ -12,10 +13,13 @@ const MyOrders = () => {
     queryFn: async () => await getMyOrder(user?.email),
     enabled: !loading && !!user?.email,
   });
-  console.log(data);
+
+  const handleDownloadInvoice = (orderId) => {
+    console.log(`Downloading invoice for order ${orderId}`);
+    toast.info("Invoice download is under development!");
+  };
 
   if (isLoading) return <SmallLoader size="68" />;
-
   return (
     <div className="px-3 py-2 max-w-6xl 2xl:max-w-[85%] mx-auto">
       <h1 className="text-2xl font-bold text-gray-800">My Orders</h1>
@@ -99,7 +103,14 @@ const MyOrders = () => {
                     </span>
                   </td>
                   <td className="px-3 py-2 text-sm text-gray-600">
-                    {!order.payment && (
+                    {order.payment ? (
+                      <button
+                        onClick={() => handleDownloadInvoice(order._id)}
+                        className="px-3 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
+                      >
+                        Download Invoice
+                      </button>
+                    ) : (
                       <Link
                         to={`/dashboard/order-details/${order._id}`}
                         className="px-3 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition"
