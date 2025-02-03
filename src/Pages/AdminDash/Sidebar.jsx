@@ -75,20 +75,21 @@ const Sidebar = () => {
         key={to}
         to={to}
         className={({ isActive }) =>
-          `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
-            isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
+          `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+            isActive ? "bg-teal-50 text-teal-600 font-semibold" : ""
           }`
         }
         onClick={() => setIsSidebarOpen(false)}
       >
-        {icon}
+        <span className="text-xl">{icon}</span>
         <span className="ml-3">{label}</span>
       </NavLink>
     ));
 
   return (
     <div className="relative">
-      <div className="md:hidden flex justify-between items-center px-5 py-2 bg-[#61c0f1] text-white fixed top-0 left-0 w-full z-30">
+      {/* Mobile Navbar */}
+      <div className="md:hidden flex justify-between items-center px-5 py-3 bg-teal-600 text-white fixed top-0 left-0 w-full z-30 shadow-md">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <AiOutlineBars className="w-7 h-7" />
         </button>
@@ -96,31 +97,38 @@ const Sidebar = () => {
           <img
             src={assets.gadget}
             alt="Logo"
-            className="w-11 border rounded-full"
+            className="w-11 border rounded-full shadow-sm"
           />
         </Link>
       </div>
+      {/* Sidebar */}
       <div
-        className={`flex flex-col bg-[#f3f4f6] shadow-lg fixed z-50 top-0 left-0 h-full w-56 transform transition-transform duration-300 ease-in-out ${
+        className={`flex flex-col bg-white shadow-xl fixed z-50 top-0 left-0 h-full w-64 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
-        <div className="px-4 pt-4 border-b border-gray-300">
+        {/* Logo and User Info */}
+        <div className="px-4 border-b border-gray-200">
           <Link to="/" className="hidden md:block">
-            <div className="w-full hidden md:flex px-4 py-1 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
+            <div className="w-full hidden md:flex px-4 py-2 shadow-md rounded-lg justify-center items-center bg-teal-50 mx-auto">
               <img src={assets.gadget} className="h-14" alt="Logo" />
             </div>
           </Link>
           {user && (
-            <div className="px-1 my-1 md:my-4 pb-3 md:pb-0 text-gray-600 font-medium">
-              <span>Hi, {user?.displayName || "User"}</span>
-              <p>{isAdmin ? "Admin" : "User"}</p>
+            <div className="px-1 my-4 text-gray-700">
+              <span className="text-lg font-semibold">
+                Hi, {user?.displayName || "User"}
+              </span>
+              <p className="text-sm text-gray-500">
+                {isAdmin ? "Admin" : "User"}
+              </p>
             </div>
           )}
         </div>
+        {/* Admin Toggle */}
         {isAdmin && (
-          <div className="flex items-center justify-center gap-3 py-2 border-b border-gray-300">
-            <span className="text-gray-700">Admin Routes</span>
+          <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-teal-50">
+            <span className="text-sm text-gray-700">Admin Routes</span>
             <button
               onClick={handleAdminToggle}
               className={`text-sm px-3 py-1 rounded-lg transition ${
@@ -133,17 +141,19 @@ const Sidebar = () => {
             </button>
           </div>
         )}
-        <nav className="mt-1 px-1">
+        {/* Navigation Links */}
+        <nav className="flex-1 mt-4 px-3 overflow-y-auto">
           {isAdmin && showAdminRoutes
             ? renderRoutes(adminRoutes)
             : renderRoutes(userRoutes)}
         </nav>
-        <div className="mt-auto px-1 border-t border-gray-300 pt-2">
+        {/* Profile and Logout */}
+        <div className="px-3 border-t border-gray-200 bg-white">
           <NavLink
             to="/dashboard/profile"
             className={({ isActive }) =>
-              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 ${
-                isActive ? "text-teal-600 font-semibold" : "hover:bg-teal-50"
+              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+                isActive ? "bg-teal-50 text-teal-600 font-semibold" : ""
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
@@ -153,13 +163,14 @@ const Sidebar = () => {
           </NavLink>
           <button
             onClick={handleLogout}
-            className="flex items-center py-3 pl-5 text-red-600 rounded-lg hover:bg-red-100 transition-colors duration-200 w-full"
+            className="flex items-center py-3 pl-5 text-red-600 rounded-lg hover:bg-red-50 transition-colors duration-200 w-full"
           >
             <RiLogoutBoxLine className="mr-3 text-xl" />
             Logout
           </button>
         </div>
       </div>
+      {/* Overlay for Mobile */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 md:hidden"
