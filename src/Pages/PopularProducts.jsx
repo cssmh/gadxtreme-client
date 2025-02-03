@@ -78,7 +78,11 @@ const PopularProducts = () => {
         >
           {data?.map((product) => (
             <SwiperSlide key={product._id}>
-              <Link to={`/details/${product._id}`}>
+              <Link
+                to={`/details/${product?.productName
+                  .toLowerCase()
+                  .replaceAll(/\s+/g, "_")}/${product._id}`}
+              >
                 <div className="p-4 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
                   {product.discountPrice && product.price && (
                     <div className="absolute top-2 left-2 bg-blue-500 text-white rounded-full px-2 py-1 text-xs z-10">

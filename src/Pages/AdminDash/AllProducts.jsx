@@ -73,9 +73,7 @@ const AllProducts = () => {
               <th className="px-4 py-3">Product Name</th>
               <th className="px-4 py-3">Category</th>
               <th className="px-4 py-3">Price</th>
-              <th className="px-4 py-3">
-                Discount Price
-              </th>
+              <th className="px-4 py-3">Discount Price</th>
               <th className="px-4 py-3">Stock Status</th>
               <th className="px-4 py-3">Actions</th>
             </tr>
@@ -95,7 +93,11 @@ const AllProducts = () => {
                       />
                     </td>
                     <td className="border-gray-300 px-4 py-2">
-                      <Link to={`/details/${product._id}`}>
+                      <Link
+                        to={`/details/${product?.productName
+                          .toLowerCase()
+                          .replaceAll(/\s+/g, "_")}/${product._id}`}
+                      >
                         {product.productName.slice(0, 20)}..
                       </Link>
                     </td>

@@ -130,7 +130,9 @@ const NavNew = () => {
               {searchData.map((gadget) => (
                 <a
                   key={gadget._id}
-                  href={`/details/${gadget._id}`}
+                  to={`/details/${gadget?.productName
+                    .toLowerCase()
+                    .replaceAll(/\s+/g, "_")}/${gadget._id}`}
                   className="flex items-center p-2 hover:bg-gray-100 border-b"
                 >
                   <img
@@ -278,7 +280,9 @@ const NavNew = () => {
             {searchData.map((gadget) => (
               <a
                 key={gadget._id}
-                href={`/details/${gadget._id}`}
+                href={`/details/${gadget?.productName
+                  .toLowerCase()
+                  .replaceAll(/\s+/g, "_")}/${gadget._id}`}
                 className="flex items-center p-2 hover:bg-gray-100 border-b"
               >
                 <img

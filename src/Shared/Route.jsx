@@ -39,7 +39,7 @@ const Route = createBrowserRouter([
       { path: "/privacy-policy", element: <Policy /> },
       { path: "/category/:cate", element: <Category /> },
       {
-        path: "/details/:id",
+        path: "/details/:name/:id",
         element: <ProductDetails />,
       },
       {

@@ -58,7 +58,11 @@ const skeletonCount = getSkeletonCount();
             key={product._id}
             className="bg-white rounded-lg shadow-lg transition-shadow duration-300"
           >
-            <Link to={`/details/${product._id}`}>
+            <Link
+              to={`/details/${product?.productName
+                .toLowerCase()
+                .replaceAll(/\s+/g, "_")}/${product._id}`}
+            >
               <div className="relative h-56 w-full">
                 <img
                   src={product.images[0]}

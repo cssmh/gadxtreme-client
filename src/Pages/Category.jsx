@@ -217,7 +217,9 @@ const Category = () => {
               {sortedProducts?.map((product) => (
                 <Link
                   key={product._id}
-                  to={`/details/${product._id}`}
+                  to={`/details/${product?.productName
+                    .toLowerCase()
+                    .replaceAll(/\s+/g, "_")}/${product._id}`}
                   className="flex flex-col"
                 >
                   <div className="p-2 bg-white shadow-lg rounded-xl transition duration-300 ease-in-out relative group h-full flex flex-col">
