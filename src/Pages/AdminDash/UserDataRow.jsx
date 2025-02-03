@@ -119,12 +119,12 @@ const UserDataRow = ({ user, refetch }) => {
 
   return (
     <>
-      <tr>
+      <tr className="text-sm">
         <td className="px-3 py-4 whitespace-nowrap flex items-center space-x-4">
           <img
             src={user.photo}
             alt={user.name}
-            className="w-12 h-12 rounded-full border-2 border-gray-300 shadow-sm"
+            className="w-10 h-10 rounded-full p-[1px] border border-teal-500 shadow-sm"
           />
           <span className="font-medium text-gray-800">{user.name}</span>
         </td>

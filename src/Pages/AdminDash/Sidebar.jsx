@@ -50,11 +50,12 @@ const Sidebar = () => {
   ];
 
   const adminRoutes = [
+    { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
     { to: "/dashboard/add-product", icon: <MdAddTask />, label: "Add Product" },
     {
       to: "/dashboard/user-carts",
       icon: <BsCartCheck />,
-      label: "Cart Products",
+      label: "All Carts",
     },
     {
       to: "/dashboard/all-products",
@@ -66,7 +67,6 @@ const Sidebar = () => {
       icon: <AiOutlineProduct />,
       label: "Ordered Product",
     },
-    { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
   ];
 
   const renderRoutes = (routes) =>
@@ -97,13 +97,13 @@ const Sidebar = () => {
           <img
             src={assets.gadget}
             alt="Logo"
-            className="w-11 border rounded-full shadow-sm"
+            className="w-11 rounded-full shadow-sm"
           />
         </Link>
       </div>
       {/* Sidebar */}
       <div
-        className={`flex flex-col bg-white shadow-xl fixed z-50 top-0 left-0 h-full w-64 transform transition-transform duration-300 ease-in-out ${
+        className={`flex flex-col bg-white py-1 shadow-xl fixed z-50 top-0 left-0 h-full w-64 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >

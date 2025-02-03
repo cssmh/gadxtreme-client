@@ -13,12 +13,15 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-blue-500 to-purple-500 py-6 mb-4 md:mb-8 text-center text-white">
+      <header className="bg-gradient-to-r from-blue-500 to-purple-500 py-6 mb-4 md:mb-8 text-center text-white rounded-b-lg shadow-md">
         <h1 className="text-3xl font-semibold">Admin Dashboard</h1>
-        <p className="mt-2">Manage your store and track performance</p>
+        <p className="mt-2 text-lg">Manage your store and track performance</p>
       </header>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 px-2 md:px-6 mb-5 md:mb-8">
-        <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300">
+        <motion.div
+          className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+        >
           <div className="flex items-center space-x-4">
             <FaChartPie className="text-4xl text-blue-600" />
             <div>
@@ -30,8 +33,12 @@ const AdminDashboard = () => {
               </p>
             </div>
           </div>
-        </div>
-        <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300">
+        </motion.div>
+
+        <motion.div
+          className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+        >
           <div className="flex items-center space-x-4">
             <FaUsers className="text-4xl text-green-600" />
             <div>
@@ -43,8 +50,12 @@ const AdminDashboard = () => {
               </p>
             </div>
           </div>
-        </div>
-        <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300">
+        </motion.div>
+
+        <motion.div
+          className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+        >
           <div className="flex items-center space-x-4">
             <FaBoxOpen className="text-4xl text-orange-600" />
             <div>
@@ -56,7 +67,7 @@ const AdminDashboard = () => {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
       <hr className="border-t-2 border-gray-200 mb-8 mx-6" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
@@ -77,6 +88,7 @@ const AdminDashboard = () => {
             </span>
           </Link>
         </motion.div>
+
         <motion.div
           className="bg-white p-5 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
           whileTap={{ scale: 0.95 }}
@@ -94,6 +106,7 @@ const AdminDashboard = () => {
             </span>
           </Link>
         </motion.div>
+
         <motion.div
           className="bg-white p-5 md:p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
           whileTap={{ scale: 0.95 }}
@@ -102,7 +115,7 @@ const AdminDashboard = () => {
             Profile Information
           </h2>
           <p className="text-sm text-gray-500 mb-4">
-            View and manage your profile details. keep updated!
+            View and manage your profile details. Keep updated!
           </p>
           <Link
             to="/profile"

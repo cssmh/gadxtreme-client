@@ -19,7 +19,7 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="p-3 md:p-5">
+    <div className="p-3">
       <h1 className="text-2xl font-semibold text-gray-800 mb-2">All Users</h1>
       <div className="mb-3">
         <input
@@ -37,7 +37,7 @@ const AllUsers = () => {
                 (header) => (
                   <th
                     key={header}
-                    className="px-5 py-1 md:py-[10px] text-left text-sm font-bold uppercase"
+                    className="px-5 py-1 md:py-[10px] text-left text-sm uppercase"
                   >
                     {header}
                   </th>

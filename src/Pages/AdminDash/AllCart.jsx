@@ -2,7 +2,7 @@ import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
 import { allCart, deleteMyCart } from "../../Api/cartGadget";
 
-const CartProducts = () => {
+const AllCart = () => {
   const {
     data = [],
     isLoading,
@@ -43,7 +43,7 @@ const CartProducts = () => {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-gray-600 text-left">
+            <tr className="bg-gray-200 text-gray-600 text-left text-sm">
               <th className="px-6 py-3">Image</th>
               <th className="px-6 py-3">Name</th>
               <th className="px-6 py-3">Price</th>
@@ -80,7 +80,7 @@ const CartProducts = () => {
                 data.map((item) => (
                   <tr
                     key={item._id}
-                    className="border-b hover:bg-gray-50 transition duration-200"
+                    className="border-b hover:bg-gray-50 transition duration-200 text-sm"
                   >
                     <td className="px-6 py-4">
                       <img
@@ -112,4 +112,4 @@ const CartProducts = () => {
   );
 };
 
-export default CartProducts;
+export default AllCart;

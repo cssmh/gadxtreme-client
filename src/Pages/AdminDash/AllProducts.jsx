@@ -68,14 +68,14 @@ const AllProducts = () => {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-md shadow-lg overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-gray-600 text-left">
-              <th className="px-4 py-3">Image</th>
-              <th className="px-4 py-3">Product Name</th>
-              <th className="px-4 py-3">Category</th>
-              <th className="px-4 py-3">Price</th>
-              <th className="px-4 py-3">Discount Price</th>
-              <th className="px-4 py-3">Stock Status</th>
-              <th className="px-4 py-3">Actions</th>
+            <tr className="bg-gray-200 text-sm text-gray-600 text-left">
+              <th className="py-[10px] text-center">Image</th>
+              <th className="py-[10px] text-center">Product Name</th>
+              <th className="py-[10px] text-center">Category</th>
+              <th className="py-[10px] text-center">Price</th>
+              <th className="py-[10px] text-center">Discount Price</th>
+              <th className="py-[10px] text-center">Stock Status</th>
+              <th className="py-[10px] text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -89,10 +89,10 @@ const AllProducts = () => {
                       <img
                         src={product.images[0]}
                         alt={product.productName}
-                        className="w-16 h-16 object-cover rounded-md"
+                        className="w-14 h-14 object-cover rounded-sm"
                       />
                     </td>
-                    <td className="border-gray-300 px-4 py-2">
+                    <td className="border-gray-300 text-sm px-4 py-2">
                       <Link
                         to={`/details/${product?.productName
                           .toLowerCase()
@@ -101,18 +101,18 @@ const AllProducts = () => {
                         {product.productName.slice(0, 20)}..
                       </Link>
                     </td>
-                    <td className="border-gray-300 px-4 py-2">
+                    <td className="border-gray-300 text-sm px-4 py-2">
                       {product.category}
                     </td>
-                    <td className="border-gray-300 px-4 py-2">
+                    <td className="border-gray-300 text-sm px-4 py-2">
                       ৳{product.price}
                     </td>
-                    <td className="border-gray-300 px-4 py-2">
+                    <td className="border-gray-300 text-sm px-4 py-2">
                       {product.discountPrice
                         ? `৳${product.discountPrice}`
                         : "No Discount"}
                     </td>
-                    <td className="border-gray-300 px-4 py-2">
+                    <td className="border-gray-300 text-sm px-4 py-2">
                       <span
                         className={`px-2 py-1 text-sm rounded-full ${
                           product.inStock
@@ -127,12 +127,12 @@ const AllProducts = () => {
                       <div className="flex items-center gap-1">
                         <Link
                           to={`/dashboard/update/${product._id}`}
-                          className="px-5 py-2 text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+                          className="px-4 py-1 text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                         >
                           Edit
                         </Link>
                         <button
-                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md"
+                          className="bg-red-500 text-sm hover:bg-red-600 text-white px-4 py-1 rounded-md"
                           onClick={() => handleDelete(product._id)}
                         >
                           Delete

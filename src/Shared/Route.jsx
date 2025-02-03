@@ -21,7 +21,7 @@ import AllOrdered from "../Pages/AdminDash/AllOrdered";
 import AllUsers from "../Pages/AdminDash/AllUsers";
 import DashLayout from "../Pages/AdminDash/DashLayout";
 import AdminRoute from "./AdminRoute";
-import CartProducts from "../Pages/AdminDash/CartProducts";
+import AllCart from "../Pages/AdminDash/AllCart";
 import OrderDetails from "../Pages/UserDash/OrderDetails";
 import Dashboard from "../Pages/Dashboard";
 import MyReviews from "../Pages/UserDash/MyReviews";
@@ -141,7 +141,7 @@ const Route = createBrowserRouter([
             path: "/dashboard/user-carts",
             element: (
               <AdminRoute>
-                <CartProducts />
+                <AllCart />
               </AdminRoute>
             ),
           },

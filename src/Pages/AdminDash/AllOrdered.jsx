@@ -20,9 +20,9 @@ const AllOrdered = () => {
   });
 
   return (
-    <div className="py-4 px-2">
+    <div className="p-2">
       <h1 className="text-xl font-bold mb-4">All Orders</h1>
-      <div className="overflow-x-auto bg-white shadow-lg rounded-md">
+      <div className="overflow-x-auto bg-white rounded-md">
         <table className="min-w-full table-auto border-collapse">
           <thead className="bg-teal-600 text-white">
             <tr>
