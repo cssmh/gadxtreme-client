@@ -43,7 +43,7 @@ const Route = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
-        path: "/success/:tranId",
+        path: "/success/:tranId/:id",
         element: <Success />,
       },
       {

@@ -1,8 +1,8 @@
 import { FaCheckCircle } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Success = () => {
-  const { tranId } = useParams();
+  const { tranId, id } = useParams();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-200 py-12 px-6">
@@ -17,12 +17,12 @@ const Success = () => {
         </p>
         <p className="text-xs text-gray-500 mb-6">Transaction ID: {tranId}</p>
         <div className="mt-2">
-          <button
-            className="px-6 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300"
-            onClick={() => (window.location.href = "/dashboard/orders")}
+          <Link
+            to={`/dashboard/order-details/${id}`}
+            className="px-5 py-3 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300"
           >
-            Go to Orders
-          </button>
+            Go to Order Details
+          </Link>
         </div>
       </div>
     </div>
