@@ -93,7 +93,11 @@ const Sidebar = () => {
           <AiOutlineBars className="w-7 h-7" />
         </button>
         <Link to="/">
-          <img src={assets.gadget} alt="Logo" className="w-11 border rounded-full" />
+          <img
+            src={assets.gadget}
+            alt="Logo"
+            className="w-11 border rounded-full"
+          />
         </Link>
       </div>
       <div
@@ -108,10 +112,9 @@ const Sidebar = () => {
             </div>
           </Link>
           {user && (
-            <div className="flex items-center px-1 my-1 md:my-4 pb-3 md:pb-0 text-gray-600">
-              <span className="font-medium">
-                Hi, {user?.displayName || "User"}
-              </span>
+            <div className="px-1 my-1 md:my-4 pb-3 md:pb-0 text-gray-600 font-medium">
+              <span>Hi, {user?.displayName || "User"}</span>
+              <p>{isAdmin ? "Admin" : "User"}</p>
             </div>
           )}
         </div>
