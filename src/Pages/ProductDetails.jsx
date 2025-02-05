@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 import useMyCart from "../hooks/useMyCart";
 import { assets } from "../assets/assets";
 import { getGadget } from "../Api/gadgets";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductDetails = () => {
   const { loading, user } = useAuth();
@@ -13,26 +14,15 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const { refetch } = useMyCart();
   const [totalCart, setTotalCart] = useState(1);
-  const [gadgetData, setGadgetData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await getGadget(id);
-        setGadgetData(response);
-      } catch (err) {
-        console.log("Error fetching product details:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const { data: gadgetData = {}, isLoading } = useQuery({
+    queryKey: ["gadDetails", id],
+    queryFn: async () => await getGadget(id),
+    enabled: !!id,
+  });
+  console.log(gadgetData);
 
-    fetchData();
-  }, [id]);
-
-  const [mainImage, setMainImage] = useState(gadgetData?.images[0]);
+  const [mainImage, setMainImage] = useState(gadgetData?.images?.[0] || null);
 
   const handleIncrement = () => {
     setTotalCart((prev) => prev + 1);
@@ -155,7 +145,7 @@ const ProductDetails = () => {
       <div className="flex flex-col md:flex-row gap-5 md:gap-10">
         <div className="w-full md:w-[58%] relative">
           <img
-            src={mainImage || gadgetData?.images[0]}
+            src={mainImage || gadgetData?.images[0] || ""}
             alt="Product"
             className="w-full h-auto rounded-lg"
           />

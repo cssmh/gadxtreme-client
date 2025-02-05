@@ -9,13 +9,13 @@ const BestSeller = () => {
     queryFn: async () => await getBestSeller(),
   });
 
-const getSkeletonCount = () => {
-  if (window.innerWidth < 700) return 1;
-  if (window.innerWidth >= 768 && window.innerWidth < 1024) return 2;
-  return 3;
-};
+  const getSkeletonCount = () => {
+    if (window.innerWidth < 700) return 1;
+    if (window.innerWidth >= 768 && window.innerWidth < 1024) return 2;
+    return 3;
+  };
 
-const skeletonCount = getSkeletonCount();
+  const skeletonCount = getSkeletonCount();
 
   if (isLoading)
     return (
@@ -37,8 +37,8 @@ const skeletonCount = getSkeletonCount();
     );
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-3 bg-orange-50 flex flex-col lg:flex-row gap-3 my-5">
-      <div className="lg:w-[35%] p-3 lg:px-6 rounded-lg space-y-5">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-1 md:p-3 flex flex-col lg:flex-row gap-1 md:gap-3 my-5">
+      <div className="w-full lg:w-[35%] p-3 lg:px-6 rounded-lg space-y-3 md:space-y-5">
         <h2 className="text-xl md:text-2xl font-bold text-center text-[#00a9e1]">
           Best Seller
         </h2>
@@ -49,10 +49,10 @@ const skeletonCount = getSkeletonCount();
         <img
           src={assets.Earbuds100}
           alt="Best Seller"
-          className="w-full h-auto rounded-lg"
+          className="w-full h-60 md:h-auto rounded-lg"
         />
       </div>
-      <div className="lg:w-[65%] grid gap-6 grid-cols-1 md:grid-cols-2 p-5">
+      <div className="w-full lg:w-[65%] grid gap-6 grid-cols-1 md:grid-cols-2 p-3 md:p-5">
         {data?.slice(0, 4).map((product) => (
           <div
             key={product._id}

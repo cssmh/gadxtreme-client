@@ -1,7 +1,7 @@
 const OurService = () => {
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] text-center mx-auto py-5 md:pb-10 px-2 md:px-4">
-      <h1 className="text-xl md:text-2xl font-bold text-center mb-4">
+      <h1 className="text-xl md:text-2xl font-bold text-center mb-3 md:mb-4">
         Your Trusted Source for Premium Gadgets
       </h1>
       <p className="text-sm md:text-base text-center text-gray-700 mb-8">
@@ -10,8 +10,8 @@ const OurService = () => {
         our mission is to provide authentic, high-quality products that elevate
         your digital experience.
       </p>
-      <div className="bengali-text bg-gray-100 p-3 md:p-6 rounded-lg shadow-lg max-w-4xl mx-auto text-gray-900">
-        <h2 className="text-lg md:text-xl font-semibold mb-4 text-center">
+      <div className="bengali-text bg-gray-100 p-2 md:p-6 rounded-lg shadow-lg max-w-4xl mx-auto text-gray-900">
+        <h2 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-center">
           কেনো গ্যাডএক্সট্রিম থেকে প্রোডাক্ট কিনবেন?
         </h2>
         <p className="text-base leading-7">
