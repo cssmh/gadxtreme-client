@@ -8,7 +8,7 @@ import BigLoader from "../../Component/BigLoader";
 const OrderDetails = () => {
   const { loading, user } = useAuth();
   const { id } = useParams();
-  const { data: order, isLoading } = useQuery({
+  const { data: order={}, isLoading } = useQuery({
     queryKey: ["orderDetails", id],
     queryFn: async () => await getOrderDetails(id),
   });
@@ -28,8 +28,10 @@ const OrderDetails = () => {
   };
 
   return (
-    <div className="px-4 lg:px-5 py-2 lg:py-4 max-w-6xl 2xl:max-w-[85%] mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">Order Details</h1>
+    <div>
+      <h1 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
+        Order Details
+      </h1>
       <div className="bg-white rounded-lg shadow p-3 md:p-5 space-y-6">
         <div className="border-b pb-4">
           <h2 className="text-lg font-bold text-gray-800">Order Information</h2>

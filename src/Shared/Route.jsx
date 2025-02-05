@@ -90,7 +90,7 @@ const Route = createBrowserRouter([
             element: <MyOrders />,
           },
           {
-            path: "/dashboard/order-details/:id",
+            path: "/dashboard/order-details/:name/:id",
             element: <OrderDetails />,
           },
           {

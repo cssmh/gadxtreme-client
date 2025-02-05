@@ -62,7 +62,9 @@ const MyOrders = () => {
                 <tr key={order._id} className="border-t border-gray-200">
                   <td className="px-3 py-2 text-sm text-gray-600">
                     <Link
-                      to={`/dashboard/order-details/${order._id}`}
+                      to={`/dashboard/order-details/${order?.cartItems[0]?.name
+                        ?.toLowerCase()
+                        .replaceAll(/\s+/g, "_")}/${order._id}`}
                       className="text-teal-600 hover:underline"
                     >
                       {order._id}
@@ -114,7 +116,9 @@ const MyOrders = () => {
                       </button>
                     ) : (
                       <Link
-                        to={`/dashboard/order-details/${order._id}`}
+                        to={`/dashboard/order-details/${order?.cartItems[0]?.name
+                          ?.toLowerCase()
+                          .replaceAll(/\s+/g, "_")}/${order._id}`}
                         className="px-3 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition"
                       >
                         View & Pay
@@ -131,7 +135,9 @@ const MyOrders = () => {
               <div key={order._id} className="border-t border-gray-200 p-3">
                 <div className="flex justify-between items-center">
                   <Link
-                    to={`/dashboard/order-details/${order._id}`}
+                    to={`/dashboard/order-details/${order?.cartItems[0]?.name
+                      ?.toLowerCase()
+                      .replaceAll(/\s+/g, "_")}/${order._id}`}
                     className="text-teal-600 hover:underline"
                   >
                     <span className="font-semibold">Order ID:</span> {order._id}
@@ -185,7 +191,9 @@ const MyOrders = () => {
                     </button>
                   ) : (
                     <Link
-                      to={`/dashboard/order-details/${order._id}`}
+                      to={`/dashboard/order-details/${order?.cartItems[0]?.name
+                        ?.toLowerCase()
+                        .replaceAll(/\s+/g, "_")}/${order._id}`}
                       className="w-full block text-center px-3 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition"
                     >
                       View & Pay

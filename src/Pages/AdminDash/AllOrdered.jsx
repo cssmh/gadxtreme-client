@@ -20,7 +20,7 @@ const AllOrdered = () => {
   });
 
   return (
-    <div className="p-2">
+    <div>
       <h1 className="text-xl font-bold mb-4">All Orders</h1>
       <div className="overflow-x-auto bg-white rounded-md">
         <table className="min-w-full table-auto border-collapse">
@@ -65,7 +65,9 @@ const AllOrdered = () => {
                     </td>
                     <td className="px-3 py-4 text-sm text-gray-700">
                       <Link
-                        to={`/dashboard/order-details/${order._id}`}
+                        to={`/dashboard/order-details/${order?.cartItems[0]?.name
+                          ?.toLowerCase()
+                          .replaceAll(/\s+/g, "_")}/${order._id}`}
                         className="text-blue-500 hover:underline"
                       >
                         {order.name}

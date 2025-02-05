@@ -18,7 +18,9 @@ const Success = () => {
         <p className="text-xs text-gray-500 mb-6">Transaction ID: {tranId}</p>
         <div className="mt-2">
           <Link
-            to={`/dashboard/order-details/${id}`}
+            to={`/dashboard/order-details/${tranId
+              .toLowerCase()
+              .replaceAll(/\s+/g, "_")}/${id}`}
             className="px-5 py-3 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300"
           >
             Go to Order Details

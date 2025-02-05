@@ -19,8 +19,8 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="p-3">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-2">All Users</h1>
+    <div>
+      <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">All Users</h1>
       <div className="mb-3">
         <input
           type="text"

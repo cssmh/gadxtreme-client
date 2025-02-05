@@ -19,7 +19,7 @@ createRoot(document.getElementById("root")).render(
       </HelmetProvider>
     </QueryClientProvider>
     <Toaster
-      position="bottom-left"
+      position="bottom-center"
       duration={2500}
       visibleToasts={3} // Limits the number of visible toasts
       theme="dark"
