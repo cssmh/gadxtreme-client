@@ -18,25 +18,22 @@ const UserDashboard = () => {
     queryFn: async () => await myDashboard(user?.email),
     enabled: !loading && !!user?.email,
   });
-  console.log(data);
 
   return (
     <div>
       <motion.div
-        className="max-w-7xl 2xl:max-w-[92%] mx-auto p-3 md:p-4"
+        className="md:p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-xl lg:text-3xl font-semibold text-gray-800">
+        <h1 className="text-2xl lg:text-3xl font-semibold text-gray-800">
           Welcome to Your Dashboard, {user?.displayName}
         </h1>
-        <p className="text-lg text-gray-700 mb-5">
+        <p className="md:text-lg text-gray-700 mb-5">
           Get insights, manage your account, and explore your preferences.
         </p>
-
-        {/* Stats Section */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 mt-2 md:mt-10">
           <motion.div
             className="p-3 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             whileTap={{ scale: 0.95 }}
@@ -88,8 +85,7 @@ const UserDashboard = () => {
             </div>
           </motion.div>
         </section>
-        {/* Links Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-2 md:mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 mt-2 md:mt-10">
           <motion.div
             className="p-3 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             whileTap={{ scale: 0.95 }}
@@ -137,7 +133,7 @@ const UserDashboard = () => {
               View and manage your profile details and preferences.
             </p>
             <Link
-              to="/profile"
+              to="/dashboard/profile"
               className="inline-block px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition duration-300"
             >
               <span className="flex items-center gap-1">
