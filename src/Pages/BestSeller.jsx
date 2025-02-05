@@ -76,12 +76,13 @@ const BestSeller = () => {
                 )}
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-medium text-gray-800 line-clamp-2">
+                <h3 className="text-lg font-semibold text-gray-800">
                   {product.productName}
                 </h3>
+                <p className="text-gray-600 text-sm">{product.category}</p>
                 <div className="flex items-center justify-between mt-2">
                   <span
-                    className={`"text-gray-500 ${
+                    className={`text-gray-600 ${
                       product.discountPrice
                         ? "line-through"
                         : "text-green-600 font-semibold"
@@ -95,23 +96,20 @@ const BestSeller = () => {
                     </span>
                   )}
                 </div>
+                <ul className="mt-2 text-sm text-gray-600 space-y-1">
+                  {product.keyFeatures.map((feature, index) => (
+                    <li key={index}>&bull; {feature}</li>
+                  ))}
+                </ul>
                 {product.inStock ? (
-                  <span className="mt-3 inline-block px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                  <span className="mt-3 inline-block px-3 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
                     In Stock
                   </span>
                 ) : (
-                  <span className="mt-3 inline-block px-3 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">
+                  <span className="mt-3 inline-block px-3 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
                     Out of Stock
                   </span>
                 )}
-                <div className="mt-2 text-sm text-gray-600">
-                  <strong>Key Features:</strong>
-                  <ul className="list-disc pl-5 mt-1">
-                    {product.keyFeatures.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </Link>
           </div>

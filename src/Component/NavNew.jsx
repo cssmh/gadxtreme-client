@@ -155,12 +155,12 @@ const NavNew = () => {
             >
               <Link
                 to="/dashboard"
-                className="hidden lg:block text-gray-500 font-medium cursor-pointer"
+                className="hidden lg:block text-gray-500 md:py-2 font-medium cursor-pointer"
               >
                 Hi, {user?.displayName || "Anonymous"}
               </Link>
               {showUserDropdown && (
-                <div className="absolute right-0 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
+                <div className="absolute -right-3 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
                   <Link
                     to="/dashboard"
                     className="block px-4 py-1 hover:bg-gray-100"

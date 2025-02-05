@@ -181,12 +181,12 @@ const Navbar = () => {
               >
                 <Link
                   to="/dashboard"
-                  className="text-white font-semibold cursor-pointer"
+                  className="text-white font-semibold md:py-4 cursor-pointer"
                 >
                   Hi, {user?.displayName || "Anonymous"}
                 </Link>
                 {showUserDropdown && (
-                  <div className="absolute right-0 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
+                  <div className="absolute right-0 mt-3 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
                     <Link
                       to="/dashboard"
                       className="block px-4 py-1 hover:bg-gray-100"

@@ -1,5 +1,5 @@
-import BigLoader from "../Component/BigLoader";
 import useAuth from "../hooks/useAuth";
+import BigLoader from "../Component/BigLoader";
 import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {

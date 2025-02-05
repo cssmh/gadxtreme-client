@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import { toast } from "sonner";
 import useAuth from "../hooks/useAuth";
 import useMyCart from "../hooks/useMyCart";
 import { assets } from "../assets/assets";
-import { getGadget } from "../Api/gadgets";
+import { getCategoryGadget, getGadget } from "../Api/gadgets";
 import { useQuery } from "@tanstack/react-query";
 
 const ProductDetails = () => {
@@ -20,7 +20,11 @@ const ProductDetails = () => {
     queryFn: async () => await getGadget(id),
     enabled: !!id,
   });
-  console.log(gadgetData);
+
+  const { data: categoryGadgets = [], isLoading: load } = useQuery({
+    queryKey: ["categoriesGadgets", gadgetData?.category],
+    queryFn: async () => await getCategoryGadget(gadgetData?.category, 1, 12),
+  });
 
   const [mainImage, setMainImage] = useState(gadgetData?.images?.[0] || null);
 
@@ -99,7 +103,7 @@ const ProductDetails = () => {
       })
     : null;
 
-  if (loading || isLoading)
+  if (loading || isLoading || load)
     return (
       <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-4 my-4">
         <div className="flex flex-col md:flex-row gap-5 md:gap-10 animate-pulse">
@@ -204,7 +208,7 @@ const ProductDetails = () => {
                 +
               </button>
             </div>
-            <div className="flex flex-col md:flex-row space-x-0 md:space-x-2">
+            <div className="flex w-2/3 flex-col md:flex-row space-x-0 md:space-x-2">
               <button
                 onClick={() => handleAddToCart(gadgetData)}
                 className="bg-[#e87f35] text-white mb-2 md:mb-0 px-4 py-2 rounded-lg hover:bg-[#cf6d2f]"
@@ -246,12 +250,73 @@ const ProductDetails = () => {
       </div>
       <div className="mt-12">
         <h2 className="text-2xl mb-4">Description</h2>
-        <img
-          src={gadgetData?.images[1] || gadgetData?.images[0]}
-          alt="image"
-          className="w-full h-[350px] object-cover rounded-lg mb-4"
-        />
+        <div className="flex flex-col md:flex-row">
+          <img
+            src={gadgetData?.images[1] || gadgetData?.images[0]}
+            alt="image"
+            className="w-full md:h-[500px] object-cover rounded-lg mb-4"
+          />
+          <img
+            src={gadgetData?.images[2] || gadgetData?.images[0]}
+            alt="image"
+            className="w-full md:h-[500px] object-cover rounded-lg mb-4"
+          />
+        </div>
         {formattedContent}
+      </div>
+      <div className="mt-12">
+        <h2 className="text-2xl font-semibold mb-4">
+          More from {gadgetData?.category}
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {categoryGadgets?.result?.map((product) => (
+            <div
+              key={product._id}
+              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              <Link
+                to={`/details/${product?.productName
+                  .toLowerCase()
+                  .replaceAll(/\s+/g, "_")}/${product._id}`}
+              >
+                <div className="relative h-40 w-full">
+                  <img
+                    src={product.images[0]}
+                    alt={product.productName}
+                    className="h-full w-full object-cover rounded-t-lg"
+                  />
+                  {!product.inStock && (
+                    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center text-white text-sm font-semibold">
+                      Out of Stock
+                    </div>
+                  )}
+                </div>
+                <div className="p-3">
+                  <h3 className="text-sm font-medium text-gray-800 line-clamp-2">
+                    {product.productName}
+                  </h3>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="text-gray-500 line-through text-xs">
+                      ৳{product.price}
+                    </span>
+                    <span className="text-green-600 font-semibold text-sm">
+                      ৳{product.discountPrice}
+                    </span>
+                  </div>
+                  {product.inStock ? (
+                    <span className="mt-2 inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                      In Stock
+                    </span>
+                  ) : (
+                    <span className="mt-2 inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
+                      Out of Stock
+                    </span>
+                  )}
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
