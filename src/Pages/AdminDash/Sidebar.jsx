@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaUsers, FaRegComments, FaRegListAlt } from "react-icons/fa";
 import { AiOutlineBars, AiOutlineProduct } from "react-icons/ai";
@@ -18,7 +18,13 @@ const Sidebar = () => {
   const { isAdmin } = useAdmin();
   const loc = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [showAdminRoutes, setShowAdminRoutes] = useState(true);
+  const [showAdminRoutes, setShowAdminRoutes] = useState(
+    localStorage.getItem("showAdminRoutes") === "true"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("showAdminRoutes", showAdminRoutes);
+  }, [showAdminRoutes]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -33,7 +39,6 @@ const Sidebar = () => {
     setShowAdminRoutes(!showAdminRoutes);
   };
 
-  // Define common routes
   const userRoutes = [
     { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/cart", icon: <BsCartCheck />, label: "My Cart" },
@@ -54,11 +59,7 @@ const Sidebar = () => {
     { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
     { to: "/dashboard/add-product", icon: <MdAddTask />, label: "Add Product" },
-    {
-      to: "/dashboard/user-carts",
-      icon: <BsCartCheck />,
-      label: "All Carts",
-    },
+    { to: "/dashboard/user-carts", icon: <BsCartCheck />, label: "All Carts" },
     {
       to: "/dashboard/all-products",
       icon: <MdProductionQuantityLimits />,
@@ -88,8 +89,7 @@ const Sidebar = () => {
 
   return (
     <div className="relative">
-      {/* Mobile Navbar */}
-      <div className="md:hidden flex justify-between items-center px-5 py-3 bg-teal-600 text-white fixed top-0 left-0 w-full z-30 shadow-md">
+      <div className="md:hidden flex justify-between items-center px-5 py-3 bg-emerald-900 text-white fixed top-0 left-0 w-full z-30 shadow-md">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <AiOutlineBars className="w-7 h-7" />
         </button>
@@ -101,13 +101,11 @@ const Sidebar = () => {
           />
         </Link>
       </div>
-      {/* Sidebar */}
       <div
         className={`flex flex-col bg-white py-1 shadow-xl fixed z-50 top-0 left-0 h-full w-64 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
-        {/* Logo and User Info */}
         <div className="px-4 border-b border-gray-200">
           <Link to="/" className="hidden md:block">
             <div className="w-full hidden md:flex px-4 py-2 shadow-md rounded-lg justify-center items-center bg-teal-50 mx-auto">
@@ -125,7 +123,6 @@ const Sidebar = () => {
             </div>
           )}
         </div>
-        {/* Admin Toggle */}
         {isAdmin && (
           <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-teal-50">
             <span className="text-sm text-gray-700">Admin Routes</span>
@@ -141,13 +138,11 @@ const Sidebar = () => {
             </button>
           </div>
         )}
-        {/* Navigation Links */}
         <nav className="flex-1 mt-4 px-3 overflow-y-auto">
           {isAdmin && showAdminRoutes
             ? renderRoutes(adminRoutes)
             : renderRoutes(userRoutes)}
         </nav>
-        {/* Profile and Logout */}
         <div className="px-3 border-t border-gray-200 bg-white">
           <NavLink
             to="/dashboard/profile"
@@ -170,7 +165,6 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-      {/* Overlay for Mobile */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 md:hidden"

@@ -4,6 +4,7 @@ import { FaUserShield, FaHeart, FaClipboardList } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { totalCounts } from "../../Api/admin";
 import { useQuery } from "@tanstack/react-query";
+import UserDashboard from "../UserDash/UserDashboard";
 
 const AdminDashboard = () => {
   const { data = {} } = useQuery({
@@ -122,6 +123,9 @@ const AdminDashboard = () => {
             </span>
           </Link>
         </motion.div>
+      </div>
+      <div className="mt-10">
+        <UserDashboard />
       </div>
     </div>
   );

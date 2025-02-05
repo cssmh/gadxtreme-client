@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getNewArrival } from "../Api/gadgets";
+import { getNewArrival } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
+import SkeletonNew from "./SkeletonNew";
 
 const NewArrivals = () => {
   const { data = [], isLoading } = useQuery({
@@ -20,17 +21,7 @@ const NewArrivals = () => {
     return (
       <div className="max-w-7xl 2xl:max-w-[90%] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mt-10 mb-2 gap-5 mx-3">
         {Array.from({ length: skeletonCount }).map((_, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-lg shadow-md animate-pulse"
-          >
-            <div className="skeleton h-40 w-full bg-gray-300 rounded-t-lg"></div>
-            <div className="p-3 space-y-3">
-              <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
-              <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
-              <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
-            </div>
-          </div>
+          <SkeletonNew key={index} />
         ))}
       </div>
     );

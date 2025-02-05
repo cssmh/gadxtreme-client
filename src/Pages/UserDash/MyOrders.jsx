@@ -20,8 +20,9 @@ const MyOrders = () => {
   };
 
   if (isLoading) return <SmallLoader size="68" />;
+  
   return (
-    <div className="px-3 py-2 max-w-6xl 2xl:max-w-[85%] mx-auto">
+    <div className="md:px-3 py-2 max-w-6xl 2xl:max-w-[85%] mx-auto">
       <h1 className="text-2xl font-bold text-gray-800">My Orders</h1>
       <p className="text-gray-600 mb-3">
         Manage your orders. Click on an order to see more details.
