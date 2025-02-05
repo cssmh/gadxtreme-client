@@ -20,7 +20,9 @@ const AllUsers = () => {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">All Users</h1>
+      <h1 className="text-xl font-semibold text-gray-800 mb-2">
+        All Users
+      </h1>
       <div className="mb-3">
         <input
           type="text"
@@ -31,7 +33,7 @@ const AllUsers = () => {
       </div>
       <div className="border rounded-lg overflow-x-auto">
         <table className="min-w-full bg-white">
-          <thead className="bg-teal-600 text-white">
+          <thead className="bg-gray-200 text-gray-600 ">
             <tr>
               {["Name", "Email", "Created & Last Login", "Role", "Actions"].map(
                 (header) => (

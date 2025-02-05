@@ -156,7 +156,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="bg-white p-4 md:p-8">
+    <div>
       <h1 className="text-xl font-bold text-gray-800 mb-4">Add a Product</h1>
       <form onSubmit={handleSubmit}>
         <div className="w-full flex flex-col lg:flex-row gap-2 md:gap-4">

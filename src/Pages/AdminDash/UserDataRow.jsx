@@ -119,7 +119,7 @@ const UserDataRow = ({ user, refetch }) => {
 
   return (
     <>
-      <tr className="text-sm">
+      <tr className="hover:bg-gray-50 transition duration-200 text-sm">
         <td className="px-3 py-4 whitespace-nowrap flex items-center space-x-4">
           <img
             src={user.photo}

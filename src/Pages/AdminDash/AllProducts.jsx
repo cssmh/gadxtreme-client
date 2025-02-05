@@ -63,7 +63,7 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="p-2">
+    <div>
       <h1 className="text-xl font-bold mb-4">All Products</h1>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-md shadow-lg overflow-hidden">

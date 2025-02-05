@@ -1,6 +1,7 @@
 import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
 import { allCart, deleteMyCart } from "../../Api/cartGadget";
+import { Link } from "react-router-dom";
 
 const AllCart = () => {
   const {
@@ -36,9 +37,9 @@ const AllCart = () => {
       }
     }
   };
-
+  
   return (
-    <div className="p-2">
+    <div>
       <h1 className="text-xl font-bold text-gray-800 mb-4">All Cart Items</h1>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
@@ -76,8 +77,7 @@ const AllCart = () => {
                     </td>
                   </tr>
                 ))
-              : // Render Actual Data
-                data.map((item) => (
+              : data.map((item) => (
                   <tr
                     key={item._id}
                     className="border-b hover:bg-gray-50 transition duration-200 text-sm"
@@ -89,7 +89,15 @@ const AllCart = () => {
                         className="w-12 h-12 rounded object-cover"
                       />
                     </td>
-                    <td className="px-6 py-4 text-gray-800">{item.name}</td>
+                    <td className="px-6 py-4 hover:underline text-gray-800">
+                      <Link
+                        to={`/details/${item?.name
+                          .toLowerCase()
+                          .replaceAll(/\s+/g, "_")}/${item.gadgetId}`}
+                      >
+                        {item.name}
+                      </Link>
+                    </td>
                     <td className="px-6 py-4 text-gray-600">৳{item.price}</td>
                     <td className="px-6 py-4 text-center text-gray-600">
                       {item.quantity}
