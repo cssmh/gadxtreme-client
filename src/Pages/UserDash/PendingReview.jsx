@@ -1,9 +1,5 @@
 const PendingReview = () => {
-    return (
-        <div>
-            working
-        </div>
-    );
+    return <div>working on it...</div>;
 };
 
 export default PendingReview;

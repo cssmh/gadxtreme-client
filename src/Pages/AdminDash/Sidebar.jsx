@@ -77,7 +77,7 @@ const Sidebar = () => {
       <Link
         key={to}
         to={to}
-        className={`flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+        className={`flex items-center py-3 pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
           loc.pathname === to ? "bg-teal-50 text-teal-600 font-semibold" : ""
         }`}
         onClick={() => setIsSidebarOpen(false)}
@@ -89,7 +89,7 @@ const Sidebar = () => {
 
   return (
     <div className="relative">
-      <div className="md:hidden flex justify-between items-center px-5 py-3 bg-emerald-900 text-white fixed top-0 left-0 w-full z-30 shadow-md">
+      <div className="lg:hidden flex justify-between items-center px-5 py-2 bg-white text-black fixed top-0 left-0 w-full shadow-md">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <AiOutlineBars className="w-7 h-7" />
         </button>
@@ -102,13 +102,13 @@ const Sidebar = () => {
         </Link>
       </div>
       <div
-        className={`flex flex-col bg-white py-1 shadow-xl fixed z-50 top-0 left-0 h-full w-64 transform transition-transform duration-300 ease-in-out ${
+        className={`flex flex-col bg-white py-1 shadow-xl fixed z-50 top-0 left-0 h-full w-60 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`}
+        } lg:translate-x-0`}
       >
         <div className="px-4 border-b border-gray-200">
-          <Link to="/" className="hidden md:block">
-            <div className="w-full hidden md:flex px-4 py-2 shadow-md rounded-lg justify-center items-center bg-teal-50 mx-auto">
+          <Link to="/" className="hidden lg:block">
+            <div className="w-full hidden lg:flex px-4 py-2 shadow-md rounded-lg justify-center items-center bg-teal-50 mx-auto">
               <img src={assets.gadget} className="h-14" alt="Logo" />
             </div>
           </Link>
@@ -124,7 +124,7 @@ const Sidebar = () => {
           )}
         </div>
         {isAdmin && (
-          <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-teal-50">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-teal-50">
             <span className="text-sm text-gray-700">Admin Routes</span>
             <button
               onClick={handleAdminToggle}
@@ -167,7 +167,7 @@ const Sidebar = () => {
       </div>
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-30 lg:hidden"
           onClick={toggleSidebar}
         ></div>
       )}

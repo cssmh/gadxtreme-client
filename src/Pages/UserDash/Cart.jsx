@@ -90,7 +90,7 @@ const Cart = () => {
           {notification.message}
         </div>
       )}
-      <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4 mt-2">
+      <div className="flex flex-col lg:flex-row justify-between w-full px-2 lg:px-8 py-3 md:py-6 gap-4 mt-2">
         <div className="lg:w-[70%] w-full border px-4 pb-4 rounded-lg">
           {myCartData?.length > 0 ? (
             <>
@@ -153,7 +153,7 @@ const Cart = () => {
                 {myCartData.map((item) => (
                   <div
                     key={item._id}
-                    className="border-b py-4 flex flex-col space-y-3"
+                    className="border-b py-3 flex flex-col space-y-3"
                   >
                     <div className="flex items-center">
                       <FaTimes

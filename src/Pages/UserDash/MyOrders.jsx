@@ -20,10 +20,10 @@ const MyOrders = () => {
   };
 
   if (isLoading) return <SmallLoader size="68" />;
-  
+
   return (
-    <div className="md:px-3 py-2 max-w-6xl 2xl:max-w-[85%] mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800">My Orders</h1>
+    <div className="md:p-1">
+      <h1 className="text-xl md:text-2xl font-bold text-gray-800">My Orders</h1>
       <p className="text-gray-600 mb-3">
         Manage your orders. Click on an order to see more details.
       </p>
@@ -33,7 +33,8 @@ const MyOrders = () => {
         </div>
       ) : (
         <div className="overflow-x-auto bg-white rounded-lg shadow-md border border-gray-200">
-          <table className="min-w-full table-auto">
+          {/* Desktop Table */}
+          <table className="min-w-full table-auto hidden lg:table">
             <thead className="bg-gray-100">
               <tr>
                 <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
@@ -124,6 +125,76 @@ const MyOrders = () => {
               ))}
             </tbody>
           </table>
+          {/* Mobile Cards */}
+          <div className="lg:hidden">
+            {data.map((order) => (
+              <div key={order._id} className="border-t border-gray-200 p-3">
+                <div className="flex justify-between items-center">
+                  <Link
+                    to={`/dashboard/order-details/${order._id}`}
+                    className="text-teal-600 hover:underline"
+                  >
+                    <span className="font-semibold">Order ID:</span> {order._id}
+                  </Link>
+                  <span
+                    className={`inline-flex items-center text-sm font-semibold px-3 py-1 rounded-full ${
+                      order.payment
+                        ? "bg-green-100 text-green-600"
+                        : "bg-yellow-100 text-yellow-600"
+                    }`}
+                  >
+                    {order.payment ? (
+                      <>
+                        <FaCheckCircle className="mr-1" /> Paid
+                      </>
+                    ) : (
+                      <>
+                        <FaExclamationTriangle className="mr-1" /> Pending
+                      </>
+                    )}
+                  </span>
+                </div>
+                <div className="mt-2">
+                  <p className="text-sm text-gray-600">
+                    <span className="font-semibold">Placed On:</span>{" "}
+                    {new Date(order.orderPlaced).toLocaleDateString("en-GB")},{" "}
+                    {new Date(order.orderPlaced).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    <span className="font-semibold">Total Items:</span>{" "}
+                    {order.cartItems.length}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    <span className="font-semibold">Total Amount:</span> ৳
+                    {order.cartItems.reduce(
+                      (total, item) => total + item.price * item.quantity,
+                      0
+                    )}
+                  </p>
+                </div>
+                <div className="mt-3">
+                  {order.payment ? (
+                    <button
+                      onClick={() => handleDownloadInvoice(order._id)}
+                      className="w-full px-3 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
+                    >
+                      Download Invoice
+                    </button>
+                  ) : (
+                    <Link
+                      to={`/dashboard/order-details/${order._id}`}
+                      className="w-full block text-center px-3 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition"
+                    >
+                      View & Pay
+                    </Link>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

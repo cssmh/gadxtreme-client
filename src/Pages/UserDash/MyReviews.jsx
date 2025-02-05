@@ -1,7 +1,7 @@
 const MyReviews = () => {
     return (
         <div>
-            review
+            working on it...
         </div>
     );
 };
