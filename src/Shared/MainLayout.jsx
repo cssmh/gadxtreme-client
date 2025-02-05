@@ -32,7 +32,7 @@ const MainLayout = () => {
     loc?.pathname?.startsWith("/success") ||
     loc?.pathname?.startsWith("/cancel");
 
-  // if (loading) return <MainLoader />;
+  if (loading) return <MainLoader />;
 
   return (
     <div>

@@ -47,8 +47,10 @@ const UserDashboard = () => {
             </p>
             <div className="flex items-center space-x-4">
               <FaCartPlus className="text-4xl text-blue-600" />
-              <p className="text-3xl font-bold text-gray-900">0</p>{" "}
-              {/* Static value */}
+              <p className="text-3xl font-bold text-gray-900">
+                {data?.totalCart || 0}
+                <span>({data?.unpaid || 0})</span>
+              </p>
             </div>
           </motion.div>
           <motion.div
@@ -63,8 +65,9 @@ const UserDashboard = () => {
             </p>
             <div className="flex items-center space-x-4">
               <FaClipboardList className="text-4xl text-orange-600" />
-              <p className="text-3xl font-bold text-gray-900">5</p>{" "}
-              {/* Static value */}
+              <p className="text-3xl font-bold text-gray-900">
+                {data?.totalOrders || 0}
+              </p>
             </div>
           </motion.div>
           <motion.div
@@ -79,8 +82,9 @@ const UserDashboard = () => {
             </p>
             <div className="flex items-center space-x-4">
               <FaDollarSign className="text-4xl text-green-600" />
-              <p className="text-3xl font-bold text-gray-900">$150</p>{" "}
-              {/* Static value */}
+              <p className="text-3xl font-bold text-gray-900">
+                ${data?.totalRevenue || "0.00"}
+              </p>
             </div>
           </motion.div>
         </section>

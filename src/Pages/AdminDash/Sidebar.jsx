@@ -39,11 +39,6 @@ const Sidebar = () => {
     { to: "/cart", icon: <BsCartCheck />, label: "My Cart" },
     { to: "/dashboard/orders", icon: <MdAddTask />, label: "My Orders" },
     {
-      to: "/dashboard/pending-products",
-      icon: <MdProductionQuantityLimits />,
-      label: "Pending Order",
-    },
-    {
       to: "/dashboard/my-reviews",
       icon: <FaRegComments />,
       label: "My Reviews",

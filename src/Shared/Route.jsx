@@ -27,6 +27,7 @@ import Dashboard from "../Pages/Dashboard";
 import MyReviews from "../Pages/UserDash/MyReviews";
 import MyProfile from "../Component/MyProfile";
 import PayCancel from "../Component/PayCancel";
+import PendingReview from "../Pages/UserDash/PendingReview";
 
 const Route = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ const Route = createBrowserRouter([
           {
             path: "/dashboard/my-reviews",
             element: <MyReviews />,
+          },
+          {
+            path: "/dashboard/pending-reviews",
+            element: <PendingReview />,
           },
           {
             path: "/dashboard/add-product",
