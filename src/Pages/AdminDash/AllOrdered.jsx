@@ -23,7 +23,6 @@ const AllOrdered = () => {
     queryKey: ["allOrders"],
     queryFn: async () => await getAllOrders(),
   });
-  console.log(orders);
 
   const updateOrderToDelivered = async (orderId) => {
     try {
@@ -42,7 +41,7 @@ const AllOrdered = () => {
       <h1 className="text-xl font-bold mb-4">All Orders</h1>
       <div className="overflow-x-auto bg-white rounded-md">
         <table className="min-w-full table-auto border-collapse">
-          <thead className="bg-teal-600 text-white">
+          <thead className="bg-gray-200 text-sm text-gray-600">
             <tr>
               <th className="px-3 py-3 text-left text-sm font-semibold">#</th>
               <th className="px-3 py-3 text-left text-sm font-semibold">
@@ -91,7 +90,7 @@ const AllOrdered = () => {
                         {order.name}
                       </Link>
                     </td>
-                    <td className="px-2 py-4 w-[250px] text-sm text-gray-700 whitespace-normal break-words max-h-[100px] overflow-y-auto">
+                    <td className="px-2 py-4 lg:w-[250px] text-sm text-gray-700 whitespace-normal break-words max-h-[100px] overflow-y-auto">
                       {order.cartItems.map((item) => (
                         <div
                           key={item.gadgetId}
@@ -142,12 +141,16 @@ const AllOrdered = () => {
                       </p>
                     </td>
                     <td className="px-3 py-4 text-sm">
-                      {order.status === "Pending" && (
+                      {order.status === "Pending" ? (
                         <button
                           onClick={() => updateOrderToDelivered(order._id)}
-                          className="bg-teal-500 text-white font-bold py-2 px-3 rounded"
+                          className="bg-teal-500 text-white font-semibold py-2 px-3 rounded min-w-[140px] text-center"
                         >
                           Mark as Delivered
+                        </button>
+                      ) : (
+                        <button disabled className="bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded min-w-[140px] text-center">
+                          Marked Delivered
                         </button>
                       )}
                     </td>

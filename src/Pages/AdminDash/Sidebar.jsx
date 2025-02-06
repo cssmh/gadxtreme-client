@@ -78,7 +78,7 @@ const Sidebar = () => {
         key={to}
         to={to}
         className={`flex items-center py-3 pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
-          loc.pathname === to ? "bg-teal-50 text-teal-600 font-semibold" : ""
+          loc.pathname === to ? "bg-teal-50 text-teal-600" : ""
         }`}
         onClick={() => setIsSidebarOpen(false)}
       >

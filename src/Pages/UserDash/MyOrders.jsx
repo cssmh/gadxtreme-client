@@ -113,20 +113,17 @@ const MyOrders = () => {
                   </td>
                   <td className="px-3 py-2 text-sm">
                     <span
-                      className={`inline-flex items-center text-sm font-semibold px-3 py-1 rounded-full ${
+                      className={`inline-flex items-center justify-between w-24 text-sm font-semibold px-3 py-1 border rounded-full ${
                         order.status === "Delivered"
-                          ? "bg-green-100 text-green-600"
-                          : "bg-yellow-100 text-yellow-600"
+                          ? "border-blue-500 text-blue-600"
+                          : "border-orange-500 text-orange-600"
                       }`}
                     >
+                      {order.status === "Delivered" ? "Delivered" : "Pending"}
                       {order.status === "Delivered" ? (
-                        <>
-                          <FaCheckCircle className="mr-1" /> Delivered
-                        </>
+                        <FaCheckCircle className="ml-1" />
                       ) : (
-                        <>
-                          <FaExclamationTriangle className="mr-1" /> Pending
-                        </>
+                        <FaExclamationTriangle className="ml-1" />
                       )}
                     </span>
                   </td>
