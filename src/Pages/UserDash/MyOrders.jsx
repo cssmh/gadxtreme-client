@@ -164,7 +164,8 @@ const MyOrders = () => {
                       .replaceAll(/\s+/g, "_")}/${order._id}`}
                     className="text-teal-600 hover:underline"
                   >
-                    <span className="font-semibold">Order ID:</span> {order._id}
+                    <span className="font-semibold">Order ID:</span>{" "}
+                    {order._id.slice(0, 20)}...
                   </Link>
                   <span
                     className={`inline-flex items-center text-sm font-semibold px-3 py-1 rounded-full ${
@@ -203,6 +204,28 @@ const MyOrders = () => {
                       (total, item) => total + item.price * item.quantity,
                       0
                     )}
+                  </p>
+                </div>
+                <div className="mt-2">
+                  <p className="text-sm text-gray-600">
+                    <span className="font-semibold">Delivery Status:</span>{" "}
+                    <span
+                      className={`inline-flex items-center text-sm font-semibold px-3 py-1 rounded-full ${
+                        order.status === "Delivered"
+                          ? "bg-green-100 text-green-600"
+                          : "bg-yellow-100 text-yellow-600"
+                      }`}
+                    >
+                      {order.status === "Delivered" ? (
+                        <>
+                          <FaCheckCircle className="mr-1" /> Delivered
+                        </>
+                      ) : (
+                        <>
+                          <FaExclamationTriangle className="mr-1" /> Pending
+                        </>
+                      )}
+                    </span>
                   </p>
                 </div>
                 <div className="mt-3">

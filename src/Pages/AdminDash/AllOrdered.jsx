@@ -23,6 +23,7 @@ const AllOrdered = () => {
     queryKey: ["allOrders"],
     queryFn: async () => await getAllOrders(),
   });
+  console.log(orders);
 
   const updateOrderToDelivered = async (orderId) => {
     try {
