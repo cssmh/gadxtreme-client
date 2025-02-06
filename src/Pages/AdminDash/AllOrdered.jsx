@@ -3,6 +3,7 @@ import { getAllOrders, markOrderDelivered } from "../../Api/order";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import { deleteOrrder } from "../../Api/admin";
 
 const SkeletonRow = () => (
   <tr className="animate-pulse">
@@ -30,6 +31,16 @@ const AllOrdered = () => {
       if (res?.modifiedCount > 0) {
         toast.success("Marked as Delivered");
       }
+      refetch();
+    } catch (error) {
+      console.error("Error updating order status:", error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteOrrder(id);
+      toast.success("Marked as Delivered");
       refetch();
     } catch (error) {
       console.error("Error updating order status:", error);
@@ -141,6 +152,12 @@ const AllOrdered = () => {
                       </p>
                     </td>
                     <td className="px-3 py-4 text-sm">
+                      <button
+                        onClick={() => handleDelete(order._id)}
+                        className="bg-teal-500 text-white font-semibold py-2 px-3 rounded min-w-[140px] text-center"
+                      >
+                        Delete icon
+                      </button>
                       {order.status === "Pending" ? (
                         <button
                           onClick={() => updateOrderToDelivered(order._id)}
@@ -149,7 +166,10 @@ const AllOrdered = () => {
                           Mark as Delivered
                         </button>
                       ) : (
-                        <button disabled className="bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded min-w-[140px] text-center">
+                        <button
+                          disabled
+                          className="bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded min-w-[140px] text-center"
+                        >
                           Marked Delivered
                         </button>
                       )}

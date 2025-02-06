@@ -10,8 +10,13 @@ export const getMyOrder = async (email) => {
   return data;
 };
 
-export const getMyReview = async () => {
-  const { data } = await axiosSecure("/api/my-review");
+export const getMyReview = async (email) => {
+  const { data } = await axiosSecure(`/api/my-review/${email}`);
+  return data;
+};
+
+export const getMyPendingReview = async (email) => {
+  const { data } = await axiosSecure(`/api/my-pending-review/${email}`);
   return data;
 };
 

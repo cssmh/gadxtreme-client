@@ -12,6 +12,7 @@ const AllCart = () => {
     queryKey: ["allCart"],
     queryFn: async () => await allCart(),
   });
+  console.log(data);
 
   const handleDelete = async (id) => {
     const confirmDelete = await swal({
@@ -49,6 +50,7 @@ const AllCart = () => {
               <th className="px-6 py-3">Name</th>
               <th className="px-6 py-3">Price</th>
               <th className="px-6 py-3">Quantity</th>
+              <th className="px-6 py-3">Time</th>
               <th className="px-6 py-3">Author</th>
               <th className="px-6 py-3">Actions</th>
             </tr>
@@ -101,6 +103,14 @@ const AllCart = () => {
                     <td className="px-6 py-4 text-gray-600">৳{item.price}</td>
                     <td className="px-6 py-4 text-center text-gray-600">
                       {item.quantity}
+                    </td>
+                    <td className="px-6 py-4 text-center text-gray-600">
+                      {new Date(item?.cartAdded).toLocaleDateString("en-GB")}{" "}
+                      <br />
+                      {new Date(item?.cartAdded).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
                     </td>
                     <td className="px-6 py-4 text-gray-600">{item.author}</td>
                     <td className="px-6 py-4 text-right">

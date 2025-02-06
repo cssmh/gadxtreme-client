@@ -250,7 +250,7 @@ const ProductDetails = () => {
       </div>
       <div className="mt-12">
         <h2 className="text-2xl mb-4">Description</h2>
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col">
           <img
             src={gadgetData?.images[1] || gadgetData?.images[0]}
             alt="image"
