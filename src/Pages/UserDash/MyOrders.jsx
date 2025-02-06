@@ -4,7 +4,6 @@ import { getMyOrder } from "../../Api/order";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SmallLoader from "../../Component/SmallLoader";
-import { toast } from "sonner";
 
 const MyOrders = () => {
   const { loading, user } = useAuth();
@@ -13,11 +12,9 @@ const MyOrders = () => {
     queryFn: async () => await getMyOrder(user?.email),
     enabled: !loading && !!user?.email,
   });
-  console.log(data);
 
-  const handleDownloadInvoice = (orderId) => {
-    console.log(`Downloading invoice for order ${orderId}`);
-    toast.info("Invoice download is under development!");
+  const handleAddReview = (idx) => {
+    console.log(idx);
   };
 
   if (isLoading) return <SmallLoader size="68" />;
@@ -128,13 +125,22 @@ const MyOrders = () => {
                     </span>
                   </td>
                   <td className="px-3 py-2 text-sm text-gray-600">
-                    {order.payment ? (
+                    {order.status === "Delivered" ? (
                       <button
-                        onClick={() => handleDownloadInvoice(order._id)}
+                        onClick={() => handleAddReview(order._id)}
                         className="px-3 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
                       >
-                        Download Invoice
+                        Add Review
                       </button>
+                    ) : order.payment ? (
+                      <Link
+                        to={`/dashboard/order-details/${order?.cartItems[0]?.name
+                          ?.toLowerCase()
+                          .replaceAll(/\s+/g, "_")}/${order._id}`}
+                        className="w-full px-3 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
+                      >
+                        View Details
+                      </Link>
                     ) : (
                       <Link
                         to={`/dashboard/order-details/${order?.cartItems[0]?.name
@@ -227,12 +233,14 @@ const MyOrders = () => {
                 </div>
                 <div className="mt-3">
                   {order.payment ? (
-                    <button
-                      onClick={() => handleDownloadInvoice(order._id)}
-                      className="w-full px-3 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
+                    <Link
+                      to={`/dashboard/order-details/${order?.cartItems[0]?.name
+                        ?.toLowerCase()
+                        .replaceAll(/\s+/g, "_")}/${order._id}`}
+                      className="w-full px-3 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
                     >
-                      Download Invoice
-                    </button>
+                      Details
+                    </Link>
                   ) : (
                     <Link
                       to={`/dashboard/order-details/${order?.cartItems[0]?.name
