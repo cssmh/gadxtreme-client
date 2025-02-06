@@ -6,7 +6,7 @@ import { FaTimes } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { placeOrder } from "../../Api/order";
 import { useNavigate } from "react-router-dom";
-import SmallLoader from "../../Component/SmallLoader";
+import SmallLoader from "../../Component/AllSpinner/SmallLoader";
 
 const Checkout = () => {
   const { loading, user } = useAuth();

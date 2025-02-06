@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getMyPendingReview } from "../../Api/order";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { toast } from "sonner";
-import BigLoader from "../../Component/BigLoader";
+import BigLoader from "../../Component/AllSpinner/BigLoader";
 import { addReview } from "../../Api/cartGadget";
 import useAuth from "../../hooks/useAuth";
 

@@ -94,24 +94,28 @@ const UserDataRow = ({ user, refetch }) => {
 
   if (loading) {
     return (
-      <tr>
-        <td className="px-2 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
+      <tr className="hover:bg-gray-50 transition duration-200 text-sm">
+        <td className="px-3 py-4 whitespace-nowrap flex items-center space-x-4">
+          <div className="w-10 h-10 bg-gray-200 animate-pulse rounded-full"></div>
           <div className="w-24 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-500">
+        <td className="px-4 py-4 whitespace-nowrap">
           <div className="w-32 h-4 bg-gray-200 animate-pulse rounded"></div>
         </td>
-        <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-500">
-          <div className="w-24 h-4 bg-gray-200 animate-pulse rounded"></div>
+        <td className="px-4 py-4 whitespace-nowrap">
+          <div className="space-y-2">
+            <div className="w-48 h-4 bg-gray-200 animate-pulse rounded"></div>
+            <div className="w-48 h-4 bg-gray-200 animate-pulse rounded"></div>
+          </div>
         </td>
-        <td className="px-2 py-3 whitespace-nowrap text-sm">
-          <div className="w-20 h-4 bg-gray-200 animate-pulse rounded"></div>
+        <td className="px-2 py-4 whitespace-nowrap text-center">
+          <div className="w-20 h-6 bg-gray-200 animate-pulse rounded-full"></div>
         </td>
-        <td className="px-2 py-3 whitespace-nowrap text-center text-sm font-medium">
-          <div className="w-8 h-8 bg-gray-200 animate-pulse rounded-full"></div>
-        </td>
-        <td className="px-2 py-3 whitespace-nowrap text-right text-sm font-medium">
-          <div className="w-32 h-6 bg-gray-200 animate-pulse rounded"></div>
+        <td className="px-4 py-4 whitespace-nowrap text-right space-x-2">
+          <div className="inline-flex space-x-2">
+            <div className="w-8 h-8 bg-gray-200 animate-pulse rounded-lg"></div>
+            <div className="w-8 h-8 bg-gray-200 animate-pulse rounded-lg"></div>
+          </div>
         </td>
       </tr>
     );

@@ -4,7 +4,7 @@ import useMyCart from "../../hooks/useMyCart";
 import { toast } from "sonner";
 import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
-import SmallLoader from "../../Component/SmallLoader";
+import SmallLoader from "../../Component/AllSpinner/SmallLoader";
 
 const Cart = () => {
   const { isLoading, myCartData, refetch } = useMyCart();

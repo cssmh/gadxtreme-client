@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMyReview } from "../../Api/order";
-import BigLoader from "../../Component/BigLoader";
+import BigLoader from "../../Component/AllSpinner/BigLoader";
 import useAuth from "../../hooks/useAuth";
 
 const MyReviews = () => {

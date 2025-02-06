@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllUsers } from "../../Api/auth";
 import UserDataRow from "./UserDataRow";
-import { useState } from "react";
 
 const AllUsers = () => {
   const [search, setSearch] = useState("");
@@ -49,7 +49,7 @@ const AllUsers = () => {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {isLoading
-              ? Array.from({ length: 5 }).map((_, index) => (
+              ? Array.from({ length: 8 }).map((_, index) => (
                   <tr key={index} className="animate-pulse">
                     <td className="px-3 py-4">
                       <div className="skeleton h-4 bg-gray-300 rounded w-24"></div>{" "}
