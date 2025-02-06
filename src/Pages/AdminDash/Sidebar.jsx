@@ -57,7 +57,6 @@ const Sidebar = () => {
 
   const adminRoutes = [
     { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
-    { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
     { to: "/dashboard/add-product", icon: <MdAddTask />, label: "Add Product" },
     { to: "/dashboard/user-carts", icon: <BsCartCheck />, label: "All Carts" },
     {
@@ -70,6 +69,7 @@ const Sidebar = () => {
       icon: <AiOutlineProduct />,
       label: "All Ordered",
     },
+    { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
   ];
 
   const renderRoutes = (routes) =>

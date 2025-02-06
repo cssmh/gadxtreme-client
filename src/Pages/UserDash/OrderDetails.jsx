@@ -8,7 +8,7 @@ import BigLoader from "../../Component/BigLoader";
 const OrderDetails = () => {
   const { loading, user } = useAuth();
   const { id } = useParams();
-  const { data: order={}, isLoading } = useQuery({
+  const { data: order = {}, isLoading } = useQuery({
     queryKey: ["orderDetails", id],
     queryFn: async () => await getOrderDetails(id),
   });
@@ -53,7 +53,13 @@ const OrderDetails = () => {
               })}
             </p>
           )}
-          <p className="text-sm text-gray-600">Status: {order.status}</p>
+          <p
+            className={`text-sm ${
+              order.status === "Pending" ? "text-gray-600" : "font-semibold text-green-600"
+            }`}
+          >
+            Status: {order.status}
+          </p>
         </div>
         <div className="border-b pb-4">
           <h2 className="text-lg font-bold text-gray-800 mb-1">

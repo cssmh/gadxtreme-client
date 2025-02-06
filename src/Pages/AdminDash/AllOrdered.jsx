@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllOrders } from "../../Api/order";
+import { getAllOrders, markOrderDelivered } from "../../Api/order";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const SkeletonRow = () => (
   <tr className="animate-pulse">
@@ -14,10 +15,26 @@ const SkeletonRow = () => (
 );
 
 const AllOrdered = () => {
-  const { data: orders = [], isLoading } = useQuery({
+  const {
+    data: orders = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allOrders"],
     queryFn: async () => await getAllOrders(),
   });
+
+  const updateOrderToDelivered = async (orderId) => {
+    try {
+      const res = await markOrderDelivered(orderId);
+      if (res?.modifiedCount > 0) {
+        toast.success("Marked as Delivered");
+      }
+      refetch();
+    } catch (error) {
+      console.error("Error updating order status:", error);
+    }
+  };
 
   return (
     <div>
@@ -29,9 +46,6 @@ const AllOrdered = () => {
               <th className="px-3 py-3 text-left text-sm font-semibold">#</th>
               <th className="px-3 py-3 text-left text-sm font-semibold">
                 Customer
-              </th>
-              <th className="px-3 py-3 text-left text-sm font-semibold">
-                Address
               </th>
               <th className="px-3 py-3 text-left text-sm font-semibold">
                 Items
@@ -47,6 +61,9 @@ const AllOrdered = () => {
               </th>
               <th className="px-3 py-3 text-left text-sm font-semibold">
                 Date
+              </th>
+              <th className="px-3 py-3 text-left text-sm font-semibold">
+                Action
               </th>
             </tr>
           </thead>
@@ -73,9 +90,6 @@ const AllOrdered = () => {
                         {order.name}
                       </Link>
                     </td>
-                    <td className="px-3 py-4 text-sm text-gray-700 truncate w-36">
-                      {order.address}, {order.district}, {order.country}
-                    </td>
                     <td className="px-2 py-4 w-[250px] text-sm text-gray-700 whitespace-normal break-words max-h-[100px] overflow-y-auto">
                       {order.cartItems.map((item) => (
                         <div
@@ -100,8 +114,8 @@ const AllOrdered = () => {
                       className={`px-3 py-4 text-sm font-medium ${
                         order.status === "Pending"
                           ? "text-red-500"
-                          : order.status === "Completed"
-                          ? "text-green-600"
+                          : order.status === "Delivered"
+                          ? "text-green-500"
                           : "text-red-600"
                       }`}
                     >
@@ -125,6 +139,16 @@ const AllOrdered = () => {
                           minute: "2-digit",
                         })}
                       </p>
+                    </td>
+                    <td className="px-3 py-4 text-sm">
+                      {order.status === "Pending" && (
+                        <button
+                          onClick={() => updateOrderToDelivered(order._id)}
+                          className="bg-teal-500 text-white font-bold py-2 px-3 rounded"
+                        >
+                          Mark as Delivered
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}

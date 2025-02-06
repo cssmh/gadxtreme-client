@@ -13,6 +13,7 @@ const MyOrders = () => {
     queryFn: async () => await getMyOrder(user?.email),
     enabled: !loading && !!user?.email,
   });
+  console.log(data);
 
   const handleDownloadInvoice = (orderId) => {
     console.log(`Downloading invoice for order ${orderId}`);
@@ -53,6 +54,9 @@ const MyOrders = () => {
                   Payment Status
                 </th>
                 <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
+                  Delivery Status
+                </th>
+                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
                   Action
                 </th>
               </tr>
@@ -67,20 +71,21 @@ const MyOrders = () => {
                         .replaceAll(/\s+/g, "_")}/${order._id}`}
                       className="text-teal-600 hover:underline"
                     >
-                      {order._id}
+                      {order._id.slice(0, 20)}...
                     </Link>
                   </td>
                   <td className="px-3 py-2 text-sm text-gray-600">
-                    {new Date(order.orderPlaced).toLocaleDateString("en-GB")},{" "}
+                    {new Date(order.orderPlaced).toLocaleDateString("en-GB")}{" "}
+                    <br />
                     {new Date(order.orderPlaced).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}
                   </td>
-                  <td className="px-10 py-2 text-sm text-gray-600">
+                  <td className="text-center py-2 text-sm text-gray-600">
                     {order.cartItems.length}
                   </td>
-                  <td className="px-7 py-2 text-sm text-gray-600">
+                  <td className="text-center py-2 text-sm text-gray-600">
                     ৳
                     {order.cartItems.reduce(
                       (total, item) => total + item.price * item.quantity,
@@ -98,6 +103,25 @@ const MyOrders = () => {
                       {order.payment ? (
                         <>
                           <FaCheckCircle className="mr-1" /> Paid
+                        </>
+                      ) : (
+                        <>
+                          <FaExclamationTriangle className="mr-1" /> Pending
+                        </>
+                      )}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-sm">
+                    <span
+                      className={`inline-flex items-center text-sm font-semibold px-3 py-1 rounded-full ${
+                        order.status === "Delivered"
+                          ? "bg-green-100 text-green-600"
+                          : "bg-yellow-100 text-yellow-600"
+                      }`}
+                    >
+                      {order.status === "Delivered" ? (
+                        <>
+                          <FaCheckCircle className="mr-1" /> Delivered
                         </>
                       ) : (
                         <>
