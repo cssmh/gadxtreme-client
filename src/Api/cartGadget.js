@@ -29,3 +29,10 @@ export const updateMyCart = async (id, quantity) => {
   const { data } = await axiosSecure.put(`/api/cart/${id}`, quantity);
   return data;
 };
+
+export const addReview = async (id, review) => {
+  const { data } = await axiosSecure.put(`/api/add-review/${id}`, {
+    reviewText: review,
+  });
+  return data;
+};

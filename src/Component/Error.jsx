@@ -17,7 +17,7 @@ const Error = () => {
         </p>
         <Link
           to="/"
-          className="inline-block px-5 py-2 text-xl font-semibold text-white bg-teal-600 rounded-lg shadow-md hover:bg-teal-700 hover:shadow-lg transition-all duration-300"
+          className="inline-block px-5 py-3 text-xl font-semibold text-white bg-teal-600 rounded-lg shadow-md hover:bg-teal-700 hover:shadow-lg transition-all duration-300"
         >
           Go to Homepage
         </Link>

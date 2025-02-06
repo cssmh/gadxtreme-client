@@ -1,23 +1,47 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import { getMyOrder } from "../../Api/order";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SmallLoader from "../../Component/SmallLoader";
+import { addReview } from "../../Api/cartGadget";
+import { toast } from "sonner";
 
 const MyOrders = () => {
   const { loading, user } = useAuth();
-  const { data = [], isLoading } = useQuery({
+  const {
+    data = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["myOrders"],
     queryFn: async () => await getMyOrder(user?.email),
     enabled: !loading && !!user?.email,
   });
 
-  const handleAddReview = (idx) => {
-    console.log(idx);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [reviewText, setReviewText] = useState("");
+
+  const handleAddReview = (orderId) => {
+    setSelectedOrderId(orderId);
+    setIsModalOpen(true);
   };
 
-  if (isLoading) return <SmallLoader size="68" />;
+  const handleSubmitReview = async () => {
+    try {
+      await addReview(selectedOrderId, reviewText);
+      toast.success("Review added");
+      refetch();
+      setIsModalOpen(false);
+      setReviewText("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (isLoading) return <SmallLoader size="88" />;
 
   return (
     <div className="md:p-1">
@@ -125,7 +149,7 @@ const MyOrders = () => {
                     </span>
                   </td>
                   <td className="px-3 py-2 text-sm text-gray-600">
-                    {order.status === "Delivered" ? (
+                    {order.status === "Delivered" && !order?.customerReview ? (
                       <button
                         onClick={() => handleAddReview(order._id)}
                         className="px-3 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
@@ -137,7 +161,9 @@ const MyOrders = () => {
                         to={`/dashboard/order-details/${order?.cartItems[0]?.name
                           ?.toLowerCase()
                           .replaceAll(/\s+/g, "_")}/${order._id}`}
-                        className="w-full px-3 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
+                        className={`w-full px-3 py-2 ${
+                          order?.customerReview ? "bg-violet-600" : "bg-teal-500"
+                        } text-white font-medium rounded-lg transition`}
                       >
                         View Details
                       </Link>
@@ -254,6 +280,34 @@ const MyOrders = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+      {isModalOpen && (
+        <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 className="text-lg font-bold mb-4">Add a Review</h2>
+            <textarea
+              className="w-full outline-none p-2 border border-gray-400 rounded-lg mb-4"
+              rows="4"
+              placeholder="Write your review here..."
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmitReview}
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       )}
