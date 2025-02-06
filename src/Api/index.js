@@ -9,7 +9,6 @@ const axiosSecure = axios.create({
 axiosSecure.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // console.log("error in interceptor", error);
     if (error.response.status === 401 || error.response.status === 403) {
       swal(
         "Your Session has expired",

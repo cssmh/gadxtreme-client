@@ -1,7 +1,8 @@
 import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
-import { allCart, deleteMyCart } from "../../Api/cartGadget";
+import { deleteMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
+import { allCart } from "../../Api/admin";
 
 const AllCart = () => {
   const {
@@ -12,7 +13,6 @@ const AllCart = () => {
     queryKey: ["allCart"],
     queryFn: async () => await allCart(),
   });
-  console.log(data);
 
   const handleDelete = async (id) => {
     const confirmDelete = await swal({
@@ -22,7 +22,6 @@ const AllCart = () => {
       buttons: true,
       dangerMode: true,
     });
-
     if (confirmDelete) {
       try {
         const res = await deleteMyCart(id);

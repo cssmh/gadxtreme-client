@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { getMyOrder } from "../../Api/order";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import SmallLoader from "../../Component/SmallLoader";
+import SmallLoader from "../../Component/AllSpinner/SmallLoader";
 import { addReview } from "../../Api/cartGadget";
 import { toast } from "sonner";
 

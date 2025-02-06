@@ -24,13 +24,3 @@ export const getOrderDetails = async (id) => {
   const { data } = await axiosSecure(`/api/order/${id}`);
   return data;
 };
-
-export const getAllOrders = async () => {
-  const { data } = await axiosSecure("/api/all-orders");
-  return data;
-};
-
-export const markOrderDelivered = async (id) => {
-  const { data } = await axiosSecure.patch(`/api/orders/${id}/deliver`);
-  return data;
-};

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { updateGadget } from "../../Api/gadgets";
 import swal from "sweetalert";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { updateGadget } from "../../Api/admin";
 
 const categories = [
   "Earbuds",

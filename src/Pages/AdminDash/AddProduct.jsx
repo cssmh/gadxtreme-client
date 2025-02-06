@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { postGadget } from "../../Api/gadgets";
 import swal from "sweetalert";
 import { toast } from "sonner";
+import { postGadget } from "../../Api/admin";
 
 const categories = [
   "Earbuds",

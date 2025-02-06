@@ -1,9 +1,9 @@
+import swal from "sweetalert";
 import { useQuery } from "@tanstack/react-query";
-import { getAllOrders, markOrderDelivered } from "../../Api/order";
-import { FaCheck, FaTimes } from "react-icons/fa";
+import { deleteOrder, getAllOrders, markOrderDelivered } from "../../Api/admin";
+import { FaCheck, FaTimes, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
-import { deleteOrrder } from "../../Api/admin";
 
 const SkeletonRow = () => (
   <tr className="animate-pulse">
@@ -38,12 +38,26 @@ const AllOrdered = () => {
   };
 
   const handleDelete = async (id) => {
-    try {
-      await deleteOrrder(id);
-      toast.success("Marked as Delivered");
-      refetch();
-    } catch (error) {
-      console.error("Error updating order status:", error);
+    const confirmDelete = await swal({
+      title: "Are you sure?",
+      text: "Delete a Cart",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    });
+    if (confirmDelete) {
+      try {
+        const res = await deleteOrder(id);
+        if (res?.deletedCount > 0) {
+          swal("Order Deleted Successfully", {
+            icon: "success",
+            timer: 2000,
+          });
+          refetch();
+        }
+      } catch (error) {
+        console.error("Error deleting order:", error);
+      }
     }
   };
 
@@ -154,9 +168,9 @@ const AllOrdered = () => {
                     <td className="px-3 py-4 text-sm">
                       <button
                         onClick={() => handleDelete(order._id)}
-                        className="bg-teal-500 text-white font-semibold py-2 px-3 rounded min-w-[140px] text-center"
+                        className="bg-red-500 text-white font-semibold py-2 px-3 rounded min-w-[140px] text-center flex items-center justify-center gap-2"
                       >
-                        Delete icon
+                        <FaTrash /> Delete
                       </button>
                       {order.status === "Pending" ? (
                         <button
@@ -168,9 +182,9 @@ const AllOrdered = () => {
                       ) : (
                         <button
                           disabled
-                          className="bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded min-w-[140px] text-center"
+                          className="bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded min-w-[140px] text-center flex items-center justify-center gap-2"
                         >
-                          Marked Delivered
+                          <FaCheck /> Marked
                         </button>
                       )}
                     </td>

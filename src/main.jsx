@@ -22,7 +22,6 @@ createRoot(document.getElementById("root")).render(
       position="bottom-center"
       duration={2500}
       visibleToasts={3} // Limits the number of visible toasts
-      theme="dark"
       expand={true} // Allows stacking of long messages
     />
   </StrictMode>
