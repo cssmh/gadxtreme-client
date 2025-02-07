@@ -4,7 +4,6 @@ import { deleteMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
 import { allCart } from "../../Api/admin";
 
-// Skeleton Row Component
 const SkeletonRow = () => (
   <tr className="animate-pulse">
     <td className="px-6 py-4">

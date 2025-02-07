@@ -38,7 +38,7 @@ const Sidebar = () => {
   const handleAdminToggle = () => {
     setShowAdminRoutes(!showAdminRoutes);
   };
-  
+
   const userRoutes = [
     { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/cart", icon: <BsCartCheck />, label: "My Cart" },
@@ -118,7 +118,7 @@ const Sidebar = () => {
                 Hi, {user?.displayName || "User"}
               </span>
               <p className="text-sm text-gray-500">
-                {isAdmin ? "Admin" : "User"}
+                {isAdmin && showAdminRoutes ? "Admin" : "User"}
               </p>
             </div>
           )}

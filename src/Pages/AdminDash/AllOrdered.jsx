@@ -196,14 +196,14 @@ const AllOrdered = () => {
                     <td className="px-3 py-4 text-sm">
                       <button
                         onClick={() => handleDelete(order._id)}
-                        className="bg-red-500 text-white font-semibold py-2 px-3 rounded min-w-[140px] text-center flex items-center justify-center gap-2"
+                        className="bg-red-200 font-semibold py-2 px-3 rounded min-w-[140px] text-center flex items-center justify-center gap-2"
                       >
                         <FaTrash /> Delete
                       </button>
                       {order.status === "Pending" ? (
                         <button
                           onClick={() => updateOrderToDelivered(order._id)}
-                          className="bg-teal-500 text-white font-semibold py-2 px-3 rounded min-w-[140px] text-center"
+                          className="bg-teal-200 font-semibold py-2 px-3 rounded min-w-[140px] text-center"
                         >
                           Mark as Delivered
                         </button>
