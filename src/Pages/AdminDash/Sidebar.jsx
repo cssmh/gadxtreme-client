@@ -38,20 +38,20 @@ const Sidebar = () => {
   const handleAdminToggle = () => {
     setShowAdminRoutes(!showAdminRoutes);
   };
-
+  
   const userRoutes = [
     { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/cart", icon: <BsCartCheck />, label: "My Cart" },
     { to: "/dashboard/orders", icon: <MdAddTask />, label: "My Orders" },
     {
-      to: "/dashboard/my-reviews",
-      icon: <FaRegComments />,
-      label: "My Reviews",
-    },
-    {
       to: "/dashboard/pending-reviews",
       icon: <FaRegListAlt />,
       label: "Pending Review",
+    },
+    {
+      to: "/dashboard/my-reviews",
+      icon: <FaRegComments />,
+      label: "My Reviews",
     },
   ];
 
