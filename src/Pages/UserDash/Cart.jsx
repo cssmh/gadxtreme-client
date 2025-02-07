@@ -255,12 +255,12 @@ const Cart = () => {
             <span>Total</span>
             <span>
               ৳
-              {myCartData
-                ?.reduce(
+              {(
+                myCartData?.reduce(
                   (acc, item) => acc + item.price * quantities[item._id],
                   0
-                )
-                .toFixed(2)}
+                ) + 100
+              ).toFixed(2)}
             </span>
           </div>
           {myCartData?.length > 0 ? (

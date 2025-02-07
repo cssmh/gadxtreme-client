@@ -28,6 +28,7 @@ import MyReviews from "../Pages/UserDash/MyReviews";
 import MyProfile from "../Component/MyProfile";
 import PayCancel from "../Component/PayCancel";
 import PendingReview from "../Pages/UserDash/PendingReview";
+import Coupons from "../Pages/AdminDash/Coupons";
 
 const Route = createBrowserRouter([
   {
@@ -114,6 +115,14 @@ const Route = createBrowserRouter([
             element: (
               <AdminRoute>
                 <AllProducts />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/dashboard/coupons",
+            element: (
+              <AdminRoute>
+                <Coupons />
               </AdminRoute>
             ),
           },

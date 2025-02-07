@@ -282,16 +282,16 @@ const Checkout = () => {
                     .toFixed(2)}
                 </span>
               </div>
-              <div className="flex justify-between py-2">
+              <div className="flex justify-between py-2 font-semibold text-gadDarkBlue text-lg">
                 <span className="font-semibold">Total</span>
                 <span>
                   ৳
-                  {myCartData
-                    ?.reduce(
+                  {(
+                    myCartData?.reduce(
                       (acc, item) => acc + item.price * quantities[item._id],
                       0
-                    )
-                    .toFixed(2)}
+                    ) + 100
+                  ).toFixed(2)}
                 </span>
               </div>
             </div>

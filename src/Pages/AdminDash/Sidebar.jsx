@@ -8,7 +8,7 @@ import {
   MdProductionQuantityLimits,
 } from "react-icons/md";
 import { BsCartCheck } from "react-icons/bs";
-import { RiLogoutBoxLine } from "react-icons/ri";
+import { RiCoupon3Line, RiLogoutBoxLine } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
 import usePendingReview from "../../hooks/usePendingReview";
@@ -60,6 +60,7 @@ const Sidebar = () => {
     { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/dashboard/add-product", icon: <MdAddTask />, label: "Add Product" },
     { to: "/dashboard/user-carts", icon: <BsCartCheck />, label: "All Carts" },
+    { to: "/dashboard/coupons", icon: <RiCoupon3Line />, label: "Coupons" },
     {
       to: "/dashboard/all-products",
       icon: <MdProductionQuantityLimits />,
@@ -78,7 +79,7 @@ const Sidebar = () => {
       <Link
         key={to}
         to={to}
-        className={`flex items-center py-3 pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+        className={`flex items-center py-[11px] pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
           loc.pathname === to ? "bg-teal-50 text-teal-600" : ""
         }`}
         onClick={() => setIsSidebarOpen(false)}
@@ -114,7 +115,7 @@ const Sidebar = () => {
             </div>
           </Link>
           {user && (
-            <div className="px-1 my-4 text-gray-700">
+            <div className="px-1 my-2 text-gray-700">
               <span className="text-lg font-semibold">
                 Hi, {user?.displayName || "User"}
               </span>
@@ -139,7 +140,7 @@ const Sidebar = () => {
             </button>
           </div>
         )}
-        <nav className="flex-1 mt-4 px-3 overflow-y-auto">
+        <nav className="flex-1 mt-3 px-3 overflow-y-auto">
           {isAdmin && showAdminRoutes
             ? renderRoutes(adminRoutes)
             : renderRoutes(userRoutes)}
@@ -148,7 +149,7 @@ const Sidebar = () => {
           <NavLink
             to="/dashboard/profile"
             className={({ isActive }) =>
-              `flex items-center py-3 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+              `flex items-center py-2 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
                 isActive ? "bg-teal-50 text-teal-600 font-semibold" : ""
               }`
             }
