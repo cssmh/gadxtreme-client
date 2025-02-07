@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { getCategoryGadget } from "../Api/gadgets";
+import SkeletonHome from "./NewArrivals/SkeletonHome";
 
 const Category = () => {
   const { cate } = useParams();
@@ -199,17 +200,7 @@ const Category = () => {
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[...Array(limit)].map((_, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow-md animate-pulse"
-                >
-                  <div className="skeleton h-52 w-full bg-gray-300 rounded-t-lg"></div>
-                  <div className="p-3 space-y-3">
-                    <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
-                    <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
-                    <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>
-                  </div>
-                </div>
+                <SkeletonHome key={index} height={208} />
               ))}
             </div>
           ) : (

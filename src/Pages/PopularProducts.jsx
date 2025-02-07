@@ -45,7 +45,7 @@ const PopularProducts = () => {
               key={index}
               className="bg-white rounded-lg shadow-md animate-pulse w-full"
             >
-              <div className="skeleton h-40 w-full bg-gray-300 rounded-t-lg"></div>
+              <div className="skeleton rounded-sm h-40 w-full bg-gray-300 rounded-t-lg"></div>
               <div className="p-3 space-y-3">
                 <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
                 <div className="skeleton h-4 bg-gray-200 rounded w-full"></div>

@@ -3,32 +3,7 @@ import { deleteMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
 import { allCart } from "../../Api/admin";
 import useFetchData from "../../hooks/useFetchData";
-
-const SkeletonRow = () => (
-  <tr className="animate-pulse">
-    <td className="px-6 py-4">
-      <div className="skeleton w-12 h-12 bg-gray-300 rounded"></div>
-    </td>
-    <td className="px-6 py-4">
-      <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
-    </td>
-    <td className="px-6 py-4">
-      <div className="skeleton h-4 bg-gray-300 rounded w-1/2"></div>
-    </td>
-    <td className="px-6 py-4">
-      <div className="skeleton h-4 bg-gray-300 rounded w-1/4"></div>
-    </td>
-    <td className="px-6 py-4">
-      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
-    </td>
-    <td className="px-6 py-4">
-      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
-    </td>
-    <td className="px-6 py-4">
-      <div className="skeleton h-8 bg-gray-300 rounded w-20"></div>
-    </td>
-  </tr>
-);
+import SkeletonRow from "./SkeletonRow";
 
 const AllCart = () => {
   const { data, isLoading, refetch } = useFetchData(["allCart"], allCart);
@@ -76,7 +51,7 @@ const AllCart = () => {
           <tbody>
             {isLoading
               ? Array.from({ length: 5 }).map((_, index) => (
-                  <SkeletonRow key={index} />
+                  <SkeletonRow key={index} type="allCart" />
                 ))
               : data.map((item) => (
                   <tr

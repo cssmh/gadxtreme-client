@@ -1,7 +1,7 @@
-import { getNewArrival } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
-import SkeletonNew from "./SkeletonNew";
+import { getNewArrival } from "../../Api/gadgets";
 import useFetchData from "../../hooks/useFetchData";
+import SkeletonHome from "./SkeletonHome";
 
 const NewArrivals = () => {
   const { data, isLoading } = useFetchData(["newArrival"], getNewArrival);
@@ -18,7 +18,7 @@ const NewArrivals = () => {
     return (
       <div className="max-w-7xl 2xl:max-w-[90%] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mt-10 mb-2 gap-5 mx-3">
         {Array.from({ length: skeletonCount }).map((_, index) => (
-          <SkeletonNew key={index} />
+          <SkeletonHome key={index} height={160} />
         ))}
       </div>
     );

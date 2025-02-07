@@ -2,35 +2,7 @@ import swal from "sweetalert";
 import { getAllGadget, deleteGadget } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
-
-const SkeletonRow = () => (
-  <tr className="animate-pulse">
-    <td className="px-4 py-2">
-      <div className="skeleton h-10 md:h-16 bg-gray-300 rounded-md"></div>
-    </td>
-    <td className="px-4 py-2">
-      <div className="skeleton h-4 bg-gray-300 rounded"></div>
-    </td>
-    <td className="px-4 py-2">
-      <div className="skeleton h-4 bg-gray-300 rounded"></div>
-    </td>
-    <td className="px-4 py-2">
-      <div className="skeleton h-4 bg-gray-300 rounded"></div>
-    </td>
-    <td className="px-4 py-2">
-      <div className="skeleton h-4 bg-gray-300 rounded"></div>
-    </td>
-    <td className="px-4 py-2">
-      <div className="skeleton h-6 bg-gray-300 rounded-full"></div>
-    </td>
-    <td className="px-4 py-2">
-      <div className="flex gap-2">
-        <div className="skeleton w-12 ml-auto h-8 bg-gray-300 rounded"></div>
-        <div className="skeleton w-12 mr-auto h-8 bg-gray-300 rounded"></div>
-      </div>
-    </td>
-  </tr>
-);
+import SkeletonRow from "./SkeletonRow";
 
 const AllProducts = () => {
   const {
@@ -78,7 +50,7 @@ const AllProducts = () => {
           <tbody>
             {isLoading
               ? Array.from({ length: 6 }).map((_, index) => (
-                  <SkeletonRow key={index} />
+                  <SkeletonRow key={index} type="allProducts" />
                 ))
               : products.map((product) => (
                   <tr key={product._id} className="border hover:bg-base-100">

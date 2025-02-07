@@ -4,44 +4,7 @@ import { deleteOrder, getAllOrders, markOrderDelivered } from "../../Api/admin";
 import { Link } from "react-router-dom";
 import { FaCheck, FaTimes, FaTrash } from "react-icons/fa";
 import useFetchData from "../../hooks/useFetchData";
-
-const SkeletonRow = () => (
-  <tr className="animate-pulse">
-    <td className="p-3">
-      <div className="h-4 bg-gray-300 rounded w-6"></div>
-    </td>
-    <td className="p-3">
-      <div className="h-4 bg-gray-300 rounded w-24"></div>
-    </td>
-    <td className="p-3">
-      <div className="space-y-2">
-        <div className="h-4 bg-gray-300 rounded w-32"></div>
-        <div className="h-4 bg-gray-300 rounded w-32"></div>
-      </div>
-    </td>
-    <td className="p-3">
-      <div className="h-4 bg-gray-300 rounded w-16"></div>
-    </td>
-    <td className="p-3">
-      <div className="h-4 bg-gray-300 rounded w-20"></div>
-    </td>
-    <td className="px-9 py-3 text-center">
-      <div className="h-6 bg-gray-300 rounded-full w-6 mx-auto"></div>
-    </td>
-    <td className="p-3">
-      <div className="space-y-2">
-        <div className="h-4 bg-gray-300 rounded w-20"></div>
-        <div className="h-4 bg-gray-300 rounded w-20"></div>
-      </div>
-    </td>
-    <td className="p-3">
-      <div className="space-y-2">
-        <div className="h-10 bg-gray-300 rounded w-32"></div>
-        <div className="h-10 bg-gray-300 rounded w-32"></div>
-      </div>
-    </td>
-  </tr>
-);
+import SkeletonRow from "./SkeletonRow";
 
 const AllOrdered = () => {
   const {
@@ -120,7 +83,7 @@ const AllOrdered = () => {
           <tbody className="divide-y divide-gray-200">
             {isLoading
               ? Array.from({ length: 5 }).map((_, idx) => (
-                  <SkeletonRow key={idx} />
+                  <SkeletonRow key={idx} type="allOrders" />
                 ))
               : orders.map((order, idx) => (
                   <tr
