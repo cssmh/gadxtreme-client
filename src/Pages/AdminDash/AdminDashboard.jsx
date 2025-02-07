@@ -21,7 +21,7 @@ const AdminDashboard = () => {
           Manage your store and track performance
         </p>
       </header>
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 md:px-6 mb-5 md:mb-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 mb-5 md:mb-8">
         <motion.div
           className="bg-white rounded-lg shadow-md p-6 transition-all duration-300"
           whileHover={{ scale: 1.05 }}

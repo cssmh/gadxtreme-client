@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { getCategoryGadget } from "../Api/gadgets";
-import SkeletonHome from "./NewArrivals/SkeletonHome";
+import SkeletonHome from "./SkeletonHome";
 
 const Category = () => {
   const { cate } = useParams();

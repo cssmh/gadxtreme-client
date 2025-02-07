@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getOrderDetails } from "../../Api/order";
 import { sslPay } from "../../Api/auth";
 import useAuth from "../../hooks/useAuth";
-import BigLoader from "../../Component/AllSpinner/BigLoader";
+import BigLoader from "../../Component/Loaders/BigLoader";
 
 const OrderDetails = () => {
   const { loading, user } = useAuth();

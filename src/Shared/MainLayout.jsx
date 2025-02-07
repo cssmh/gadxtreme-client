@@ -4,7 +4,7 @@ import Navbar from "../Component/Navbar";
 // import DiscountModal from "../Component/DiscountModal";
 import NavNew from "../Component/NavNew";
 import Footer from "../Component/Footer";
-import MainLoader from "../Component/MainLoader";
+import MainLoader from "../Component/Loaders/MainLoader";
 
 const MainLayout = () => {
   const loc = useLocation();

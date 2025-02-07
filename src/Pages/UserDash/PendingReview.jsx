@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { toast } from "sonner";
-import BigLoader from "../../Component/AllSpinner/BigLoader";
+import BigLoader from "../../Component/Loaders/BigLoader";
 import { addReview } from "../../Api/cartGadget";
 import usePendingReview from "../../hooks/usePendingReview";
 

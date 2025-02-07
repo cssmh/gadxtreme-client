@@ -2,7 +2,7 @@ import { getBestSeller } from "../Api/gadgets";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import useFetchData from "../hooks/useFetchData";
-import SkeletonHome from "./NewArrivals/SkeletonHome";
+import SkeletonHome from "./SkeletonHome";
 
 const BestSeller = () => {
   const { data, isLoading } = useFetchData(["bestSeller"], getBestSeller);

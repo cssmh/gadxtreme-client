@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllUsers } from "../../Api/auth";
 import UserDataRow from "./UserDataRow";
+import SkeletonRow from "./SkeletonRow";
 
 const AllUsers = () => {
   const [search, setSearch] = useState("");
@@ -47,24 +48,8 @@ const AllUsers = () => {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {isLoading
-              ? Array.from({ length: 8 }).map((_, index) => (
-                  <tr key={index} className="animate-pulse">
-                    <td className="px-3 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-24"></div>{" "}
-                    </td>
-                    <td className="px-3 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-48"></div>{" "}
-                    </td>
-                    <td className="px-5 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-32"></div>{" "}
-                    </td>
-                    <td className="px-3 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-28"></div>{" "}
-                    </td>
-                    <td className="px-3 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-24"></div>{" "}
-                    </td>
-                  </tr>
+              ? Array.from({ length: 9 }).map((_, index) => (
+                  <SkeletonRow key={index} type="allUser" />
                 ))
               : data?.map((user) => (
                   <UserDataRow key={user._id} user={user} refetch={refetch} />

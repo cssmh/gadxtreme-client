@@ -1,5 +1,5 @@
 import BestSeller from "../Pages/BestSeller";
-import NewArrivals from "../Pages/NewArrivals/NewArrivals";
+import NewArrivals from "../Pages/NewArrivals";
 import PopularProducts from "../Pages/PopularProducts";
 import TopCategories from "../Pages/TopCategories";
 import Banner from "./Banner";

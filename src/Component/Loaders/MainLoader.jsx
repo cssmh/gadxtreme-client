@@ -4,8 +4,8 @@ const MainLoader = () => {
   return (
     <div className="w-full min-h-[95vh] flex justify-center items-center">
       <ThreeCircles
-        height="120"
-        width="120"
+        height="110"
+        width="110"
         color="#4fa94d"
         visible={true}
         ariaLabel="three-circles-rotating"

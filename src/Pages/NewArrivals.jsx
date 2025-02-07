@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { getNewArrival } from "../../Api/gadgets";
-import useFetchData from "../../hooks/useFetchData";
+import { getNewArrival } from "../Api/gadgets";
+import useFetchData from "../hooks/useFetchData";
 import SkeletonHome from "./SkeletonHome";
 
 const NewArrivals = () => {

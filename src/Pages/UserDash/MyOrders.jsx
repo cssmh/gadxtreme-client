@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { getMyOrder } from "../../Api/order";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import SmallLoader from "../../Component/AllSpinner/SmallLoader";
+import SmallLoader from "../../Component/Loaders/SmallLoader";
 import { addReview } from "../../Api/cartGadget";
 import { toast } from "sonner";
 
@@ -41,7 +41,7 @@ const MyOrders = () => {
     }
   };
 
-  if (isLoading) return <SmallLoader size="88" />;
+  if (isLoading) return <SmallLoader size="90" />;
 
   return (
     <div className="md:p-1">

@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
-import BigLoader from "../Component/AllSpinner/BigLoader";
+import BigLoader from "../Component/Loaders/BigLoader";
 import useAuth from "../hooks/useAuth";
 
 const AdminRoute = ({ children }) => {
