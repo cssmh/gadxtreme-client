@@ -10,7 +10,7 @@ const OrderDetails = () => {
   const { id } = useParams();
   const { data: order = {}, isLoading } = useQuery({
     queryKey: ["orderDetails", id],
-    queryFn: async () => await getOrderDetails(id),
+    queryFn: () => getOrderDetails(id),
   });
 
   if (loading || isLoading) return <BigLoader size="96" />;
@@ -55,7 +55,9 @@ const OrderDetails = () => {
           )}
           <p
             className={`text-sm ${
-              order.status === "Pending" ? "text-gray-600" : "font-semibold text-green-600"
+              order.status === "Pending"
+                ? "text-gray-600"
+                : "font-semibold text-green-600"
             }`}
           >
             Status: {order.status}

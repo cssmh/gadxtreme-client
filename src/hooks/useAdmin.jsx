@@ -6,7 +6,7 @@ const useAdmin = () => {
   const { loading, user } = useAuth();
   const { data: role = " ", isLoading: roleLoading } = useQuery({
     queryKey: ["role", user?.email],
-    queryFn: async () => await getRole(user?.email),
+    queryFn: () => getRole(user?.email),
     enabled: !loading && !!user?.email,
   });
 

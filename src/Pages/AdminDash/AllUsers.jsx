@@ -20,9 +20,7 @@ const AllUsers = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-gray-800 mb-2">
-        All Users
-      </h1>
+      <h1 className="text-xl font-semibold text-gray-800 mb-2">All Users</h1>
       <div className="mb-3">
         <input
           type="text"

@@ -6,7 +6,7 @@ import SkeletonNew from "./SkeletonNew";
 const NewArrivals = () => {
   const { data = [], isLoading } = useQuery({
     queryKey: ["newArrival"],
-    queryFn: async () => await getNewArrival(),
+    queryFn: getNewArrival,
   });
 
   const getSkeletonCount = () => {

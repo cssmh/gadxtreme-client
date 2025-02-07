@@ -10,7 +10,7 @@ import { AiOutlineProduct } from "react-icons/ai";
 const AdminDashboard = () => {
   const { data = {} } = useQuery({
     queryKey: ["totalCounts"],
-    queryFn: async () => await totalCounts(),
+    queryFn: totalCounts,
   });
 
   return (

@@ -11,10 +11,12 @@ import { BsCartCheck } from "react-icons/bs";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
+import usePendingReview from "../../hooks/usePendingReview";
 import { assets } from "../../assets/assets";
 
 const Sidebar = () => {
   const { user, logOut } = useAuth();
+  const { total } = usePendingReview();
   const { isAdmin } = useAdmin();
   const loc = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -46,7 +48,7 @@ const Sidebar = () => {
     {
       to: "/dashboard/pending-reviews",
       icon: <FaRegListAlt />,
-      label: "Pending Review",
+      label: `Pending Review (${total})`,
     },
     {
       to: "/dashboard/my-reviews",

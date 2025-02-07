@@ -6,7 +6,7 @@ import { assets } from "../assets/assets";
 const BestSeller = () => {
   const { data = [], isLoading } = useQuery({
     queryKey: ["bestSeller"],
-    queryFn: async () => await getBestSeller(),
+    queryFn: getBestSeller,
   });
 
   const getSkeletonCount = () => {

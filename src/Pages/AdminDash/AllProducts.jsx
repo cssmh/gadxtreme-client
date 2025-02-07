@@ -39,7 +39,7 @@ const AllProducts = () => {
     refetch,
   } = useQuery({
     queryKey: ["allGadgets"],
-    queryFn: async () => await getAllGadget(),
+    queryFn: getAllGadget,
   });
 
   const handleDelete = async (id) => {

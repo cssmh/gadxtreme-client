@@ -16,7 +16,7 @@ const MyOrders = () => {
     refetch,
   } = useQuery({
     queryKey: ["myOrders"],
-    queryFn: async () => await getMyOrder(user?.email),
+    queryFn: () => getMyOrder(user?.email),
     enabled: !loading && !!user?.email,
   });
 
@@ -162,7 +162,9 @@ const MyOrders = () => {
                           ?.toLowerCase()
                           .replaceAll(/\s+/g, "_")}/${order._id}`}
                         className={`w-full px-3 py-2 ${
-                          order?.customerReview ? "bg-violet-600" : "bg-teal-500"
+                          order?.customerReview
+                            ? "bg-violet-600"
+                            : "bg-teal-500"
                         } text-white font-medium rounded-lg transition`}
                       >
                         View Details

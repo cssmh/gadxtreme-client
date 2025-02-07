@@ -9,7 +9,7 @@ import { getPopularGadget } from "../Api/gadgets";
 const PopularProducts = () => {
   const { data = [], isLoading } = useQuery({
     queryKey: ["popularGadgets"],
-    queryFn: async () => await getPopularGadget(10, 10),
+    queryFn: () => getPopularGadget(10, 10),
   });
 
   const calculateDiscount = (price, discountPrice) => {

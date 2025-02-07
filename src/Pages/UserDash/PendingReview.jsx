@@ -1,24 +1,12 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getMyPendingReview } from "../../Api/order";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { toast } from "sonner";
 import BigLoader from "../../Component/AllSpinner/BigLoader";
 import { addReview } from "../../Api/cartGadget";
-import useAuth from "../../hooks/useAuth";
+import usePendingReview from "../../hooks/usePendingReview";
 
 const PendingReview = () => {
-  const { loading, user } = useAuth();
-  const {
-    data = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["myReviews"],
-    queryFn: async () => await getMyPendingReview(user?.email),
-    enabled: !loading && !!user,
-  });
-
+  const { pending, isLoading, refetch } = usePendingReview();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [reviewText, setReviewText] = useState("");
@@ -52,7 +40,7 @@ const PendingReview = () => {
         You have pending reviews for the following orders. Click to add a
         review.
       </p>
-      {data.length === 0 ? (
+      {pending?.length === 0 ? (
         <div className="text-center py-10 bg-gray-100 rounded-lg">
           <p className="text-gray-500">No pending reviews found.</p>
         </div>
@@ -82,7 +70,7 @@ const PendingReview = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((order) => (
+              {pending?.map((order) => (
                 <tr key={order._id} className="border-t border-gray-200">
                   <td className="px-3 py-2 text-sm text-gray-600">
                     {order._id.slice(0, 20)}...

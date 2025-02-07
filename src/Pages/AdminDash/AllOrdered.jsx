@@ -50,7 +50,7 @@ const AllOrdered = () => {
     refetch,
   } = useQuery({
     queryKey: ["allOrders"],
-    queryFn: async () => await getAllOrders(),
+    queryFn: getAllOrders,
   });
 
   const updateOrderToDelivered = async (orderId) => {

@@ -17,7 +17,7 @@ const ProductDetails = () => {
 
   const { data: gadgetData = {}, isLoading } = useQuery({
     queryKey: ["gadDetails", id],
-    queryFn: async () => await getGadget(id),
+    queryFn: () => getGadget(id),
     enabled: !!id,
   });
 

@@ -7,10 +7,10 @@ const MyReviews = () => {
   const { loading, user } = useAuth();
   const { data = [], isLoading } = useQuery({
     queryKey: ["myReviews"],
-    queryFn: async () => await getMyReview(user?.email),
+    queryFn: () => getMyReview(user?.email),
     enabled: !loading && !!user,
   });
-  
+
   if (isLoading) return <BigLoader size="96" />;
 
   return (
@@ -18,13 +18,13 @@ const MyReviews = () => {
       <h1 className="text-xl md:text-2xl font-semibold text-center text-gray-900 mb-3">
         My Reviews
       </h1>
-      {data.length === 0 ? (
+      {data?.length === 0 ? (
         <div className="text-center text-lg text-gray-500">
           You haven&apos;t reviewed any orders yet.
         </div>
       ) : (
         <div>
-          {data.map((order) => (
+          {data?.map((order) => (
             <div
               key={order._id}
               className="bg-white shadow-md rounded-lg p-6 mb-6 hover:shadow-lg"

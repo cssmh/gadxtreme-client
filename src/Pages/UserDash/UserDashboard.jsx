@@ -15,7 +15,7 @@ const UserDashboard = () => {
   const { loading, user } = useAuth();
   const { data } = useQuery({
     queryKey: ["userCount", user?.email],
-    queryFn: async () => await myDashboard(user?.email),
+    queryFn: () => myDashboard(user?.email),
     enabled: !loading && !!user?.email,
   });
 

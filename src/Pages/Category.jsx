@@ -12,7 +12,7 @@ const Category = () => {
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["categoriesGadgets", cate, page, limit],
-    queryFn: async () => await getCategoryGadget(cate, page, limit),
+    queryFn: () => getCategoryGadget(cate, page, limit),
   });
 
   useEffect(() => {

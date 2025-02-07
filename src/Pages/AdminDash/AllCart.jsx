@@ -37,7 +37,7 @@ const AllCart = () => {
     refetch,
   } = useQuery({
     queryKey: ["allCart"],
-    queryFn: async () => await allCart(),
+    queryFn: allCart,
   });
 
   const handleDelete = async (id) => {
