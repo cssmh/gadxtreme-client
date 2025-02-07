@@ -4,6 +4,33 @@ import { deleteMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
 import { allCart } from "../../Api/admin";
 
+// Skeleton Row Component
+const SkeletonRow = () => (
+  <tr className="animate-pulse">
+    <td className="px-6 py-4">
+      <div className="skeleton w-12 h-12 bg-gray-300 rounded"></div>
+    </td>
+    <td className="px-6 py-4">
+      <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
+    </td>
+    <td className="px-6 py-4">
+      <div className="skeleton h-4 bg-gray-300 rounded w-1/2"></div>
+    </td>
+    <td className="px-6 py-4">
+      <div className="skeleton h-4 bg-gray-300 rounded w-1/4"></div>
+    </td>
+    <td className="px-6 py-4">
+      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
+    </td>
+    <td className="px-6 py-4">
+      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
+    </td>
+    <td className="px-6 py-4">
+      <div className="skeleton h-8 bg-gray-300 rounded w-20"></div>
+    </td>
+  </tr>
+);
+
 const AllCart = () => {
   const {
     data = [],
@@ -37,7 +64,7 @@ const AllCart = () => {
       }
     }
   };
-  
+
   return (
     <div>
       <h1 className="text-xl font-bold text-gray-800 mb-4">All Cart Items</h1>
@@ -57,26 +84,7 @@ const AllCart = () => {
           <tbody>
             {isLoading
               ? Array.from({ length: 5 }).map((_, index) => (
-                  <tr key={index} className="animate-pulse">
-                    <td className="px-3 py-4">
-                      <div className="skeleton w-20 h-12 bg-gray-300 rounded"></div>
-                    </td>
-                    <td className="px-3 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-3/4"></div>
-                    </td>
-                    <td className="px-3 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-1/2"></div>
-                    </td>
-                    <td className="px-3 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="skeleton h-4 bg-gray-300 rounded w-2/3"></div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="skeleton h-8 bg-gray-300 rounded w-20"></div>
-                    </td>
-                  </tr>
+                  <SkeletonRow key={index} />
                 ))
               : data.map((item) => (
                   <tr

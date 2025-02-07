@@ -24,9 +24,9 @@ const SkeletonRow = () => (
       <div className="skeleton h-6 bg-gray-300 rounded-full"></div>
     </td>
     <td className="px-4 py-2">
-      <div className="flex">
-        <div className="skeleton w-12 mx-auto h-8 bg-gray-300 rounded"></div>
-        <div className="skeleton w-12 h-8 bg-gray-300 rounded"></div>
+      <div className="flex gap-2">
+        <div className="skeleton w-12 ml-auto h-8 bg-gray-300 rounded"></div>
+        <div className="skeleton w-12 mr-auto h-8 bg-gray-300 rounded"></div>
       </div>
     </td>
   </tr>
@@ -80,7 +80,7 @@ const AllProducts = () => {
           </thead>
           <tbody>
             {isLoading
-              ? Array.from({ length: 5 }).map((_, index) => (
+              ? Array.from({ length: 6 }).map((_, index) => (
                   <SkeletonRow key={index} />
                 ))
               : products.map((product) => (
