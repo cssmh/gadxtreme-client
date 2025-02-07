@@ -1,8 +1,8 @@
 import swal from "sweetalert";
-import { useQuery } from "@tanstack/react-query";
 import { deleteMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
 import { allCart } from "../../Api/admin";
+import useFetchData from "../../hooks/useFetchData";
 
 const SkeletonRow = () => (
   <tr className="animate-pulse">
@@ -31,14 +31,7 @@ const SkeletonRow = () => (
 );
 
 const AllCart = () => {
-  const {
-    data = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["allCart"],
-    queryFn: allCart,
-  });
+  const { data, isLoading, refetch } = useFetchData(["allCart"], allCart);
 
   const handleDelete = async (id) => {
     const confirmDelete = await swal({

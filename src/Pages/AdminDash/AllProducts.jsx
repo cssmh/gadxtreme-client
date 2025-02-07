@@ -1,7 +1,7 @@
 import swal from "sweetalert";
-import { useQuery } from "@tanstack/react-query";
 import { getAllGadget, deleteGadget } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
+import useFetchData from "../../hooks/useFetchData";
 
 const SkeletonRow = () => (
   <tr className="animate-pulse">
@@ -34,13 +34,10 @@ const SkeletonRow = () => (
 
 const AllProducts = () => {
   const {
-    data: products = [],
+    data: products,
     isLoading,
     refetch,
-  } = useQuery({
-    queryKey: ["allGadgets"],
-    queryFn: getAllGadget,
-  });
+  } = useFetchData(["allGadgets"], getAllGadget);
 
   const handleDelete = async (id) => {
     const willDelete = await swal({

@@ -1,13 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { getNewArrival } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
 import SkeletonNew from "./SkeletonNew";
+import useFetchData from "../../hooks/useFetchData";
 
 const NewArrivals = () => {
-  const { data = [], isLoading } = useQuery({
-    queryKey: ["newArrival"],
-    queryFn: getNewArrival,
-  });
+  const { data, isLoading } = useFetchData(["newArrival"], getNewArrival);
 
   const getSkeletonCount = () => {
     if (window.innerWidth < 700) return 2;

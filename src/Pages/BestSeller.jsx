@@ -1,13 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { getBestSeller } from "../Api/gadgets";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
+import useFetchData from "../hooks/useFetchData";
 
 const BestSeller = () => {
-  const { data = [], isLoading } = useQuery({
-    queryKey: ["bestSeller"],
-    queryFn: getBestSeller,
-  });
+  const { data, isLoading } = useFetchData(["bestSeller"], getBestSeller);
 
   const getSkeletonCount = () => {
     if (window.innerWidth < 700) return 1;

@@ -1,9 +1,9 @@
 import swal from "sweetalert";
-import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { deleteOrder, getAllOrders, markOrderDelivered } from "../../Api/admin";
 import { Link } from "react-router-dom";
 import { FaCheck, FaTimes, FaTrash } from "react-icons/fa";
+import useFetchData from "../../hooks/useFetchData";
 
 const SkeletonRow = () => (
   <tr className="animate-pulse">
@@ -45,13 +45,10 @@ const SkeletonRow = () => (
 
 const AllOrdered = () => {
   const {
-    data: orders = [],
+    data: orders,
     isLoading,
     refetch,
-  } = useQuery({
-    queryKey: ["allOrders"],
-    queryFn: getAllOrders,
-  });
+  } = useFetchData(["allOrders"], getAllOrders);
 
   const updateOrderToDelivered = async (orderId) => {
     try {
