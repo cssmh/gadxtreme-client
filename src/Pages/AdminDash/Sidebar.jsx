@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaUsers, FaRegComments, FaRegListAlt } from "react-icons/fa";
 import { AiOutlineBars, AiOutlineProduct } from "react-icons/ai";
@@ -13,6 +13,7 @@ import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
 import usePendingReview from "../../hooks/usePendingReview";
 import { assets } from "../../assets/assets";
+import { RouteContext } from "./AdminContext";
 
 const Sidebar = () => {
   const { user, logOut } = useAuth();
@@ -20,9 +21,7 @@ const Sidebar = () => {
   const { isAdmin } = useAdmin();
   const loc = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [showAdminRoutes, setShowAdminRoutes] = useState(
-    localStorage.getItem("showAdminRoutes") === "true"
-  );
+  const { showAdminRoutes, setShowAdminRoutes } = useContext(RouteContext);
 
   useEffect(() => {
     localStorage.setItem("showAdminRoutes", showAdminRoutes);
