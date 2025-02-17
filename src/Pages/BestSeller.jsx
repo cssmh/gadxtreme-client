@@ -6,7 +6,6 @@ import SkeletonHome from "./SkeletonHome";
 
 const BestSeller = () => {
   const { data, isLoading } = useFetchData(["bestSeller"], getBestSeller);
-  console.log(data);
 
   const getSkeletonCount = () => {
     if (window.innerWidth < 700) return 1;

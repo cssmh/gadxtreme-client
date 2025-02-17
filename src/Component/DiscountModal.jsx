@@ -34,7 +34,7 @@ const DiscountModal = () => {
             <img src={assets.discount} alt="50% Discount Offer" className="mb-4 w-full" />
             <h2 className="text-2xl font-bold mb-2">Special Offer!</h2>
             <p className="mb-4 text-xl">
-              Get 50% off on your first purchase! Use code: GADX50
+              Get 50% off on your first purchase! Use code: GADX26
               {/* This project is not completed yet! */}
             </p>
             <button

@@ -25,7 +25,7 @@ const Banner = () => {
           <SwiperSlide>
             <Link to="/category/earbuds">
               <img
-                src={assets.brand_day}
+                src={assets.pixel_9}
                 alt="Brand Day"
                 className="w-full h-auto object-cover"
               />
@@ -34,7 +34,7 @@ const Banner = () => {
           <SwiperSlide>
             <Link to="/category/earphones%20&%20headphones">
               <img
-                src={assets.get_gadgets}
+                src={assets.s25_ultra}
                 alt="Best Mobile Protection"
                 className="w-full h-auto object-cover"
               />
@@ -43,7 +43,7 @@ const Banner = () => {
           <SwiperSlide>
             <Link to="/category/mobile%20accessories">
               <img
-                src={assets.best_mobile}
+                src={assets.moto_egde}
                 alt="Premium"
                 className="w-full h-auto object-cover"
               />
@@ -68,7 +68,7 @@ const Banner = () => {
             <SwiperSlide>
               <Link to="/category/earbuds">
                 <img
-                  src={assets.brand_day}
+                  src={assets.pixel_9}
                   alt="Brand Day"
                   className="w-full h-auto object-cover"
                 />
@@ -77,7 +77,16 @@ const Banner = () => {
             <SwiperSlide>
               <Link to="/category/earphones%20&%20headphones">
                 <img
-                  src={assets.get_gadgets}
+                  src={assets.s25_ultra}
+                  alt="Best Mobile Protection"
+                  className="w-full h-auto object-cover"
+                />
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Link to="/category/lifestyle">
+                <img
+                  src={assets.moto_egde}
                   alt="Best Mobile Protection"
                   className="w-full h-auto object-cover"
                 />
@@ -95,7 +104,7 @@ const Banner = () => {
           </Link>
           <Link to="/category/mobile%20accessories">
             <img
-              src={assets.best_mobile}
+              src={assets.services}
               alt="Premium"
               className="w-full h-auto object-cover"
             />

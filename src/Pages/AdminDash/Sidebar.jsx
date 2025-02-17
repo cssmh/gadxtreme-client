@@ -8,7 +8,7 @@ import {
   MdProductionQuantityLimits,
 } from "react-icons/md";
 import { BsCartCheck } from "react-icons/bs";
-import { RiCoupon3Line, RiLogoutBoxLine } from "react-icons/ri";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
 import usePendingReview from "../../hooks/usePendingReview";
@@ -60,18 +60,17 @@ const Sidebar = () => {
     { to: "/dashboard", icon: <MdOutlineSpaceDashboard />, label: "Dashboard" },
     { to: "/dashboard/add-product", icon: <MdAddTask />, label: "Add Product" },
     { to: "/dashboard/user-carts", icon: <BsCartCheck />, label: "All Carts" },
-    { to: "/dashboard/coupons", icon: <RiCoupon3Line />, label: "Coupons" },
     {
       to: "/dashboard/all-products",
       icon: <MdProductionQuantityLimits />,
       label: "All Products",
     },
+    { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
     {
       to: "/dashboard/all-ordered",
       icon: <AiOutlineProduct />,
       label: "All Ordered",
     },
-    { to: "/dashboard/all-users", icon: <FaUsers />, label: "All Users" },
   ];
 
   const renderRoutes = (routes) =>
@@ -115,7 +114,7 @@ const Sidebar = () => {
             </div>
           </Link>
           {user && (
-            <div className="px-1 my-2 text-gray-700">
+            <div className="px-1 my-3 text-gray-700">
               <span className="text-lg font-semibold">
                 Hi, {user?.displayName || "User"}
               </span>

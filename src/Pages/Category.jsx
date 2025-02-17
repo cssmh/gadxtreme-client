@@ -270,11 +270,11 @@ const Category = () => {
             </div>
           )}
           {data?.result?.length > 0 && sortedProducts.length > 0 && (
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center mt-8 space-x-2">
               <button
                 onClick={handlePrevious}
                 disabled={page === 1}
-                className="px-3 py-2 rounded-l bg-blue-500 text-white disabled:bg-gray-300"
+                className="px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 Previous
               </button>
@@ -282,9 +282,11 @@ const Category = () => {
                 <button
                   key={idx}
                   onClick={() => setPage(idx + 1)}
-                  className={`px-3 py-2 ${
-                    page === idx + 1 ? "bg-blue-500 text-white" : "bg-white"
-                  } border border-gray-300`}
+                  className={`px-4 py-2 rounded-md border transition-all ${
+                    page === idx + 1
+                      ? "bg-blue-500 text-white border-blue-500"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                  }`}
                 >
                   {idx + 1}
                 </button>
@@ -292,7 +294,7 @@ const Category = () => {
               <button
                 onClick={handleNext}
                 disabled={page === data?.totalPages}
-                className="px-3 py-2 rounded-r bg-blue-500 text-white disabled:bg-gray-300"
+                className="px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 Next
               </button>

@@ -9,7 +9,7 @@ import { getPopularGadget } from "../Api/gadgets";
 const PopularProducts = () => {
   const { data = [], isLoading } = useQuery({
     queryKey: ["popularGadgets"],
-    queryFn: () => getPopularGadget(10, 10),
+    queryFn: () => getPopularGadget(13, 10),
   });
 
   const calculateDiscount = (price, discountPrice) => {
@@ -30,7 +30,7 @@ const PopularProducts = () => {
   };
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-1 my-2 md:mx-auto px-3 lg:px-0">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-1 my-2 md:mx-auto px-3 lg:px-0 mt-8">
       <h1 className="text-center font-bold text-emerald-600 text-xl md:text-2xl pb-3 max-w-md mx-auto">
         Customers Favorites
         <br />
@@ -56,10 +56,10 @@ const PopularProducts = () => {
         </div>
       ) : (
         <Swiper
-          speed={900}
+          speed={800}
           grabCursor={true}
           autoplay={{
-            delay: 1500,
+            delay: 1100,
             disableOnInteraction: false,
           }}
           modules={[Pagination, Autoplay]}
