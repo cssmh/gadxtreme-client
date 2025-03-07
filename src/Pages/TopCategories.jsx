@@ -29,7 +29,7 @@ const categories = [
 const TopCategories = () => {
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-auto py-2 md:py-5 px-3 lg:px-0">
-      <h2 className="text-xl md:text-2xl font-semibold text-center mb-2 md:mb-6">
+      <h2 className="text-xl md:text-2xl 2xl:text-3xl font-semibold text-center mb-2 md:mb-6">
         Top Categories
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
@@ -42,10 +42,12 @@ const TopCategories = () => {
             <img
               src={category.image}
               alt={category.name}
-              className="w-full h-40 object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-40 2xl:h-48 object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
             />
             <div className="mt-2 text-center">
-              <h3 className="group-hover:text-gadBlue">{category.name}</h3>
+              <h3 className="group-hover:text-gadBlue 2xl:text-xl">
+                {category.name}
+              </h3>
             </div>
           </Link>
         ))}

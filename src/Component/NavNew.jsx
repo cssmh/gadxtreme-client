@@ -115,7 +115,7 @@ const NavNew = () => {
             value={searchInput}
             onChange={handleSearch}
             placeholder="Search for products..."
-            className="w-full p-2 border border-gray-300 rounded-xl outline-none"
+            className="w-full px-2 py-[6px] border border-gray-300 rounded-lg outline-none"
           />
           {searchInput && (
             <button
@@ -351,7 +351,7 @@ const NavNew = () => {
           </ul>
         </div>
       )}
-      <div className="hidden lg:block text-sm p-2">
+      <div className="hidden lg:block text-sm p-1">
         <ul className="flex space-x-6 justify-center">
           {categories.map((category, index) => (
             <li
@@ -362,7 +362,7 @@ const NavNew = () => {
             >
               <Link
                 to={category.link}
-                className="flex font-medium items-center py-2 hover:text-gadBlue"
+                className="flex font-medium 2xl:text-lg items-center py-2 hover:text-gadBlue"
               >
                 {category.name}
                 {category.subcategories.length > 0 && (

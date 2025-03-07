@@ -108,13 +108,13 @@ const ProductDetails = () => {
     return <SkeletonRow type="productDetails" />;
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-4 my-4">
+    <div className="max-w-7xl 2xl:max-w-[86%] mx-auto p-4 my-4">
       <div className="flex flex-col md:flex-row gap-5 md:gap-10">
-        <div className="w-full md:w-[58%] relative">
+        <div className="w-full md:w-[58%] 2xl:w-1/2 relative">
           <img
             src={mainImage || gadgetData?.images[0] || ""}
             alt="Product"
-            className="w-full h-auto rounded-lg"
+            className="w-full h-auto 2xl:h-2/3 rounded-lg"
           />
           {gadgetData?.discountPrice && gadgetData?.price && (
             <div className="absolute top-2 right-2 bg-gadDarkBlue text-white rounded-full px-3 py-4 font-semibold text-[13px] z-10">
@@ -134,7 +134,7 @@ const ProductDetails = () => {
             ))}
           </div>
         </div>
-        <div className="w-full md:w-[42%]">
+        <div className="w-full md:w-[42%] 2xl:w-1/2">
           <h1 className="text-xl md:text-3xl font-medium">
             {gadgetData?.productName}
           </h1>
@@ -242,7 +242,7 @@ const ProductDetails = () => {
                   .toLowerCase()
                   .replaceAll(/\s+/g, "_")}/${product._id}`}
               >
-                <div className="relative h-40 w-full">
+                <div className="relative h-40 2xl:h-48 w-full">
                   <img
                     src={product.images[0]}
                     alt={product.productName}

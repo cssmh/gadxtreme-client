@@ -25,7 +25,7 @@ const NewArrivals = () => {
 
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-3 lg:px-0 py-3 md:py-6 bg-gray-50">
-      <h2 className="text-xl lg:text-2xl font-bold mb-6 text-center">
+      <h2 className="text-xl lg:text-2xl 2xl:text-3xl font-bold mb-6 text-center">
         <span className="text-[#00a9e1]">New</span> Arrivals
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
@@ -39,7 +39,7 @@ const NewArrivals = () => {
                 .toLowerCase()
                 .replaceAll(/\s+/g, "_")}/${product._id}`}
             >
-              <div className="relative h-40 w-full">
+              <div className="relative h-40 2xl:h-48 w-full">
                 <img
                   src={product.images[0]}
                   alt={product.productName}
@@ -52,23 +52,23 @@ const NewArrivals = () => {
                 )}
               </div>
               <div className="p-3">
-                <h3 className="text-sm font-medium text-gray-800 line-clamp-2">
+                <h3 className="text-sm 2xl:text-lg font-medium text-gray-800 line-clamp-2">
                   {product.productName}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-gray-500 line-through text-xs">
+                  <span className="text-gray-500 line-through text-xs 2xl:text-sm">
                     ৳{product.price}
                   </span>
-                  <span className="text-green-600 font-semibold text-sm">
+                  <span className="text-green-600 font-semibold text-sm 2xl:text-base">
                     ৳{product.discountPrice}
                   </span>
                 </div>
                 {product.inStock ? (
-                  <span className="mt-2 inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                  <span className="mt-2 inline-block px-2 py-1 text-xs 2xl:text-sm font-semibold text-green-800 bg-green-200 rounded-full">
                     In Stock
                   </span>
                 ) : (
-                  <span className="mt-2 inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
+                  <span className="mt-2 inline-block px-2 py-1 text-xs 2xl:text-sm font-semibold text-red-800 bg-red-200 rounded-full">
                     Out of Stock
                   </span>
                 )}

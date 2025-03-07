@@ -31,10 +31,10 @@ const PopularProducts = () => {
 
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-1 my-2 md:mx-auto px-3 lg:px-0 mt-8">
-      <h1 className="text-center font-bold text-emerald-600 text-xl md:text-2xl pb-3 max-w-md mx-auto">
+      <h1 className="text-center font-bold text-emerald-600 text-xl md:text-2xl 2xl:text-3xl pb-3 max-w-md mx-auto">
         Customers Favorites
         <br />
-        <span className="text-red-500 font-normal text-lg">
+        <span className="text-red-500 font-normal text-lg 2xl:text-xl">
           Popular Products
         </span>
       </h1>
@@ -81,7 +81,7 @@ const PopularProducts = () => {
                   .toLowerCase()
                   .replaceAll(/\s+/g, "_")}/${product._id}`}
               >
-                <div className="p-4 bg-white shadow-lg rounded-lg transition duration-300 ease-in-out relative group">
+                <div className="p-2 bg-white shadow-lg rounded-md transition duration-300 ease-in-out relative group">
                   {product.discountPrice && product.price && (
                     <div className="absolute top-2 left-2 bg-blue-500 text-white rounded-full px-2 py-1 text-xs z-10">
                       -{calculateDiscount(product.price, product.discountPrice)}
@@ -92,7 +92,7 @@ const PopularProducts = () => {
                     <img
                       src={product?.images[0]}
                       alt={product.productName}
-                      className="w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
+                      className="w-1/2 mx-auto md:w-full md:h-40 2xl:h-48 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
                     />
                     <img
                       src={product?.images[1]}
@@ -100,11 +100,13 @@ const PopularProducts = () => {
                       className="absolute inset-0 w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100"
                     />
                   </div>
-                  <h3 className="text-sm mt-3">{product.productName}</h3>
+                  <h3 className="text-sm 2xl:text-lg mt-3">
+                    {product.productName}
+                  </h3>
                   <p className="text-green-600">
                     {product.inStock ? "In Stock" : "Out of Stock"}
                   </p>
-                  <div className="text-sm mt-2">
+                  <div className="text-sm 2xl:text-base mt-2">
                     {product.discountPrice ? (
                       <>
                         <span className="line-through text-gray-500">

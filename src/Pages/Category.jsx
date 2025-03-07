@@ -228,7 +228,7 @@ const Category = () => {
                       <img
                         src={product?.images[0]}
                         alt={product.productName}
-                        className="w-full md:h-52 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
+                        className="w-full md:h-52 2xl:h-60 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
                       />
                       {product?.images[1] && (
                         <img
@@ -239,15 +239,17 @@ const Category = () => {
                       )}
                     </div>
                     <div className="flex flex-col flex-grow">
-                      <h3 className="text-sm mt-3 ">{product.productName}</h3>
+                      <h3 className="text-sm mt-3 2xl:text-lg">
+                        {product.productName}
+                      </h3>
                       <p
-                        className={`${
+                        className={`2xl:text-lg ${
                           product.inStock ? "text-green-600" : "text-red-500"
                         } mt-1`}
                       >
                         {product.inStock ? "In Stock" : "Out of Stock"}
                       </p>
-                      <div className="text-sm mt-2">
+                      <div className="text-sm 2xl:text-lg mt-2">
                         {product.discountPrice ? (
                           <>
                             <span className="line-through text-gray-500">

@@ -1,6 +1,6 @@
 const Footer = () => { 
   return (
-    <footer className="bg-gray-900 text-white py-10">
+    <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-7 md:px-4">
         <div className="md:col-span-1">
           <h2 className="text-2xl font-bold mb-4">GadXtreme</h2>
@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
-        &copy; 2024 GadXtreme. All Rights Reserved.
+        &copy; 2025 GadXtreme. All Rights Reserved.
       </div>
     </footer>
   );

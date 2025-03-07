@@ -108,7 +108,7 @@ const Navbar = () => {
         hoveredCategory ? "z-50" : "z-40"
       }`}
     >
-      <div className="bg-black p-[14px] flex items-center justify-between px-4 sm:px-10">
+      <div className="bg-black p-[12px] flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center justify-between w-full lg:hidden">
           <img src={assets.logo} className="w-44" alt="Logo" />
           <div className="flex items-center space-x-3">
@@ -128,7 +128,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center justify-between w-full">
           <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
             <Link to="/">
-              <img src={assets.logo} className="w-48" alt="Logo" />
+              <img src={assets.logo} className="w-44" alt="Logo" />
             </Link>
           </div>
           <div className="flex-grow mx-4 relative">
@@ -137,7 +137,7 @@ const Navbar = () => {
               value={searchInput}
               onChange={handleSearch}
               placeholder="Search for products..."
-              className="w-full p-2 rounded-lg border border-gray-300 outline-none"
+              className="w-full px-2 py-[6px] rounded-md border border-gray-300 outline-none"
             />
             {searchInput && (
               <button
@@ -225,7 +225,7 @@ const Navbar = () => {
                 className="text-white cursor-pointer text-xl"
                 title="Wishlist"
               />
-              <span className="absolute -top-2 -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+              <span className="absolute -top-[9px] -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                 0
               </span>
             </Link>
@@ -235,15 +235,16 @@ const Navbar = () => {
                   className="text-white cursor-pointer text-xl"
                   title="Cart"
                 />
-                <span className="absolute -top-[8px] -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                <span className="absolute -top-[7px] right-12 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                   {myCartData?.length || 0}
                 </span>
+                <span className="text-white ml-1">৳0.00</span>
               </p>
             </Link>
-            <FaBars
+            {/* <FaBars
               className="text-white cursor-pointer text-xl"
               title="Menu"
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -361,7 +362,7 @@ const Navbar = () => {
             >
               <Link
                 to={category.link}
-                className="flex font-medium items-center py-2 hover:text-gadBlue"
+                className="flex font-medium text-[13px] 2xl:text-lg items-center py-[6px] hover:text-gadBlue"
               >
                 {category.name}
                 {category.subcategories.length > 0 && (

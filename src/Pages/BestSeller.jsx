@@ -27,10 +27,10 @@ const BestSeller = () => {
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-auto p-1 md:p-3 flex flex-col lg:flex-row gap-1 md:gap-3 my-5">
       <div className="w-full lg:w-[35%] p-3 lg:px-6 rounded-lg space-y-3 md:space-y-5">
-        <h2 className="text-xl md:text-2xl font-bold text-center text-[#00a9e1]">
+        <h2 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-center text-[#00a9e1]">
           Best Seller
         </h2>
-        <p className="text-sm md:text-base text-gray-800">
+        <p className="text-sm md:text-base 2xl:text-xl text-gray-800">
           Discover our top-selling gadgets that are making waves! These products
           are highly recommended by our customers. Explore the best of the best!
         </p>
@@ -51,7 +51,7 @@ const BestSeller = () => {
                 .toLowerCase()
                 .replaceAll(/\s+/g, "_")}/${product._id}`}
             >
-              <div className="relative h-56 w-full">
+              <div className="relative h-56 2xl:h-64 w-full">
                 <img
                   src={product.images[0]}
                   alt={product.productName}
@@ -64,27 +64,29 @@ const BestSeller = () => {
                 )}
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-lg 2xl:text-2xl font-semibold text-gray-800">
                   {product.productName}
                 </h3>
-                <p className="text-gray-600 text-sm">{product.category}</p>
+                <p className="text-gray-600 text-sm 2xl:text-base">
+                  {product.category}
+                </p>
                 <div className="flex items-center justify-between mt-2">
                   <span
                     className={`text-gray-600 ${
                       product.discountPrice
                         ? "line-through"
                         : "text-green-600 font-semibold"
-                    }  text-lg`}
+                    }  text-lg 2xl:text-xl`}
                   >
                     ৳{product.price}
                   </span>
                   {product.discountPrice && (
-                    <span className="text-green-600 font-semibold text-lg">
+                    <span className="text-green-600 font-semibold text-lg 2xl:text-xl">
                       ৳{product.discountPrice}
                     </span>
                   )}
                 </div>
-                <ul className="mt-2 text-sm text-gray-600 space-y-1">
+                <ul className="mt-2 text-sm 2xl:text-base text-gray-600 space-y-1">
                   {product.keyFeatures.map((feature, index) => (
                     <li key={index}>&bull; {feature}</li>
                   ))}
