@@ -5,20 +5,28 @@ import headphones from "./Categories/headphones.jpeg";
 import smartwatch from "./Categories/smartwatch.jpg";
 import speakers from "./Categories/speakers.png";
 
-import brand_day from "./Brand_day.webp";
+import brand_day from "./banner/Brand_day.webp";
+import get_gadgets from "./banner/get_gadgets.jpg";
+import phone_pro from "./banner/phone_pro.webp";
+import pixel_9 from "./banner/pixel_9series.png";
+import iphone16 from "./banner/iphone16.webp";
+import ramadan from "./banner/ramadan.jpeg";
+import s25 from "./banner/s25.webp";
+import soundcore from "./banner/soundcore.webp";
+import universe from "./banner/universe.jpeg";
+
 import discount from "./discount.jpg";
 import Earbuds100 from "./Earbuds100.jpg";
 import gadget from "./gadget.webp";
-import get_gadgets from "./get_gadgets.jpg";
 import logo from "./logo.png";
-import moto_egde from "./moto_egde50.png";
 import pay from "./pay.png";
-import phone_pro from "./phone_pro.webp";
-import pixel_9 from "./pixel_9series.png";
-import s25_ultra from "./s25_ultra.jpg";
-import services from "./services.png";
 
 export const assets = {
+  iphone16,
+  ramadan,
+  s25,
+  soundcore,
+  universe,
   blueEarphone,
   earbuds,
   fan,
@@ -33,8 +41,5 @@ export const assets = {
   logo,
   pay,
   gadget,
-  moto_egde,
   pixel_9,
-  s25_ultra,
-  services,
 };

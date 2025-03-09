@@ -115,7 +115,7 @@ const NavNew = () => {
             value={searchInput}
             onChange={handleSearch}
             placeholder="Search for products..."
-            className="w-full px-2 py-[6px] border border-gray-300 rounded-lg outline-none"
+            className="w-full px-2 2xl:p-3 py-[6px] border border-gray-300 rounded-lg outline-none"
           />
           {searchInput && (
             <button

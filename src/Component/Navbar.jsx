@@ -108,7 +108,7 @@ const Navbar = () => {
         hoveredCategory ? "z-50" : "z-40"
       }`}
     >
-      <div className="bg-black p-[12px] flex items-center justify-between px-4 sm:px-10">
+      <div className="bg-black py-[12px] flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center justify-between w-full lg:hidden">
           <img src={assets.logo} className="w-44" alt="Logo" />
           <div className="flex items-center space-x-3">
@@ -351,7 +351,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      <div className="bg-[#ededed] text-sm p-2 hidden lg:block">
+      <div className="bg-[#ededed] text-sm py-[7px] hidden lg:block">
         <ul className="flex space-x-6 justify-center">
           {categories.map((category, index) => (
             <li

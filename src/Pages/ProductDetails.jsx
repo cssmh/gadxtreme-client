@@ -109,12 +109,12 @@ const ProductDetails = () => {
 
   return (
     <div className="max-w-7xl 2xl:max-w-[86%] mx-auto p-4 my-4">
-      <div className="flex flex-col md:flex-row gap-5 md:gap-10">
+      <div className="flex flex-col md:flex-row gap-5 md:gap-7">
         <div className="w-full md:w-[58%] 2xl:w-1/2 relative">
           <img
             src={mainImage || gadgetData?.images[0] || ""}
             alt="Product"
-            className="w-full h-auto 2xl:h-2/3 rounded-lg"
+            className="w-full h-auto rounded-lg"
           />
           {gadgetData?.discountPrice && gadgetData?.price && (
             <div className="absolute top-2 right-2 bg-gadDarkBlue text-white rounded-full px-3 py-4 font-semibold text-[13px] z-10">
@@ -139,7 +139,7 @@ const ProductDetails = () => {
             {gadgetData?.productName}
           </h1>
           <p
-            className={`mt-2 ${
+            className={`mt-2 2xl:text-lg ${
               gadgetData?.inStock ? "text-green-600" : "text-red-600"
             } font-semibold`}
           >
@@ -161,7 +161,7 @@ const ProductDetails = () => {
               </span>
             )}
           </div>
-          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 mt-3">
+          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 mt-3 2xl:text-lg">
             <div className="flex items-center border rounded-2xl">
               <button onClick={handleDecrement} className="px-2 py-2 border-r">
                 -
@@ -187,17 +187,17 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="mt-3">
-            <h2 className="text-xl font-semibold">Key Features</h2>
+            <h2 className="text-xl 2xl:text-2xl font-semibold">Key Features</h2>
             <ul className="list-disc ml-5 mt-2 space-y-2">
               {gadgetData?.keyFeatures &&
                 gadgetData?.keyFeatures.map((feature, index) => (
-                  <li key={index} className="text-gray-500 text-sm">
+                  <li key={index} className="text-gray-500 text-sm 2xl:text-lg">
                     {feature}
                   </li>
                 ))}
             </ul>
           </div>
-          <div className="mt-4 space-y-1 text-base">
+          <div className="mt-4 space-y-1 text-base 2xl:text-lg">
             <p className="font-semibold text-red-500">
               GIFT WRAPPING AVAILABLE
             </p>
@@ -212,8 +212,8 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="mt-12">
-        <h2 className="text-2xl mb-4">Description</h2>
-        <div className="flex flex-col">
+        <h2 className="text-2xl 2xl:text-3xl mb-4">Description</h2>
+        {/* <div className="flex flex-col">
           <img
             src={gadgetData?.images[1] || gadgetData?.images[0]}
             alt="image"
@@ -224,11 +224,11 @@ const ProductDetails = () => {
             alt="image"
             className="w-full md:h-[500px] object-cover rounded-lg mb-4"
           />
-        </div>
-        {formattedContent}
+        </div> */}
+        <p className=" 2xl:text-lg">{formattedContent}</p>
       </div>
       <div className="mt-12">
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl 2xl:text-3xl font-semibold mb-4">
           More from {gadgetData?.category}
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -255,23 +255,23 @@ const ProductDetails = () => {
                   )}
                 </div>
                 <div className="p-3">
-                  <h3 className="text-sm font-medium text-gray-800 line-clamp-2">
+                  <h3 className="text-sm 2xl:text-lg font-medium text-gray-800 line-clamp-2">
                     {product.productName}
                   </h3>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-gray-500 line-through text-xs">
+                  <div className="flex items-center justify-between mt-2 text-xs 2xl:text-base">
+                    <span className="text-gray-500 line-through">
                       ৳{product.price}
                     </span>
-                    <span className="text-green-600 font-semibold text-sm">
+                    <span className="text-green-600 font-semibold">
                       ৳{product.discountPrice}
                     </span>
                   </div>
                   {product.inStock ? (
-                    <span className="mt-2 inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                    <span className="mt-2 inline-block px-2 py-1 text-xs 2xl:text-base font-semibold text-green-800 bg-green-200 rounded-full">
                       In Stock
                     </span>
                   ) : (
-                    <span className="mt-2 inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
+                    <span className="mt-2 inline-block px-2 py-1 text-xs 2xl:text-base font-semibold text-red-800 bg-red-200 rounded-full">
                       Out of Stock
                     </span>
                   )}

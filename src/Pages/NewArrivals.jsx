@@ -28,7 +28,7 @@ const NewArrivals = () => {
       <h2 className="text-xl lg:text-2xl 2xl:text-3xl font-bold mb-6 text-center">
         <span className="text-[#00a9e1]">New</span> Arrivals
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {data?.map((product) => (
           <div
             key={product._id}
@@ -39,7 +39,7 @@ const NewArrivals = () => {
                 .toLowerCase()
                 .replaceAll(/\s+/g, "_")}/${product._id}`}
             >
-              <div className="relative h-40 2xl:h-48 w-full">
+              <div className="relative h-36 2xl:h-48 w-full">
                 <img
                   src={product.images[0]}
                   alt={product.productName}

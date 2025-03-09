@@ -1,14 +1,15 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 
 const Banner = () => {
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto my-2">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto my-[6px]">
       <div className="block lg:hidden">
         <Swiper
           speed={500}
@@ -17,7 +18,8 @@ const Banner = () => {
             delay: 2000,
             disableOnInteraction: false,
           }}
-          modules={[Autoplay]}
+          pagination={{ clickable: true }}
+          modules={[Autoplay, Pagination]}
           className="mySwiper"
           slidesPerView={1}
           spaceBetween={10}
@@ -25,7 +27,7 @@ const Banner = () => {
           <SwiperSlide>
             <Link to="/category/earbuds">
               <img
-                src={assets.pixel_9}
+                src={assets.ramadan}
                 alt="Brand Day"
                 className="w-full h-auto object-cover"
               />
@@ -34,7 +36,7 @@ const Banner = () => {
           <SwiperSlide>
             <Link to="/category/earphones%20&%20headphones">
               <img
-                src={assets.s25_ultra}
+                src={assets.iphone16}
                 alt="Best Mobile Protection"
                 className="w-full h-auto object-cover"
               />
@@ -43,7 +45,7 @@ const Banner = () => {
           <SwiperSlide>
             <Link to="/category/mobile%20accessories">
               <img
-                src={assets.moto_egde}
+                src={assets.s25}
                 alt="Premium"
                 className="w-full h-auto object-cover"
               />
@@ -60,7 +62,8 @@ const Banner = () => {
               delay: 2000,
               disableOnInteraction: false,
             }}
-            modules={[Autoplay]}
+            pagination={{ clickable: true }}
+            modules={[Autoplay, Pagination]}
             className="mySwiper"
             slidesPerView={1}
             spaceBetween={10}
@@ -68,7 +71,7 @@ const Banner = () => {
             <SwiperSlide>
               <Link to="/category/earbuds">
                 <img
-                  src={assets.pixel_9}
+                  src={assets.ramadan}
                   alt="Brand Day"
                   className="w-full h-auto object-cover"
                 />
@@ -77,7 +80,7 @@ const Banner = () => {
             <SwiperSlide>
               <Link to="/category/earphones%20&%20headphones">
                 <img
-                  src={assets.s25_ultra}
+                  src={assets.iphone16}
                   alt="Best Mobile Protection"
                   className="w-full h-auto object-cover"
                 />
@@ -86,7 +89,7 @@ const Banner = () => {
             <SwiperSlide>
               <Link to="/category/lifestyle">
                 <img
-                  src={assets.moto_egde}
+                  src={assets.s25}
                   alt="Best Mobile Protection"
                   className="w-full h-auto object-cover"
                 />
@@ -94,17 +97,17 @@ const Banner = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col space-y-1">
           <Link to="/category/best%20seller">
             <img
-              src={assets.phone_pro}
+              src={assets.soundcore}
               alt="Best Deal Banner"
-              className="w-full h-[207px] object-cover"
+              className="w-full h-auto object-cover"
             />
           </Link>
           <Link to="/category/mobile%20accessories">
             <img
-              src={assets.services}
+              src={assets.universe}
               alt="Premium"
               className="w-full h-auto object-cover"
             />
