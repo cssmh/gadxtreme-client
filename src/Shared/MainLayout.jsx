@@ -12,25 +12,14 @@ const MainLayout = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1400);
-
+    const timeout = setTimeout(() => setLoading(false), 1400);
     return () => clearTimeout(timeout);
   }, []);
 
-  const NavRoute =
-    loc.pathname === "/" ||
-    loc.pathname === "/login" ||
-    loc.pathname === "/register";
-
-  const noHeaderFooter = loc?.pathname?.startsWith("/dashboard");
+  const routesWithNavbar = ["/", "/login", "/register"];
+  const noHeaderFooter = loc.pathname.startsWith("/dashboard");
   const noNavFooter =
-    loc?.pathname?.startsWith("/success") ||
-    loc?.pathname?.startsWith("/cancel");
+    loc.pathname.startsWith("/success") || loc.pathname.startsWith("/cancel");
 
   if (loading) return <MainLoader />;
 
@@ -38,7 +27,11 @@ const MainLayout = () => {
     <div>
       {/* <DiscountModal /> */}
       {!noNavFooter &&
-        (noHeaderFooter ? null : NavRoute ? <Navbar /> : <NavNew />)}
+        (noHeaderFooter ? null : routesWithNavbar.includes(loc.pathname) ? (
+          <Navbar />
+        ) : (
+          <NavNew />
+        ))}
       <div className="min-h-[83vh]">
         <Outlet />
       </div>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { getNewArrival } from "../Api/gadgets";
 import useFetchData from "../hooks/useFetchData";
 import SkeletonHome from "./SkeletonHome";
@@ -30,8 +31,14 @@ const NewArrivals = () => {
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {data?.map((product) => (
-          <div
+          <motion.div
             key={product._id}
+            data-aos="zoom-in"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+            }}
+            transition={{ duration: 0.5 }}
             className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <Link
@@ -63,18 +70,19 @@ const NewArrivals = () => {
                     ৳{product.discountPrice}
                   </span>
                 </div>
-                {product.inStock ? (
-                  <span className="mt-2 inline-block px-2 py-1 text-xs 2xl:text-sm font-semibold text-green-800 bg-green-200 rounded-full">
-                    In Stock
-                  </span>
-                ) : (
-                  <span className="mt-2 inline-block px-2 py-1 text-xs 2xl:text-sm font-semibold text-red-800 bg-red-200 rounded-full">
-                    Out of Stock
-                  </span>
-                )}
+                <span
+                  className={`mt-2 inline-block px-2 py-1 text-xs 2xl:text-sm font-semibold rounded-full 
+                  ${
+                    product.inStock
+                      ? "text-green-800 bg-green-200"
+                      : "text-red-800 bg-red-200"
+                  }`}
+                >
+                  {product.inStock ? "In Stock" : "Out of Stock"}
+                </span>
               </div>
             </Link>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
