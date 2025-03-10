@@ -16,7 +16,6 @@ import soundcore from "./banner/soundcore.webp";
 import universe from "./banner/universe.jpeg";
 
 import discount from "./discount.jpg";
-import Earbuds100 from "./Earbuds100.jpg";
 import gadget from "./gadget.webp";
 import logo from "./logo.png";
 import pay from "./pay.png";
@@ -35,7 +34,6 @@ export const assets = {
   speakers,
   brand_day,
   discount,
-  Earbuds100,
   get_gadgets,
   phone_pro,
   logo,

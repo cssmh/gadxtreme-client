@@ -1,4 +1,7 @@
-const Footer = () => { 
+import { assets } from "../assets/assets";
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-7 md:px-4">
@@ -46,15 +49,11 @@ const Footer = () => {
         <div className="col-span-1">
           <h3 className="text-lg font-semibold mb-2">Payment Methods</h3>
           <p className="mb-3">We accept:</p>
-          <img
-            src="https://extremegadgets.com.bd/wp-content/uploads/2022/12/payments.png"
-            alt="Bank"
-            className="h-12 w-auto"
-          />
+          <img src={assets.pay} alt="Bank" className="h-12 w-auto" />
         </div>
       </div>
       <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
-        &copy; 2025 GadXtreme. All Rights Reserved.
+        &copy; {currentYear} GadXtreme. All Rights Reserved.
       </div>
     </footer>
   );
