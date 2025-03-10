@@ -137,7 +137,7 @@ const Navbar = () => {
               value={searchInput}
               onChange={handleSearch}
               placeholder="Search for products..."
-              className="w-full px-2 py-[6px] rounded-md border border-gray-300 outline-none"
+              className="w-full px-2 py-[6px] 2xl:py-2 rounded-md border border-gray-300 outline-none"
             />
             {searchInput && (
               <button

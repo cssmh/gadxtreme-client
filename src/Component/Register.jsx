@@ -68,10 +68,12 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row max-w-6xl mx-auto mb-2 md:mb-0">
+    <div className="flex flex-col lg:flex-row max-w-6xl 2xl:max-w-[80%] mx-auto mb-2 2xl:min-h-[80vh] md:mb-0">
       <div className="w-full lg:w-1/2 flex items-center justify-center md:pt-5 md:pb-8 px-4 lg:px-20">
         <div className="w-full max-w-md mt-3 md:mt-0">
-          <h2 className="text-2xl font-bold text-gray-700">Register</h2>
+          <h2 className="text-2xl 2xl:text-3xl font-bold text-gray-700">
+            Register
+          </h2>
           <form onSubmit={handleRegister} className="mt-4 space-y-3">
             <div>
               <label
@@ -177,7 +179,9 @@ const Register = () => {
       <div className="hidden lg:block border-l border-gray-300"></div>
       <div className="w-full text-center lg:w-1/2 bg-white flex items-center justify-center py-9 md:py-12 px-4 lg:px-20">
         <div className="w-full max-w-md">
-          <h2 className="text-2xl font-bold text-gray-700">Login</h2>
+          <h2 className="text-2xl 2xl:text-3xl font-bold text-gray-700">
+            Login
+          </h2>
           <p className="my-4 text-gray-600">
             Please login to your account. If you signed up via social media,
             click on the social media icon to log in again.

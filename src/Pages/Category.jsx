@@ -63,8 +63,10 @@ const Category = () => {
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/4 pr-4">
           <div className="mb-4 bg-white rounded-lg shadow p-4">
-            <h2 className="text-lg font-semibold mb-2">Filter by Price</h2>
-            <div className="space-y-2">
+            <h2 className="text-lg 2xl:text-xl font-semibold mb-2">
+              Filter by Price
+            </h2>
+            <div className="space-y-2 2xl:text-lg">
               <label className="flex items-center">
                 <input
                   type="checkbox"
@@ -100,7 +102,9 @@ const Category = () => {
             </div>
           </div>
           <div className="mb-4 bg-white rounded-lg shadow p-4">
-            <h2 className="text-lg font-semibold mb-2">Price Range</h2>
+            <h2 className="text-lg 2xl:text-xl font-semibold mb-2">
+              Price Range
+            </h2>
             <input
               type="range"
               min="0"
@@ -189,7 +193,7 @@ const Category = () => {
                 id="sortOrder"
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
-                className="border border-gray-300 rounded px-2 py-1 outline-none"
+                className="border border-gray-300 rounded-md px-2 py-1 2xl:py-2 outline-none"
               >
                 <option value="relevant">Relevant</option>
                 <option value="lowToHigh">Price: Low to High</option>

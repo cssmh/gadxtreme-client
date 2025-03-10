@@ -92,7 +92,7 @@ const PopularProducts = () => {
                     <img
                       src={product?.images[0]}
                       alt={product.productName}
-                      className="w-1/2 mx-auto md:w-full md:h-40 2xl:h-48 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-64 md:h-40 2xl:h-48 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
                     />
                     <img
                       src={product?.images[1]}

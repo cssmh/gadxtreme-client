@@ -45,10 +45,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row max-w-6xl 2xl:max-w-[85%] mx-auto mb-2 md:mb-0">
+    <div className="flex flex-col lg:flex-row max-w-6xl 2xl:max-w-[85%] 2xl:min-h-[80vh] mx-auto mb-2 md:mb-0">
       <div className="w-full lg:w-1/2 flex items-center justify-center md:py-12 px-4 lg:px-20">
         <div className="w-full max-w-md mt-5 md:mt-0">
-          <h2 className="text-2xl font-bold text-gray-700">Login</h2>
+          <h2 className="text-2xl 2xl:text-3xl font-bold text-gray-700">
+            Login
+          </h2>
           <form onSubmit={handleLogin} className="mt-3 md:mt-6 space-y-4">
             <div>
               <label
@@ -130,7 +132,9 @@ const Login = () => {
       <div className="hidden lg:block border-l border-gray-300"></div>
       <div className="w-full text-center lg:w-1/2 bg-white flex items-center justify-center py-9 md:py-12 px-4 lg:px-20">
         <div className="w-full max-w-md">
-          <h2 className="text-2xl font-bold text-gray-700">Register</h2>
+          <h2 className="text-2xl 2xl:text-3xl font-bold text-gray-700">
+            Register
+          </h2>
           <p className="my-4 text-gray-600">
             Registering for this site allows you to access your order status and
             history. Just fill in the fields below, and we’ll get a new account

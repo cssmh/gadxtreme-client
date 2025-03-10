@@ -28,22 +28,20 @@ const skeletonCount = getSkeletonCount();
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-xl lg:text-2xl 2xl:text-3xl font-bold text-center text-[#00a9e1] mb-6"
+        className="text-xl lg:text-2xl 2xl:text-3xl font-bold text-center text-[#00a9e1] mb-4"
       >
         Best Sellers
       </motion.h2>
-
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="text-gray-700 text-center max-w-xl mx-auto mb-8"
+        className="text-gray-700 text-center max-w-xl 2xl:text-lg mx-auto mb-7"
       >
         Discover our top-selling gadgets that are highly recommended by our
         customers. Experience the best of innovation!
       </motion.p>
-
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {data?.slice(0, 3).map((product, index) => (
           <motion.div
             key={product._id}
@@ -71,10 +69,12 @@ const skeletonCount = getSkeletonCount();
                 )}
               </div>
               <div className="p-4 space-y-2">
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-xl 2xl:text-2xl font-semibold text-gray-800">
                   {product.productName}
                 </h3>
-                <p className="text-gray-600 text-sm">{product.category}</p>
+                <p className="text-gray-600 text-sm 2xl:text-base">
+                  {product.category}
+                </p>
                 <div className="flex items-center justify-between mt-2">
                   <span
                     className={`text-lg font-semibold ${
@@ -91,13 +91,13 @@ const skeletonCount = getSkeletonCount();
                     </span>
                   )}
                 </div>
-                <ul className="mt-2 text-sm text-gray-600 space-y-1">
+                <ul className="mt-2 text-sm 2xl:text-base text-gray-600 space-y-1">
                   {product.keyFeatures.map((feature, i) => (
                     <li key={i}>&bull; {feature}</li>
                   ))}
                 </ul>
                 <span
-                  className={`mt-3 inline-block px-3 py-1 text-xs font-semibold rounded-full ${
+                  className={`mt-3 inline-block px-3 py-1 text-xs 2xl:text-sm font-semibold rounded-full ${
                     product.inStock
                       ? "text-green-800 bg-green-200"
                       : "text-red-800 bg-red-200"
