@@ -78,12 +78,12 @@ const Sidebar = () => {
       <Link
         key={to}
         to={to}
-        className={`flex items-center py-[11px] 2xl:py-4 2xl:text-xl pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+        className={`flex items-center py-[11px] 2xl:py-4 text-[15px] 2xl:text-xl pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
           loc.pathname === to ? "bg-teal-50 text-teal-600" : ""
         }`}
         onClick={() => setIsSidebarOpen(false)}
       >
-        <span className="text-xl">{icon}</span>
+        <span className="text-lg">{icon}</span>
         <span className="ml-3">{label}</span>
       </Link>
     ));
@@ -115,7 +115,7 @@ const Sidebar = () => {
           </Link>
           {user && (
             <div className="px-1 my-3 text-gray-700">
-              <span className="text-lg 2xl:text-xl font-semibold">
+              <span className="text-base 2xl:text-xl font-semibold">
                 Hi, {user?.displayName || "User"}
               </span>
               <p className="text-sm 2xl:text-base text-gray-500">
@@ -150,20 +150,20 @@ const Sidebar = () => {
           <NavLink
             to="/dashboard/profile"
             className={({ isActive }) =>
-              `flex items-center py-2 pl-5 2xl:text-xl rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+              `flex items-center py-2 pl-5 text-[15px] 2xl:text-xl rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
                 isActive ? "bg-teal-50 text-teal-600 font-semibold" : ""
               }`
             }
             onClick={() => setIsSidebarOpen(false)}
           >
-            <MdAddTask className="mr-3 text-xl" />
+            <MdAddTask className="mr-3 text-lg" />
             Profile
           </NavLink>
           <button
             onClick={handleLogout}
-            className="flex items-center py-3 2xl:py-4 2xl:text-xl pl-5 text-red-600 rounded-lg hover:bg-red-50 transition-colors duration-200 w-full"
+            className="flex items-center py-3 2xl:py-4 text-[15px] 2xl:text-xl pl-5 text-red-600 rounded-lg hover:bg-red-50 transition-colors duration-200 w-full"
           >
-            <RiLogoutBoxLine className="mr-3 text-xl" />
+            <RiLogoutBoxLine className="mr-3 text-lg" />
             Logout
           </button>
         </div>

@@ -33,10 +33,10 @@ const PendingReview = () => {
 
   return (
     <div className="md:p-1">
-      <h1 className="text-xl md:text-2xl font-bold text-gray-800">
+      <h1 className="text-xl md:text-2xl 2xl:text-3xl 2xl:mb-1 font-bold text-gray-800">
         Pending Reviews
       </h1>
-      <p className="text-gray-600 mb-3">
+      <p className="text-gray-600 2xl:text-lg mb-3">
         You have pending reviews for the following orders. Click to add a
         review.
       </p>
@@ -48,34 +48,37 @@ const PendingReview = () => {
         <div className="overflow-x-auto bg-white rounded-lg shadow-md border border-gray-200">
           <table className="min-w-full table-auto">
             <thead className="bg-gray-100">
-              <tr>
-                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
+              <tr className="text-sm 2xl:text-base">
+                <th className="px-3 py-2 text-left font-semibold text-gray-700">
                   Order ID
                 </th>
-                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
+                <th className="px-3 py-2 text-left font-semibold text-gray-700">
                   Placed On
                 </th>
-                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
+                <th className="px-3 py-2 text-left font-semibold text-gray-700">
                   Total Items
                 </th>
-                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
+                <th className="px-3 py-2 text-left font-semibold text-gray-700">
                   Total Amount
                 </th>
-                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
+                <th className="px-3 py-2 text-left font-semibold text-gray-700">
                   Delivery Status
                 </th>
-                <th className="px-3 py-2 text-left text-sm font-semibold text-gray-700">
+                <th className="px-3 py-2 text-left font-semibold text-gray-700">
                   Action
                 </th>
               </tr>
             </thead>
             <tbody>
               {pending?.map((order) => (
-                <tr key={order._id} className="border-t border-gray-200">
-                  <td className="px-3 py-2 text-sm text-gray-600">
+                <tr
+                  key={order._id}
+                  className="border-t text-sm 2xl:text-base border-gray-200"
+                >
+                  <td className="px-3 py-2 text-gray-600">
                     {order._id.slice(0, 20)}...
                   </td>
-                  <td className="px-3 py-2 text-sm text-gray-600">
+                  <td className="px-3 py-2 text-gray-600">
                     {new Date(order.orderPlaced).toLocaleDateString("en-GB")}{" "}
                     <br />
                     {new Date(order.orderPlaced).toLocaleTimeString([], {
@@ -83,13 +86,13 @@ const PendingReview = () => {
                       minute: "2-digit",
                     })}
                   </td>
-                  <td className="text-center py-2 text-sm text-gray-600">
+                  <td className="text-center py-2 text-gray-600">
                     {order.cartItems.length}
                   </td>
-                  <td className="text-center py-2 text-sm text-gray-600">
+                  <td className="text-center py-2 text-gray-600">
                     ৳{order.totalAmount}
                   </td>
-                  <td className="px-3 py-2 text-sm">
+                  <td className="px-3 py-2">
                     <span
                       className={`inline-flex items-center justify-between w-24 text-sm font-semibold px-3 py-1 border rounded-full ${
                         order.status === "Delivered"
@@ -105,7 +108,7 @@ const PendingReview = () => {
                       )}
                     </span>
                   </td>
-                  <td className="px-3 py-2 text-sm text-gray-600">
+                  <td className="px-3 py-2 text-gray-600">
                     <button
                       onClick={() => handleAddReview(order._id)}
                       className="px-3 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
@@ -121,8 +124,8 @@ const PendingReview = () => {
       )}
       {isModalOpen && (
         <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-lg font-bold mb-4">Add a Review</h2>
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md 2xl:max-w-lg">
+            <h2 className="text-lg 2xl:text-xl font-bold mb-4">Add a Review</h2>
             <textarea
               className="w-full outline-none p-2 border border-gray-400 rounded-lg mb-4"
               rows="4"
