@@ -333,7 +333,7 @@ const AddProduct = () => {
           disabled={loading}
           className={`w-full mt-4 ${
             loading ? "bg-gray-800" : "bg-teal-500"
-          } text-white py-2 rounded-md`}
+          } text-white py-[9px] rounded-md`}
         >
           <div className="flex justify-center items-center">
             {loading ? (

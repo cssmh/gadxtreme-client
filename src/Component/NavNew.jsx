@@ -128,8 +128,12 @@ const NavNew = () => {
           {searchData && searchData.length > 0 && (
             <div className="absolute grid grid-cols-2 gap-2 left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-11 w-full">
               {searchData.map((gadget) => (
-                <a
+                <Link
                   key={gadget._id}
+                  onClick={() => {
+                    setSearchInput("");
+                    setSearchData([]);
+                  }}
                   to={`/details/${gadget?.productName
                     .toLowerCase()
                     .replaceAll(/\s+/g, "_")}/${gadget._id}`}
@@ -141,7 +145,7 @@ const NavNew = () => {
                     className="w-12 h-12 object-cover mr-2"
                   />
                   <span className="font-medium">{gadget.productName}</span>
-                </a>
+                </Link>
               ))}
             </div>
           )}
@@ -265,7 +269,7 @@ const NavNew = () => {
           value={searchInput}
           placeholder="Search for products..."
           onChange={handleSearch}
-          className="w-full p-2 border border-gray-300 rounded-xl outline-none"
+          className="w-full px-2 py-[6px] border border-gray-300 rounded-lg outline-none"
         />
         {searchInput && (
           <button
@@ -278,9 +282,13 @@ const NavNew = () => {
         {searchData && searchData.length > 0 && (
           <div className="absolute left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-1 w-full">
             {searchData.map((gadget) => (
-              <a
+              <Link
                 key={gadget._id}
-                href={`/details/${gadget?.productName
+                onClick={() => {
+                  setSearchInput("");
+                  setSearchData([]);
+                }}
+                to={`/details/${gadget?.productName
                   .toLowerCase()
                   .replaceAll(/\s+/g, "_")}/${gadget._id}`}
                 className="flex items-center p-2 hover:bg-gray-100 border-b"
@@ -291,7 +299,7 @@ const NavNew = () => {
                   className="w-12 h-12 object-cover mr-2"
                 />
                 <span className="font-medium">{gadget.productName}</span>
-              </a>
+              </Link>
             ))}
           </div>
         )}
@@ -362,7 +370,7 @@ const NavNew = () => {
             >
               <Link
                 to={category.link}
-                className="flex font-medium 2xl:text-lg items-center py-2 hover:text-gadBlue"
+                className="flex font-medium text-[13px] 2xl:text-lg items-center py-2 hover:text-gadBlue"
               >
                 {category.name}
                 {category.subcategories.length > 0 && (

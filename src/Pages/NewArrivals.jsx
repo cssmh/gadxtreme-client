@@ -69,7 +69,7 @@ const NewArrivals = () => {
                   <img
                     src={product.images[0]}
                     alt={product.productName}
-                    className="h-full w-full object-cover rounded-t-lg"
+                    className="h-full w-full object-cover rounded-t-md"
                     aria-label={product.productName}
                   />
                   {!product.inStock && (

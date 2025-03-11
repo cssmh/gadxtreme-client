@@ -152,6 +152,10 @@ const Navbar = () => {
                 {searchData.map((gadget) => (
                   <Link
                     key={gadget._id}
+                    onClick={() => {
+                      setSearchInput("");
+                      setSearchData([]);
+                    }}
                     to={`/details/${gadget?.productName
                       .toLowerCase()
                       .replaceAll(/\s+/g, "_")}/${gadget._id}`}
@@ -269,6 +273,10 @@ const Navbar = () => {
             {searchData.map((gadget) => (
               <Link
                 key={gadget._id}
+                onClick={() => {
+                  setSearchInput("");
+                  setSearchData([]);
+                }}
                 to={`/details/${gadget?.productName
                   .toLowerCase()
                   .replaceAll(/\s+/g, "_")}/${gadget._id}`}

@@ -27,7 +27,7 @@ const Banner = () => {
           <SwiperSlide>
             <Link to="/category/earbuds">
               <img
-                src={assets.ramadan}
+                src={assets.ramadanBanner}
                 alt="Brand Day"
                 className="w-full h-auto object-cover"
               />
@@ -46,6 +46,15 @@ const Banner = () => {
             <Link to="/category/mobile%20accessories">
               <img
                 src={assets.s25}
+                alt="Premium"
+                className="w-full h-auto object-cover"
+              />
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/category/mobile%20accessories">
+              <img
+                src={assets.zeblaze}
                 alt="Premium"
                 className="w-full h-auto object-cover"
               />
@@ -71,9 +80,9 @@ const Banner = () => {
             <SwiperSlide>
               <Link to="/category/earbuds">
                 <img
-                  src={assets.ramadan}
+                  src={assets.ramadanBanner}
                   alt="Brand Day"
-                  className="w-full h-auto object-cover"
+                  className="w-full lg:h-[445px] 2xl:h-auto object-cover"
                 />
               </Link>
             </SwiperSlide>
@@ -95,17 +104,26 @@ const Banner = () => {
                 />
               </Link>
             </SwiperSlide>
+            <SwiperSlide>
+              <Link to="/category/lifestyle">
+                <img
+                  src={assets.zeblaze}
+                  alt="Best Mobile Protection"
+                  className="w-full h-auto object-cover"
+                />
+              </Link>
+            </SwiperSlide>
           </Swiper>
         </div>
         <div className="flex flex-col space-y-1">
-          <Link to="/category/best%20seller">
+          <Link to="/details/anker_soundcore_liberty_4_pro_nc_tws_earbud/67cfd53f700aa4ef554357e0">
             <img
               src={assets.soundcore}
               alt="Best Deal Banner"
               className="w-full h-auto object-cover"
             />
           </Link>
-          <Link to="/category/mobile%20accessories">
+          <Link to="/category/more">
             <img
               src={assets.universe}
               alt="Premium"

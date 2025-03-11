@@ -232,7 +232,7 @@ const Category = () => {
                       <img
                         src={product?.images[0]}
                         alt={product.productName}
-                        className="w-full md:h-52 2xl:h-60 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-64 md:h-44 2xl:h-52 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
                       />
                       {product?.images[1] && (
                         <img

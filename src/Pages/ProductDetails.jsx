@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { postCart } from "../Api/cartGadget";
 import { toast } from "sonner";
@@ -103,6 +104,21 @@ const ProductDetails = () => {
         );
       })
     : null;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Stagger animations for each child
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   if (loading || isLoading || load)
     return <SkeletonRow type="productDetails" />;
@@ -227,14 +243,23 @@ const ProductDetails = () => {
         </div> */}
         <p className=" 2xl:text-lg">{formattedContent}</p>
       </div>
-      <div className="mt-12">
+      <div className="mt-7 border-t pt-5">
         <h2 className="text-2xl 2xl:text-3xl font-semibold mb-4">
           More from {gadgetData?.category}
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {categoryGadgets?.result?.map((product) => (
-            <div
+            <motion.div
               key={product._id}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }} // Hover animation
+              transition={{ type: "spring", stiffness: 300 }}
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <Link
@@ -277,9 +302,9 @@ const ProductDetails = () => {
                   )}
                 </div>
               </Link>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

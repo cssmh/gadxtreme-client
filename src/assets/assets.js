@@ -10,10 +10,11 @@ import get_gadgets from "./banner/get_gadgets.jpg";
 import phone_pro from "./banner/phone_pro.webp";
 import pixel_9 from "./banner/pixel_9series.png";
 import iphone16 from "./banner/iphone16.webp";
-import ramadan from "./banner/ramadan.jpeg";
 import s25 from "./banner/s25.webp";
 import soundcore from "./banner/soundcore.webp";
 import universe from "./banner/universe.jpeg";
+import ramadanBanner from "./banner/ramadan-banner.jpg";
+import zeblaze from "./banner/zeblaze.png";
 
 import discount from "./discount.jpg";
 import gadget from "./gadget.webp";
@@ -21,8 +22,9 @@ import logo from "./logo.png";
 import pay from "./pay.png";
 
 export const assets = {
+  ramadanBanner,
+  zeblaze,
   iphone16,
-  ramadan,
   s25,
   soundcore,
   universe,
