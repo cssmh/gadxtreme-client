@@ -9,10 +9,12 @@ import { assets } from "../assets/assets";
 import { getCategoryGadget, getGadget } from "../Api/gadgets";
 import { useQuery } from "@tanstack/react-query";
 import SkeletonRow from "./AdminDash/SkeletonRow";
+import useUserCount from "../hooks/useUserCount";
 
 const ProductDetails = () => {
   const { loading, user } = useAuth();
   const { id } = useParams();
+  const { refetch: hookRefetch } = useUserCount();
   const navigate = useNavigate();
   const { refetch } = useMyCart();
   const [totalCart, setTotalCart] = useState(1);
@@ -71,6 +73,7 @@ const ProductDetails = () => {
     try {
       await postCart(cartData);
       refetch();
+      hookRefetch();
       if (buy) {
         toast.success("Redirecting to cart...");
         navigate("/cart");

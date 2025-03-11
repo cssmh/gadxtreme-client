@@ -15,6 +15,7 @@ import { getSearchGadget } from "../Api/gadgets";
 import useMyCart from "../hooks/useMyCart";
 import { PiSignOutThin } from "react-icons/pi";
 import { assets } from "../assets/assets";
+import useUserCount from "../hooks/useUserCount";
 
 const categories = [
   {
@@ -66,6 +67,7 @@ const categories = [
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const { data } = useUserCount();
   const { myCartData } = useMyCart();
   const [searchData, setSearchData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -172,7 +174,7 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <FaUser
               className="text-white cursor-pointer text-xl"
               title="Login/Register"
@@ -232,22 +234,20 @@ const Navbar = () => {
                 className="text-white cursor-pointer text-xl"
                 title="Wishlist"
               />
-              <span className="absolute -top-[9px] -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+              <span className="absolute -top-[8px] -right-1 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                 0
               </span>
             </Link>
-            <Link to={"/cart"}>
-              <p className="flex items-center gap-1 relative">
-                <FaShoppingCart
-                  className="text-white cursor-pointer text-xl"
-                  title="Cart"
-                />
-                <span className="absolute -top-[7px] right-12 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                  {myCartData?.length || 0}
-                </span>
-                <span className="text-white ml-1">৳0.00</span>
-              </p>
+            <Link to={"/cart"} className="flex items-center gap-1 relative">
+              <FaShoppingCart
+                className="text-white cursor-pointer text-xl"
+                title="Cart"
+              />
+              <span className="absolute -top-[8px] -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                {myCartData?.length || 12}
+              </span>
             </Link>
+            <span className="text-white">৳{data?.unpaid || 0.0}</span>
             {/* <FaBars
               className="text-white cursor-pointer text-xl"
               title="Menu"

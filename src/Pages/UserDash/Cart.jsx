@@ -5,9 +5,11 @@ import { toast } from "sonner";
 import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
 import SmallLoader from "../../Component/Loaders/SmallLoader";
+import useUserCount from "../../hooks/useUserCount";
 
 const Cart = () => {
   const { isLoading, myCartData, refetch } = useMyCart();
+  const { refetch: hookRefetch } = useUserCount();
   const [couponCode, setCouponCode] = useState("");
   const [notification, setNotification] = useState(null);
   const [quantities, setQuantities] = useState(
@@ -36,6 +38,7 @@ const Cart = () => {
     try {
       await updateMyCart(itemId, { quantity: newQuantity });
       refetch();
+      hookRefetch();
       showNotification("Quantity updated successfully!", "success");
     } catch (error) {
       console.log(error);
@@ -61,6 +64,7 @@ const Cart = () => {
     try {
       await deleteMyCart(itemId);
       refetch();
+      hookRefetch();
       showNotification("Item removed from cart!", "success");
     } catch (error) {
       console.log(error);
@@ -82,7 +86,7 @@ const Cart = () => {
     <div className="relative">
       {notification && (
         <div
-          className={`absolute -top-6 left-0 right-0 p-3 text-white px-8 z-50 ${
+          className={`absolute -top-4 left-0 right-0 p-2 2xl:p-3 text-white px-8 z-50 ${
             notification.type === "success" ? "bg-green-500" : "bg-red-500"
           }`}
         >

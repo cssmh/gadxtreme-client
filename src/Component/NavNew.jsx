@@ -15,6 +15,7 @@ import { BsCart2 } from "react-icons/bs";
 import useMyCart from "../hooks/useMyCart";
 import { PiSignOutThin } from "react-icons/pi";
 import { assets } from "../assets/assets";
+import useUserCount from "../hooks/useUserCount";
 
 const categories = [
   {
@@ -66,6 +67,7 @@ const categories = [
 
 const NavNew = () => {
   const { myCartData } = useMyCart();
+  const { data } = useUserCount();
   const { user, logOut } = useAuth();
   const [searchData, setSearchData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -201,28 +203,26 @@ const NavNew = () => {
               Login/Register
             </Link>
           )}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3">
             <Link to={"/dashboard/wishlist"} className="relative">
               <FaRegHeart
                 className="text-gray-600 cursor-pointer text-xl"
                 title="Wishlist"
               />
-              <span className="absolute -top-2 -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+              <span className="absolute -top-[8px] -right-1 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
                 0
               </span>
             </Link>
-            <Link to={"/cart"}>
-              <p className="flex items-center gap-1 relative">
-                <BsCart2
-                  className="text-gray-600 cursor-pointer text-2xl mr-1"
-                  title="Cart"
-                />
-                <span className="absolute -top-[6px] right-12 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                  {myCartData?.length || 0}
-                </span>
-                <span>৳0.00</span>
-              </p>
+            <Link to={"/cart"} className="flex items-center gap-1 relative">
+              <BsCart2
+                className="text-gray-600 cursor-pointer text-2xl mr-1"
+                title="Cart"
+              />
+              <span className="absolute -top-[6px] -right-[1px] bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                {myCartData?.length || 12}
+              </span>
             </Link>
+            <span>৳{data?.unpaid || 0.0}</span>
           </div>
         </div>
         <div className="lg:hidden flex items-center space-x-[6px]">
