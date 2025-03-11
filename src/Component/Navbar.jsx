@@ -244,7 +244,7 @@ const Navbar = () => {
                 title="Cart"
               />
               <span className="absolute -top-[8px] -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                {myCartData?.length || 12}
+                {myCartData?.length || 0}
               </span>
             </Link>
             <span className="text-white">৳{data?.unpaid || 0.0}</span>

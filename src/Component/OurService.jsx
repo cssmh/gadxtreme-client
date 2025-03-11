@@ -1,7 +1,7 @@
 const OurService = () => {
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] text-center mx-auto py-5 md:pb-10 px-2 md:px-4">
-      <h1 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-center mb-3 md:mb-4">
+      <h1 className="text-xl md:text-2xl 2xl:text-3xl font-semibold text-center mb-3 md:mb-4">
         Your Trusted Source for Premium Gadgets
       </h1>
       <p className="text-sm md:text-base text-center text-gray-700 mb-8 2xl:max-w-7xl mx-auto 2xl:text-xl">

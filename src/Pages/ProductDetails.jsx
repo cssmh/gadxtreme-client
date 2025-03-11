@@ -60,7 +60,11 @@ const ProductDetails = () => {
       toast.error("This product is out of stock.");
       return;
     }
-    if (!user) return toast.error("PLease login first");
+    if (!user) {
+      toast.error("PLease login first");
+      navigate("/login");
+      return;
+    }
 
     const cartData = {
       gadgetId: gadget._id,

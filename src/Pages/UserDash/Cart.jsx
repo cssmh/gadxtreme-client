@@ -103,7 +103,7 @@ const Cart = () => {
                     <tr className="border-b 2xl:text-lg">
                       <th className="py-3 px-2">Product</th>
                       <th className="py-3 px-2">Price</th>
-                      <th className="py-3 px-2">Quantity</th>
+                      <th className="py-3 px-2 text-center">Quantity</th>
                       <th className="py-3 px-2">Subtotal</th>
                     </tr>
                   </thead>
@@ -124,17 +124,19 @@ const Cart = () => {
                         </td>
                         <td className="py-4 px-1">৳{item?.price}</td>
                         <td className="py-4 px-1">
-                          <div className="flex items-center border rounded-2xl mx-1">
+                          <div className="flex items-center border rounded-lg w-fit mx-auto">
                             <button
                               onClick={() => handleDecrement(item._id)}
-                              className="px-2 py-2 border-r"
+                              className="px-3 py-1 border-r hover:bg-gray-100 transition-colors"
                             >
                               -
                             </button>
-                            <span className="mx-2">{quantities[item._id]}</span>
+                            <span className="px-3 py-1 text-center min-w-[40px]">
+                              {quantities[item._id]}
+                            </span>
                             <button
                               onClick={() => handleIncrement(item._id)}
-                              className="px-2 py-2 border-l"
+                              className="px-3 py-1 border-l hover:bg-gray-100 transition-colors"
                             >
                               +
                             </button>
@@ -176,17 +178,19 @@ const Cart = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">Quantity:</span>
-                      <div className="flex items-center border rounded-2xl">
+                      <div className="flex items-center border rounded-lg w-fit">
                         <button
                           onClick={() => handleDecrement(item._id)}
-                          className="px-2 py-1 border-r"
+                          className="px-3 py-1 border-r hover:bg-gray-100 transition-colors"
                         >
                           -
                         </button>
-                        <span className="px-3">{quantities[item._id]}</span>
+                        <span className="px-3 py-1 text-center min-w-[40px]">
+                          {quantities[item._id]}
+                        </span>
                         <button
                           onClick={() => handleIncrement(item._id)}
-                          className="px-2 py-1 border-l"
+                          className="px-3 py-1 border-l hover:bg-gray-100 transition-colors"
                         >
                           +
                         </button>

@@ -219,7 +219,7 @@ const NavNew = () => {
                 title="Cart"
               />
               <span className="absolute -top-[6px] -right-[1px] bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                {myCartData?.length || 12}
+                {myCartData?.length || 0}
               </span>
             </Link>
             <span>৳{data?.unpaid || 0.0}</span>
