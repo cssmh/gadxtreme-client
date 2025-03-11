@@ -338,7 +338,7 @@ const UpdateProduct = () => {
           disabled={loading}
           className={`w-full mt-4 ${
             loading ? "bg-gray-800" : "bg-teal-500"
-          } text-white py-[9px] 2xl:py-3 rounded-md`}
+          } text-white py-2 2xl:py-3 rounded-md`}
         >
           <div className="flex justify-center 2xl:text-lg items-center py-[2px]">
             {loading ? (

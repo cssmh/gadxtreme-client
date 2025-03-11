@@ -8,7 +8,7 @@ const Category = () => {
   const { cate } = useParams();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
-  const [priceRange, setPriceRange] = useState([0, 100000]);
+  const [priceRange, setPriceRange] = useState([0, Infinity]);
   const [sortOrder, setSortOrder] = useState("relevant");
 
   const { data = [], isLoading } = useQuery({
@@ -34,13 +34,17 @@ const Category = () => {
   };
 
   const handlePriceRangeChange = (min, max) => {
-    setPriceRange([min, max]);
-    setPage(1);
+    setPriceRange([min, max === Infinity ? Infinity : max]); 
+    // Ensure max is Infinity if "Unlimited" is checked
+    setPage(1); // Reset to page 1 after price range change
   };
 
   const filteredProducts = data?.result?.filter((product) => {
     const productPrice = product.discountPrice || product.price;
-    return productPrice >= priceRange[0] && productPrice <= priceRange[1];
+    return (
+      productPrice >= priceRange[0] &&
+      (priceRange[1] === Infinity || productPrice <= priceRange[1])
+    );
   });
 
   const sortedProducts = filteredProducts?.sort((a, b) => {
@@ -99,6 +103,14 @@ const Category = () => {
                 />
                 Above ৳10,000
               </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  onChange={() => handlePriceRangeChange(0, Infinity)} // Set max to Infinity for "Unlimited"
+                />
+                Unlimited (No Max)
+              </label>
             </div>
           </div>
           <div className="mb-4 bg-white rounded-lg shadow p-4">
@@ -108,26 +120,37 @@ const Category = () => {
             <input
               type="range"
               min="0"
-              max="100000"
+              max="300000"
               value={priceRange[0]}
               onChange={(e) =>
-                handlePriceRangeChange(Number(e.target.value), priceRange[1])
+                handlePriceRangeChange(
+                  Number(e.target.value),
+                  priceRange[1] === Infinity ? Infinity : priceRange[1]
+                )
               }
               className="w-full"
             />
             <input
               type="range"
               min="0"
-              max="100000"
-              value={priceRange[1]}
+              max="300000"
+              value={priceRange[1] === Infinity ? 300000 : priceRange[1]}
               onChange={(e) =>
-                handlePriceRangeChange(priceRange[0], Number(e.target.value))
+                handlePriceRangeChange(
+                  priceRange[0],
+                  Number(e.target.value) === 300000
+                    ? Infinity
+                    : Number(e.target.value)
+                )
               }
               className="w-full"
             />
             <div className="flex justify-between">
               <span>Min: ৳{priceRange[0]}</span>
-              <span>Max: ৳{priceRange[1]}</span>
+              <span>
+                Max:{" "}
+                {priceRange[1] === Infinity ? "Unlimited" : `৳${priceRange[1]}`}
+              </span>
             </div>
           </div>
         </div>

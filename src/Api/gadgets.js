@@ -1,7 +1,7 @@
 import axiosSecure from ".";
 
-export const getAllGadget = async () => {
-  const { data } = await axiosSecure("/api/all-products");
+export const getAllGadget = async (searchTerm) => {
+  const { data } = await axiosSecure(`/api/all-products?search=${searchTerm}`);
   return data;
 };
 

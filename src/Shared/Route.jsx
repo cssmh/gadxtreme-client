@@ -118,7 +118,7 @@ const Route = createBrowserRouter([
             ),
           },
           {
-            path: "/dashboard/update/:id",
+            path: "/dashboard/update/:name/:id",
             element: (
               <AdminRoute>
                 <UpdateProduct />

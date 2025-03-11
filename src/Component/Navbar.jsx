@@ -175,10 +175,12 @@ const Navbar = () => {
             )}
           </div>
           <div className="flex items-center space-x-3">
-            <FaUser
-              className="text-white cursor-pointer text-xl"
-              title="Login/Register"
-            />
+            <Link to="/dashboard">
+              <FaUser
+                className="text-white cursor-pointer text-xl"
+                title="Login/Register"
+              />
+            </Link>
             {user ? (
               <div
                 className="relative"

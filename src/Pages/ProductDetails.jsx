@@ -151,14 +151,14 @@ const ProductDetails = () => {
                 key={idx}
                 src={img}
                 alt={`Product thumbnail ${idx + 1}`}
-                className="w-20 h-20 cursor-pointer rounded-md border-2 hover:border-gadBlue"
+                className="w-20 2xl:w-28 h-20 2xl:h-28 cursor-pointer rounded-md border-2 hover:border-gadBlue"
                 onClick={() => setMainImage(img)}
               />
             ))}
           </div>
         </div>
         <div className="w-full md:w-[42%] 2xl:w-1/2">
-          <h1 className="text-xl md:text-3xl font-medium">
+          <h1 className="text-xl md:text-2xl 2xl:text-3xl font-medium">
             {gadgetData?.productName}
           </h1>
           <p
@@ -235,7 +235,9 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="mt-12">
-        <h2 className="text-2xl 2xl:text-3xl mb-4">Description</h2>
+        {gadgetData?.description && (
+          <h2 className="text-2xl 2xl:text-3xl mb-4">Description</h2>
+        )}
         {/* <div className="flex flex-col">
           <img
             src={gadgetData?.images[1] || gadgetData?.images[0]}
@@ -292,10 +294,10 @@ const ProductDetails = () => {
                   </h3>
                   <div className="flex items-center justify-between mt-2 text-xs 2xl:text-base">
                     <span className="text-gray-500 line-through">
-                      ৳{product.price}
+                      ৳{formatPrice(gadgetData?.price)}
                     </span>
                     <span className="text-green-600 font-semibold">
-                      ৳{product.discountPrice}
+                      ৳{formatPrice(gadgetData?.discountPrice)}
                     </span>
                   </div>
                   {product.inStock ? (

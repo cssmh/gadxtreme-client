@@ -84,10 +84,13 @@ const NewArrivals = () => {
                   </h3>
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-gray-500 line-through text-xs 2xl:text-sm">
-                      ৳{product.price}
+                      ৳{new Intl.NumberFormat("en-IN").format(product.price)}
                     </span>
                     <span className="text-green-600 font-semibold text-sm 2xl:text-base">
-                      ৳{product.discountPrice}
+                      ৳
+                      {new Intl.NumberFormat("en-IN").format(
+                        product.discountPrice
+                      )}
                     </span>
                   </div>
                   {product.inStock ? (

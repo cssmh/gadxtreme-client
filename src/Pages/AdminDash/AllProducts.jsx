@@ -1,15 +1,20 @@
 import swal from "sweetalert";
 import { getAllGadget, deleteGadget } from "../../Api/gadgets";
 import { Link } from "react-router-dom";
-import useFetchData from "../../hooks/useFetchData";
 import SkeletonRow from "./SkeletonRow";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const AllProducts = () => {
+  const [search, setSearch] = useState("");
   const {
     data: products,
     isLoading,
     refetch,
-  } = useFetchData(["allGadgets"], getAllGadget);
+  } = useQuery({
+    queryKey: ["allGadgets", search],
+    queryFn: () => getAllGadget(search),
+  });
 
   const handleDelete = async (id) => {
     const willDelete = await swal({
@@ -31,9 +36,21 @@ const AllProducts = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div>
-      <h1 className="text-xl 2xl:text-2xl font-bold mb-4">All Products</h1>
+      <h1 className="text-xl 2xl:text-2xl font-bold mb-2">All Products</h1>
+      <div className="mb-3">
+        <input
+          type="text"
+          onChange={handleSearch}
+          placeholder="Search users..."
+          className="px-4 py-2 2xl:py-[10px] border rounded-lg w-full focus:outline-none"
+        />
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-md shadow-lg overflow-hidden">
           <thead>
@@ -99,7 +116,9 @@ const AllProducts = () => {
                     <td className="gap-1 border-gray-300 px-4 py-2">
                       <div className="flex items-center gap-1">
                         <Link
-                          to={`/dashboard/update/${product._id}`}
+                          to={`/dashboard/update/${product?.productName
+                            .toLowerCase()
+                            .replaceAll(/\s+/g, "_")}/${product._id}`}
                           className="px-4 py-1 2xl:py-[6px] text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                         >
                           Edit

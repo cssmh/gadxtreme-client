@@ -6,16 +6,16 @@ import SkeletonHome from "./SkeletonHome";
 
 const BestSeller = () => {
   const { data, isLoading } = useFetchData(["bestSeller"], getBestSeller);
-const getSkeletonCount = () => {
-  if (window.innerWidth < 700) return 1;
-  if (window.innerWidth >= 768 && window.innerWidth < 1024) return 2;
-  return 3;
-};
+  const getSkeletonCount = () => {
+    if (window.innerWidth < 700) return 1;
+    if (window.innerWidth >= 768 && window.innerWidth < 1024) return 2;
+    return 3;
+  };
 
-const skeletonCount = getSkeletonCount();
+  const skeletonCount = getSkeletonCount();
   if (isLoading)
     return (
-      <div className="max-w-7xl 2xl:max-w-[90%] lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-5">
+      <div className="max-w-7xl 2xl:max-w-[90%] lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-5 my-6">
         {Array.from({ length: skeletonCount }).map((_, index) => (
           <SkeletonHome key={index} height={240} />
         ))}
@@ -83,11 +83,14 @@ const skeletonCount = getSkeletonCount();
                         : "text-green-600"
                     }`}
                   >
-                    ৳{product.price}
+                    ৳{new Intl.NumberFormat("en-IN").format(product.price)}
                   </span>
                   {product.discountPrice && (
                     <span className="2xl:text-lg text-green-600 font-semibold">
-                      ৳{product.discountPrice}
+                      ৳
+                      {new Intl.NumberFormat("en-IN").format(
+                        product.discountPrice
+                      )}
                     </span>
                   )}
                 </div>

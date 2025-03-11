@@ -29,7 +29,7 @@ const UserDataRow = ({ user, refetch }) => {
     } catch (error) {
       swal(error?.response?.data?.message, {
         icon: "error",
-        timer: 3000,
+        timer: 2000,
       });
     } finally {
       setIsModalOpen(false);
@@ -69,7 +69,7 @@ const UserDataRow = ({ user, refetch }) => {
       } catch (error) {
         swal(error?.response?.data?.message, {
           icon: "error",
-          timer: 3000,
+          timer: 2000,
         });
       }
     }

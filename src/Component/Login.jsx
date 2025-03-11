@@ -78,7 +78,9 @@ const Login = () => {
                 id="email"
                 type="email"
                 required
-                className="mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                className={`${
+                  email === "xtreme@user.com" && "text-gray-500"
+                } mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none`}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -94,7 +96,9 @@ const Login = () => {
                 id="password"
                 type={view ? "password" : "text"}
                 required
-                className="mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                className={`${
+                  password === "gaduser123" && "text-gray-500"
+                } mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none`}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
