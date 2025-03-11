@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { allCart } from "../../Api/admin";
 import useFetchData from "../../hooks/useFetchData";
 import SkeletonRow from "./SkeletonRow";
+import { toast } from "sonner";
 
 const AllCart = () => {
   const { data, isLoading, refetch } = useFetchData(["allCart"], allCart);
@@ -27,7 +28,7 @@ const AllCart = () => {
           refetch();
         }
       } catch (error) {
-        console.log(error);
+        toast.warning(error?.response?.data?.message);
       }
     }
   };

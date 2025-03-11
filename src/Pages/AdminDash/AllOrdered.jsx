@@ -21,7 +21,8 @@ const AllOrdered = () => {
       }
       refetch();
     } catch (error) {
-      console.error("Error updating order status:", error);
+      toast.warning(error?.response?.data?.message);
+      // console.error("Error updating order status:", error);
     }
   };
 
@@ -44,7 +45,7 @@ const AllOrdered = () => {
           refetch();
         }
       } catch (error) {
-        console.error("Error deleting order:", error);
+        toast.warning(error?.response?.data?.message);
       }
     }
   };

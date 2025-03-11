@@ -27,10 +27,7 @@ const UserDataRow = ({ user, refetch }) => {
         }
       }
     } catch (error) {
-      swal(error?.response?.data?.message, {
-        icon: "error",
-        timer: 2000,
-      });
+      toast.warning(error?.response?.data?.message);
     } finally {
       setIsModalOpen(false);
     }
@@ -40,9 +37,9 @@ const UserDataRow = ({ user, refetch }) => {
     if (role === "admin") {
       swal({
         title: "Action not allowed!",
-        text: "Downgrade to a regular user before deletion?",
+        text: "Downgrade to a regular user before deletion.",
         icon: "warning",
-        timer: 1000,
+        timer: 3000,
       });
       setIsModalOpen(true);
       return;
@@ -67,10 +64,7 @@ const UserDataRow = ({ user, refetch }) => {
           refetch();
         }
       } catch (error) {
-        swal(error?.response?.data?.message, {
-          icon: "error",
-          timer: 2000,
-        });
+        toast.warning(error?.response?.data?.message);
       }
     }
   };

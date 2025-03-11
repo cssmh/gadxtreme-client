@@ -149,7 +149,8 @@ const AddProduct = () => {
         timer: 2000,
       });
     } catch (error) {
-      console.log("Error submitting form:", error);
+      toast.warning(error?.response?.data?.message);
+      // console.log("Error submitting form:", error);
     } finally {
       setLoading(false);
     }

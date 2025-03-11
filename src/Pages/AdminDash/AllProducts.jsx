@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SkeletonRow from "./SkeletonRow";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const AllProducts = () => {
   const [search, setSearch] = useState("");
@@ -25,13 +26,17 @@ const AllProducts = () => {
       dangerMode: true,
     });
     if (willDelete) {
-      const res = await deleteGadget(id);
-      if (res.deletedCount > 0) {
-        swal("The product has been deleted.", {
-          icon: "success",
-          timer: 2000,
-        });
-        refetch();
+      try {
+        const res = await deleteGadget(id);
+        if (res.deletedCount > 0) {
+          swal("The product has been deleted.", {
+            icon: "success",
+            timer: 2000,
+          });
+          refetch();
+        }
+      } catch (error) {
+        toast.warning(error?.response?.data?.message);
       }
     }
   };

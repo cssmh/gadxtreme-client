@@ -25,7 +25,7 @@ const Banner = () => {
           spaceBetween={10}
         >
           <SwiperSlide>
-            <Link to="/category/earbuds">
+            <Link to="/category/best%20seller">
               <img
                 src={assets.ramadanBanner}
                 alt="Brand Day"
@@ -34,7 +34,7 @@ const Banner = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link to="/category/earphones%20&%20headphones">
+            <Link to="/details/iphone_16_pro_max/6759a3f4c4cc9a848286cba9">
               <img
                 src={assets.iphone16}
                 alt="Best Mobile Protection"
@@ -43,7 +43,7 @@ const Banner = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link to="/category/mobile%20accessories">
+            <Link to="/details/galaxy_s25_ultra_5g/67d06998d74ef252c73a4d98">
               <img
                 src={assets.s25}
                 alt="Premium"
@@ -52,7 +52,7 @@ const Banner = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link to="/category/mobile%20accessories">
+            <Link to="/category/smartwatch">
               <img
                 src={assets.zeblaze}
                 alt="Premium"
@@ -78,7 +78,7 @@ const Banner = () => {
             spaceBetween={10}
           >
             <SwiperSlide>
-              <Link to="/category/earbuds">
+              <Link to="/category/best%20seller">
                 <img
                   src={assets.ramadanBanner}
                   alt="Brand Day"
@@ -87,7 +87,7 @@ const Banner = () => {
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <Link to="/category/earphones%20&%20headphones">
+              <Link to="/details/iphone_16_pro_max/6759a3f4c4cc9a848286cba9">
                 <img
                   src={assets.iphone16}
                   alt="Best Mobile Protection"
@@ -96,7 +96,7 @@ const Banner = () => {
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <Link to="/category/lifestyle">
+              <Link to="/details/galaxy_s25_ultra_5g/67d06998d74ef252c73a4d98">
                 <img
                   src={assets.s25}
                   alt="Best Mobile Protection"
@@ -105,7 +105,7 @@ const Banner = () => {
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <Link to="/category/lifestyle">
+              <Link to="/category/smartwatch">
                 <img
                   src={assets.zeblaze}
                   alt="Best Mobile Protection"

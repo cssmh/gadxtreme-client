@@ -4,6 +4,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import swal from "sweetalert";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { updateGadget } from "../../Api/admin";
+import { toast } from "sonner";
 
 const categories = [
   "Earbuds",
@@ -153,7 +154,8 @@ const UpdateProduct = () => {
       });
       navigate(-1);
     } catch (error) {
-      console.log("Error updating product:", error);
+      toast.warning(error?.response?.data?.message);
+      // console.log("Error updating product:", error);
     } finally {
       setLoading(false);
     }

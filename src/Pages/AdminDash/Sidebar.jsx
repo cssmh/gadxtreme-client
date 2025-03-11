@@ -47,7 +47,7 @@ const Sidebar = () => {
     {
       to: "/dashboard/pending-reviews",
       icon: <FaRegListAlt />,
-      label: `Pending Review (${total})`,
+      label: `Pending Review (${total || 0})`,
     },
     {
       to: "/dashboard/my-reviews",
