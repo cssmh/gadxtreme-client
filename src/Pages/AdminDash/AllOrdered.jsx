@@ -51,33 +51,21 @@ const AllOrdered = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-bold mb-4">All Orders</h1>
+      <h1 className="text-xl 2xl:text-2xl font-bold mb-4">All Orders</h1>
       <div className="overflow-x-auto bg-white rounded-md">
         <table className="min-w-full table-auto border-collapse">
           <thead className="bg-gray-200 text-sm text-gray-600">
-            <tr>
-              <th className="px-3 py-3 text-left text-sm font-semibold">#</th>
-              <th className="px-3 py-3 text-left text-sm font-semibold">
-                Customer
-              </th>
-              <th className="px-3 py-3 text-left text-sm font-semibold">
-                Items
-              </th>
-              <th className="px-3 py-3 text-left text-sm font-semibold">
-                Total
-              </th>
-              <th className="px-3 py-3 text-left text-sm font-semibold">
-                Status
-              </th>
+            <tr className="text-sm 2xl:text-base">
+              <th className="px-3 py-3 text-left font-semibold">#</th>
+              <th className="px-3 py-3 text-left font-semibold">Customer</th>
+              <th className="px-3 py-3 text-left font-semibold">Items</th>
+              <th className="px-3 py-3 text-left font-semibold">Total</th>
+              <th className="px-3 py-3 text-left font-semibold">Status</th>
               <th className="px-3 py-3 text-center text-sm font-semibold">
                 Payment
               </th>
-              <th className="px-3 py-3 text-left text-sm font-semibold">
-                Date
-              </th>
-              <th className="px-3 py-3 text-left text-sm font-semibold">
-                Action
-              </th>
+              <th className="px-3 py-3 text-left font-semibold">Date</th>
+              <th className="px-3 py-3 text-left font-semibold">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -88,12 +76,10 @@ const AllOrdered = () => {
               : orders.map((order, idx) => (
                   <tr
                     key={order._id}
-                    className="hover:bg-gray-50 transition-colors duration-200"
+                    className="hover:bg-gray-50 transition-colors duration-200 text-sm 2xl:text-base"
                   >
-                    <td className="px-3 py-4 text-sm text-gray-700">
-                      {idx + 1}
-                    </td>
-                    <td className="px-3 py-4 text-sm text-gray-700">
+                    <td className="px-3 py-4 text-gray-700">{idx + 1}</td>
+                    <td className="px-3 py-4 text-gray-700">
                       <Link
                         to={`/dashboard/order-details/${order?.cartItems[0]?.name
                           ?.toLowerCase()
@@ -103,7 +89,7 @@ const AllOrdered = () => {
                         {order.name}
                       </Link>
                     </td>
-                    <td className="px-2 py-4 lg:w-[250px] text-sm text-gray-700 whitespace-normal break-words max-h-[100px] overflow-y-auto">
+                    <td className="px-2 py-4 lg:w-[250px] 2xl:w-[300px] text-gray-700 whitespace-normal break-words max-h-[100px] overflow-y-auto">
                       {order.cartItems.map((item) => (
                         <div
                           key={item.gadgetId}
@@ -116,7 +102,7 @@ const AllOrdered = () => {
                         </div>
                       ))}
                     </td>
-                    <td className="px-3 py-4 text-sm text-gray-700 font-medium">
+                    <td className="px-3 py-4 text-gray-700 font-medium">
                       ৳
                       {order.cartItems.reduce(
                         (total, item) => total + item.price * item.quantity,
@@ -124,7 +110,7 @@ const AllOrdered = () => {
                       )}
                     </td>
                     <td
-                      className={`px-3 py-4 text-sm font-medium ${
+                      className={`px-3 py-4 font-medium ${
                         order.status === "Pending"
                           ? "text-red-500"
                           : order.status === "Delivered"
@@ -141,7 +127,7 @@ const AllOrdered = () => {
                         <FaTimes className="text-red-500 text-lg" />
                       )}
                     </td>
-                    <td className="px-3 py-4 text-sm text-gray-500">
+                    <td className="px-3 py-4 text-gray-500">
                       <p>
                         {new Date(order.orderPlaced).toLocaleDateString(
                           "en-GB"
@@ -153,7 +139,7 @@ const AllOrdered = () => {
                         })}
                       </p>
                     </td>
-                    <td className="px-3 py-4 text-sm">
+                    <td className="px-3 py-4">
                       <button
                         onClick={() => handleDelete(order._id)}
                         className="bg-red-200 font-semibold py-2 px-3 rounded min-w-[140px] text-center flex items-center justify-center gap-2"
@@ -163,7 +149,7 @@ const AllOrdered = () => {
                       {order.status === "Pending" ? (
                         <button
                           onClick={() => updateOrderToDelivered(order._id)}
-                          className="bg-teal-200 font-semibold py-2 px-3 rounded min-w-[140px] text-center"
+                          className="bg-blue-200 font-semibold py-2 px-3 rounded min-w-[140px] text-center"
                         >
                           Mark as Delivered
                         </button>

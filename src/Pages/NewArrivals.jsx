@@ -41,7 +41,7 @@ const NewArrivals = () => {
     );
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-3 lg:px-0 py-3 md:py-6">
+    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-3 lg:px-0 py-3 md:py-4">
       <h2 className="text-xl lg:text-2xl 2xl:text-3xl font-bold mb-6 text-center">
         <span className="text-[#00a9e1]">New</span> Arrivals
       </h2>

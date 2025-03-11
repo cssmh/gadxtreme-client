@@ -34,11 +34,13 @@ const AllCart = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-800 mb-4">All Cart Items</h1>
+      <h1 className="text-xl 2xl:text-2xl font-bold text-gray-800 mb-4">
+        All Cart Items
+      </h1>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-gray-600 text-left text-sm">
+            <tr className="bg-gray-200 text-gray-600 text-left text-sm 2xl:text-base">
               <th className="px-6 py-3">Image</th>
               <th className="px-6 py-3">Name</th>
               <th className="px-6 py-3">Price</th>
@@ -56,13 +58,13 @@ const AllCart = () => {
               : data.map((item) => (
                   <tr
                     key={item._id}
-                    className="border-b hover:bg-gray-50 transition duration-200 text-sm"
+                    className="border-b hover:bg-gray-50 transition duration-200 text-sm 2xl:text-base"
                   >
                     <td className="px-6 py-4">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-12 h-12 rounded object-cover"
+                        className="w-12 2xl:w-16 h-12 2xl:h-16 rounded object-cover"
                       />
                     </td>
                     <td className="px-6 py-4 hover:underline text-gray-800">
@@ -90,7 +92,7 @@ const AllCart = () => {
                     <td className="px-6 py-4 text-right">
                       <button
                         onClick={() => handleDelete(item._id)}
-                        className="px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600 transition duration-300"
+                        className="px-4 py-2 text-sm text-white rounded-md bg-red-500 hover:bg-red-600 transition duration-300"
                       >
                         Delete
                       </button>

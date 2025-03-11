@@ -97,19 +97,19 @@ const UserDataRow = ({ user, refetch }) => {
 
   return (
     <>
-      <tr className="hover:bg-gray-50 transition duration-200 text-sm">
+      <tr className="hover:bg-gray-50 transition duration-200 text-sm 2xl:text-base">
         <td className="px-3 py-4 whitespace-nowrap flex items-center space-x-4">
           <img
             src={user.photo}
             alt={user.name}
-            className="w-10 h-10 rounded-full p-[1px] border border-teal-500 shadow-sm"
+            className="w-10 2xl:w-12 h-10 2xl:h-12 rounded-full p-[1px] border border-teal-500 shadow-sm"
           />
           <span className="font-medium text-gray-800">{user.name}</span>
         </td>
         <td className="px-4 py-4 whitespace-nowrap text-gray-600">
           {user.email}
         </td>
-        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td className="px-4 py-4 whitespace-nowrap text-sm 2xl:text-base text-gray-500">
           <div>
             <div className="font-medium text-gray-700">
               {new Date(parseInt(user?.timestamp[0], 10)).toLocaleString(
@@ -143,7 +143,7 @@ const UserDataRow = ({ user, refetch }) => {
         </td>
         <td className="px-2 py-4 whitespace-nowrap text-center">
           <span
-            className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+            className={`inline-block px-3 py-1 rounded-full text-xs 2xl:text-sm font-medium ${
               user.role === "admin"
                 ? "bg-green-100 text-green-700"
                 : "bg-blue-100 text-blue-800"
@@ -155,7 +155,7 @@ const UserDataRow = ({ user, refetch }) => {
         <td className="px-4 py-4 whitespace-nowrap text-right space-x-2">
           <button
             onClick={handleRoleUpdate}
-            className={`px-3 py-1 text-white ${
+            className={`px-3 py-1 2xl:px-4 2xl:py-2 text-white ${
               user?.role === "admin" ? "bg-green-600" : "bg-blue-800"
             } rounded-lg focus:outline-none transition-all duration-200`}
           >
@@ -167,7 +167,7 @@ const UserDataRow = ({ user, refetch }) => {
           </button>
           <button
             onClick={() => handleDelete(user._id, user.role)}
-            className="px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none transition-all duration-200"
+            className="px-3 py-1 2xl:px-4 2xl:py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none transition-all duration-200"
           >
             <FaTrashAlt size={16} />
           </button>

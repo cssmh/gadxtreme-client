@@ -161,7 +161,9 @@ const UpdateProduct = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-800 mb-4">Update Product</h1>
+      <h1 className="text-xl 2xl:text-2xl font-bold text-gray-800 mb-4">
+        Update Product
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="w-full flex flex-col lg:flex-row gap-2 md:gap-4">
           <div className="lg:w-1/2">
@@ -178,7 +180,7 @@ const UpdateProduct = () => {
               required
               value={formData.productName}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
           <div className="lg:w-1/2">
@@ -194,7 +196,7 @@ const UpdateProduct = () => {
               required
               value={formData.category}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 2xl:text-lg border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             >
               <option value="">Select a category</option>
               {categories.map((category) => (
@@ -220,7 +222,7 @@ const UpdateProduct = () => {
               required
               value={formData.price}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
           <div className="w-full lg:w-1/3">
@@ -236,15 +238,15 @@ const UpdateProduct = () => {
               id="discountPrice"
               value={formData.discountPrice}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
-          <div className="flex items-center justify-center gap-4 p-4">
+          <div className="flex items-center justify-center gap-4 p-4 2xl:text-lg">
             <label
               className="label text-gray-700 font-semibold"
               htmlFor="inStock"
             >
-              <span className="label-text">In Stock:</span>
+              <span className="label-text 2xl:text-base">In Stock:</span>
             </label>
             <input
               type="checkbox"
@@ -273,7 +275,7 @@ const UpdateProduct = () => {
             id="keyFeatures"
             value={keyFeatures.join(", ")}
             onChange={handleKeyFeatureChange}
-            className="w-full mb-2 p-2 border rounded-md outline-none focus:border-blue-300"
+            className="w-full mb-2 p-2 2xl:p-3 border rounded-md outline-none focus:border-blue-300"
             placeholder="Enter key features separated by commas"
           />
         </div>
@@ -295,7 +297,7 @@ const UpdateProduct = () => {
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-20 lg:w-36 h-16 lg:h-28 border border-gray-300 rounded-lg flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
+                className="w-20 lg:w-32 h-16 lg:h-[88px] border border-gray-300 rounded-lg flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
@@ -327,7 +329,7 @@ const UpdateProduct = () => {
             id="description"
             value={formData.description}
             onChange={handleInputChange}
-            rows="6"
+            rows="5"
             className="w-full p-2 border rounded-md outline-none focus:border-blue-300"
           ></textarea>
         </div>
@@ -336,9 +338,9 @@ const UpdateProduct = () => {
           disabled={loading}
           className={`w-full mt-4 ${
             loading ? "bg-gray-800" : "bg-teal-500"
-          } text-white py-2 rounded-md`}
+          } text-white py-[9px] 2xl:py-3 rounded-md`}
         >
-          <div className="flex justify-center items-center py-[2px]">
+          <div className="flex justify-center 2xl:text-lg items-center py-[2px]">
             {loading ? (
               <p className="flex items-center">
                 Updating.. <CgSpinnerTwo className="animate-spin text-lg" />

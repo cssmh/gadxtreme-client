@@ -5,18 +5,11 @@ import {
   FaClipboardList,
   FaCartPlus,
 } from "react-icons/fa";
-import useAuth from "../../hooks/useAuth";
 import { motion } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
-import { myDashboard } from "../../Api/cartGadget";
+import useUserCount from "../../hooks/useUserCount";
 
 const UserDashboard = () => {
-  const { loading, user } = useAuth();
-  const { data } = useQuery({
-    queryKey: ["userCount", user?.email],
-    queryFn: () => myDashboard(user?.email),
-    enabled: !loading && !!user?.email,
-  });
+  const { user, isLoading, data } = useUserCount();
 
   return (
     <div>

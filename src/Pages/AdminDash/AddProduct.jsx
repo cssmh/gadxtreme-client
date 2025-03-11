@@ -157,12 +157,14 @@ const AddProduct = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-800 mb-4">Add a Product</h1>
+      <h1 className="text-xl 2xl:text-2xl font-bold text-gray-800 mb-4">
+        Add a Product
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="w-full flex flex-col lg:flex-row gap-2 md:gap-4">
           <div className="lg:w-1/2">
             <label
-              className="block text-gray-700 font-semibold mb-2"
+              className="block text-gray-700 font-semibold mb-2 2xl:text-lg"
               htmlFor="productName"
             >
               Product Name:
@@ -174,12 +176,12 @@ const AddProduct = () => {
               required
               value={formData.productName}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
           <div className="lg:w-1/2">
             <label
-              className="block text-gray-700 font-semibold mb-2"
+              className="block text-gray-700 font-semibold mb-2 2xl:text-lg"
               htmlFor="category"
             >
               Category:
@@ -190,7 +192,7 @@ const AddProduct = () => {
               required
               value={formData.category}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 2xl:text-lg border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             >
               <option value="">Select a category</option>
               {categories.map((category) => (
@@ -204,7 +206,7 @@ const AddProduct = () => {
         <div className="flex flex-wrap items-center gap-4 mt-4">
           <div className="w-full lg:w-1/3">
             <label
-              className="block text-gray-700 font-semibold mb-2"
+              className="block text-gray-700 font-semibold mb-2 2xl:text-lg"
               htmlFor="price"
             >
               Price (৳):
@@ -216,12 +218,12 @@ const AddProduct = () => {
               required
               value={formData.price}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
           <div className="w-full lg:w-1/3">
             <label
-              className="block text-gray-700 font-semibold mb-2"
+              className="block text-gray-700 font-semibold mb-2 2xl:text-lg"
               htmlFor="discountPrice"
             >
               Discount Price (৳):
@@ -232,15 +234,15 @@ const AddProduct = () => {
               id="discountPrice"
               value={formData.discountPrice}
               onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
-          <div className="flex items-center justify-center gap-4 p-4">
+          <div className="flex items-center justify-center gap-4 p-4 2xl:text-lg">
             <label
               className="label text-gray-700 font-semibold"
               htmlFor="inStock"
             >
-              <span className="label-text">In Stock:</span>
+              <span className="label-text 2xl:text-base">In Stock:</span>
             </label>
             <input
               type="checkbox"
@@ -270,7 +272,7 @@ const AddProduct = () => {
                 type="text"
                 value={keyFeatures[index]}
                 onChange={(e) => handleKeyFeatureChange(index, e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
+                className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-blue-500 outline-none"
                 placeholder="Key features"
               />
             ))}
@@ -278,7 +280,7 @@ const AddProduct = () => {
         </div>
         <div className="mt-4">
           <label
-            className="block text-gray-700 font-semibold mb-2"
+            className="block text-gray-700 font-semibold mb-2 2xl:text-lg"
             htmlFor="images"
           >
             Product Images (Max 4):
@@ -290,11 +292,11 @@ const AddProduct = () => {
             onChange={handleImageChange}
             accept="image/*"
           />
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-4 flex-wrap">
             {selectedImages.map((image, index) => (
               <div
                 key={index}
-                className="w-20 lg:w-36 h-16 lg:h-28 border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
+                className="w-20 lg:w-32 h-16 lg:h-[88px] border border-gray-300 rounded-md flex items-center justify-center cursor-pointer focus:border-blue-300 transition-all duration-300"
                 onClick={() => handleBoxClick(index)}
               >
                 {image ? (
@@ -314,7 +316,7 @@ const AddProduct = () => {
         </div>
         <div className="mt-4">
           <label
-            className="block text-gray-700 font-semibold mb-2"
+            className="block text-gray-700 font-semibold mb-2 2xl:text-lg"
             htmlFor="description"
           >
             Product Description:
@@ -333,9 +335,9 @@ const AddProduct = () => {
           disabled={loading}
           className={`w-full mt-4 ${
             loading ? "bg-gray-800" : "bg-teal-500"
-          } text-white py-[9px] rounded-md`}
+          } text-white py-[9px] 2xl:py-3 rounded-md`}
         >
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center 2xl:text-lg items-center">
             {loading ? (
               <p className="flex items-center">
                 Submitting.. <CgSpinnerTwo className="animate-spin text-lg" />

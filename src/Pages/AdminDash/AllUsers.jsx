@@ -21,13 +21,15 @@ const AllUsers = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-gray-800 mb-2">All Users</h1>
+      <h1 className="text-xl 2xl:text-2xl font-semibold text-gray-800 mb-2">
+        All Users
+      </h1>
       <div className="mb-3">
         <input
           type="text"
           onChange={handleSearch}
           placeholder="Search users..."
-          className="px-4 py-2 border rounded-lg w-full focus:outline-none"
+          className="px-4 py-2 2xl:py-[10px] border rounded-lg w-full focus:outline-none"
         />
       </div>
       <div className="border rounded-lg overflow-x-auto">
@@ -38,7 +40,9 @@ const AllUsers = () => {
                 (header) => (
                   <th
                     key={header}
-                    className="px-5 py-1 md:py-[10px] text-left text-sm uppercase"
+                    className={`${
+                      header === "Actions" && "text-right"
+                    } px-5 py-1 md:py-[10px] text-left text-sm 2xl:text-base uppercase`}
                   >
                     {header}
                   </th>
