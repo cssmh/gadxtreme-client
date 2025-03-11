@@ -159,7 +159,7 @@ const NavNew = () => {
             >
               <Link
                 to="/dashboard"
-                className="hidden lg:block text-gray-500 md:py-2 font-medium cursor-pointer"
+                className="hidden 2xl:text-lg lg:block text-gray-500 md:py-2 font-medium cursor-pointer"
               >
                 Hi, {user?.displayName || "Anonymous"}
               </Link>
@@ -196,7 +196,7 @@ const NavNew = () => {
           ) : (
             <Link
               to="/login"
-              className="hidden lg:block text-sm md:text-base text-gray-500 font-medium"
+              className="hidden lg:block text-sm md:text-base 2xl:text-lg text-gray-500 font-medium"
             >
               Login/Register
             </Link>

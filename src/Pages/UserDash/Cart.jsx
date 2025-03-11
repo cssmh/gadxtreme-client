@@ -69,8 +69,7 @@ const Cart = () => {
   };
 
   const handleApplyCoupon = () => {
-    toast.success("Coupon applied");
-    showNotification("Coupon applied successfully!", "success");
+    toast.success("Wrong Coupon!");
   };
 
   const calculateSubtotal = (price, quantity) => {
@@ -97,7 +96,7 @@ const Cart = () => {
               <div className="hidden md:block">
                 <table className="w-full text-left">
                   <thead>
-                    <tr className="border-b">
+                    <tr className="border-b 2xl:text-lg">
                       <th className="py-3 px-2">Product</th>
                       <th className="py-3 px-2">Price</th>
                       <th className="py-3 px-2">Quantity</th>
@@ -106,8 +105,8 @@ const Cart = () => {
                   </thead>
                   <tbody>
                     {myCartData.map((item) => (
-                      <tr key={item._id} className="border-b">
-                        <td className="py-4 flex items-center">
+                      <tr key={item._id} className="border-b 2xl:text-lg">
+                        <td className="py-4 2xl:py-5 flex items-center">
                           <FaTimes
                             className="cursor-pointer mr-3"
                             onClick={() => handleRemove(item._id)}
@@ -115,7 +114,7 @@ const Cart = () => {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="w-16 h-16 object-cover mr-3"
+                            className="w-16 2xl:w-20 h-16 2xl:h-20 object-cover mr-3"
                           />
                           <span>{item.name}</span>
                         </td>
@@ -204,9 +203,9 @@ const Cart = () => {
               </div>
             </>
           ) : (
-            <p className="py-3">Your cart is empty.</p>
+            <p className="py-3 2xl:text-lg">Your cart is empty.</p>
           )}
-          <div className="mt-6">
+          <div className="mt-6 2xl:text-lg">
             <h3 className="font-semibold mb-2">Have a Coupon?</h3>
             <div className="flex flex-col sm:flex-row gap-2">
               <input
@@ -226,8 +225,8 @@ const Cart = () => {
           </div>
         </div>
         <div className="lg:w-[30%] w-full border p-4 rounded-lg lg:self-start pb-5">
-          <h2 className="text-xl font-bold mb-4">Cart Totals</h2>
-          <div className="flex justify-between border-b py-2">
+          <h2 className="text-xl 2xl:text-2xl font-bold mb-4">Cart Totals</h2>
+          <div className="flex justify-between border-b py-2 2xl:text-lg">
             <span>Subtotal</span>
             <span>
               ৳
@@ -239,7 +238,7 @@ const Cart = () => {
                 .toFixed(2)}
             </span>
           </div>
-          <div className="flex justify-between border-b py-2 ">
+          <div className="flex justify-between border-b py-2 2xl:text-lg">
             <span>Shipping</span>
             <div className="text-right">
               <p className="text-gadDarkBlue font-semibold">
@@ -251,7 +250,7 @@ const Cart = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-between py-2 font-semibold text-gadDarkBlue text-lg">
+          <div className="flex justify-between py-2 font-semibold text-gadDarkBlue text-lg 2xl:text-xl">
             <span>Total</span>
             <span>
               ৳
@@ -263,20 +262,20 @@ const Cart = () => {
               ).toFixed(2)}
             </span>
           </div>
-          {myCartData?.length > 0 ? (
-            <Link to="/checkout">
-              <button className="w-full mt-4 bg-gadDarkBlue text-white py-2 rounded">
-                Proceed to Checkout
-              </button>
-            </Link>
-          ) : (
-            <button
-              className="w-full mt-4 bg-gray-400 text-white py-2 rounded"
-              disabled
-            >
-              Proceed to Checkout
-            </button>
-          )}
+          <button
+            className={`w-full mt-4 py-2 rounded text-white ${
+              myCartData?.length > 0
+                ? "bg-gadDarkBlue 2xl:text-lg 2xl:py-[10px]"
+                : "bg-gray-400 2xl:p-3"
+            }`}
+            disabled={!myCartData?.length}
+          >
+            {myCartData?.length > 0 ? (
+              <Link to="/checkout">Proceed to Checkout</Link>
+            ) : (
+              "Proceed to Checkout"
+            )}
+          </button>
         </div>
       </div>
     </div>

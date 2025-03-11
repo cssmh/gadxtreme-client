@@ -133,9 +133,11 @@ const Checkout = () => {
   return (
     <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4">
       <div className="lg:w-[60%] w-full border px-4 pb-4 rounded-lg">
-        <h2 className="text-xl font-semibold my-3">Billing & Shipping</h2>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className="mb-4">
+        <h2 className="text-xl 2xl:text-2xl font-semibold my-3">
+          Billing & Shipping
+        </h2>
+        <form onSubmit={(e) => e.preventDefault()} className="2xl:text-xl">
+          <div className="mb-4 2xl:mb-6">
             <label className="block mb-2 font-medium">Name *</label>
             <input
               type="text"
@@ -146,7 +148,7 @@ const Checkout = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 2xl:mb-6">
             <label className="block mb-2 font-medium">Mobile Number *</label>
             <input
               type="text"
@@ -158,7 +160,7 @@ const Checkout = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 2xl:mb-6">
             <label className="block mb-2 font-medium">Country / Region *</label>
             <select
               name="country"
@@ -169,7 +171,7 @@ const Checkout = () => {
               <option value="Bangladesh">Bangladesh</option>
             </select>
           </div>
-          <div className="mb-4">
+          <div className="mb-4 2xl:mb-6">
             <label className="block mb-2 font-medium">District *</label>
             <select
               name="district"
@@ -190,7 +192,7 @@ const Checkout = () => {
               <option value="Tangail">Tangail</option>
             </select>
           </div>
-          <div className="mb-4">
+          <div className="mb-4 2xl:mb-6">
             <label className="block mb-2 font-medium">Address *</label>
             <input
               type="text"
@@ -202,7 +204,7 @@ const Checkout = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 2xl:mb-6">
             <label className="block mb-2 font-medium">Email (optional)</label>
             <input
               type="email"
@@ -212,7 +214,7 @@ const Checkout = () => {
               className="w-full border rounded-lg p-2 outline-none"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 2xl:mb-6">
             <label className="block mb-2 font-medium">
               Additional information (Note)
             </label>
@@ -228,7 +230,7 @@ const Checkout = () => {
         </form>
       </div>
       <div className="lg:w-[40%] bg-[#f7f7f7] w-full border p-4 rounded-lg lg:self-start pb-6">
-        <h2 className="text-xl font-semibold mb-4">Your Order</h2>
+        <h2 className="text-xl 2xl:text-2xl font-semibold mb-4">Your Order</h2>
         {myCartData?.length > 0 ? (
           <div>
             {myCartData.map((item) => (
@@ -241,15 +243,17 @@ const Checkout = () => {
                     />
                     <div className="flex justify-between">
                       <div>
-                        <span className="text-sm">{item.name}</span> x{" "}
-                        <span>{quantities[item._id]}</span>
+                        <span className="text-sm 2xl:text-base">
+                          {item.name}
+                        </span>{" "}
+                        x <span>{quantities[item._id]}</span>
                       </div>
                       <span>
                         ৳{(item.price * quantities[item._id]).toFixed(2)}
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center mt-2">
+                  <div className="flex items-center mt-2 2xl:text-lg">
                     <button
                       onClick={() => handleDecrement(item._id)}
                       className="px-3 py-1 border bg-gray-200 rounded-l-lg"
@@ -270,7 +274,7 @@ const Checkout = () => {
               </div>
             ))}
             <div className="border-t pt-4">
-              <div className="flex justify-between py-2">
+              <div className="flex justify-between py-2 2xl:text-lg">
                 <span className="font-semibold">Subtotal</span>
                 <span>
                   ৳
@@ -282,7 +286,7 @@ const Checkout = () => {
                     .toFixed(2)}
                 </span>
               </div>
-              <div className="flex justify-between py-2 font-semibold text-gadDarkBlue text-lg">
+              <div className="flex 2xl:text-2xl justify-between py-2 font-semibold text-gadDarkBlue text-lg">
                 <span className="font-semibold">Total</span>
                 <span>
                   ৳
@@ -300,7 +304,7 @@ const Checkout = () => {
               disabled={isSubmitting}
               className={`w-full mt-4 ${
                 isSubmitting ? "bg-gray-500" : "bg-gadDarkBlue"
-              } text-white py-2 rounded`}
+              } text-white py-2 2xl:text-lg 2xl:py-[10px] rounded`}
             >
               {isSubmitting ? "Order Placing..." : "Place Order"}
             </button>

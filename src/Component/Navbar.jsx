@@ -185,7 +185,7 @@ const Navbar = () => {
               >
                 <Link
                   to="/dashboard"
-                  className="text-white font-semibold md:py-4 cursor-pointer"
+                  className="text-white font-semibold 2xl:text-lg md:py-4 cursor-pointer"
                 >
                   Hi, {user?.displayName || "Anonymous"}
                 </Link>
@@ -220,7 +220,10 @@ const Navbar = () => {
                 )}
               </div>
             ) : (
-              <Link to="/login" className="text-white font-semibold">
+              <Link
+                to="/login"
+                className="text-white font-semibold 2xl:text-lg"
+              >
                 Login/Register
               </Link>
             )}

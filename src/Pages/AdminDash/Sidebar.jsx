@@ -78,7 +78,7 @@ const Sidebar = () => {
       <Link
         key={to}
         to={to}
-        className={`flex items-center py-[11px] pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+        className={`flex items-center py-[11px] 2xl:py-4 2xl:text-xl pl-3 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
           loc.pathname === to ? "bg-teal-50 text-teal-600" : ""
         }`}
         onClick={() => setIsSidebarOpen(false)}
@@ -103,11 +103,11 @@ const Sidebar = () => {
         </Link>
       </div>
       <div
-        className={`flex flex-col bg-white py-1 shadow-xl fixed z-50 top-0 left-0 h-full w-60 transform transition-transform duration-300 ease-in-out ${
+        className={`flex flex-col bg-white py-1 shadow-xl fixed z-50 top-0 left-0 h-full w-60 2xl:w-80 transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
-        <div className="px-4 border-b border-gray-200">
+        <div className="px-4 2xl:px-6 border-b border-gray-200 2xl:pt-2">
           <Link to="/" className="hidden lg:block">
             <div className="w-full hidden lg:flex px-4 py-2 shadow-md rounded-lg justify-center items-center bg-teal-50 mx-auto">
               <img src={assets.gadget} className="h-14" alt="Logo" />
@@ -115,18 +115,20 @@ const Sidebar = () => {
           </Link>
           {user && (
             <div className="px-1 my-3 text-gray-700">
-              <span className="text-lg font-semibold">
+              <span className="text-lg 2xl:text-xl font-semibold">
                 Hi, {user?.displayName || "User"}
               </span>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm 2xl:text-base text-gray-500">
                 {isAdmin && showAdminRoutes ? "Admin" : "User"}
               </p>
             </div>
           )}
         </div>
         {isAdmin && (
-          <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-teal-50">
-            <span className="text-sm text-gray-700">Admin Routes</span>
+          <div className="flex items-center justify-between px-5 2xl:px-7 py-3 border-b border-gray-200 bg-teal-50">
+            <span className="text-sm 2xl:text-base text-gray-700">
+              Admin Routes
+            </span>
             <button
               onClick={handleAdminToggle}
               className={`text-sm px-3 py-1 rounded-lg transition ${
@@ -148,7 +150,7 @@ const Sidebar = () => {
           <NavLink
             to="/dashboard/profile"
             className={({ isActive }) =>
-              `flex items-center py-2 pl-5 rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
+              `flex items-center py-2 pl-5 2xl:text-xl rounded-lg transition-colors duration-200 text-gray-700 hover:bg-teal-50 ${
                 isActive ? "bg-teal-50 text-teal-600 font-semibold" : ""
               }`
             }
@@ -159,7 +161,7 @@ const Sidebar = () => {
           </NavLink>
           <button
             onClick={handleLogout}
-            className="flex items-center py-3 pl-5 text-red-600 rounded-lg hover:bg-red-50 transition-colors duration-200 w-full"
+            className="flex items-center py-3 2xl:py-4 2xl:text-xl pl-5 text-red-600 rounded-lg hover:bg-red-50 transition-colors duration-200 w-full"
           >
             <RiLogoutBoxLine className="mr-3 text-xl" />
             Logout
