@@ -44,6 +44,21 @@ const Login = () => {
     }
   };
 
+  const handleResetPassword = async () => {
+    if (!email) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+
+    try {
+      await resetPassword(email);
+      toast.success("Password reset email sent. Please check your inbox.");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to send password reset email. Please try again.");
+    }
+  };
+
   return (
     <div className="flex flex-col lg:flex-row max-w-6xl 2xl:max-w-[85%] 2xl:min-h-[80vh] mx-auto mb-2 md:mb-0">
       <div className="w-full lg:w-1/2 flex items-center justify-center md:py-12 px-4 lg:px-20">
@@ -106,7 +121,7 @@ const Login = () => {
               </label>
               <Link
                 to="#"
-                onClick={resetPassword}
+                onClick={handleResetPassword}
                 className="text-sm text-indigo-600 hover:underline"
               >
                 Lost your password?

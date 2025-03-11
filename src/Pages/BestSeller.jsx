@@ -28,7 +28,7 @@ const skeletonCount = getSkeletonCount();
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-xl lg:text-2xl 2xl:text-3xl font-bold text-center text-teal-500 mb-4"
+        className="text-xl lg:text-2xl 2xl:text-3xl font-bold text-center mb-2"
       >
         Best Sellers
       </motion.h2>
@@ -69,7 +69,7 @@ const skeletonCount = getSkeletonCount();
                 )}
               </div>
               <div className="p-4 space-y-2">
-                <h3 className="text-xl 2xl:text-2xl font-semibold text-gray-800">
+                <h3 className="text-lg 2xl:text-xl font-semibold text-gray-800">
                   {product.productName}
                 </h3>
                 <p className="text-gray-600 text-sm 2xl:text-base">
@@ -77,7 +77,7 @@ const skeletonCount = getSkeletonCount();
                 </p>
                 <div className="flex items-center justify-between mt-2">
                   <span
-                    className={`text-lg font-semibold ${
+                    className={`2xl:text-lg font-semibold ${
                       product.discountPrice
                         ? "line-through text-gray-500"
                         : "text-green-600"
@@ -86,13 +86,13 @@ const skeletonCount = getSkeletonCount();
                     ৳{product.price}
                   </span>
                   {product.discountPrice && (
-                    <span className="text-lg text-green-600 font-semibold">
+                    <span className="2xl:text-lg text-green-600 font-semibold">
                       ৳{product.discountPrice}
                     </span>
                   )}
                 </div>
                 <ul className="mt-2 text-sm 2xl:text-base text-gray-600 space-y-1">
-                  {product.keyFeatures.map((feature, i) => (
+                  {product?.keyFeatures?.map((feature, i) => (
                     <li key={i}>&bull; {feature}</li>
                   ))}
                 </ul>
