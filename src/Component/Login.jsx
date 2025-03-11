@@ -10,8 +10,8 @@ const Login = () => {
   const [view, setView] = useState(true);
   const [loading, setLoading] = useState(false);
   const { login, googleLogin, resetPassword } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("xtreme@user.com");
+  const [password, setPassword] = useState("gaduser123");
   const [rememberMe, setRememberMe] = useState(false);
   const navigateTo = useNavigate();
   const location = useLocation();
@@ -63,7 +63,7 @@ const Login = () => {
                 id="email"
                 type="email"
                 required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                className="mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -79,7 +79,7 @@ const Login = () => {
                 id="password"
                 type={view ? "password" : "text"}
                 required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                className="mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -90,6 +90,10 @@ const Login = () => {
                 {view ? <FaRegEyeSlash /> : <FaRegEye />}
               </span>
             </div>
+            <p className="text-sm text-gray-600">
+              Use the pre-filled demo credentials above and click &quot;Log
+              in&quot; to quickly test the app.
+            </p>
             <div className="flex items-center justify-between">
               <label className="flex items-center text-sm">
                 <input
@@ -113,7 +117,7 @@ const Login = () => {
               disabled={loading}
               className={`w-full ${
                 loading ? "bg-gray-500" : "bg-gadBlue"
-              } text-white py-2 px-4 rounded-md`}
+              } text-white py-2 2xl:py-[11px] px-4 rounded-md`}
             >
               {loading ? "Logging in..." : "Log in"}
             </button>
@@ -135,7 +139,7 @@ const Login = () => {
           <h2 className="text-2xl 2xl:text-3xl font-bold text-gray-700">
             Register
           </h2>
-          <p className="my-4 text-gray-600">
+          <p className="my-4 text-gray-600 2xl:text-lg">
             Registering for this site allows you to access your order status and
             history. Just fill in the fields below, and we’ll get a new account
             set up for you in no time. We will only ask you for information
@@ -143,7 +147,7 @@ const Login = () => {
           </p>
           <Link
             to="/register"
-            className="w-full mt-6 bg-emerald-600 text-white py-2 px-4 rounded-md"
+            className="w-full mt-6 bg-emerald-600 2xl:text-lg text-white py-2 2xl:py-[11px] px-4 2xl:px-6 rounded-md"
           >
             Register
           </Link>

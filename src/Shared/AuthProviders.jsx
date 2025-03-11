@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import { clearCookie, setToken } from "../Api/auth";
@@ -24,6 +25,10 @@ const AuthProviders = ({ children }) => {
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
+  };
+  
+  const changePassword = (newPass) => {
+    return updatePassword(auth.currentUser, newPass);
   };
 
   const createUser = (email, password) => {
@@ -81,6 +86,7 @@ const AuthProviders = ({ children }) => {
     login,
     logOut,
     loading,
+    changePassword,
     googleLogin,
     resetPassword,
   };

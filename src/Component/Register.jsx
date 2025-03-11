@@ -78,7 +78,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm 2xl:text-base font-medium text-gray-700"
               >
                 Name *
               </label>
@@ -86,7 +86,7 @@ const Register = () => {
                 id="name"
                 type="text"
                 required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                className="mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -94,7 +94,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm 2xl:text-base font-medium text-gray-700"
               >
                 Email address *
               </label>
@@ -102,7 +102,7 @@ const Register = () => {
                 id="email"
                 type="email"
                 required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                className="mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -110,7 +110,7 @@ const Register = () => {
             <div className="relative">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm 2xl:text-base font-medium text-gray-700"
               >
                 Password *
               </label>
@@ -118,12 +118,12 @@ const Register = () => {
                 id="password"
                 type={view ? "password" : "text"}
                 required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                className="mt-1 block w-full p-2 2xl:p-3 border border-gray-300 rounded-md 2xl:rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <span
-                className="absolute inset-y-0 top-[22px] right-2 flex items-center cursor-pointer"
+                className="absolute inset-y-0 top-[22px] 2xl:top-6 right-2 flex items-center cursor-pointer"
                 onClick={() => setView(!view)}
               >
                 {view ? <FaRegEyeSlash /> : <FaRegEye />}
@@ -169,7 +169,7 @@ const Register = () => {
               disabled={loading || imgLoading}
               className={`w-full ${
                 loading ? "bg-gray-500" : "bg-gadBlue"
-              } text-white py-2 px-4 rounded-md`}
+              } text-white py-2 2xl:py-[11px] px-4 rounded-md`}
             >
               {loading ? "Register in..." : "Register"}
             </button>
@@ -182,13 +182,13 @@ const Register = () => {
           <h2 className="text-2xl 2xl:text-3xl font-bold text-gray-700">
             Login
           </h2>
-          <p className="my-4 text-gray-600">
+          <p className="my-4 text-gray-600 2xl:text-lg">
             Please login to your account. If you signed up via social media,
             click on the social media icon to log in again.
           </p>
           <Link
             to="/login"
-            className="w-full mt-6 bg-emerald-600 text-white py-2 px-4 rounded-md"
+            className="w-full mt-6 bg-emerald-600 text-white py-2 2xl:py-[11px] px-4 2xl:px-6 rounded-md"
           >
             Login
           </Link>

@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { FaCamera, FaTrash } from "react-icons/fa";
+import { FaCamera, FaTrash, FaLock } from "react-icons/fa";
 import { toast } from "sonner";
 import useAuth from "../hooks/useAuth";
 
 const MyProfile = () => {
-  const { user, updateProfileInfo, logOut } = useAuth();
+  const { user, updateProfileInfo, changePassword, logOut } = useAuth();
   const apiKey = import.meta.env.VITE_imgBbKey;
   const defaultImage = import.meta.env.VITE_Default_URL;
 
@@ -13,6 +13,8 @@ const MyProfile = () => {
   const [name, setName] = useState(user?.displayName || "anonymous");
   const [profileImage, setProfileImage] = useState(user?.photoURL);
   const [imageUploading, setImageUploading] = useState(false);
+  const [isPassOpen, setIsPassOpen] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
 
   const handleImageUpload = async (e) => {
     setImageUploading(true);
@@ -29,6 +31,22 @@ const MyProfile = () => {
       console.error("Error uploading image:", error);
     } finally {
       setImageUploading(false);
+    }
+  };
+
+  const handleChangePass = async (e) => {
+    e.preventDefault();
+    if (!newPassword.trim()) {
+      toast.error("Password cannot be empty!");
+      return;
+    }
+    try {
+      await changePassword(newPassword);
+      toast.success("Password changed successfully");
+      setIsPassOpen(false);
+      setNewPassword("");
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
@@ -143,6 +161,51 @@ const MyProfile = () => {
             </div>
           </div>
         </form>
+        <div className="mt-6">
+          <button
+            onClick={() => setIsPassOpen(!isPassOpen)}
+            className="w-full bg-blue-500 text-white px-5 py-2 2xl:py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-600 transition duration-300"
+          >
+            <FaLock /> Change Password
+          </button>
+          {isPassOpen && (
+            <form
+              onSubmit={handleChangePass}
+              className="mt-4 p-3"
+            >
+              <label
+                htmlFor="password"
+                className="block text-gray-700 text-lg font-semibold mb-2"
+              >
+                New Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full p-2 2xl:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter new password"
+                required
+              />
+              <div className="mt-4 flex justify-end">
+                <button
+                  type="button"
+                  className="bg-gray-400 text-white px-4 py-2 rounded-lg mr-2 hover:bg-gray-500"
+                  onClick={() => setIsPassOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                >
+                  Update Password
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );
