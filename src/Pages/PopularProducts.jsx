@@ -94,16 +94,25 @@ const PopularProducts = () => {
                       alt={product.productName}
                       className="w-full h-64 md:h-40 2xl:h-48 object-cover rounded-md transition-transform duration-500 group-hover:scale-110"
                     />
+                    {!product.inStock && (
+                      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center text-white text-sm font-semibold z-20">
+                        Out of Stock
+                      </div>
+                    )}
                     <img
                       src={product?.images[1]}
                       alt={product.productName}
-                      className="absolute inset-0 w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                      className="absolute inset-0 w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100 z-10"
                     />
                   </div>
                   <h3 className="text-sm 2xl:text-lg mt-3">
                     {product.productName}
                   </h3>
-                  <p className="text-green-600">
+                  <p
+                    className={`text-sm 2xl:text-base mt-2 ${
+                      !product.inStock ? "text-red-500" : "text-green-600"
+                    }`}
+                  >
                     {product.inStock ? "In Stock" : "Out of Stock"}
                   </p>
                   <div className="text-sm 2xl:text-base mt-2">
