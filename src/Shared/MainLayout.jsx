@@ -24,7 +24,7 @@ const MainLayout = () => {
   if (loading) return <MainLoader />;
 
   return (
-    <div>
+    <>
       {/* <DiscountModal /> */}
       {!noNavFooter &&
         (noHeaderFooter ? null : routesWithNavbar.includes(loc.pathname) ? (
@@ -36,7 +36,7 @@ const MainLayout = () => {
         <Outlet />
       </div>
       {!noNavFooter && !noHeaderFooter && <Footer />}
-    </div>
+    </>
   );
 };
 

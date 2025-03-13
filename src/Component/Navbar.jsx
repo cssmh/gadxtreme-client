@@ -104,6 +104,10 @@ const Navbar = () => {
     logOut().then().catch();
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN").format(price);
+  };
+
   return (
     <div
       className={`sticky top-0 left-0 right-0 ${
@@ -249,7 +253,9 @@ const Navbar = () => {
                 {myCartData?.length || 0}
               </span>
             </Link>
-            <span className="text-white">৳{data?.unpaid || 0.0}</span>
+            <span className="text-white">
+              ৳ {formatPrice(data?.unpaid || 0.0)}
+            </span>
             {/* <FaBars
               className="text-white cursor-pointer text-xl"
               title="Menu"

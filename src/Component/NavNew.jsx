@@ -103,6 +103,10 @@ const NavNew = () => {
     }));
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN").format(price);
+  };
+
   return (
     <div className="sticky top-0 left-0 right-0 z-50 bg-white md:mx-5">
       <div className="px-4 pt-3 md:pt-4 flex items-center justify-between">
@@ -222,7 +226,7 @@ const NavNew = () => {
                 {myCartData?.length || 0}
               </span>
             </Link>
-            <span>৳{data?.unpaid || 0.0}</span>
+            <span>৳ {formatPrice(data?.unpaid || 0.0)}</span>
           </div>
         </div>
         <div className="lg:hidden flex items-center space-x-[6px]">

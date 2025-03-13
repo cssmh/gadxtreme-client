@@ -27,7 +27,7 @@ const ProductDetails = () => {
 
   const { data: categoryGadgets = [], isLoading: load } = useQuery({
     queryKey: ["categoriesGadgets", gadgetData?.category],
-    queryFn: async () => await getCategoryGadget(gadgetData?.category, 1, 12),
+    queryFn: () => getCategoryGadget(gadgetData?.category, 1, 12),
   });
 
   const [mainImage, setMainImage] = useState(gadgetData?.images?.[0] || null);
