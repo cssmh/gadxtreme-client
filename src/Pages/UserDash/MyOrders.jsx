@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SmallLoader from "../../Component/Loaders/SmallLoader";
 import { addReview } from "../../Api/cartGadget";
 import { toast } from "sonner";
+import GadHelmet from "../../Component/GadHelmet";
 
 const MyOrders = () => {
   const { loading, user } = useAuth();
@@ -45,6 +46,7 @@ const MyOrders = () => {
 
   return (
     <div className="md:p-1">
+      <GadHelmet title={"My Orders"} />
       <h1 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-gray-800">
         My Orders
       </h1>
@@ -167,9 +169,7 @@ const MyOrders = () => {
                           ?.toLowerCase()
                           .replaceAll(/\s+/g, "_")}/${order._id}`}
                         className={`w-full px-3 py-2 ${
-                          order?.customerReview
-                            ? "bg-gray-500"
-                            : "bg-teal-500"
+                          order?.customerReview ? "bg-gray-500" : "bg-teal-500"
                         } text-white font-medium rounded-lg transition`}
                       >
                         View Details

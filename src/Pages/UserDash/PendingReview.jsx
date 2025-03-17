@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import BigLoader from "../../Component/Loaders/BigLoader";
 import { addReview } from "../../Api/cartGadget";
 import usePendingReview from "../../hooks/usePendingReview";
+import GadHelmet from "../../Component/GadHelmet";
 
 const PendingReview = () => {
   const { pending, isLoading, refetch } = usePendingReview();
@@ -33,6 +34,7 @@ const PendingReview = () => {
 
   return (
     <div className="md:p-1">
+      <GadHelmet title={"Pending Reviews"} />
       <h1 className="text-xl md:text-2xl 2xl:text-3xl 2xl:mb-1 font-bold text-gray-800">
         Pending Reviews
       </h1>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaCamera, FaTrash, FaLock } from "react-icons/fa";
 import { toast } from "sonner";
 import useAuth from "../hooks/useAuth";
+import GadHelmet from "./GadHelmet";
 
 const MyProfile = () => {
   const { user, updateProfileInfo, changePassword, logOut } = useAuth();
@@ -74,6 +75,7 @@ const MyProfile = () => {
 
   return (
     <div className="flex items-center justify-center md:min-h-[96vh]">
+      <GadHelmet title={user?.displayName} />
       <div className="w-full max-w-3xl bg-orange-50 p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">
           My Profile
@@ -169,10 +171,7 @@ const MyProfile = () => {
             <FaLock /> Change Password
           </button>
           {isPassOpen && (
-            <form
-              onSubmit={handleChangePass}
-              className="mt-4 p-3"
-            >
+            <form onSubmit={handleChangePass} className="mt-4 p-3">
               <label
                 htmlFor="password"
                 className="block text-gray-700 text-lg font-semibold mb-2"

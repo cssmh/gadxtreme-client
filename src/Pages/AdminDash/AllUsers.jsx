@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllUsers } from "../../Api/auth";
 import UserDataRow from "./UserDataRow";
 import SkeletonRow from "./SkeletonRow";
+import GadHelmet from "../../Component/GadHelmet";
 
 const AllUsers = () => {
   const [search, setSearch] = useState("");
@@ -21,6 +22,7 @@ const AllUsers = () => {
 
   return (
     <div>
+      <GadHelmet title={"All Users"} />
       <h1 className="text-xl 2xl:text-2xl font-semibold text-gray-800 mb-2">
         All Users
       </h1>

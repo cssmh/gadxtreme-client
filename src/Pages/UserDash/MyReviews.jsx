@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getMyReview } from "../../Api/order";
 import BigLoader from "../../Component/Loaders/BigLoader";
 import useAuth from "../../hooks/useAuth";
+import GadHelmet from "../../Component/GadHelmet";
 
 const MyReviews = () => {
   const { loading, user } = useAuth();
@@ -15,6 +16,7 @@ const MyReviews = () => {
 
   return (
     <div className="max-w-4xl 2xl:max-w-[74%] mx-auto p-2 md:p-5">
+      <GadHelmet title={"My Reviews"} />
       <h1 className="text-xl md:text-2xl 2xl:text-3xl font-semibold text-center text-gray-900 mb-3">
         My <span className="text-[#00a9e1]">Reviews</span>
       </h1>

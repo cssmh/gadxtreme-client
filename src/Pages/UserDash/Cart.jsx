@@ -6,6 +6,7 @@ import { deleteMyCart, updateMyCart } from "../../Api/cartGadget";
 import { Link } from "react-router-dom";
 import SmallLoader from "../../Component/Loaders/SmallLoader";
 import useUserCount from "../../hooks/useUserCount";
+import GadHelmet from "../../Component/GadHelmet";
 
 const Cart = () => {
   const { isLoading, myCartData, refetch } = useMyCart();
@@ -73,7 +74,7 @@ const Cart = () => {
   };
 
   const handleApplyCoupon = () => {
-    toast.success("Wrong Coupon!");
+    toast.info("Wrong Coupon!");
   };
 
   const calculateSubtotal = (price, quantity) => {
@@ -84,6 +85,7 @@ const Cart = () => {
 
   return (
     <div className="relative">
+      <GadHelmet title={"Cart"} />
       {notification && (
         <div
           className={`absolute -top-4 left-0 right-0 p-2 2xl:p-3 text-white px-8 z-50 ${

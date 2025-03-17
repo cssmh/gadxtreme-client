@@ -4,6 +4,7 @@ import { getOrderDetails } from "../../Api/order";
 import { sslPay } from "../../Api/auth";
 import useAuth from "../../hooks/useAuth";
 import BigLoader from "../../Component/Loaders/BigLoader";
+import GadHelmet from "../../Component/GadHelmet";
 
 const OrderDetails = () => {
   const { loading, user } = useAuth();
@@ -29,6 +30,7 @@ const OrderDetails = () => {
 
   return (
     <div>
+      <GadHelmet title={"Order Details"} />
       <h1 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-gray-800 mb-2">
         Order Details
       </h1>

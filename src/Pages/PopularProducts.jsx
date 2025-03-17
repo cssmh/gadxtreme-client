@@ -99,11 +99,12 @@ const PopularProducts = () => {
                         Out of Stock
                       </div>
                     )}
-                    <img
-                      src={product?.images[1]}
-                      alt={product.productName}
-                      className="absolute inset-0 w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100 z-10"
-                    />
+                    {product?.images[1] && (
+                      <img
+                        src={product.images[1]}
+                        className="absolute inset-0 w-1/2 mx-auto md:w-full md:h-52 object-cover rounded-md transition-opacity duration-500 opacity-0 group-hover:opacity-100 z-10"
+                      />
+                    )}
                   </div>
                   <h3 className="text-sm 2xl:text-lg mt-3">
                     {product.productName}

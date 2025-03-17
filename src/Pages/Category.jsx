@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { getCategoryGadget } from "../Api/gadgets";
 import SkeletonHome from "./SkeletonHome";
+import GadHelmet from "../Component/GadHelmet";
 
 const Category = () => {
   const { cate } = useParams();
@@ -15,7 +16,7 @@ const Category = () => {
     queryKey: ["categoriesGadgets", cate, page, limit],
     queryFn: () => getCategoryGadget(cate, page, limit),
   });
-
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -64,6 +65,7 @@ const Category = () => {
 
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 py-3 md:py-6 mb-5 md:mb-3">
+      <GadHelmet title={cate} />
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/4 pr-4">
           <div className="mb-4 bg-white rounded-lg shadow p-4">

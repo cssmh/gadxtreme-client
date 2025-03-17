@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { updateGadget } from "../../Api/admin";
 import { toast } from "sonner";
+import GadHelmet from "../../Component/GadHelmet";
 
 const categories = [
   "Earbuds",
@@ -163,6 +164,7 @@ const UpdateProduct = () => {
 
   return (
     <div>
+      <GadHelmet title={productData?.productName} />
       <h1 className="text-xl 2xl:text-2xl font-bold text-gray-800 mb-4">
         Update Product
       </h1>

@@ -5,6 +5,7 @@ import { allCart } from "../../Api/admin";
 import useFetchData from "../../hooks/useFetchData";
 import SkeletonRow from "./SkeletonRow";
 import { toast } from "sonner";
+import GadHelmet from "../../Component/GadHelmet";
 
 const AllCart = () => {
   const { data, isLoading, refetch } = useFetchData(["allCart"], allCart);
@@ -35,6 +36,7 @@ const AllCart = () => {
 
   return (
     <div>
+      <GadHelmet title={"All Cart Items"} />
       <h1 className="text-xl 2xl:text-2xl font-bold text-gray-800 mb-4">
         All Cart Items
       </h1>

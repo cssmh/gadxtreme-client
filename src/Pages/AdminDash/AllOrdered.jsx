@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaCheck, FaTimes, FaTrash } from "react-icons/fa";
 import useFetchData from "../../hooks/useFetchData";
 import SkeletonRow from "./SkeletonRow";
+import GadHelmet from "../../Component/GadHelmet";
 
 const AllOrdered = () => {
   const {
@@ -52,6 +53,7 @@ const AllOrdered = () => {
 
   return (
     <div>
+      <GadHelmet title={"All Orders"} />
       <h1 className="text-xl 2xl:text-2xl font-bold mb-4">All Orders</h1>
       <div className="overflow-x-auto bg-white rounded-md">
         <table className="min-w-full table-auto border-collapse">

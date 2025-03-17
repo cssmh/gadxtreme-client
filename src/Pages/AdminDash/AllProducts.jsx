@@ -5,6 +5,7 @@ import SkeletonRow from "./SkeletonRow";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
+import GadHelmet from "../../Component/GadHelmet";
 
 const AllProducts = () => {
   const [search, setSearch] = useState("");
@@ -47,6 +48,7 @@ const AllProducts = () => {
 
   return (
     <div>
+      <GadHelmet title={"All Products"} />
       <h1 className="text-xl 2xl:text-2xl font-bold mb-2">All Products</h1>
       <div className="mb-3">
         <input

@@ -4,6 +4,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import swal from "sweetalert";
 import { toast } from "sonner";
 import { postGadget } from "../../Api/admin";
+import GadHelmet from "../../Component/GadHelmet";
 
 const categories = [
   "Earbuds",
@@ -158,6 +159,7 @@ const AddProduct = () => {
 
   return (
     <div>
+      <GadHelmet title={"Add a Product"} />
       <h1 className="text-xl 2xl:text-2xl font-bold text-gray-800 mb-4">
         Add a Product
       </h1>
