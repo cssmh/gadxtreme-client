@@ -77,7 +77,7 @@ const PopularProducts = () => {
           {data?.map((product) => (
             <SwiperSlide key={product._id}>
               <Link
-                to={`/details/${product?.productName
+                to={`/product/${product?.productName
                   .toLowerCase()
                   .replaceAll(/\s+/g, "_")}/${product._id}`}
               >

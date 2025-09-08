@@ -162,7 +162,7 @@ const Navbar = () => {
                       setSearchInput("");
                       setSearchData([]);
                     }}
-                    to={`/details/${gadget?.productName
+                    to={`/product/${gadget?.productName
                       .toLowerCase()
                       .replaceAll(/\s+/g, "_")}/${gadget._id}`}
                     className="flex items-center p-2 hover:bg-gray-100 border-b"
@@ -288,7 +288,7 @@ const Navbar = () => {
                   setSearchInput("");
                   setSearchData([]);
                 }}
-                to={`/details/${gadget?.productName
+                to={`/product/${gadget?.productName
                   .toLowerCase()
                   .replaceAll(/\s+/g, "_")}/${gadget._id}`}
                 className="flex items-center p-2 hover:bg-gray-100 border-b"

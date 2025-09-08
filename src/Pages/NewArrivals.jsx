@@ -61,7 +61,7 @@ const NewArrivals = () => {
           >
             <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
               <Link
-                to={`/details/${product?.productName
+                to={`/product/${product?.productName
                   .toLowerCase()
                   .replaceAll(/\s+/g, "_")}/${product._id}`}
               >

@@ -16,7 +16,7 @@ const Category = () => {
     queryKey: ["categoriesGadgets", cate, page, limit],
     queryFn: () => getCategoryGadget(cate, page, limit),
   });
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -237,7 +237,7 @@ const Category = () => {
               {sortedProducts?.map((product) => (
                 <Link
                   key={product._id}
-                  to={`/details/${product?.productName
+                  to={`/product/${product?.productName
                     .toLowerCase()
                     .replaceAll(/\s+/g, "_")}/${product._id}`}
                   className="flex flex-col"

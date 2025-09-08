@@ -72,7 +72,7 @@ const AllCart = () => {
                     </td>
                     <td className="px-6 py-4 hover:underline text-gray-800">
                       <Link
-                        to={`/details/${item?.name
+                        to={`/product/${item?.name
                           .toLowerCase()
                           .replaceAll(/\s+/g, "_")}/${item.gadgetId}`}
                       >

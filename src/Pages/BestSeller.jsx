@@ -52,7 +52,7 @@ const BestSeller = () => {
             className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform"
           >
             <Link
-              to={`/details/${product.productName
+              to={`/product/${product.productName
                 .toLowerCase()
                 .replaceAll(/\s+/g, "_")}/${product._id}`}
             >

@@ -91,7 +91,7 @@ const AllProducts = () => {
                     <td className="border-gray-300 px-4 py-2">
                       <Link
                         className="hover:underline"
-                        to={`/details/${product?.productName
+                        to={`/product/${product?.productName
                           .toLowerCase()
                           .replaceAll(/\s+/g, "_")}/${product._id}`}
                       >

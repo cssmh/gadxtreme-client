@@ -6,6 +6,7 @@
 
 ## Live Demo
 
+- [GadXtreme on Firebase](https://gadxtreme-906da.web.app)
 - [GadXtreme on Vercel](https://gadxtreme.vercel.app)
 
 ## Table of Contents

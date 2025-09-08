@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 
 const Banner = () => {
-
   return (
     <div className="max-w-7xl 2xl:max-w-[90%] mx-auto my-[6px]">
       <div className="block lg:hidden">
@@ -34,7 +33,7 @@ const Banner = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link to="/details/iphone_16_pro_max/6759a3f4c4cc9a848286cba9">
+            <Link to="/product/iphone_16_pro_max/6759a3f4c4cc9a848286cba9">
               <img
                 src={assets.iphone16}
                 alt="Best Mobile Protection"
@@ -43,7 +42,7 @@ const Banner = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link to="/details/galaxy_s25_ultra_5g/67d06998d74ef252c73a4d98">
+            <Link to="/product/galaxy_s25_ultra_5g/67d06998d74ef252c73a4d98">
               <img
                 src={assets.s25}
                 alt="Premium"
@@ -87,7 +86,7 @@ const Banner = () => {
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <Link to="/details/iphone_16_pro_max/6759a3f4c4cc9a848286cba9">
+              <Link to="/product/iphone_16_pro_max/6759a3f4c4cc9a848286cba9">
                 <img
                   src={assets.iphone16}
                   alt="Best Mobile Protection"
@@ -96,7 +95,7 @@ const Banner = () => {
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <Link to="/details/galaxy_s25_ultra_5g/67d06998d74ef252c73a4d98">
+              <Link to="/product/galaxy_s25_ultra_5g/67d06998d74ef252c73a4d98">
                 <img
                   src={assets.s25}
                   alt="Best Mobile Protection"
@@ -116,7 +115,7 @@ const Banner = () => {
           </Swiper>
         </div>
         <div className="flex flex-col space-y-1">
-          <Link to="/details/anker_soundcore_liberty_4_pro_nc_tws_earbud/67cfd53f700aa4ef554357e0">
+          <Link to="/product/anker_soundcore_liberty_4_pro_nc_tws_earbud/67cfd53f700aa4ef554357e0">
             <img
               src={assets.soundcore}
               alt="Best Deal Banner"
