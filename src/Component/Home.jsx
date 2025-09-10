@@ -12,12 +12,14 @@ const Home = () => {
       <Helmet>
         <title>GadXtreme | Tech Destination</title>
       </Helmet>
-      <Banner />
-      <PopularProducts />
-      <TopCategories />
-      <NewArrivals />
-      <BestSeller />
-      <OurService />
+    <div className="space-y-5 lg:space-y-10">
+        <Banner />
+        <PopularProducts />
+        <TopCategories />
+        <NewArrivals />
+        <BestSeller />
+        <OurService />
+      </div>
     </>
   );
 };

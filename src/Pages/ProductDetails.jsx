@@ -132,7 +132,7 @@ const ProductDetails = () => {
     return <SkeletonRow type="productDetails" />;
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[86%] mx-auto p-4 my-4">
+    <div className="container 2xl:max-w-[1370px] mx-auto p-4 my-4">
       <GadHelmet title={gadgetData?.productName} />
       <div className="flex flex-col md:flex-row gap-5 md:gap-7">
         <div className="w-full md:w-[58%] 2xl:w-1/2 relative">

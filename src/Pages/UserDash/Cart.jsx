@@ -84,7 +84,7 @@ const Cart = () => {
   if (isLoading) return <SmallLoader size="78" />;
 
   return (
-    <div className="relative">
+    <div className="relative container 2xl:max-w-[1370px] mx-auto">
       <GadHelmet title={"Cart"} />
       {notification && (
         <div

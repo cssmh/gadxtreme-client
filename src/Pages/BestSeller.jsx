@@ -23,7 +23,7 @@ const BestSeller = () => {
     );
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] lg:mx-auto p-4">
+    <div className="w-full container 2xl:max-w-[1370px] sm:mx-auto p-4">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const BestSeller = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="text-gray-700 text-center max-w-xl 2xl:text-lg mx-auto mb-7"
+        className="text-gray-700 text-center max-w-xl 2xl:text-lg mx-auto mb-10"
       >
         Discover our top-selling gadgets that are highly recommended by our
         customers. Experience the best of innovation!

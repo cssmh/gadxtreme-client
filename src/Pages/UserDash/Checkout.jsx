@@ -132,7 +132,7 @@ const Checkout = () => {
   if (isLoading || loading) return <SmallLoader size="78" />;
 
   return (
-    <div className="flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4">
+    <div className="container 2xl:max-w-[1370px] mx-auto flex flex-col lg:flex-row justify-between w-full px-4 lg:px-8 py-6 gap-4">
       <GadHelmet title={"Checkout"} />
       <div className="lg:w-[60%] w-full border px-4 pb-4 rounded-lg">
         <h2 className="text-xl 2xl:text-2xl font-semibold my-3">

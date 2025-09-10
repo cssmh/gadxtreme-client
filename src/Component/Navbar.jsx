@@ -114,152 +114,154 @@ const Navbar = () => {
         hoveredCategory ? "z-50" : "z-40"
       }`}
     >
-      <div className="bg-black py-[12px] flex items-center justify-between px-4 sm:px-10">
-        <div className="flex items-center justify-between w-full lg:hidden">
-          <img src={assets.logo} className="w-44" alt="Logo" />
-          <div className="flex items-center space-x-3">
-            <Link to={"/cart"}>
-              <FaShoppingCart
-                className="text-white cursor-pointer text-xl"
-                title="Cart"
-              />
-            </Link>
-            <FaBars
-              onClick={toggleDrawer}
-              className="text-white cursor-pointer text-xl"
-              title="Menu"
-            />
-          </div>
-        </div>
-        <div className="hidden lg:flex items-center justify-between w-full">
-          <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
-            <Link to="/">
-              <img src={assets.logo} className="w-44" alt="Logo" />
-            </Link>
-          </div>
-          <div className="flex-grow mx-4 relative">
-            <input
-              type="text"
-              value={searchInput}
-              onChange={handleSearch}
-              placeholder="Search for products..."
-              className="w-full px-2 py-[6px] 2xl:py-2 rounded-md border border-gray-300 outline-none"
-            />
-            {searchInput && (
-              <button
-                onClick={clearSearch}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
-              >
-                <FaTimesCircle />
-              </button>
-            )}
-            {searchData && searchData.length > 0 && (
-              <div className="absolute grid grid-cols-2 gap-2 left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-1 w-full">
-                {searchData.map((gadget) => (
-                  <Link
-                    key={gadget._id}
-                    onClick={() => {
-                      setSearchInput("");
-                      setSearchData([]);
-                    }}
-                    to={`/product/${gadget?.productName
-                      .toLowerCase()
-                      .replaceAll(/\s+/g, "_")}/${gadget._id}`}
-                    className="flex items-center p-2 hover:bg-gray-100 border-b"
-                  >
-                    <img
-                      src={gadget.images[0]}
-                      alt={gadget.name}
-                      className="w-12 h-12 object-cover mr-2"
-                    />
-                    <span className="font-medium">{gadget.productName}</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <div className="flex items-center space-x-3">
-            <Link to="/dashboard">
-              <FaUser
-                className="text-white cursor-pointer text-xl"
-                title="Login/Register"
-              />
-            </Link>
-            {user ? (
-              <div
-                className="relative"
-                onMouseEnter={() => setShowUserDropdown(true)}
-                onMouseLeave={() => setShowUserDropdown(false)}
-              >
-                <Link
-                  to="/dashboard"
-                  className="text-white font-semibold 2xl:text-lg md:py-4 cursor-pointer"
-                >
-                  Hi, {user?.displayName || "Anonymous"}
-                </Link>
-                {showUserDropdown && (
-                  <div className="absolute right-0 mt-3 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
-                    <Link
-                      to="/dashboard"
-                      className="block px-4 py-1 hover:bg-gray-100"
-                    >
-                      Dashboard
-                    </Link>
-                    <Link
-                      to="/dashboard/profile"
-                      className="block px-4 py-1 hover:bg-gray-100"
-                    >
-                      View Profile
-                    </Link>
-                    <Link
-                      to="/dashboard/orders"
-                      className="block px-4 py-1 hover:bg-gray-100"
-                    >
-                      Orders
-                    </Link>
-                    <button
-                      onClick={handleLogOut}
-                      className="px-4 py-1 hover:bg-gray-100 w-full text-left flex items-center space-x-1"
-                    >
-                      <span>Logout</span>
-                      <PiSignOutThin className="text-fuchsia-600" />
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                to="/login"
-                className="text-white font-semibold 2xl:text-lg"
-              >
-                Login/Register
+      <div className="bg-black py-3 2xl:py-4 flex items-center justify-between px-4 sm:px-10">
+        <div className="w-full container 2xl:max-w-[1370px] mx-auto">
+          <div className="flex items-center justify-between w-full lg:hidden">
+            <img src={assets.logo} className="w-44" alt="Logo" />
+            <div className="flex items-center space-x-3">
+              <Link to={"/cart"}>
+                <FaShoppingCart
+                  className="text-white cursor-pointer text-xl"
+                  title="Cart"
+                />
               </Link>
-            )}
-            <Link to={"/dashboard/wishlist"} className="relative">
-              <FaHeart
+              <FaBars
+                onClick={toggleDrawer}
                 className="text-white cursor-pointer text-xl"
-                title="Wishlist"
+                title="Menu"
               />
-              <span className="absolute -top-[8px] -right-1 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                0
-              </span>
-            </Link>
-            <Link to={"/cart"} className="flex items-center gap-1 relative">
-              <FaShoppingCart
-                className="text-white cursor-pointer text-xl"
-                title="Cart"
+            </div>
+          </div>
+          <div className="hidden lg:flex items-center justify-between w-full">
+            <div className="flex items-center text-white text-2xl font-bold flex-shrink-0">
+              <Link to="/">
+                <img src={assets.logo} className="w-44" alt="Logo" />
+              </Link>
+            </div>
+            <div className="flex-grow mx-4 relative">
+              <input
+                type="text"
+                value={searchInput}
+                onChange={handleSearch}
+                placeholder="Search for products..."
+                className="w-full px-2 py-[6px] 2xl:py-2 rounded-md border border-gray-300 outline-none"
               />
-              <span className="absolute -top-[8px] -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                {myCartData?.length || 0}
+              {searchInput && (
+                <button
+                  onClick={clearSearch}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+                >
+                  <FaTimesCircle />
+                </button>
+              )}
+              {searchData && searchData.length > 0 && (
+                <div className="absolute grid grid-cols-2 gap-2 left-0 z-50 bg-white border border-gray-300 rounded shadow-lg mt-1 w-full">
+                  {searchData.map((gadget) => (
+                    <Link
+                      key={gadget._id}
+                      onClick={() => {
+                        setSearchInput("");
+                        setSearchData([]);
+                      }}
+                      to={`/product/${gadget?.productName
+                        .toLowerCase()
+                        .replaceAll(/\s+/g, "_")}/${gadget._id}`}
+                      className="flex items-center p-2 hover:bg-gray-100 border-b"
+                    >
+                      <img
+                        src={gadget.images[0]}
+                        alt={gadget.name}
+                        className="w-12 h-12 object-cover mr-2"
+                      />
+                      <span className="font-medium">{gadget.productName}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="flex items-center space-x-3">
+              <Link to="/dashboard">
+                <FaUser
+                  className="text-white cursor-pointer text-xl"
+                  title="Login/Register"
+                />
+              </Link>
+              {user ? (
+                <div
+                  className="relative"
+                  onMouseEnter={() => setShowUserDropdown(true)}
+                  onMouseLeave={() => setShowUserDropdown(false)}
+                >
+                  <Link
+                    to="/dashboard"
+                    className="text-white font-semibold 2xl:text-lg md:py-4 cursor-pointer"
+                  >
+                    Hi, {user?.displayName || "Anonymous"}
+                  </Link>
+                  {showUserDropdown && (
+                    <div className="absolute right-0 mt-3 w-48 bg-white text-black shadow-lg rounded-lg py-2 z-50">
+                      <Link
+                        to="/dashboard"
+                        className="block px-4 py-1 hover:bg-gray-100"
+                      >
+                        Dashboard
+                      </Link>
+                      <Link
+                        to="/dashboard/profile"
+                        className="block px-4 py-1 hover:bg-gray-100"
+                      >
+                        View Profile
+                      </Link>
+                      <Link
+                        to="/dashboard/orders"
+                        className="block px-4 py-1 hover:bg-gray-100"
+                      >
+                        Orders
+                      </Link>
+                      <button
+                        onClick={handleLogOut}
+                        className="px-4 py-1 hover:bg-gray-100 w-full text-left flex items-center space-x-1"
+                      >
+                        <span>Logout</span>
+                        <PiSignOutThin className="text-fuchsia-600" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className="text-white font-semibold 2xl:text-lg"
+                >
+                  Login/Register
+                </Link>
+              )}
+              <Link to={"/dashboard/wishlist"} className="relative">
+                <FaHeart
+                  className="text-white cursor-pointer text-xl"
+                  title="Wishlist"
+                />
+                <span className="absolute -top-[8px] -right-1 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                  0
+                </span>
+              </Link>
+              <Link to={"/cart"} className="flex items-center gap-1 relative">
+                <FaShoppingCart
+                  className="text-white cursor-pointer text-xl"
+                  title="Cart"
+                />
+                <span className="absolute -top-[8px] -right-2 bg-gadDarkBlue text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                  {myCartData?.length || 0}
+                </span>
+              </Link>
+              <span className="text-white">
+                ৳ {formatPrice(data?.unpaid || 0.0)}
               </span>
-            </Link>
-            <span className="text-white">
-              ৳ {formatPrice(data?.unpaid || 0.0)}
-            </span>
-            {/* <FaBars
+              {/* <FaBars
               className="text-white cursor-pointer text-xl"
               title="Menu"
             /> */}
+            </div>
           </div>
         </div>
       </div>

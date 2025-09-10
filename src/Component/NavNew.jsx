@@ -108,7 +108,7 @@ const NavNew = () => {
   };
 
   return (
-    <div className="sticky top-0 left-0 right-0 z-50 bg-white md:mx-5">
+    <div className="max-w-[95%] 2xl:max-w-[1500px] mx-auto sticky top-0 left-0 right-0 z-50 bg-white">
       <div className="px-4 pt-3 md:pt-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/">

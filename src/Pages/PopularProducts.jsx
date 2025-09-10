@@ -30,10 +30,9 @@ const PopularProducts = () => {
   };
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-1 my-2 md:mx-auto px-3 lg:px-0 mt-8">
+    <div className="container 2xl:max-w-[1370px] mx-auto">
       <h1 className="text-center font-bold text-emerald-600 text-xl md:text-2xl 2xl:text-3xl pb-3 max-w-md mx-auto">
-        Customers Favorites
-        <br />
+        Customers Favorites <br />
         <span className="text-red-500 font-normal text-lg 2xl:text-xl">
           Popular Products
         </span>

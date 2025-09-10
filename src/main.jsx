@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")).render(
     </QueryClientProvider>
     <Toaster
       position="bottom-center"
-      duration={2500}
+      duration={1500}
       visibleToasts={3} // Limits the number of visible toasts
       expand={true} // Allows stacking of long messages
     />

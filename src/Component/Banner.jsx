@@ -8,7 +8,7 @@ import { assets } from "../assets/assets";
 
 const Banner = () => {
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto my-[6px]">
+    <div className="container 2xl:max-w-[1370px] mx-auto my-[6px]">
       <div className="block lg:hidden">
         <Swiper
           speed={500}

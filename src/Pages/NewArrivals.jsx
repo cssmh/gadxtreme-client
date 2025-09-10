@@ -33,7 +33,7 @@ const NewArrivals = () => {
 
   if (isLoading)
     return (
-      <div className="max-w-7xl 2xl:max-w-[90%] lg:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mt-10 mb-2 gap-5 mx-3">
+      <div className="container 2xl:max-w-[1370px] sm:mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mt-10 mb-2 gap-5 mx-3">
         {Array.from({ length: skeletonCount }).map((_, index) => (
           <SkeletonHome key={index} height={160} />
         ))}
@@ -41,7 +41,7 @@ const NewArrivals = () => {
     );
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-3 lg:px-0 py-3 md:py-4">
+    <div className="w-full container 2xl:max-w-[1370px] mx-auto px-3 lg:px-0 py-3 md:py-4">
       <h2 className="text-xl lg:text-2xl 2xl:text-3xl font-bold mb-6 text-center">
         <span className="text-[#00a9e1]">New</span> Arrivals
       </h2>

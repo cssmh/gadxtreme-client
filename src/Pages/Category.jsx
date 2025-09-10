@@ -35,7 +35,7 @@ const Category = () => {
   };
 
   const handlePriceRangeChange = (min, max) => {
-    setPriceRange([min, max === Infinity ? Infinity : max]); 
+    setPriceRange([min, max === Infinity ? Infinity : max]);
     // Ensure max is Infinity if "Unlimited" is checked
     setPage(1); // Reset to page 1 after price range change
   };
@@ -64,7 +64,7 @@ const Category = () => {
   };
 
   return (
-    <div className="max-w-7xl 2xl:max-w-[90%] mx-auto px-4 py-3 md:py-6 mb-5 md:mb-3">
+    <div className="container 2xl:max-w-[1370px] mx-auto px-4 py-3 md:py-6 mb-5 md:mb-3">
       <GadHelmet title={cate} />
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/4 pr-4">
