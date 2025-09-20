@@ -24,8 +24,8 @@ createRoot(document.getElementById("root")).render(
     <Toaster
       position="bottom-center"
       duration={1500}
-      visibleToasts={3} // Limits the number of visible toasts
-      expand={true} // Allows stacking of long messages
+      visibleToasts={3}
+      expand={true}
     />
   </StrictMode>
 );
